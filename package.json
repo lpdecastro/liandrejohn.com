@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "sass:build": "sass --no-source-map scss:css",
-    "sass:watch": "sass --no-source-map --watch scss:css"
+    "sass:watch": "sass --no-source-map --watch scss:css",
+    "build": "npm run sass:build"
   },
   "keywords": [],
   "author": "",
