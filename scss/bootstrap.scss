@@ -1,0 +1,71 @@
+// Font
+$font-family-sans-serif: 'Inter', sans-serif;
+
+// Color
+$primary: #d35400;
+// $primary: #11abb0;
+$secondary: #d35400;
+$dark: rgb(30, 30, 30);
+$light: #eff0f0;
+$gray-700: #495057;
+$body-color: rgba(255, 255, 255, 0.5);
+$text-secondary-color: #fff6;
+// $dark-text: red;
+// $body-color-dark: red;
+// $body-bg-dark:
+
+$white: #fff;
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6,
+  7: $spacer * 8,
+  8: $spacer * 12,
+) !default;
+
+$line-height-base: 2;
+
+// Navbar
+$navbar-nav-link-padding-x: 1.5rem;
+$navbar-padding-y: 1rem;
+$navbar-dark-color: $body-color;
+$navbar-dark-hover-color: $white;
+$navbar-dark-active-color: $secondary;
+
+// Buttons
+$button-radius: 50px;
+$button-padding-x: 30px;
+$button-padding-y: 12px;
+
+// $btn-border-radius: $button-radius;
+// $btn-border-radius-sm: $button-radius;
+// $btn-border-radius-lg: $button-radius;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+
+// $navbar-toggler-border-radius: 5px;
+
+// Container
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1000px,
+  xl: 1000px,
+  xxl: 1140px,
+) !default;
+
+$input-color: $light;
+$input-placeholder-color: $gray-700;
+
+@import '../node_modules/bootstrap/scss/bootstrap';
