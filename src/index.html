@@ -450,26 +450,32 @@
         </div>
         <div class="row">
           <div class="col-lg-7 mx-auto">
-            <form>
+            <form id="contactForm">
               <div class="mb-5">
                 <input
                   type="text"
+                  id="name"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
                   placeholder="Name"
+                  required
                 />
               </div>
               <div class="mb-5">
                 <input
                   type="email"
+                  id="email"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
                   placeholder="Email"
+                  required
                 />
               </div>
               <div class="mb-5">
                 <textarea
+                  id="message"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
                   rows=""
                   placeholder="Message"
+                  required
                 ></textarea>
               </div>
               <div class="d-grid">
