@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap';
+
 function setupScrollEffects() {
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('section');

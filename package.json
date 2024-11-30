@@ -1,11 +1,10 @@
 {
   "name": "liandrejohn-com",
   "version": "1.0.0",
-  "main": "index.js",
+  "source": "src/index.html",
   "scripts": {
-    "sass:build": "sass --no-source-map scss:css",
-    "sass:watch": "sass --no-source-map --watch scss:css",
-    "build": "npm run sass:build"
+    "start": "parcel serve src/index.html --public-url / --dist-dir dist",
+    "build": "parcel build src/index.html --public-url / --dist-dir dist"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +14,16 @@
     "@fortawesome/fontawesome-free": "^6.7.1",
     "bootstrap": "^5.3.3",
     "sass": "^1.81.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.13.2",
+    "parcel": "^2.13.2"
+  },
+  "targets": {
+    "main": {
+      "includeNodeModules": {
+        "*.scss": true
+      }
+    }
   }
 }

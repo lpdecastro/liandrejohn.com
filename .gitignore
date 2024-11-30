@@ -1,6 +1,12 @@
 # Node modules
 node_modules/
 
+# Parcel cache
+.parcel-cache/
+
+# Dist folder
+dist/
+
 # Sass cache files
 *.sass-cache
 *.scss-cache

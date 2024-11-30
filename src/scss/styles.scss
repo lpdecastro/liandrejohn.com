@@ -1,3 +1,7 @@
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/solid';
+
 // Font
 $font-family-sans-serif: 'Inter', sans-serif;
 
@@ -12,7 +16,6 @@ $body-color: rgba(255, 255, 255, 0.5);
 $text-secondary-color: #fff6;
 // $dark-text: red;
 // $body-color-dark: red;
-// $body-bg-dark:
 
 $white: #fff;
 
@@ -68,4 +71,56 @@ $container-max-widths: (
 $input-color: $light;
 $input-placeholder-color: $gray-700;
 
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap.scss';
+
+html {
+  font-size: 112.5%;
+}
+
+.header {
+  background: url('../images/intro-bg.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.header .roles {
+  font-family: 'IBM Plex Serif', serif;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.project:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out;
+  opacity: 0.8;
+}
+
+#services {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
+    url('../images/bg.jpg') center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.btn-outline-light:hover,
+.btn-light:hover {
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--bs-secondary);
+  --bs-btn-hover-border-color: var(--bs-secondary);
+}
+
+.letter-spacing-wide {
+  letter-spacing: 0.28rem;
+}
+
+.font-secondary {
+  font-family: 'IBM Plex Serif', serif;
+}
