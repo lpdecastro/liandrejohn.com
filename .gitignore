@@ -19,3 +19,6 @@ css/
 
 # IDE settings
 .vscode/
+
+# Environment Variables
+.env
