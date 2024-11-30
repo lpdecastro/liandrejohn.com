@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.13.2",
-    "parcel": "^2.13.2"
+    "parcel": "^2.13.2",
+    "parcel-reporter-static-files-copy": "^1.5.3"
   },
   "targets": {
     "main": {
