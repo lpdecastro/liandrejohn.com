@@ -122,12 +122,19 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div class="container">
-        <div href="" class="navbar-brand"></div>
+        <div></div>
         <button
           type="button"
           class="navbar-toggler"
+          aria-expanded="false"
+          aria-controls="navbarNavDropdown"
+          aria-label="Toggle navigation menu"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavDropdown"
         >
@@ -136,22 +143,32 @@
         <div id="navbarNavDropdown" class="collapse navbar-collapse">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link active">Home</a>
+              <a href="#" class="nav-link active" aria-current="page">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#about" class="nav-link">About</a>
+              <a href="#about" class="nav-link" aria-label="About section"
+                >About</a
+              >
             </li>
             <li class="nav-item">
-              <a href="#services" class="nav-link">Services</a>
+              <a href="#services" class="nav-link" aria-label="Services section"
+                >Services</a
+              >
             </li>
             <li class="nav-item">
-              <a href="#career" class="nav-link">Career</a>
+              <a href="#career" class="nav-link" aria-label="Career section"
+                >Career</a
+              >
             </li>
             <li class="nav-item">
-              <a href="#projects" class="nav-link">Projects</a>
+              <a href="#projects" class="nav-link" aria-label="Projects section"
+                >Projects</a
+              >
             </li>
             <li class="nav-item">
-              <a href="#contact" class="nav-link">Contact</a>
+              <a href="#contact" class="nav-link" aria-label="Contact section"
+                >Contact</a
+              >
             </li>
           </ul>
         </div>
@@ -159,29 +176,53 @@
     </nav>
 
     <!-- Header -->
-    <header class="header vh-100 position-relative">
+    <header
+      class="header vh-100 position-relative"
+      role="banner"
+      aria-label="Homepage header"
+    >
       <div
         class="d-flex flex-column justify-content-center align-items-center h-100 text-center position-relative z-3"
       >
-        <h1 class="fs-3 fw-bold text-secondary text-uppercase">
+        <h1
+          class="fs-3 fw-bold text-secondary text-uppercase"
+          aria-label="Greeting message"
+        >
           Hello, World.
         </h1>
-        <h2 class="display-1 fw-bold text-white">I am Liandre John.</h2>
-        <p class="fs-4 font-secondary mb-5">
+        <h2 class="display-1 fw-bold text-white" aria-label="Introduction">
+          I am Liandre John.
+        </h2>
+        <p class="fs-4 font-secondary mb-5" aria-label="Professional titles">
           Java Developer | Platform Engineer
         </p>
-        <a href="#about" class="btn btn-outline-light btn-lg">
+        <a
+          href="#about"
+          class="btn btn-outline-light btn-lg"
+          aria-label="Learn more about me"
+        >
           <div class="d-flex gap-3 align-items-center">
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
             <span>More About Me</span>
           </div>
         </a>
-        <div class="d-flex gap-4 position-absolute bottom-0 mb-5">
-          <a href="https://www.linkedin.com/in/lpdecastro" target="_blank">
-            <i class="fab fa-linkedin fa-3x text-white"></i>
+        <div
+          class="d-flex gap-4 position-absolute bottom-0 mb-5"
+          aria-label="Social media links"
+        >
+          <a
+            href="https://www.linkedin.com/in/lpdecastro"
+            target="_blank"
+            aria-label="LinkedIn profile of Liandre John"
+          >
+            <i class="fab fa-linkedin fa-3x text-white" aria-hidden="true"></i>
           </a>
-          <a href="https://github.com/lpdecastro" target="_blank">
-            <i class="fab fa-github fa-3x text-white"></i>
+          <a
+            href="https://github.com/lpdecastro"
+            target="_blank"
+            aria-label="GitHub profile of Liandre John"
+          >
+            <i class="fab fa-github fa-3x text-white" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -249,12 +290,13 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="py-7">
+    <section id="services" class="py-7" aria-labelledby="services-title">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 mx-auto">
             <div class="text-center text-white mb-5">
               <h2
+                id="services-title"
                 class="fs-6 text-uppercase letter-spacing-wide d-inline-block pb-2 border-bottom border-primary border-2 mb-3"
               >
                 Services
@@ -270,9 +312,12 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="text-center text-white mb-4">
-              <i class="fas fa-server fa-3x text-primary mb-3"></i>
+              <i
+                class="fas fa-server fa-3x text-primary mb-3"
+                aria-hidden="true"
+              ></i>
               <h4>Backend Development</h4>
-              <hr class="w-25 mx-auto" />
+              <hr class="w-25 mx-auto" aria-hidden="true" />
               <p class="fs-5">
                 Building scalable, robust back-end systems for your business.
                 Ensuring seamless integration and optimal application
@@ -282,9 +327,12 @@
           </div>
           <div class="col-lg-4">
             <div class="text-center text-white mb-4">
-              <i class="fas fa-link fa-3x text-primary mb-3"></i>
+              <i
+                class="fas fa-link fa-3x text-primary mb-3"
+                aria-hidden="true"
+              ></i>
               <h4>API Integration</h4>
-              <hr class="w-25 mx-auto" />
+              <hr class="w-25 mx-auto" aria-hidden="true" />
               <p class="fs-5">
                 Designing secure, efficient APIs to connect applications and
                 services, enabling smooth and reliable platform communication.
@@ -293,9 +341,12 @@
           </div>
           <div class="col-lg-4">
             <div class="text-center text-white mb-4">
-              <i class="fas fa-cloud fa-3x text-primary mb-3"></i>
+              <i
+                class="fas fa-cloud fa-3x text-primary mb-3"
+                aria-hidden="true"
+              ></i>
               <h4>Cloud Architecture</h4>
-              <hr class="w-25 mx-auto" />
+              <hr class="w-25 mx-auto" aria-hidden="true" />
               <p class="fs-5">
                 Creating scalable, secure, and cost-effective cloud solutions
                 with AWS, ensuring performance and reliability for your systems.
@@ -424,10 +475,15 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="py-7 text-bg-light">
+    <section
+      id="projects"
+      class="py-7 text-bg-light"
+      aria-labelledby="projects-title"
+    >
       <div class="container">
         <div class="text-center mb-5">
           <h2
+            id="projects-title"
             class="fs-6 text-uppercase letter-spacing-wide d-inline-block pb-2 border-bottom border-primary border-2 mb-3"
           >
             Projects
@@ -441,11 +497,12 @@
               <a
                 href="images/project1.jpg"
                 data-lightbox="projects"
-                data-title="Cliboard Landing Page"
+                data-title="Clipboard Landing Page"
+                aria-label="View larger image of Clipboard Landing Page"
               >
                 <img
                   src="images/project1.jpg"
-                  alt=""
+                  alt="Screenshot of Clipboard Landing Page"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -457,10 +514,11 @@
                 href="images/project2.jpg"
                 data-lightbox="projects"
                 data-title="Loop Studios Website"
+                aria-label="View larger image of Loop Studios Website"
               >
                 <img
                   src="images/project2.jpg"
-                  alt=""
+                  alt="Screenshot of Loop Studios Website"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -472,10 +530,11 @@
                 href="images/project3.jpg"
                 data-lightbox="projects"
                 data-title="Shortly Website"
+                aria-label="View larger image of Shortly Website"
               >
                 <img
                   src="images/project3.jpg"
-                  alt=""
+                  alt="Screenshot of Shortly Website"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -487,10 +546,11 @@
                 href="images/project4.jpg"
                 data-lightbox="projects"
                 data-title="Flyo Website"
+                aria-label="View larger image of Flyo Website"
               >
                 <img
                   src="images/project4.jpg"
-                  alt=""
+                  alt="Screenshot of Flyo Website"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -502,10 +562,11 @@
                 href="images/project5.jpg"
                 data-lightbox="projects"
                 data-title="Bookmark Website"
+                aria-label="View larger image of Bookmark Website"
               >
                 <img
                   src="images/project5.jpg"
-                  alt=""
+                  alt="Screenshot of Bookmark Website"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -517,10 +578,11 @@
                 href="images/project6.jpg"
                 data-lightbox="projects"
                 data-title="Grid Layout"
+                aria-label="View larger image of Grid Layout"
               >
                 <img
                   src="images/project6.jpg"
-                  alt=""
+                  alt="Screenshot of Grid Layout"
                   class="img-fluid rounded-3"
                 />
               </a>
@@ -531,12 +593,13 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-7 bg-dark">
+    <section id="contact" class="py-7 bg-dark" aria-labelledby="contact-title">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 mx-auto">
             <div class="text-center text-white mb-5">
               <h2
+                id="contact-title"
                 class="fs-6 text-uppercase letter-spacing-wide d-inline-block pb-2 border-bottom border-primary border-2 mb-3"
               >
                 Contact
@@ -551,36 +614,46 @@
         </div>
         <div class="row">
           <div class="col-lg-7 mx-auto">
-            <form id="contactForm">
+            <form id="contactForm" aria-labelledby="contact-title">
               <div class="mb-5">
+                <label for="name" class="visually-hidden">Name</label>
                 <input
                   type="text"
                   id="name"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
                   placeholder="Name"
+                  aria-required="true"
                   required
                 />
               </div>
               <div class="mb-5">
+                <label for="email" class="visually-hidden">Email</label>
                 <input
                   type="email"
                   id="email"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
                   placeholder="Email"
+                  aria-required="true"
                   required
                 />
               </div>
               <div class="mb-5">
+                <label for="message" class="visually-hidden">Message</label>
                 <textarea
                   id="message"
                   class="form-control rounded-0 bg-transparent border-top-0 border-start-0 border-end-0 border-muted"
-                  rows=""
+                  rows="3"
                   placeholder="Message"
+                  aria-required="true"
                   required
                 ></textarea>
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-primary text-white">
+                <button
+                  type="submit"
+                  class="btn btn-primary text-white"
+                  aria-label="Submit the contact form"
+                >
                   Submit
                 </button>
               </div>
