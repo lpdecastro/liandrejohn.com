@@ -21,7 +21,20 @@
     <div
       id="top"
       class="min-vh-100 d-flex flex-column bg-dark text-white overflow-hidden"
-      style="background: radial-gradient(circle at 78% 18%, rgba(125, 211, 252, 0.16), transparent 25%), radial-gradient(circle at 14% 82%, rgba(2, 132, 199, 0.17), transparent 25%), #0f172a;"
+      style="
+        background:
+          radial-gradient(
+            circle at 78% 18%,
+            rgba(125, 211, 252, 0.16),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 14% 82%,
+            rgba(2, 132, 199, 0.17),
+            transparent 25%
+          ),
+          #0f172a;
+      "
     >
       <!-- Nav -->
       <nav
@@ -52,9 +65,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="primaryNav">
-            <div
-              class="navbar-nav ms-auto align-items-md-center gap-md-1"
-            >
+            <div class="navbar-nav ms-auto align-items-md-center gap-md-1">
               <a class="nav-link fw-normal" href="#what-i-do">What I Do</a>
               <a class="nav-link fw-normal" href="#projects">Projects</a>
               <a class="nav-link fw-normal" href="#how-i-work">How I Work</a>
@@ -74,9 +85,11 @@
                 class="d-flex align-items-center gap-2 text-info text-uppercase small fw-bold tracking-wide mb-0"
               >
                 <span
-                  class="border-top border-2 border-info d-inline-block w-5"
+                  class="border-top border-2 border-info d-inline-block w-rule"
                 ></span>
-                <span class="text-nowrap">Tech Lead · Enterprise Digital Platforms</span>
+                <span class="text-nowrap"
+                  >Tech Lead · Enterprise Digital Platforms</span
+                >
               </div>
               <h1 class="display-3 fw-semibold mb-0">
                 I design digital platforms that solve complex problems and scale
@@ -102,21 +115,11 @@
                   class="ratio ratio-1x1 rounded-5 overflow-hidden border border-white border-opacity-25 shadow-lg bg-dark"
                 >
                   <img
-                    class="w-100 h-100 object-fit-cover"
-                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85"
-                    alt="Laptop and software development workspace"
+                    class="w-100 h-100 object-fit-cover hero-image"
+                    src="assets/images/profile.png"
+                    alt="Portrait of Liandre de Castro"
                   />
-                </div>
-                <div
-                  class="position-absolute start-0 bottom-0 m-3 p-3 rounded-4 border border-white border-opacity-25 bg-dark bg-opacity-75 shadow text-white"
-                >
-                  <strong class="d-block text-info text-uppercase small mb-1"
-                    >Current focus</strong
-                  >
-                  <span class="small text-white-50"
-                    >Reusable enterprise platforms, APIs, cloud delivery,
-                    performance, and AI-ready web experiences.</span
-                  >
+                  <span class="bg-dark bg-opacity-50"></span>
                 </div>
               </div>
             </div>
@@ -125,31 +128,31 @@
       </header>
 
       <section
-        class="border-top border-secondary"
+        class="border-top border-secondary py-2 py-md-3"
         aria-label="Career highlights"
       >
         <div class="container">
           <div class="row row-cols-2 row-cols-md-4 text-center">
             <div class="col p-3">
-              <div class="display-6 fw-bold lh-1">$1M</div>
+              <div class="display-4 fw-bold lh-1">$1M</div>
               <div class="small text-white-50 mt-2">
                 Statement of work secured through technical solutioning and POCs
               </div>
             </div>
             <div class="col p-3">
-              <div class="display-6 fw-bold lh-1">1,000+</div>
+              <div class="display-4 fw-bold lh-1">1,000+</div>
               <div class="small text-white-50 mt-2">
                 Engineering hours saved annually through self-service automation
               </div>
             </div>
             <div class="col p-3">
-              <div class="display-6 fw-bold lh-1">100+</div>
+              <div class="display-4 fw-bold lh-1">100+</div>
               <div class="small text-white-50 mt-2">
                 Localized websites modernized on a reusable headless platform
               </div>
             </div>
             <div class="col p-3">
-              <div class="display-6 fw-bold lh-1">15</div>
+              <div class="display-4 fw-bold lh-1">15</div>
               <div class="small text-white-50 mt-2">
                 Engineers mentored across teams, with 5 now leading workstreams
               </div>
@@ -160,13 +163,18 @@
     </div>
 
     <main>
-      <section id="what-i-do" class="py-4 py-md-5 bg-white">
+      <section id="what-i-do" class="pt-4 pt-md-5 pb-6 pb-md-7 bg-white">
         <div class="container">
-          <p class="text-primary text-uppercase small fw-bold mb-2">
-            What I Do
-          </p>
+          <div
+            class="d-flex align-items-center gap-2 text-primary text-uppercase small fw-bold tracking-wide mb-2"
+          >
+            <span
+              class="border-top border-2 border-primary d-inline-block w-rule"
+            ></span>
+            <span class="text-nowrap">What I Do</span>
+          </div>
           <h2 class="mb-0">From product idea to production-ready platform.</h2>
-          <p class="lead text-secondary mt-2 mb-0">
+          <p class="lead text-secondary-emphasis mt-2 mb-0">
             I work across the stack, but my strongest value is connecting
             architecture, implementation, performance, and delivery into one
             clear technical path.
@@ -177,13 +185,13 @@
               <article class="card h-100">
                 <div class="card-body text-center d-flex flex-column">
                   <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-3"
+                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-1"
                     aria-hidden="true"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      width="28"
-                      height="28"
+                      width="36"
+                      height="36"
                       fill="none"
                       stroke="currentColor"
                       stroke-width="2"
@@ -196,8 +204,8 @@
                       <rect x="14" y="14" width="7" height="7" rx="1" />
                     </svg>
                   </div>
-                  <h3 class="h5">Full-Stack Web Applications</h3>
-                  <p class="text-secondary mb-0">
+                  <h3 class="h5 mb-2">Full-Stack Web Applications</h3>
+                  <p class="text-secondary-emphasis mb-0">
                     Build modern, maintainable web experiences with React and
                     Next.js, backed by production-grade APIs and pragmatic UI
                     engineering.
@@ -209,13 +217,13 @@
               <article class="card h-100">
                 <div class="card-body text-center d-flex flex-column">
                   <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-3"
+                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-1"
                     aria-hidden="true"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      width="28"
-                      height="28"
+                      width="36"
+                      height="36"
                       fill="none"
                       stroke="currentColor"
                       stroke-width="2"
@@ -227,8 +235,10 @@
                       <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6" />
                     </svg>
                   </div>
-                  <h3 class="h5">Backend Systems &amp; API Architecture</h3>
-                  <p class="text-secondary mb-0">
+                  <h3 class="h5 mb-2">
+                    Backend Systems &amp; API Architecture
+                  </h3>
+                  <p class="text-secondary-emphasis mb-0">
                     Design reusable services, integrations, authentication
                     flows, and API layers using Java, Spring, Node.js, SQL, and
                     serverless patterns.
@@ -240,13 +250,13 @@
               <article class="card h-100">
                 <div class="card-body text-center d-flex flex-column">
                   <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-3"
+                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-1"
                     aria-hidden="true"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      width="28"
-                      height="28"
+                      width="36"
+                      height="36"
                       fill="currentColor"
                     >
                       <path
@@ -254,8 +264,8 @@
                       />
                     </svg>
                   </div>
-                  <h3 class="h5">Performance &amp; Technical SEO</h3>
-                  <p class="text-secondary mb-0">
+                  <h3 class="h5 mb-2">Performance &amp; Technical SEO</h3>
+                  <p class="text-secondary-emphasis mb-0">
                     Improve Core Web Vitals, rendering strategy, structured
                     data, indexability, and technical foundations that help
                     sites perform and get discovered.
@@ -267,13 +277,13 @@
               <article class="card h-100">
                 <div class="card-body text-center d-flex flex-column">
                   <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-3"
+                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-4 bg-light text-primary mb-1"
                     aria-hidden="true"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      width="28"
-                      height="28"
+                      width="36"
+                      height="36"
                       fill="none"
                       stroke="currentColor"
                       stroke-width="2"
@@ -285,8 +295,8 @@
                       />
                     </svg>
                   </div>
-                  <h3 class="h5">Cloud Deployments &amp; DevOps</h3>
-                  <p class="text-secondary mb-0">
+                  <h3 class="h5 mb-2">Cloud Deployments &amp; DevOps</h3>
+                  <p class="text-secondary-emphasis mb-0">
                     Ship reliable workloads across AWS and Azure using
                     containers, CI/CD, serverless services, Kubernetes, and
                     repeatable deployment practices.
@@ -298,25 +308,26 @@
         </div>
       </section>
 
-      <section id="projects" class="py-4 py-md-5 bg-light">
+      <section id="projects" class="pt-6 pt-md-7 pb-6 pb-md-7 bg-surface">
         <div class="container">
           <div
-            class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-3"
+            class="d-flex align-items-center gap-2 text-primary text-uppercase small fw-bold tracking-wide mb-2"
           >
-            <div>
-              <p class="text-primary text-uppercase small fw-bold mb-2">
-                Featured Projects
-              </p>
-              <h2 class="mb-0">Selected systems with measurable impact.</h2>
-              <p class="lead text-secondary mt-2 mb-0">
-                A mix of product, platform, and business-focused builds—from
-                customer-facing experiences to internal systems—designed around
-                clear outcomes, maintainable architecture, and strong user
-                experience.
-              </p>
-            </div>
+            <span
+              class="border-top border-2 border-primary d-inline-block w-rule"
+            ></span>
+            <span class="text-nowrap">Featured Projects</span>
+          </div>
+          <h2 class="mb-0">Selected systems with measurable impact.</h2>
+          <p class="lead text-secondary-emphasis mt-2 mb-0">
+            A mix of product, platform, and business-focused builds—from
+            customer-facing experiences to internal systems—designed around
+            clear outcomes, maintainable architecture, and strong user
+            experience.
+          </p>
+          <div class="text-end my-3">
             <a
-              class="link-primary fw-bold text-nowrap"
+              class="link-primary fw-bold text-nowrap d-inline-block"
               href="https://github.com/lpdecastro"
               target="_blank"
               rel="noreferrer"
@@ -324,251 +335,185 @@
             >
           </div>
 
-          <div
-            id="projectCarouselDesktop"
-            class="carousel slide d-none d-lg-block"
-            data-bs-touch="true"
-            data-bs-wrap="false"
-          >
-            <div class="carousel-inner pb-2">
-              <div class="carousel-item active">
-                <div class="row row-cols-3 g-3">
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a
-                        href="#"
-                        aria-label="Open Northstar Commerce project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85"
-                            alt="Customer shopping online on a laptop" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          🛒 E-commerce
-                        </p>
-                        <h3 class="h5">Northstar Commerce</h3>
-                        <p class="text-secondary">
-                          A conversion-focused storefront with product
-                          discovery, streamlined checkout, and a scalable
-                          catalog experience.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: Next.js, TypeScript, Stripe, PostgreSQL
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a href="#" aria-label="Open Aster & Co project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
-                            alt="Modern business office interior" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          🏢 Business Website
-                        </p>
-                        <h3 class="h5">Aster &amp; Co.</h3>
-                        <p class="text-secondary">
-                          A polished corporate website designed to communicate
-                          services clearly, establish trust, and generate
-                          qualified inquiries.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: Next.js, Bootstrap, CMS, Analytics
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a href="#" aria-label="Open Pulseboard project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
-                            alt="Analytics dashboard on a computer display" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          ◫ SaaS Platform
-                        </p>
-                        <h3 class="h5">Pulseboard</h3>
-                        <p class="text-secondary">
-                          A subscription dashboard for teams to monitor
-                          activity, manage workflows, and surface the metrics
-                          that matter most.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: React, Node.js, REST API, AWS
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
+          <div class="d-none d-lg-block">
+            <div
+              id="projectStripDesktop"
+              class="d-flex flex-nowrap gap-3 overflow-x-auto pb-2"
+              tabindex="0"
+              role="region"
+              aria-label="Featured projects"
+            >
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Northstar Commerce project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85"
+                      alt="Customer shopping online on a laptop" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">🛒</span>E-commerce
+                  </p>
+                  <h3 class="h5 mb-2">Northstar Commerce</h3>
+                  <p class="text-secondary">
+                    A conversion-focused storefront with product discovery,
+                    streamlined checkout, and a scalable catalog experience.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: Next.js, TypeScript, Stripe, PostgreSQL
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
                   </div>
                 </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row row-cols-3 g-3">
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a href="#" aria-label="Open Forge ERP project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85"
-                            alt="Team reviewing business data and operations" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          ⚙ ERP System
-                        </p>
-                        <h3 class="h5">Forge ERP</h3>
-                        <p class="text-secondary">
-                          An operations workspace connecting inventory, orders,
-                          reporting, and internal workflows in one cohesive
-                          system.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: Java, Spring Boot, React, PostgreSQL
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a href="#" aria-label="Open Launchline project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
-                            alt="Creative landing page design workspace" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          ✦ Landing Page
-                        </p>
-                        <h3 class="h5">Launchline</h3>
-                        <p class="text-secondary">
-                          A focused campaign landing page built around a clear
-                          value proposition, responsive storytelling, and strong
-                          calls to action.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: Next.js, Bootstrap, GA4, SEO
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col">
-                    <article class="card h-100 overflow-hidden">
-                      <a
-                        href="#"
-                        aria-label="Open Atlas Booking project details"
-                        ><span class="ratio ratio-16x9 bg-primary-subtle"
-                          ><img
-                            class="w-100 h-100 object-fit-cover"
-                            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"
-                            alt="Travel destination landscape for booking platform" /></span
-                      ></a>
-                      <div class="card-body d-flex flex-column">
-                        <p
-                          class="text-secondary text-uppercase small fw-bold mb-1"
-                        >
-                          ⌖ Booking Platform
-                        </p>
-                        <h3 class="h5">Atlas Booking</h3>
-                        <p class="text-secondary">
-                          A responsive booking experience with search,
-                          availability, account management, and a simple
-                          reservation flow.
-                        </p>
-                        <p class="small text-secondary">
-                          Stack: Next.js, Node.js, MongoDB, Mapbox
-                        </p>
-                        <div class="mt-auto pt-2">
-                          <a class="btn btn-primary btn-sm" href="#"
-                            >View Site</a
-                          >
-                        </div>
-                      </div>
-                    </article>
+              </article>
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Aster & Co project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+                      alt="Modern business office interior" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">🏢</span>Business Website
+                  </p>
+                  <h3 class="h5 mb-2">Aster &amp; Co.</h3>
+                  <p class="text-secondary">
+                    A polished corporate website designed to communicate
+                    services clearly, establish trust, and generate qualified
+                    inquiries.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: Next.js, Bootstrap, CMS, Analytics
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
                   </div>
                 </div>
-              </div>
+              </article>
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Pulseboard project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+                      alt="Analytics dashboard on a computer display" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">◫</span>SaaS Platform
+                  </p>
+                  <h3 class="h5 mb-2">Pulseboard</h3>
+                  <p class="text-secondary">
+                    A subscription dashboard for teams to monitor activity,
+                    manage workflows, and surface the metrics that matter most.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: React, Node.js, REST API, AWS
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
+                  </div>
+                </div>
+              </article>
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Forge ERP project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85"
+                      alt="Team reviewing business data and operations" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">⚙</span>ERP System
+                  </p>
+                  <h3 class="h5 mb-2">Forge ERP</h3>
+                  <p class="text-secondary">
+                    An operations workspace connecting inventory, orders,
+                    reporting, and internal workflows in one cohesive system.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: Java, Spring Boot, React, PostgreSQL
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
+                  </div>
+                </div>
+              </article>
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Launchline project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+                      alt="Creative landing page design workspace" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">✦</span>Landing Page
+                  </p>
+                  <h3 class="h5 mb-2">Launchline</h3>
+                  <p class="text-secondary">
+                    A focused campaign landing page built around a clear value
+                    proposition, responsive storytelling, and strong calls to
+                    action.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: Next.js, Bootstrap, GA4, SEO
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
+                  </div>
+                </div>
+              </article>
+              <article class="card overflow-hidden rounded-2">
+                <a href="#" aria-label="Open Atlas Booking project details"
+                  ><span class="ratio ratio-16x9 bg-primary-subtle"
+                    ><img
+                      class="w-100 h-100 object-fit-cover"
+                      src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"
+                      alt="Travel destination landscape for booking platform" /></span
+                ></a>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                    <span class="me-1">⌖</span>Booking Platform
+                  </p>
+                  <h3 class="h5 mb-2">Atlas Booking</h3>
+                  <p class="text-secondary">
+                    A responsive booking experience with search, availability,
+                    account management, and a simple reservation flow.
+                  </p>
+                  <p class="small text-secondary">
+                    Stack: Next.js, Node.js, MongoDB, Mapbox
+                  </p>
+                  <div class="mt-auto pt-2">
+                    <a class="btn btn-primary btn-sm" href="#">View Site</a>
+                  </div>
+                </div>
+              </article>
             </div>
             <div
               class="d-flex align-items-center justify-content-center gap-3 mt-2"
             >
               <button
-                class="btn btn-outline-dark"
+                class="btn btn-light border fs-3 lh-1 d-inline-flex align-items-center justify-content-center"
                 type="button"
-                data-bs-target="#projectCarouselDesktop"
-                data-bs-slide="prev"
+                data-strip-scroll="prev"
+                aria-controls="projectStripDesktop"
                 aria-label="Previous projects"
               >
                 ‹
               </button>
-              <div class="carousel-indicators position-static m-0">
-                <button
-                  type="button"
-                  data-bs-target="#projectCarouselDesktop"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Project group 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#projectCarouselDesktop"
-                  data-bs-slide-to="1"
-                  aria-label="Project group 2"
-                ></button>
-              </div>
+              <div id="projectStripDots" aria-label="Project groups"></div>
               <button
-                class="btn btn-outline-dark"
+                class="btn btn-light border fs-3 lh-1 d-inline-flex align-items-center justify-content-center"
                 type="button"
-                data-bs-target="#projectCarouselDesktop"
-                data-bs-slide="next"
+                data-strip-scroll="next"
+                aria-controls="projectStripDesktop"
                 aria-label="Next projects"
               >
                 ›
@@ -584,7 +529,7 @@
           >
             <div class="carousel-inner pb-2">
               <div class="carousel-item active">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -593,10 +538,10 @@
                         alt="Customer shopping online on a laptop" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      🛒 E-commerce
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">🛒</span>E-commerce
                     </p>
-                    <h3 class="h5">Northstar Commerce</h3>
+                    <h3 class="h5 mb-2">Northstar Commerce</h3>
                     <p class="text-secondary">
                       A conversion-focused storefront with product discovery,
                       streamlined checkout, and a scalable catalog experience.
@@ -611,7 +556,7 @@
                 </article>
               </div>
               <div class="carousel-item">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -620,10 +565,10 @@
                         alt="Modern business office interior" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      🏢 Business Website
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">🏢</span>Business Website
                     </p>
-                    <h3 class="h5">Aster &amp; Co.</h3>
+                    <h3 class="h5 mb-2">Aster &amp; Co.</h3>
                     <p class="text-secondary">
                       A polished corporate website designed to communicate
                       services clearly, establish trust, and generate qualified
@@ -639,7 +584,7 @@
                 </article>
               </div>
               <div class="carousel-item">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -648,10 +593,10 @@
                         alt="Analytics dashboard on a computer display" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      ◫ SaaS Platform
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">◫</span>SaaS Platform
                     </p>
-                    <h3 class="h5">Pulseboard</h3>
+                    <h3 class="h5 mb-2">Pulseboard</h3>
                     <p class="text-secondary">
                       A subscription dashboard for teams to monitor activity,
                       manage workflows, and surface the metrics that matter
@@ -667,7 +612,7 @@
                 </article>
               </div>
               <div class="carousel-item">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -676,10 +621,10 @@
                         alt="Team reviewing business data and operations" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      ⚙ ERP System
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">⚙</span>ERP System
                     </p>
-                    <h3 class="h5">Forge ERP</h3>
+                    <h3 class="h5 mb-2">Forge ERP</h3>
                     <p class="text-secondary">
                       An operations workspace connecting inventory, orders,
                       reporting, and internal workflows in one cohesive system.
@@ -694,7 +639,7 @@
                 </article>
               </div>
               <div class="carousel-item">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -703,10 +648,10 @@
                         alt="Creative landing page design workspace" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      ✦ Landing Page
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">✦</span>Landing Page
                     </p>
-                    <h3 class="h5">Launchline</h3>
+                    <h3 class="h5 mb-2">Launchline</h3>
                     <p class="text-secondary">
                       A focused campaign landing page built around a clear value
                       proposition, responsive storytelling, and strong calls to
@@ -722,7 +667,7 @@
                 </article>
               </div>
               <div class="carousel-item">
-                <article class="card overflow-hidden">
+                <article class="card overflow-hidden rounded-2">
                   <a href="#"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -731,10 +676,10 @@
                         alt="Travel destination landscape for booking platform" /></span
                   ></a>
                   <div class="card-body d-flex flex-column">
-                    <p class="text-secondary text-uppercase small fw-bold mb-1">
-                      ⌖ Booking Platform
+                    <p class="text-secondary text-uppercase fs-7 fw-bold mb-2">
+                      <span class="me-1">⌖</span>Booking Platform
                     </p>
-                    <h3 class="h5">Atlas Booking</h3>
+                    <h3 class="h5 mb-2">Atlas Booking</h3>
                     <p class="text-secondary">
                       A responsive booking experience with search, availability,
                       account management, and a simple reservation flow.
@@ -753,7 +698,7 @@
               class="d-flex align-items-center justify-content-center gap-3 mt-2"
             >
               <button
-                class="btn btn-outline-dark"
+                class="btn btn-light border fs-3 lh-1 d-inline-flex align-items-center justify-content-center"
                 type="button"
                 data-bs-target="#projectCarouselMobile"
                 data-bs-slide="prev"
@@ -802,7 +747,7 @@
                 ></button>
               </div>
               <button
-                class="btn btn-outline-dark"
+                class="btn btn-light border fs-3 lh-1 d-inline-flex align-items-center justify-content-center"
                 type="button"
                 data-bs-target="#projectCarouselMobile"
                 data-bs-slide="next"
@@ -815,21 +760,28 @@
         </div>
       </section>
 
-      <section id="how-i-work" class="py-4 py-md-5 bg-white">
+      <section id="how-i-work" class="pt-6 pt-md-7 pb-6 pb-md-7 bg-white">
         <div class="container">
-          <p class="text-primary text-uppercase small fw-bold mb-2">
-            How I Work
-          </p>
-          <div class="row g-3">
+          <div
+            class="d-flex align-items-center gap-2 text-primary text-uppercase small fw-bold tracking-wide mb-2"
+          >
+            <span
+              class="border-top border-2 border-primary d-inline-block w-rule"
+            ></span>
+            <span class="text-nowrap">How I Work</span>
+          </div>
+          <div class="row g-3 gx-lg-5">
             <div class="col-lg-5">
-              <h2>Clear decisions. Strong foundations. Measurable outcomes.</h2>
-              <p class="lead text-secondary mt-2">
+              <h2 class="mb-0">
+                Clear decisions. Strong foundations. Measurable outcomes.
+              </h2>
+              <p class="lead text-secondary-emphasis mt-2">
                 I bring a Tech Lead mindset to both focused builds and complex
                 platforms. I start by clarifying the real business problem, then
                 shape a solution that is understandable, maintainable, and
                 realistic to deliver.
               </p>
-              <p class="lead text-secondary mb-0">
+              <p class="lead text-secondary-emphasis mb-0">
                 That means balancing speed with long-term quality: choosing
                 reusable patterns where they matter, keeping unnecessary
                 complexity out, validating decisions through working software,
@@ -845,7 +797,7 @@
                     01
                   </div>
                   <div>
-                    <h3 class="h6 mb-1">Frame the real problem</h3>
+                    <h3 class="h5 mb-1">Frame the real problem</h3>
                     <p class="text-secondary mb-0">
                       Clarify the user need, delivery constraints, business
                       value, and the technical risks worth solving first.
@@ -859,7 +811,7 @@
                     02
                   </div>
                   <div>
-                    <h3 class="h6 mb-1">Design for reuse and scale</h3>
+                    <h3 class="h5 mb-1">Design for reuse and scale</h3>
                     <p class="text-secondary mb-0">
                       Choose patterns that remove duplicate work across teams,
                       markets, or future features instead of optimizing only for
@@ -874,7 +826,7 @@
                     03
                   </div>
                   <div>
-                    <h3 class="h6 mb-1">Ship in visible increments</h3>
+                    <h3 class="h5 mb-1">Ship in visible increments</h3>
                     <p class="text-secondary mb-0">
                       Turn architecture into working software early, so
                       stakeholders can validate direction before complexity
@@ -889,7 +841,7 @@
                     04
                   </div>
                   <div>
-                    <h3 class="h6 mb-1">Measure and improve</h3>
+                    <h3 class="h5 mb-1">Measure and improve</h3>
                     <p class="text-secondary mb-0">
                       Use performance, adoption, cost, reliability, and delivery
                       metrics to guide what gets optimized next.
@@ -902,23 +854,30 @@
         </div>
       </section>
 
-      <section id="contact" class="py-4 py-md-5 bg-light">
+      <section id="contact" class="pt-6 pt-md-7 pb-4 pb-md-5 bg-surface">
         <div class="container">
-          <p class="text-primary text-uppercase small fw-bold mb-2">Contact</p>
-          <div class="row g-3">
+          <div
+            class="d-flex align-items-center gap-2 text-primary text-uppercase small fw-bold tracking-wide mb-2"
+          >
+            <span
+              class="border-top border-2 border-primary d-inline-block w-rule"
+            ></span>
+            <span class="text-nowrap">Contact</span>
+          </div>
+          <div class="row g-3 gx-lg-5">
             <div class="col-lg-5">
-              <h2>
+              <h2 class="mb-0">
                 Need a technical lead, senior engineer, or someone to untangle a
                 complex build?
               </h2>
-              <p class="lead text-secondary mt-2">
+              <p class="lead text-secondary-emphasis mt-2">
                 Send me a note about the problem you’re solving, an opportunity
                 you’d like to discuss, or request a copy of my resume. I’m happy
                 to continue the conversation by email or LinkedIn.
               </p>
               <div class="vstack gap-2 mt-3">
                 <a
-                  class="d-flex align-items-center justify-content-between gap-3 p-2 border rounded-4 bg-white fw-semibold text-dark"
+                  class="d-flex align-items-center justify-content-between gap-3 py-2 ps-1 pe-3 border rounded-2 bg-white fw-semibold text-dark"
                   href="mailto:liandrejohn88@gmail.com"
                 >
                   <span class="d-flex align-items-center gap-2"
@@ -926,8 +885,8 @@
                       class="d-inline-flex align-items-center justify-content-center p-2 rounded-3 bg-light text-primary"
                       ><svg
                         viewBox="0 0 24 24"
-                        width="19"
-                        height="19"
+                        width="24"
+                        height="24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
@@ -942,7 +901,7 @@
                   ><span>↗</span>
                 </a>
                 <a
-                  class="d-flex align-items-center justify-content-between gap-3 p-2 border rounded-4 bg-white fw-semibold text-dark"
+                  class="d-flex align-items-center justify-content-between gap-3 py-2 ps-1 pe-3 border rounded-2 bg-white fw-semibold text-dark"
                   href="https://www.linkedin.com/in/lpdecastro"
                   target="_blank"
                   rel="noreferrer"
@@ -952,8 +911,8 @@
                       class="d-inline-flex align-items-center justify-content-center p-2 rounded-3 bg-light text-primary"
                       ><svg
                         viewBox="0 0 24 24"
-                        width="19"
-                        height="19"
+                        width="24"
+                        height="24"
                         fill="currentColor"
                       >
                         <path
@@ -969,7 +928,7 @@
               </div>
             </div>
             <div class="col-lg-7">
-              <form id="contactForm" class="card shadow-sm">
+              <form id="contactForm" class="card shadow-sm rounded-2">
                 <div class="card-body">
                   <div class="mb-2">
                     <label class="form-label fw-bold small" for="fullName"
@@ -1024,11 +983,6 @@
                   <button class="btn btn-primary" type="submit">
                     Send Message
                   </button>
-                  <p class="small text-secondary mt-2 mb-1">
-                    This static demo opens your default email app with the form
-                    details pre-filled. Replace the handler with Formspree,
-                    Resend, or your preferred backend when publishing.
-                  </p>
                   <p
                     id="formStatus"
                     class="small text-primary fw-semibold mb-0"
@@ -1043,7 +997,8 @@
     </main>
 
     <a
-      class="btn btn-dark position-fixed end-0 bottom-0 m-3 shadow d-inline-flex align-items-center justify-content-center"
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-3 shadow d-none align-items-center justify-content-center"
       href="#top"
       aria-label="Back to top"
       >↑</a
@@ -1055,13 +1010,11 @@
       >
         <div>
           <div class="d-flex align-items-center gap-2 fw-bold">
-            <span
-              class="d-inline-flex align-items-center justify-content-center rounded-3 bg-info text-dark fw-bold p-2 lh-1"
-              >L</span
-            ><span>Liandre de Castro</span>
-          </div>
-          <div class="small text-white-50 mt-1">
-            Tech Lead · Enterprise Digital Platforms
+            <img
+              src="assets/images/logo-dark-transparent.png"
+              alt="Liandre de Castro"
+              width="150"
+            />
           </div>
         </div>
         <div class="d-flex flex-wrap gap-3 small fw-semibold">

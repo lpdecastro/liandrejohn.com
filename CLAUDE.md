@@ -30,12 +30,13 @@ The HTML must use **Bootstrap 5.3 components and utility classes only**. Do not 
 
 All visual customization happens in `src/scss/main.scss`: set Sass variables (`$primary`, `$border-radius`, `$spacers`, `$display-font-sizes`, carousel/navbar/form vars, …) _before_ the `@import 'bootstrap/scss/bootstrap'` line, then rebuild. The Sass loads Bootstrap from `node_modules` via `--load-path=node_modules`.
 
-The only hand-written selector allowed is the one utility already in `main.scss` (`.tracking-normal`), added after the import because Bootstrap has no equivalent. Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
+Hand-written selectors after the `@import` are kept to a minimum and only where Bootstrap has no equivalent. Existing ones: `.tracking-normal` / `.tracking-wide`, `.hero-image`, `.fs-7`, `.bg-surface` (tinted section background — `$custom-colors` isn't wired up in Bootstrap 5.3.8), and the `#projectStripDesktop` / `#projectStripDots` rules (see JavaScript below). Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
 
 ## JavaScript
 
-- Bootstrap's bundle drives the navbar collapse and both project carousels declaratively via `data-bs-*` attributes — no custom JS for those.
-- There are **two** carousels holding the same projects: `#projectCarouselDesktop` (shown `d-none d-lg-block`) and `#projectCarouselMobile` (shown `d-lg-none`). Any change to a project must be made in both.
-- `assets/js/main.js` exists solely to turn the `#contactForm` submit into a prefilled `mailto:` to liandrejohn88@gmail.com. It is the one piece of bespoke behavior.
+- Bootstrap's bundle drives the navbar collapse and the mobile project carousel declaratively via `data-bs-*` attributes — no custom JS for those.
+- **Exception (approved):** the desktop projects list is `#projectStripDesktop`, a CSS scroll-snap strip (not a Bootstrap carousel). `assets/js/main.js` wires its `[data-strip-scroll]` prev/next buttons to scroll one card at a time and populates the `#projectStripDots` position indicators (one per snap stop, count derived from how many cards fit); `src/scss/main.scss` holds the scroll-snap, `flex: 0 0 30%` card sizing, and dot styling (no Bootstrap utility for any of it).
+- The same six projects appear in **two** places: `#projectStripDesktop` (shown `d-none d-lg-block`) and the `#projectCarouselMobile` carousel (shown `d-lg-none`). Any change to a project must be made in both.
+- `assets/js/main.js` holds three small bespoke behaviors: the `#contactForm` submit → prefilled `mailto:` to liandrejohn88@gmail.com, the `#backToTop` show/hide on scroll past the hero, and the `#projectStripDesktop` scroll buttons above.
 
 Page sections are anchor-linked by id: `#what-i-do`, `#projects`, `#how-i-work`, `#contact` (plus `#top`).
