@@ -18,10 +18,14 @@
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
-    <div id="top" class="min-vh-100 d-flex flex-column bg-dark text-white">
+    <div
+      id="top"
+      class="min-vh-100 d-flex flex-column bg-dark text-white overflow-hidden"
+      style="background: radial-gradient(circle at 78% 18%, rgba(125, 211, 252, 0.16), transparent 25%), radial-gradient(circle at 14% 82%, rgba(2, 132, 199, 0.17), transparent 25%), #0f172a;"
+    >
       <!-- Nav -->
       <nav
-        class="navbar navbar-expand-md navbar-dark bg-dark border-bottom border-secondary fixed-top"
+        class="navbar navbar-expand-md navbar-dark bg-dark border-bottom border-light border-opacity-10 fixed-top"
         aria-label="Primary navigation"
       >
         <div class="container">
@@ -49,15 +53,15 @@
           </button>
           <div class="collapse navbar-collapse" id="primaryNav">
             <div
-              class="navbar-nav ms-auto align-items-md-center gap-md-1 fw-semibold"
+              class="navbar-nav ms-auto align-items-md-center gap-md-1"
             >
-              <a class="nav-link tracking-wide" href="#what-i-do">What I Do</a>
-              <a class="nav-link" href="#projects">Projects</a>
-              <a class="nav-link" href="#how-i-work">How I Work</a>
-              <a class="btn btn-primary ms-md-2 mt-2 mt-md-0" href="#contact"
-                >Let’s Connect</a
-              >
+              <a class="nav-link fw-normal" href="#what-i-do">What I Do</a>
+              <a class="nav-link fw-normal" href="#projects">Projects</a>
+              <a class="nav-link fw-normal" href="#how-i-work">How I Work</a>
             </div>
+            <a class="btn btn-primary ms-md-2 mt-2 mt-md-0" href="#contact"
+              >Let’s Connect</a
+            >
           </div>
         </div>
       </nav>
@@ -65,16 +69,16 @@
       <header class="flex-grow-1 d-flex align-items-center pt-5 pb-3">
         <div class="container">
           <div class="row align-items-center g-3">
-            <div class="col-lg-7">
+            <div class="col-lg-7 d-flex flex-column gap-6">
               <div
-                class="d-inline-flex align-items-center gap-2 text-info text-uppercase small fw-bold mb-2"
+                class="d-flex align-items-center gap-2 text-info text-uppercase small fw-bold tracking-wide mb-0"
               >
                 <span
-                  class="border-top border-2 border-info d-inline-block w-25"
+                  class="border-top border-2 border-info d-inline-block w-5"
                 ></span>
-                <span>Tech Lead · Enterprise Digital Platforms</span>
+                <span class="text-nowrap">Tech Lead · Enterprise Digital Platforms</span>
               </div>
-              <h1 class="display-3 mb-3">
+              <h1 class="display-3 fw-semibold mb-0">
                 I design digital platforms that solve complex problems and scale
                 with confidence.
               </h1>
@@ -83,11 +87,11 @@
                 reliable web applications, backend systems, and cloud platforms
                 that turn complex business needs into measurable results.
               </p>
-              <div class="d-flex flex-wrap gap-2 mt-3">
-                <a class="btn btn-primary" href="#projects"
+              <div class="d-flex flex-wrap gap-2 mb-0">
+                <a class="btn btn-primary btn-lg" href="#projects"
                   >View Featured Work</a
                 >
-                <a class="btn btn-outline-light" href="#contact"
+                <a class="btn btn-outline-light btn-lg" href="#contact"
                   >Start a Conversation</a
                 >
               </div>

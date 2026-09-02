@@ -30,23 +30,6 @@ npm install
 npm run build:css
 ```
 
-Then replace these two stylesheet lines in `index.html`:
-
-```html
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  ...
-/>
-<link rel="stylesheet" href="assets/css/theme-preview.css" />
-```
-
-with:
-
-```html
-<link rel="stylesheet" href="assets/css/main.css" />
-```
-
 For development:
 
 ```bash
