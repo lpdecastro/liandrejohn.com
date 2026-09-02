@@ -1,0 +1,113 @@
+// Bootstrap theme overrides only.
+// No custom CSS selectors are defined in this project.
+
+$primary: #0275b0;
+$secondary: #64748b;
+$info: #7dd3fc;
+$dark: #0f172a;
+$light: #ffffff;
+
+$body-bg: $light;
+$body-color: $dark;
+$body-secondary-color: $secondary;
+
+$font-family-sans-serif:
+  'Plus Jakarta Sans',
+  system-ui,
+  -apple-system,
+  'Segoe UI',
+  sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+$headings-font-weight: 800;
+$headings-line-height: 1.12;
+$h1-font-size: 3rem;
+$h2-font-size: 2.25rem;
+$h3-font-size: 1.25rem;
+$h4-font-size: 1.125rem;
+
+$display-font-sizes: (
+  1: 5rem,
+  2: 4.5rem,
+  3: 3rem,
+  4: 2.5rem,
+  5: 2rem,
+  6: 1.5rem,
+);
+$display-font-weight: 800;
+$display-line-height: 0.98;
+
+$border-color: rgba($dark, 0.1);
+$border-radius: 0.625rem;
+$border-radius-sm: 0.5rem;
+$border-radius-lg: 1.375rem;
+$border-radius-xl: 1.875rem;
+$border-radius-xxl: 2rem;
+
+$box-shadow-sm: 0 10px 28px rgba($dark, 0.08);
+$box-shadow: 0 14px 36px rgba($dark, 0.1);
+$box-shadow-lg: 0 26px 80px rgba(#000, 0.28);
+
+$spacers: (
+  0: 0,
+  1: 0.5rem,
+  2: 1rem,
+  3: 1.5rem,
+  4: 4.5rem,
+  5: 6rem,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1180px,
+);
+
+$grid-gutter-width: 1.5rem;
+
+$btn-font-weight: 800;
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.625rem;
+$btn-border-radius: 0.625rem;
+$btn-border-radius-sm: 0.625rem;
+$btn-border-radius-lg: 0.75rem;
+
+$card-border-color: rgba($dark, 0.1);
+$card-border-radius: 1.375rem;
+$card-cap-bg: transparent;
+$card-spacer-y: 1.5rem;
+$card-spacer-x: 1.5rem;
+
+$input-border-color: #cbd5e1;
+$input-border-radius: 0.8125rem;
+$input-padding-y: 0.8125rem;
+$input-padding-x: 0.875rem;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
+
+$form-check-input-checked-bg-color: $primary;
+$form-check-input-checked-border-color: $primary;
+
+$navbar-padding-y: 0.75rem;
+$navbar-brand-font-size: 1rem;
+$navbar-nav-link-padding-x: 1rem;
+$navbar-dark-color: #fff;
+$navbar-dark-hover-color: $info;
+$navbar-dark-active-color: #fff;
+
+$carousel-control-color: $dark;
+$carousel-indicator-active-bg: $primary;
+$carousel-indicator-width: 24px;
+$carousel-indicator-height: 4px;
+$carousel-indicator-spacer: 4px;
+
+$link-decoration: none;
+
+@import 'bootstrap/scss/bootstrap';
+
+.tracking-normal {
+  letter-spacing: 1em;
+}

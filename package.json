@@ -1,33 +1,16 @@
 {
-  "name": "liandrejohn-com",
+  "name": "liandre-bootstrap-sass-portfolio",
   "version": "1.0.0",
-  "source": "src/index.html",
+  "private": true,
+  "description": "Single-page portfolio rebuilt with Bootstrap utilities/components and Sass variable overrides.",
   "scripts": {
-    "start": "parcel serve src/index.html --public-url / --dist-dir dist",
-    "build": "parcel build src/index.html --public-url / --dist-dir dist"
+    "build:css": "sass --load-path=node_modules src/scss/main.scss assets/css/main.css --style=compressed --no-source-map",
+    "watch:css": "sass --load-path=node_modules --watch src/scss/main.scss:assets/css/main.css"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.1",
-    "bootstrap": "^5.3.3",
-    "sass": "^1.81.0"
+    "bootstrap": "5.3.8"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.13.2",
-    "@parcel/transformer-jsonld": "^2.13.2",
-    "@parcel/transformer-sass": "^2.13.2",
-    "@parcel/transformer-webmanifest": "^2.13.2",
-    "parcel": "^2.13.2",
-    "parcel-reporter-static-files-copy": "^1.5.3"
-  },
-  "targets": {
-    "main": {
-      "includeNodeModules": {
-        "*.scss": true
-      }
-    }
+    "sass": "1.103.1"
   }
 }
