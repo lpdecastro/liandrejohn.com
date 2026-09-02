@@ -10,6 +10,12 @@ const projectStrip = document.getElementById('projectStripDesktop');
 const stripButtons = document.querySelectorAll('[data-strip-scroll]');
 const stripDots = document.getElementById('projectStripDots');
 
+// Honor the OS "reduce motion" setting for programmatic scrolls, the same way
+// src/scss/main.scss gates scroll-behavior: smooth. Read live so a settings
+// change mid-session is picked up.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const scrollBehavior = () => (reduceMotion.matches ? 'auto' : 'smooth');
+
 if (projectStrip && stripButtons.length) {
   const stripStep = () => {
     const card = projectStrip.querySelector('.card');
@@ -50,7 +56,7 @@ if (projectStrip && stripButtons.length) {
         dot.type = 'button';
         dot.setAttribute('aria-label', `Go to project group ${i + 1}`);
         dot.addEventListener('click', () => {
-          projectStrip.scrollTo({ left: i * stripStep(), behavior: 'smooth' });
+          projectStrip.scrollTo({ left: i * stripStep(), behavior: scrollBehavior() });
         });
         stripDots.append(dot);
       }
@@ -65,7 +71,7 @@ if (projectStrip && stripButtons.length) {
   stripButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const direction = btn.dataset.stripScroll === 'next' ? 1 : -1;
-      projectStrip.scrollBy({ left: direction * stripStep(), behavior: 'smooth' });
+      projectStrip.scrollBy({ left: direction * stripStep(), behavior: scrollBehavior() });
     });
   });
 
@@ -74,20 +80,41 @@ if (projectStrip && stripButtons.length) {
   syncStrip();
 }
 
-// Show the back-to-top button only once the hero (above the fold) is scrolled past.
+// Show the floating back-to-top button only once the hero (above the fold) is
+// scrolled past, and hide it again when the footer (which has its own "Back to
+// top" link) comes into view so the two don't overlap.
 const backToTop = document.getElementById('backToTop');
 const hero = document.getElementById('top');
+const footer = document.querySelector('footer');
 
 if (backToTop && hero && 'IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(
+  let pastHero = false;
+  let atFooter = false;
+
+  const syncBackToTop = () => {
+    const show = pastHero && !atFooter;
+    backToTop.classList.toggle('d-none', !show);
+    backToTop.classList.toggle('d-inline-flex', show);
+  };
+
+  new IntersectionObserver(
     ([entry]) => {
-      backToTop.classList.toggle('d-none', entry.isIntersecting);
-      backToTop.classList.toggle('d-inline-flex', !entry.isIntersecting);
+      pastHero = !entry.isIntersecting;
+      syncBackToTop();
     },
     // Trigger ~200px early so the button is already visible just before #what-i-do.
     { threshold: 0, rootMargin: '-200px 0px 0px 0px' }
-  );
-  observer.observe(hero);
+  ).observe(hero);
+
+  if (footer) {
+    new IntersectionObserver(
+      ([entry]) => {
+        atFooter = entry.isIntersecting;
+        syncBackToTop();
+      },
+      { threshold: 0 }
+    ).observe(footer);
+  }
 }
 
 if (contactForm && formStatus) {

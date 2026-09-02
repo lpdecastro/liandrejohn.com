@@ -26,11 +26,15 @@ Only `src/scss/main.scss`, `index.html`, `assets/js/main.js`, and the images und
 
 ## Styling model — the core constraint
 
-The HTML must use **Bootstrap 5.3 components and utility classes only**. Do not introduce project-specific CSS class names or a separate stylesheet.
+The HTML must use **Bootstrap 5.3 components and utility classes only**. Do not introduce project-specific CSS class names or a separate stylesheet. (The one vendored third-party stylesheet is Bootstrap Icons — see "Icons" below.)
 
 All visual customization happens in `src/scss/main.scss`: set Sass variables (`$primary`, `$border-radius`, `$spacers`, `$display-font-sizes`, carousel/navbar/form vars, …) _before_ the `@import 'bootstrap/scss/bootstrap'` line, then rebuild. The Sass loads Bootstrap from `node_modules` via `--load-path=node_modules`.
 
-Hand-written selectors after the `@import` are kept to a minimum and only where Bootstrap has no equivalent. Existing ones: `.tracking-normal` / `.tracking-wide`, `.hero-image`, `.fs-7`, `.bg-surface` (tinted section background — `$custom-colors` isn't wired up in Bootstrap 5.3.8), and the `#projectStripDesktop` / `#projectStripDots` rules (see JavaScript below). Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
+Hand-written selectors after the `@import` are kept to a minimum and only where Bootstrap has no equivalent. Existing ones: `.tracking-normal` / `.tracking-wide`, `.hero-image`, `.bg-hero` (the `#top` radial-glow backdrop — stops derived from `$primary` / `$dark`), `.fs-7`, `.bg-surface` (tinted section background — `$custom-colors` isn't wired up in Bootstrap 5.3.8), and the `#projectStripDesktop` / `#projectStripDots` rules (see JavaScript below). Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
+
+## Icons
+
+Icons are **Bootstrap Icons** (`bootstrap-icons`, pinned in `package.json`), used as the web font: `index.html` links `node_modules/bootstrap-icons/font/bootstrap-icons.min.css` in `<head>`, vendored from `node_modules` the same way the Bootstrap JS bundle is. Markup is `<i class="bi bi-<name>" aria-hidden="true"></i>` — decorative only, always `aria-hidden` (every icon sits next to a text label or on an `aria-label`led control). Size with `fs-*` utilities, color with `text-*` (the font is `currentColor`). No inline `<svg>` icons, no emoji/Unicode glyphs. The mobile carousel and desktop strip duplicate the six project-category icons — change both.
 
 ## JavaScript
 

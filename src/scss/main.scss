@@ -1,16 +1,36 @@
-// Bootstrap theme overrides only.
-// No custom CSS selectors are defined in this project.
+// Bootstrap 5.3 theme. Sass variable overrides live above the `@import`; a small
+// set of hand-written selectors lives below it, only where Bootstrap has no
+// equivalent (see CLAUDE.md "Styling model").
+//
+// NOTE: the old header said "no custom CSS selectors are defined" — that is no
+// longer true (see .tracking-wide, .hero-image and the #projectStrip* rules at
+// the bottom).
 
+// Bootstrap's functions load first (its documented customization order) so the
+// overrides below can use tint-color() / shade-color() / mix(). `variables` and
+// the rest of Bootstrap come in lower down, after the overrides.
+//
+// `@import` is deprecated in Dart Sass — the build prints color-functions /
+// @import deprecation warnings from inside node_modules/bootstrap on every run.
+// Those are upstream, not a local bug: blocked on Bootstrap 6 for the @use
+// migration (Bootstrap 5.3's partials still ship as @import).
+@import 'bootstrap/scss/functions';
+
+// ---------------------------------------------------------------------------
+// Colors
+// ---------------------------------------------------------------------------
 $primary: #0275b0;
 $secondary: #64748b;
-$info: #7dd3fc;
 $dark: #0f172a;
-$light: #ffffff;
+$light: #f0f4f8;
 
 $body-bg: $light;
 $body-color: $dark;
 $body-secondary-color: $secondary;
 
+// ---------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------
 $font-family-sans-serif:
   'Plus Jakarta Sans',
   system-ui,
@@ -20,24 +40,14 @@ $font-family-sans-serif:
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 
-$headings-font-weight: 800;
+// One weight for every heading (h1–h6 and the .h1–.h6 utilities). Markup carries
+// no per-heading `fw-*` override — set it here or not at all.
+$headings-font-weight: 600;
 $headings-line-height: 1.12;
-$h1-font-size: 3rem;
-$h2-font-size: 2.25rem;
-$h3-font-size: 1.25rem;
-$h4-font-size: 1.125rem;
 
-$display-font-sizes: (
-  1: 5rem,
-  2: 4.5rem,
-  3: 3rem,
-  4: 2.5rem,
-  5: 2rem,
-  6: 1.5rem,
-);
-$display-font-weight: 800;
-$display-line-height: 0.98;
-
+// ---------------------------------------------------------------------------
+// Borders, radii, elevation
+// ---------------------------------------------------------------------------
 $border-color: rgba($dark, 0.1);
 $border-radius: 0.625rem;
 $border-radius-sm: 0.5rem;
@@ -45,31 +55,27 @@ $border-radius-lg: 1.375rem;
 $border-radius-xl: 1.875rem;
 $border-radius-xxl: 2rem;
 
+// Elevation scale — all three tint with $dark (navy) so they read as one family;
+// alpha ramps 0.08 -> 0.1 -> 0.2 as the shadow grows.
 $box-shadow-sm: 0 10px 28px rgba($dark, 0.08);
 $box-shadow: 0 14px 36px rgba($dark, 0.1);
-$box-shadow-lg: 0 26px 80px rgba(#000, 0.28);
+$box-shadow-lg: 0 26px 80px rgba($dark, 0.2);
 
-$spacers: (
-  0: 0,
-  1: 0.5rem,
-  2: 1rem,
-  3: 1.5rem,
-  4: 4.5rem,
-  5: 6rem,
-  6: 3rem,
-  7: 4.5rem,
-);
-
+// No xxl key: above 1400px `.container` keeps the xl width (1140px), which keeps
+// line length in check on very wide screens. (Dropping the key also means no
+// `.container-xxl` is generated, but the markup only uses plain `.container`.)
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
   xl: 1140px,
-  xxl: 1180px,
 );
 
 $grid-gutter-width: 1.5rem;
 
+// ---------------------------------------------------------------------------
+// Components (buttons, cards, forms, navbar, carousel)
+// ---------------------------------------------------------------------------
 $btn-font-weight: 600;
 $btn-padding-y: 0.625rem;
 $btn-padding-x: 1.25rem;
@@ -78,17 +84,27 @@ $btn-padding-x-sm: 0.875rem;
 $btn-padding-y-lg: 0.75rem;
 $btn-padding-x-lg: 1.5rem;
 $btn-font-size-lg: 1.125rem;
-$btn-border-radius: 0.375rem;
-$btn-border-radius-sm: 0.375rem;
+// Buttons share the 0.5rem corner of $input-border-radius so a button next to a
+// field in #contactForm matches.
+// NOTE: -lg is now equal to the default too (all three 0.5rem) — bump it if a
+// large button should round more.
+$btn-border-radius: 0.5rem;
+$btn-border-radius-sm: 0.5rem;
 $btn-border-radius-lg: 0.5rem;
 
-$card-border-color: rgba($dark, 0.1);
-$card-border-radius: 1.375rem;
+$card-border-color: $border-color;
+// One card radius everywhere — equals the `.rounded-2` utility ($border-radius),
+// so `.card` markup needs no `rounded-*` override.
+$card-border-radius: $border-radius;
+// Cards stay pure white so they lift off the off-white ($light) page background.
+// Literal #fff, not $white — Bootstrap's variables aren't imported yet here.
+$card-bg: #fff;
 $card-cap-bg: transparent;
 $card-spacer-y: 1.5rem;
 $card-spacer-x: 1.5rem;
 
-$input-border-color: #cbd5e1;
+// A 60% white tint of $secondary (slate) instead of a magic slate hex.
+$input-border-color: tint-color($secondary, 60%);
 $input-border-radius: 0.5rem;
 $input-padding-y: 0.8125rem;
 $input-padding-x: 0.875rem;
@@ -101,10 +117,18 @@ $form-check-input-checked-border-color: $primary;
 $navbar-padding-y: 0.5rem;
 $navbar-brand-font-size: 1rem;
 $navbar-nav-link-padding-x: 0.5rem;
+// The <nav> opts into dark styling with `data-bs-theme="dark"` (the v6-safe
+// replacement for the deprecated `.navbar-dark` class). Bootstrap feeds that
+// selector from these $navbar-dark-* vars, so this is still where the colors are
+// tuned.
 $navbar-dark-color: rgba($light, 0.65);
-$navbar-dark-hover-color: $info;
-$navbar-dark-active-color: #fff;
+$navbar-dark-active-color: $light;
+// Hover matches the active/current-link color: links brighten to solid white on
+// hover and stay there when active.
+$navbar-dark-hover-color: $navbar-dark-active-color;
 
+// Carousel indicators — used by the mobile carousel and, via these vars, by the
+// desktop #projectStripDots rules at the bottom of this file.
 $carousel-control-color: $dark;
 $carousel-indicator-active-bg: $primary;
 $carousel-indicator-width: 24px;
@@ -113,55 +137,119 @@ $carousel-indicator-spacer: 4px;
 
 $link-decoration: none;
 
-// Extend Bootstrap's width utility with smaller steps (for the hero eyebrow rule).
+// ---------------------------------------------------------------------------
+// Utility API additions
+// ---------------------------------------------------------------------------
+// The short accent bar above each section eyebrow (and the hero eyebrow) is a
+// `border-top` on an inline-block element that needs a fixed 2rem width.
+// Bootstrap's `width` utility is percentage-only, so this is its own single-value
+// utility (`.w-rule`) instead of a length wedged into the `w-*` scale. The `null`
+// value key is Bootstrap's own "no suffix" pattern (same as `.shadow`).
+// Bootstrap's default `width` utility (w-25/50/75/100/auto) is left untouched.
 $utilities: (
-  'width': (
+  'rule-width': (
     property: width,
-    class: w,
+    class: w-rule,
     values: (
-      5: 5%,
-      8: 8%,
-      10: 10%,
-      15: 15%,
-      25: 25%,
-      50: 50%,
-      75: 75%,
-      100: 100%,
-      auto: auto,
-      rule: 2rem,
+      null: 2rem,
     ),
   ),
 );
 
+// Pull in Bootstrap's default variables (functions are already imported at the
+// top) so $font-sizes exists, then extend it with a 7th step before the rest of
+// Bootstrap compiles the `.fs-*` utilities. (fs-6 is 1rem; the project-card
+// eyebrows need smaller.) Re-importing functions/variables from `bootstrap`
+// below is idempotent — all defaults are already set.
+@import 'bootstrap/scss/variables';
+
+$font-sizes: map-merge(
+  $font-sizes,
+  (
+    7: 0.75rem,
+  )
+);
+
+// Extend Bootstrap's default spacer scale (which tops out at 5 = 3rem) with three
+// larger steps for the section rhythm: 6 = 4.5rem, 7 = 6rem, 8 = 7.5rem. Every
+// main section uses `py-6 py-md-7`; only the first section adds `pt-7 pt-md-8` so
+// it clears the hero. Nothing below 6 is overridden.
+$spacers: map-merge(
+  $spacers,
+  (
+    6: 4.5rem,
+    7: 6rem,
+    8: 7.5rem,
+  )
+);
+
 @import 'bootstrap/scss/bootstrap';
 
-.tracking-normal {
-  letter-spacing: 1em;
+// ===========================================================================
+// Hand-written selectors — only where Bootstrap has no equivalent utility.
+// Keep this list short; prefer composing existing utilities in the markup.
+// ===========================================================================
+
+// Anchor-link scrolling for the in-page nav (#what-i-do / #projects / #how-i-work
+// / #contact). scroll-padding-top keeps the fixed navbar from covering the target
+// section's heading. Derived from the navbar's own metrics — vertical padding
+// (top + bottom) + the brand's line box — plus 1rem of breathing room, so it
+// tracks any change to those Sass vars instead of a hand-tuned 60px.
+html {
+  scroll-padding-top: calc(
+    #{$navbar-padding-y} * 2 + #{$navbar-brand-font-size} *
+      #{$line-height-base} + 1rem
+  );
+}
+
+// Smooth anchor scrolling only when the OS isn't asking for reduced motion
+// (matches how Bootstrap gates its own scroll-behavior). assets/js/main.js
+// makes the same check before its programmatic smooth scrolls.
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 .tracking-wide {
   letter-spacing: 0.15em;
 }
 
-// Bootstrap's smallest font-size utility is fs-6 (1rem); the project-card eyebrow needs smaller.
-.fs-7 {
-  font-size: 0.75rem;
-}
-
-// Tinted section background; Bootstrap's bg-light resolves to pure white in this theme.
-.bg-surface {
-  background-color: #f0f4f8;
-}
-
-// Bootstrap has no filter utilities; darken and warm the hero portrait.
+// Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
+// `brightness`/`contrast` pair stands in for the old 50%-opacity `.bg-dark`
+// overlay <span> that used to sit over the image inside the `.ratio` box.
 .hero-image {
-  filter: brightness(1.2) sepia(0.2);
+  filter: sepia(0.2) brightness(0.7) contrast(1.05);
+}
+
+// Hero backdrop for #top: two soft radial glows over the dark navy base.
+// Previously an inline `style` on the #top element with raw hex; moved here so
+// the wash tracks the theme — the glows and base derive from $primary / $dark
+// (the top-right glow is a light tint of $primary, standing in for the old
+// hard-coded sky-blue). Bootstrap has no multi-layer gradient utility.
+.bg-hero {
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(tint-color($primary, 50%), 0.16),
+      transparent 25%
+    ),
+    radial-gradient(circle at 14% 82%, rgba($primary, 0.17), transparent 25%),
+    $dark;
 }
 
 // Desktop projects strip: scrolls one card at a time (assets/js/main.js drives the
 // prev/next buttons) and keeps the next card peeking. Bootstrap has no scroll-snap
 // or fractional flex-basis utilities, so scope those here.
+//
+// --card-basis sizes each card so 3.25 fit in view — three whole cards plus a
+// quarter-card peek that signals "scroll for more". The `- $grid-gutter-width * 3`
+// removes the three gaps between/around those cards before the divide (a bare
+// `100% / 3.25` would ignore the gaps and overflow). $grid-gutter-width (1.5rem)
+// must stay equal to the strip's `gap-4` in index.html. One custom property so
+// the number lives in a single place.
 #projectStripDesktop {
+  --card-basis: calc((100% - #{$grid-gutter-width} * 3) / 3.25);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -171,26 +259,33 @@ $utilities: (
 }
 
 #projectStripDesktop > .card {
-  flex: 0 0 30%;
+  flex: 0 0 var(--card-basis);
   scroll-snap-align: start;
 }
 
-// Scroll-position indicators for the strip (populated by assets/js/main.js), styled
-// to match the carousel indicator vars the mobile carousel still uses.
+// Scroll-position indicators for the strip (populated by assets/js/main.js). Pulls
+// size and spacing from the same $carousel-indicator-* vars the mobile carousel
+// uses, so the two indicator styles stay in sync.
 #projectStripDots {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: $carousel-indicator-spacer;
 }
 
 #projectStripDots > button {
-  width: 24px;
-  height: 4px;
+  width: $carousel-indicator-width;
+  height: $carousel-indicator-height;
   padding: 0;
   border: 0;
-  border-radius: 2px;
+  border-radius: $carousel-indicator-height * 0.5; // pill
   background-color: rgba($dark, 0.2);
   transition: background-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #projectStripDots > button {
+    transition: none;
+  }
 }
 
 #projectStripDots > button[aria-current='true'] {
