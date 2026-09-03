@@ -23,7 +23,7 @@
 $primary: #2563eb; // accent — section label, icons, links, hover states
 $secondary: #475569; // secondary text — body copy, decks, card descriptions
 $dark: #0f172a; // primary text + hero / navbar / footer ground
-$light: #f8fafc; // page background
+$light: #f0f4f8; // page background
 $border-subtle: #e2e8f0; // card + divider borders
 $border-hover: #bfdbfe; // card border on hover
 $accent-soft: #eff6ff; // icon-tile wash + card hover wash
@@ -250,10 +250,11 @@ html {
   letter-spacing: 0.08em;
 }
 
-// Section titles: fixed 36px. Overrides Bootstrap's RFS step-scaling of $h2-font-size.
+// Section titles: fluid, capped at 36px on desktop and scaling down to 28px on
+// the smallest viewports. Overrides Bootstrap's RFS step-scaling of $h2-font-size.
 h2,
 .h2 {
-  font-size: 2.25rem; // 36px
+  font-size: clamp(1.75rem, 1.125rem + 2vw, 2.25rem); // 28px at 500px -> 36px at 900px
 }
 
 // Responsive button size: default (`.btn`) metrics up to lg, `.btn-lg` metrics
@@ -476,10 +477,7 @@ h2,
   // finishes exactly where the resting peek rule below parks it (2·card - card
   // via translateX = 1·card, + the gap), so the class swap at slide-end is a
   // no-op. Degrades to an instant appear if :has() or this transition is skipped.
-  #projectCarouselMobile:has(.carousel-item-next)
-    .carousel-item.active
-    + .carousel-item
-    + .carousel-item {
+  #projectCarouselMobile:has(.carousel-item-next) .carousel-item.active + .carousel-item + .carousel-item {
     visibility: visible;
     left: calc(var(--card-w) * 2 + var(--peek-gap));
     transform: translateX(-100%);
@@ -491,9 +489,7 @@ h2,
   // would freeze it in place — a stray sliver of the old peek left behind while
   // everything else moves. Slide it off the right edge in step with the rest;
   // slide-end then hides it. Same graceful degradation as the forward glide.
-  #projectCarouselMobile:has(.carousel-item-prev)
-    .carousel-item.active
-    + .carousel-item {
+  #projectCarouselMobile:has(.carousel-item-prev) .carousel-item.active + .carousel-item {
     transform: translateX(100%);
     transition: transform 0.6s ease-in-out;
   }
