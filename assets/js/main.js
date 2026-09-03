@@ -133,21 +133,67 @@ if (mainNav) {
 }
 
 if (contactForm && formStatus) {
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+  const submitButton = contactForm.querySelector('button[type="submit"]');
 
-    const data = new FormData(contactForm);
-    const name = data.get('fullName');
-    const email = data.get('email');
-    const details = data.get('projectDetails');
-    const wantsResume = data.get('requestResume') ? 'Yes' : 'No';
+  // tone: 'info' (sending), 'success' (delivered), 'error' (fell back to mailto).
+  // Stays hidden (no stray margin under the button) until there's a message.
+  const setStatus = (message, tone = 'info') => {
+    formStatus.textContent = message;
+    formStatus.classList.toggle('d-none', !message);
+    formStatus.classList.toggle('text-primary', tone === 'info');
+    formStatus.classList.toggle('text-success', tone === 'success');
+    formStatus.classList.toggle('text-danger', tone === 'error');
+  };
 
+  // Backup path: if the network request fails, hand the visitor a prefilled
+  // mailto: so the submission isn't lost (matches the original static-demo behavior).
+  const openMailtoFallback = ({ name, email, details, wantsResume }) => {
     const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
     const body = encodeURIComponent(
       `Hi Liandre,\n\n${details}\n\nRequesting resume: ${wantsResume}\n\nFrom: ${name}\nEmail: ${email}`
     );
-
-    formStatus.textContent = 'Opening your email app…';
     window.location.href = `mailto:liandrejohn88@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const data = new FormData(contactForm);
+    const fields = {
+      name: data.get('fullName'),
+      email: data.get('email'),
+      details: data.get('projectDetails'),
+      wantsResume: data.get('requestResume') ? 'Yes' : 'No',
+    };
+
+    // Give Web3Forms a readable subject and spell out the resume request as its
+    // own line rather than a raw "on" checkbox value.
+    data.set('subject', `Portfolio inquiry from ${fields.name}`);
+    data.delete('requestResume');
+    data.set('Requesting resume', fields.wantsResume);
+
+    if (submitButton) submitButton.disabled = true;
+    setStatus('Sending your message…', 'info');
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || `Request failed (${response.status})`);
+      }
+
+      contactForm.reset();
+      setStatus('Thanks for reaching out — your message came through. You’ll hear back from me shortly.', 'success');
+    } catch (error) {
+      setStatus('That didn’t go through — opening your email app so your message isn’t lost.', 'error');
+      openMailtoFallback(fields);
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }

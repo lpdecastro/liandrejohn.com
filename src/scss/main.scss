@@ -24,6 +24,7 @@ $primary: #2563eb; // accent — section label, icons, links, hover states
 $secondary: #475569; // secondary text — body copy, decks, card descriptions
 $dark: #0f172a; // primary text + hero / navbar / footer ground
 $light: #f0f4f8; // page background
+// $light: #f0f4f8; // page background
 $border-subtle: #e2e8f0; // card + divider borders
 $border-hover: #bfdbfe; // card border on hover
 $accent-soft: #eff6ff; // icon-tile wash + card hover wash
@@ -38,6 +39,11 @@ $secondary-text-emphasis: $secondary;
 // `.bg-primary-subtle` (icon tiles, project image placeholders) becomes the
 // spec's "Accent Soft" wash rather than Bootstrap's computed 80% tint.
 $primary-bg-subtle: $accent-soft;
+// A second, deeper primary wash for filled chips that must read on the
+// near-white $light ground — the #how-i-work step badges, where
+// `.bg-primary-subtle` is too faint and solid `.bg-primary` is too loud.
+// Exposed as the `.bg-primary-muted` class further down.
+$primary-bg-muted: tint-color($primary, 75%);
 
 // ---------------------------------------------------------------------------
 // Typography — Inter, per the redesign spec.
@@ -226,8 +232,8 @@ $spacers: map-merge(
 // Keep this list short; prefer composing existing utilities in the markup.
 // ===========================================================================
 
-// Anchor-link scrolling for the in-page nav (#what-i-do / #projects / #how-i-work
-// / #contact). scroll-padding-top keeps the fixed navbar from covering the target
+// Anchor-link scrolling for the in-page nav (#what-i-do / #featured-work / #how-i-work
+// / #get-in-touch). scroll-padding-top keeps the fixed navbar from covering the target
 // section's heading. Derived from the navbar's own metrics — vertical padding
 // (top + bottom) + the brand's line box — plus 1rem of breathing room, so it
 // tracks any change to those Sass vars instead of a hand-tuned 60px.
@@ -248,6 +254,13 @@ html {
 // 0.08em.
 .tracking-wide {
   letter-spacing: 0.08em;
+}
+
+// `.bg-primary-muted` — a mid step between `.bg-primary-subtle` and `.bg-primary`
+// (see $primary-bg-muted). Bootstrap only generates one `-subtle` level per
+// theme colour; the #how-i-work step badges need one that holds up on $light.
+.bg-primary-muted {
+  background-color: $primary-bg-muted;
 }
 
 // Section titles: fluid, capped at 36px on desktop and scaling down to 28px on
@@ -324,7 +337,7 @@ h2,
   background-color: #fff;
 }
 
-// 48 × 48 icon tile (spec §5), used by the #what-i-do cards and the #contact
+// 48 × 48 icon tile (spec §5), used by the #what-i-do cards and the #get-in-touch
 // direct links. Static — no hover state. Bootstrap has no fixed-square sizing
 // utility for this.
 [data-icon-tile] {
@@ -332,26 +345,26 @@ h2,
   height: 3rem;
 }
 
-// #projects cards — a subtle hover: the card makes a small lift, the border warms
+// #featured-work cards — a subtle hover: the card makes a small lift, the border warms
 // to the hover blue, and a soft shadow fades in (no background wash — the cards
 // carry a full-bleed image). Bootstrap has no card hover state, so scope it here.
 // Covers both the desktop strip and the mobile carousel; the carousel's slide
 // transform lives on `.carousel-item`, not `.card`, so the two never collide.
-#projects .card {
+#featured-work .card {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     border-color 0.25s ease;
 }
 
-#projects .card:hover {
+#featured-work .card:hover {
   transform: translateY(-4px);
   border-color: $border-hover;
   box-shadow: $box-shadow-sm;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #projects .card {
+  #featured-work .card {
     transition: none;
   }
 }
