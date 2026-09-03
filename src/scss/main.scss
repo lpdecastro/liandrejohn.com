@@ -285,9 +285,9 @@ h2,
 // Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
 // `brightness`/`contrast` pair stands in for the old 50%-opacity `.bg-dark`
 // overlay <span> that used to sit over the image inside the `.ratio` box.
-.hero-image {
-  filter: sepia(0.2) brightness(0.7) contrast(1.05);
-}
+// .hero-image {
+//   filter: sepia(0.2) brightness(0.7) contrast(1.05);
+// }
 
 // Hero backdrop for #top: two soft radial glows over the dark navy base.
 // Previously an inline `style` on the #top element with raw hex; moved here so

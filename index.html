@@ -11,25 +11,118 @@
     <link rel="icon" href="assets/images/favicon.svg" />
     <title>Liandre John de Castro — Tech Lead, Enterprise Digital Platforms</title>
 
-    <!-- Structured data: Person schema so search engines and recruiters resolve the full name, role, and profiles -->
+    <!-- Canonical: single indexable URL (host + trailing slash normalized) -->
+    <link rel="canonical" href="https://liandrejohn.com/" />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta property="og:title" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms" />
+    <meta
+      property="og:description"
+      content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands."
+    />
+    <meta property="og:url" content="https://liandrejohn.com/" />
+    <meta property="og:image" content="https://liandrejohn.com/assets/images/og-card.png" />
+    <meta property="og:image:width" content="1731" />
+    <meta property="og:image:height" content="909" />
+    <meta
+      property="og:image:alt"
+      content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms. Java, Next.js, AWS, Magnolia CMS."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Liandre John" />
+    <meta property="profile:last_name" content="de Castro" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms" />
+    <meta
+      name="twitter:description"
+      content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands."
+    />
+    <meta name="twitter:image" content="https://liandrejohn.com/assets/images/og-card.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms. Java, Next.js, AWS, Magnolia CMS."
+    />
+
+    <!-- Structured data: ProfilePage > Person (+ WebSite) so search engines and AI answer engines resolve the full name, role, employer, and profiles -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Liandre John de Castro",
-        "givenName": "Liandre John",
-        "familyName": "de Castro",
-        "jobTitle": "Tech Lead",
-        "description": "Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands.",
-        "url": "https://liandrejohn.com",
-        "email": "mailto:liandrejohn88@gmail.com",
-        "knowsAbout": ["Java", "Next.js", "AWS", "Magnolia CMS", "Enterprise Digital Platforms", "Cloud Architecture", "AI-assisted Development"],
-        "sameAs": [
-          "https://www.linkedin.com/in/lpdecastro",
-          "https://github.com/lpdecastro"
+        "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "https://liandrejohn.com/#profilepage",
+            "url": "https://liandrejohn.com/",
+            "name": "Liandre John de Castro — Tech Lead, Enterprise Digital Platforms",
+            "dateModified": "2026-09-03",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://liandrejohn.com/#website" },
+            "mainEntity": { "@id": "https://liandrejohn.com/#person" },
+            "primaryImageOfPage": "https://liandrejohn.com/assets/images/profile.webp"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "givenName": "Liandre John",
+            "familyName": "de Castro",
+            "jobTitle": "Tech Lead",
+            "description": "Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands.",
+            "url": "https://liandrejohn.com/",
+            "mainEntityOfPage": { "@id": "https://liandrejohn.com/#profilepage" },
+            "image": "https://liandrejohn.com/assets/images/profile.webp",
+            "email": "mailto:liandrejohn88@gmail.com",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Crescendo Collective"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "University of the Philippines Diliman"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Quezon City",
+              "addressRegion": "Metro Manila",
+              "addressCountry": "PH"
+            },
+            "nationality": { "@type": "Country", "name": "Philippines" },
+            "knowsLanguage": ["en"],
+            "knowsAbout": [
+              "Java",
+              "Next.js",
+              "AWS",
+              "Magnolia CMS",
+              "Enterprise Digital Platforms",
+              "Cloud Architecture",
+              "AI-assisted Development"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Professional inquiries",
+              "email": "liandrejohn88@gmail.com",
+              "url": "https://liandrejohn.com/#get-in-touch"
+            },
+            "sameAs": ["https://www.linkedin.com/in/lpdecastro", "https://github.com/lpdecastro"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://liandrejohn.com/#website",
+            "url": "https://liandrejohn.com/",
+            "name": "Liandre John de Castro",
+            "description": "Portfolio of Liandre John de Castro — Tech Lead for enterprise digital platforms.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://liandrejohn.com/#person" }
+          }
         ]
       }
     </script>
+
+    <!-- Preload the hero portrait (LCP candidate) -->
+    <link rel="preload" as="image" href="assets/images/profile.webp" fetchpriority="high" />
 
     <!-- Fonts: Google Fonts preconnect + Inter (site typeface) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,7 +151,7 @@
             <a
               class="navbar-brand d-flex align-items-center gap-3 fw-bold"
               href="#top"
-              aria-label="Liandre de Castro home"
+              aria-label="Liandre John de Castro home"
             >
               <img src="assets/images/logo-dark-transparent-trimmed.png" alt="" width="150" height="50" />
             </a>
@@ -97,13 +190,14 @@
                   <span class="text-nowrap">Tech Lead · Enterprise Digital Platforms</span>
                 </div>
                 <h1 class="fs-1 mb-0">
-                  Architecting Magnolia CMS and cloud platforms for global brands, from system design to delivery.
+                  <span class="visually-hidden">Liandre John de Castro — Tech Lead. </span>Architecting Magnolia CMS and
+                  cloud platforms for global brands, from system design to delivery.
                 </h1>
                 <p class="lead text-white-50 mb-0">
                   I’m Liandre. For 6+ years I’ve built enterprise digital platforms with Java, Next.js, AWS, and
-                  Magnolia CMS for global pharmaceutical and consumer health brands. I lead 7 engineers, own
-                  platform architecture end to end, and use AI-assisted development to raise delivery speed and code
-                  quality across the team.
+                  Magnolia CMS for global pharmaceutical and consumer health brands. I lead 7 engineers, own platform
+                  architecture end to end, and use AI-assisted development to raise delivery speed and code quality
+                  across the team.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                   <a class="btn btn-primary btn-lg-lg-up" href="#featured-work">View Featured Work</a>
@@ -118,8 +212,11 @@
                   >
                     <img
                       class="w-100 h-100 object-fit-cover hero-image"
-                      src="assets/images/profile.png"
+                      src="assets/images/profile.webp"
                       alt="Liandre John de Castro - Tech Lead"
+                      width="1086"
+                      height="1448"
+                      fetchpriority="high"
                     />
                   </div>
                   <figcaption class="text-center text-white-50 fs-7 fw-semibold mt-3">
@@ -137,11 +234,15 @@
             <div class="row row-cols-2 row-cols-md-4 text-center">
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">6+ yrs</div>
-                <div class="small text-white-50">Building enterprise digital platforms, from architecture to delivery</div>
+                <div class="small text-white-50">
+                  Building enterprise digital platforms, from architecture to delivery
+                </div>
               </div>
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">$1M</div>
-                <div class="small text-white-50">Statement of work secured through technical solutioning and client POCs</div>
+                <div class="small text-white-50">
+                  Statement of work secured through technical solutioning and client POCs
+                </div>
               </div>
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">150+</div>
@@ -285,15 +386,14 @@
           <article class="card overflow-hidden">
             <div class="row g-0">
               <div class="col-md-5">
-                <!-- TODO: replace with a real Magnolia CMS platform screenshot (see width/height) -->
                 <img
                   class="w-100 h-100 object-fit-cover bg-primary-subtle"
                   style="min-height: 260px; object-position: left top"
-                  src="assets/images/magnolia-cms-admincentral.png"
-                  alt="Placeholder for a Magnolia CMS platform screenshot"
+                  src="assets/images/magnolia-cms-admincentral.webp"
+                  alt="Magnolia CMS AdminCentral managing 150+ localized brand sites from one platform"
                   loading="lazy"
-                  width="1680"
-                  height="858"
+                  width="2966"
+                  height="2254"
                 />
               </div>
               <div class="col-md-7">
@@ -346,7 +446,9 @@
               <p class="lead text-secondary-emphasis mw-prose mb-0">
                 Browse concepts across SaaS, e-commerce, scheduling, and marketing sites — each one live and built to
                 production standards. Find the pattern closest to what you’re building, and
-                <a class="link-primary text-decoration-underline link-offset-2" href="#get-in-touch">let’s build yours</a>
+                <a class="link-primary text-decoration-underline link-offset-2" href="#get-in-touch"
+                  >let’s build yours</a
+                >
                 from something that already works.
               </p>
             </div>
@@ -824,13 +926,11 @@
                 <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                 <span class="text-nowrap">Get in Touch</span>
               </div>
-              <h2 class="mw-prose mb-3">
-                Whether you’re hiring or scoping a build, start here.
-              </h2>
+              <h2 class="mw-prose mb-3">Whether you’re hiring or scoping a build, start here.</h2>
               <p class="lead text-secondary-emphasis mw-prose mb-4">
                 Filling a role? Share the details and you’ll get my resume and availability. Planning a platform or
-                untangling a stalled build? Outline it and I’ll tell you how I’d approach the work. Email or
-                LinkedIn — whichever’s easier for you.
+                untangling a stalled build? Outline it and I’ll tell you how I’d approach the work. Email or LinkedIn —
+                whichever’s easier for you.
               </p>
               <!-- Direct contact links: email + LinkedIn (stacked) -->
               <div class="row row-cols-1 g-3 mb-0">
@@ -863,9 +963,7 @@
                         data-icon-tile
                         ><i class="bi bi-linkedin fs-4" aria-hidden="true"></i></span
                       ><span
-                        >Connect on LinkedIn<br /><small class="text-secondary"
-                          >linkedin.com/in/lpdecastro</small
-                        ></span
+                        >Connect on LinkedIn<br /><small class="text-secondary">linkedin.com/in/lpdecastro</small></span
                       ></span
                     ><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
                   </a>
@@ -874,12 +972,7 @@
             </div>
             <!-- Right column: message form — posts to Web3Forms via main.js; falls back to a prefilled mailto: on failure -->
             <div class="col-lg-6">
-              <form
-                id="contactForm"
-                class="card"
-                action="https://api.web3forms.com/submit"
-                method="POST"
-              >
+              <form id="contactForm" class="card" action="https://api.web3forms.com/submit" method="POST">
                 <div class="card-body">
                   <!-- Web3Forms delivery config + spam honeypot (hidden from humans) -->
                   <input type="hidden" name="access_key" value="a3ae2de1-146c-4053-9466-cedd5d78f0b2" />
@@ -972,7 +1065,7 @@
           <div class="col-lg-4">
             <img
               src="assets/images/logo-dark-transparent-trimmed.png"
-              alt="Liandre de Castro"
+              alt="Liandre John de Castro"
               width="160"
               height="53"
               loading="lazy"
@@ -1038,7 +1131,7 @@
         <div
           class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-white-50"
         >
-          <p class="mb-0">© 2026 Liandre de Castro. All rights reserved.</p>
+          <p class="mb-0">© 2026 Liandre John de Castro. All rights reserved.</p>
           <a class="link-light text-decoration-none" href="#top"
             >Back to top <i class="bi bi-arrow-up" aria-hidden="true"></i
           ></a>
