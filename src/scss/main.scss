@@ -317,46 +317,41 @@ h2,
   }
 }
 
-// #what-i-do service cards — the redesign's signature interaction (spec §4, §7):
-// on card hover the whole card lifts, a soft blue wash and lighter-blue border
-// fade in, and the icon tile flips from tinted-blue to solid-blue with a white
-// glyph. Bootstrap has no card hover state, fixed-square sizing, or multi-stop
-// background utility, so scope all of it here. The icon wrapper carries the
-// `[data-icon-tile]` attribute hook in the markup (same idea as
-// `[data-strip-scroll]` below); the #contact direct links reuse the same tile.
+// #what-i-do service cards sit on a plain white ground (Bootstrap's `.card` bg
+// tracks the theme; pin it so it stays white on the near-white page). No hover
+// state — the cards are static.
 #what-i-do .card {
   background-color: #fff;
+}
+
+// 48 × 48 icon tile (spec §5), used by the #what-i-do cards and the #contact
+// direct links. Static — no hover state. Bootstrap has no fixed-square sizing
+// utility for this.
+[data-icon-tile] {
+  width: 3rem;
+  height: 3rem;
+}
+
+// #projects cards — a subtle hover: the card makes a small lift, the border warms
+// to the hover blue, and a soft shadow fades in (no background wash — the cards
+// carry a full-bleed image). Bootstrap has no card hover state, so scope it here.
+// Covers both the desktop strip and the mobile carousel; the carousel's slide
+// transform lives on `.carousel-item`, not `.card`, so the two never collide.
+#projects .card {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
-    border-color 0.25s ease,
-    background-color 0.25s ease;
+    border-color 0.25s ease;
 }
 
-[data-icon-tile] {
-  width: 3rem; // spec §5: 48 × 48 tile
-  height: 3rem;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-#what-i-do .card:hover {
-  transform: translateY(-6px);
+#projects .card:hover {
+  transform: translateY(-4px);
   border-color: $border-hover;
-  background-color: $accent-soft;
-  box-shadow: $box-shadow;
-}
-
-#what-i-do .card:hover [data-icon-tile],
-#contact a:hover [data-icon-tile] {
-  background-color: $primary;
-  color: #fff;
+  box-shadow: $box-shadow-sm;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #what-i-do .card,
-  [data-icon-tile] {
+  #projects .card {
     transition: none;
   }
 }
