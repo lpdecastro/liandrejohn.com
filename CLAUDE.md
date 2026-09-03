@@ -30,7 +30,11 @@ The HTML must use **Bootstrap 5.3 components and utility classes only**. Do not 
 
 All visual customization happens in `src/scss/main.scss`: set Sass variables (`$primary`, `$border-radius`, `$spacers`, `$display-font-sizes`, carousel/navbar/form vars, …) _before_ the `@import 'bootstrap/scss/bootstrap'` line, then rebuild. The Sass loads Bootstrap from `node_modules` via `--load-path=node_modules`.
 
-Hand-written selectors after the `@import` are kept to a minimum and only where Bootstrap has no equivalent. Existing ones: `.tracking-normal` / `.tracking-wide`, `.hero-image`, `.bg-hero` (the `#top` radial-glow backdrop — stops derived from `$primary` / `$dark`), `.fs-7`, `.bg-surface` (tinted section background — `$custom-colors` isn't wired up in Bootstrap 5.3.8), and the `#projectStripDesktop` / `#projectStripDots` rules (see JavaScript below). Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
+The typeface is **Inter** (Google Fonts, loaded in `<head>`), wired through `$font-family-sans-serif`. The palette lives in one block of seven Sass variables at the top of `main.scss` (`$primary`, `$secondary`, `$dark`, `$light`, `$border-subtle`, `$border-hover`, `$accent-soft`) — reskin by editing those.
+
+Two utilities are added through Bootstrap's `$utilities` API (not hand-written selectors): `.w-rule` (2rem fixed width for the eyebrow accent bar) and `.mw-prose` (`max-width: 40rem` — caps section title + deck at the 640px measure).
+
+Hand-written selectors after the `@import` are kept to a minimum and only where Bootstrap has no equivalent. Existing ones: `.tracking-wide`, `h2` / `.h2` (fluid `clamp()` section-title size — overrides Bootstrap's RFS step-scaling), `.hero-image`, `.bg-hero` (the `#top` radial-glow backdrop — stops derived from `$primary` / `$dark`), the `#what-i-do .card` hover system (lift + wash + `[data-icon-tile]` flip — no Bootstrap card hover state or fixed-square sizing), and the `#projectStripDesktop` / `#projectStripDots` rules (see JavaScript below). Match that pattern if a genuinely missing utility is unavoidable; otherwise compose existing utilities.
 
 ## Icons
 

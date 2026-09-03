@@ -11,11 +11,11 @@
     <link rel="icon" href="assets/images/favicon.svg" />
     <title>Liandre de Castro — Tech Lead & Software Engineer</title>
 
-    <!-- Fonts: Google Fonts preconnect + Plus Jakarta Sans (site typeface) -->
+    <!-- Fonts: Google Fonts preconnect + Inter (site typeface) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -145,30 +145,32 @@
            ============================================================ -->
       <section id="what-i-do" class="pt-7 pt-md-8 pb-6 pb-md-7 bg-white">
         <div class="container">
-          <!-- Section heading: eyebrow + h2 + lead -->
-          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+          <!-- Section heading: eyebrow + h2 + lead (both capped at the 640px prose measure) -->
+          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3">
             <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
             <span class="text-nowrap">What I Do</span>
           </div>
-          <h2 class="h4 mb-3">From product idea to production-ready platform.</h2>
-          <p class="lead text-secondary-emphasis mb-4">
+          <h2 class="mw-prose mb-3">From product idea to production-ready platform.</h2>
+          <p class="lead text-secondary-emphasis mw-prose mb-5">
             I work across the stack, but my strongest value is connecting architecture, implementation, performance, and
             delivery into one clear technical path.
           </p>
 
-          <!-- Service cards: each is icon tile + h3 + blurb; h-100 keeps them equal height -->
+          <!-- Service cards: icon tile + h3 + blurb. h-100 keeps them equal height; the
+               lift / wash / icon-flip hover lives in src/scss/main.scss (#what-i-do .card). -->
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             <!-- Card 1: Full-stack web -->
             <div class="col">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center d-flex flex-column">
-                  <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-3 bg-light text-primary mb-2"
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
                     aria-hidden="true"
                   >
-                    <i class="bi bi-code-slash fs-3"></i>
-                  </div>
-                  <h3 class="h5 mb-3">Full-Stack Web Applications</h3>
+                    <i class="bi bi-code-slash fs-4"></i>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Full-Stack Web Applications</h3>
                   <p class="text-secondary-emphasis mb-0">
                     Build modern, maintainable web experiences with React and Next.js, backed by production-grade APIs
                     and pragmatic UI engineering.
@@ -178,15 +180,16 @@
             </div>
             <!-- Card 2: Backend & APIs -->
             <div class="col">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center d-flex flex-column">
-                  <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-3 bg-light text-primary mb-2"
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
                     aria-hidden="true"
                   >
-                    <i class="bi bi-hdd-stack fs-3"></i>
-                  </div>
-                  <h3 class="h5 mb-3">Backend Systems &amp; API Architecture</h3>
+                    <i class="bi bi-hdd-stack fs-4"></i>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Backend Systems &amp; API Architecture</h3>
                   <p class="text-secondary-emphasis mb-0">
                     Design reusable services, integrations, authentication flows, and API layers using Java, Spring,
                     Node.js, SQL, and serverless patterns.
@@ -196,15 +199,16 @@
             </div>
             <!-- Card 3: Performance & technical SEO -->
             <div class="col">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center d-flex flex-column">
-                  <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-3 bg-light text-primary mb-2"
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
                     aria-hidden="true"
                   >
-                    <i class="bi bi-lightning-charge fs-3"></i>
-                  </div>
-                  <h3 class="h5 mb-3">Performance &amp; Technical SEO</h3>
+                    <i class="bi bi-lightning-charge fs-4"></i>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Performance &amp; Technical SEO</h3>
                   <p class="text-secondary-emphasis mb-0">
                     Improve Core Web Vitals, rendering strategy, structured data, indexability, and technical
                     foundations that help sites perform and get discovered.
@@ -214,15 +218,16 @@
             </div>
             <!-- Card 4: Cloud & DevOps -->
             <div class="col">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center d-flex flex-column">
-                  <div
-                    class="d-inline-flex align-items-center justify-content-center align-self-center p-3 rounded-3 bg-light text-primary mb-2"
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
                     aria-hidden="true"
                   >
-                    <i class="bi bi-cloud-check fs-3"></i>
-                  </div>
-                  <h3 class="h5 mb-3">Cloud Deployments &amp; DevOps</h3>
+                    <i class="bi bi-cloud-check fs-4"></i>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Cloud Deployments &amp; DevOps</h3>
                   <p class="text-secondary-emphasis mb-0">
                     Ship reliable workloads across AWS and Azure using containers, CI/CD, serverless services,
                     Kubernetes, and repeatable deployment practices.
@@ -243,12 +248,12 @@
       <section id="projects" class="py-6 py-md-7">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + lead + "View all on GitHub" link -->
-          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3">
             <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
             <span class="text-nowrap">Featured Projects</span>
           </div>
-          <h2 class="h4 mb-3">Selected systems with measurable impact.</h2>
-          <p class="lead text-secondary-emphasis mb-4">
+          <h2 class="mw-prose mb-3">Selected systems with measurable impact.</h2>
+          <p class="lead text-secondary-emphasis mw-prose mb-5">
             A mix of product, platform, and business-focused builds—from customer-facing experiences to internal
             systems—designed around clear outcomes, maintainable architecture, and strong user experience.
           </p>
@@ -274,7 +279,7 @@
               aria-label="Featured projects"
             >
               <!-- Project 1: Northstar Commerce (E-commerce) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Northstar Commerce project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -289,7 +294,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-cart3 me-2" aria-hidden="true"></i>E-commerce
                   </p>
-                  <h3 class="h5 mb-3">Northstar Commerce</h3>
+                  <h3 class="h5 fw-semibold mb-3">Northstar Commerce</h3>
                   <p class="text-secondary-emphasis">
                     A conversion-focused storefront with product discovery, streamlined checkout, and a scalable catalog
                     experience.
@@ -301,7 +306,7 @@
                 </div>
               </article>
               <!-- Project 2: Aster & Co. (Business Website) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Aster & Co project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -316,7 +321,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-building me-2" aria-hidden="true"></i>Business Website
                   </p>
-                  <h3 class="h5 mb-3">Aster &amp; Co.</h3>
+                  <h3 class="h5 fw-semibold mb-3">Aster &amp; Co.</h3>
                   <p class="text-secondary-emphasis">
                     A polished corporate website designed to communicate services clearly, establish trust, and generate
                     qualified inquiries.
@@ -328,7 +333,7 @@
                 </div>
               </article>
               <!-- Project 3: Pulseboard (SaaS Platform) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Pulseboard project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -343,7 +348,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-window-stack me-2" aria-hidden="true"></i>SaaS Platform
                   </p>
-                  <h3 class="h5 mb-3">Pulseboard</h3>
+                  <h3 class="h5 fw-semibold mb-3">Pulseboard</h3>
                   <p class="text-secondary-emphasis">
                     A subscription dashboard for teams to monitor activity, manage workflows, and surface the metrics
                     that matter most.
@@ -355,7 +360,7 @@
                 </div>
               </article>
               <!-- Project 4: Forge ERP (ERP System) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Forge ERP project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -370,7 +375,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-gear me-2" aria-hidden="true"></i>ERP System
                   </p>
-                  <h3 class="h5 mb-3">Forge ERP</h3>
+                  <h3 class="h5 fw-semibold mb-3">Forge ERP</h3>
                   <p class="text-secondary-emphasis">
                     An operations workspace connecting inventory, orders, reporting, and internal workflows in one
                     cohesive system.
@@ -382,7 +387,7 @@
                 </div>
               </article>
               <!-- Project 5: Launchline (Landing Page) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Launchline project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -397,7 +402,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-rocket-takeoff me-2" aria-hidden="true"></i>Landing Page
                   </p>
-                  <h3 class="h5 mb-3">Launchline</h3>
+                  <h3 class="h5 fw-semibold mb-3">Launchline</h3>
                   <p class="text-secondary-emphasis">
                     A focused campaign landing page built around a clear value proposition, responsive storytelling, and
                     strong calls to action.
@@ -409,7 +414,7 @@
                 </div>
               </article>
               <!-- Project 6: Atlas Booking (Booking Platform) -->
-              <article class="card overflow-hidden shadow-sm">
+              <article class="card overflow-hidden">
                 <a href="#" aria-label="Open Atlas Booking project details"
                   ><span class="ratio ratio-16x9 bg-primary-subtle"
                     ><img
@@ -424,7 +429,7 @@
                   <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                     <i class="bi bi-calendar-check me-2" aria-hidden="true"></i>Booking Platform
                   </p>
-                  <h3 class="h5 mb-3">Atlas Booking</h3>
+                  <h3 class="h5 fw-semibold mb-3">Atlas Booking</h3>
                   <p class="text-secondary-emphasis">
                     A responsive booking experience with search, availability, account management, and a simple
                     reservation flow.
@@ -467,7 +472,7 @@
             <div class="carousel-inner pb-3 mb-3">
               <!-- Slide 1: Northstar Commerce (E-commerce) -->
               <div class="carousel-item active">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Northstar Commerce project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -482,7 +487,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-cart3 me-2" aria-hidden="true"></i>E-commerce
                     </p>
-                    <h3 class="h5 mb-3">Northstar Commerce</h3>
+                    <h3 class="h5 fw-semibold mb-3">Northstar Commerce</h3>
                     <p class="text-secondary-emphasis">
                       A conversion-focused storefront with product discovery, streamlined checkout, and a scalable
                       catalog experience.
@@ -496,7 +501,7 @@
               </div>
               <!-- Slide 2: Aster & Co. (Business Website) -->
               <div class="carousel-item">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Aster & Co project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -511,7 +516,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-building me-2" aria-hidden="true"></i>Business Website
                     </p>
-                    <h3 class="h5 mb-3">Aster &amp; Co.</h3>
+                    <h3 class="h5 fw-semibold mb-3">Aster &amp; Co.</h3>
                     <p class="text-secondary-emphasis">
                       A polished corporate website designed to communicate services clearly, establish trust, and
                       generate qualified inquiries.
@@ -525,7 +530,7 @@
               </div>
               <!-- Slide 3: Pulseboard (SaaS Platform) -->
               <div class="carousel-item">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Pulseboard project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -540,7 +545,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-window-stack me-2" aria-hidden="true"></i>SaaS Platform
                     </p>
-                    <h3 class="h5 mb-3">Pulseboard</h3>
+                    <h3 class="h5 fw-semibold mb-3">Pulseboard</h3>
                     <p class="text-secondary-emphasis">
                       A subscription dashboard for teams to monitor activity, manage workflows, and surface the metrics
                       that matter most.
@@ -554,7 +559,7 @@
               </div>
               <!-- Slide 4: Forge ERP (ERP System) -->
               <div class="carousel-item">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Forge ERP project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -569,7 +574,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-gear me-2" aria-hidden="true"></i>ERP System
                     </p>
-                    <h3 class="h5 mb-3">Forge ERP</h3>
+                    <h3 class="h5 fw-semibold mb-3">Forge ERP</h3>
                     <p class="text-secondary-emphasis">
                       An operations workspace connecting inventory, orders, reporting, and internal workflows in one
                       cohesive system.
@@ -583,7 +588,7 @@
               </div>
               <!-- Slide 5: Launchline (Landing Page) -->
               <div class="carousel-item">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Launchline project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -598,7 +603,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-rocket-takeoff me-2" aria-hidden="true"></i>Landing Page
                     </p>
-                    <h3 class="h5 mb-3">Launchline</h3>
+                    <h3 class="h5 fw-semibold mb-3">Launchline</h3>
                     <p class="text-secondary-emphasis">
                       A focused campaign landing page built around a clear value proposition, responsive storytelling,
                       and strong calls to action.
@@ -612,7 +617,7 @@
               </div>
               <!-- Slide 6: Atlas Booking (Booking Platform) -->
               <div class="carousel-item">
-                <article class="card overflow-hidden shadow-sm">
+                <article class="card overflow-hidden">
                   <a href="#" aria-label="Open Atlas Booking project details"
                     ><span class="ratio ratio-16x9 bg-primary-subtle"
                       ><img
@@ -627,7 +632,7 @@
                     <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
                       <i class="bi bi-calendar-check me-2" aria-hidden="true"></i>Booking Platform
                     </p>
-                    <h3 class="h5 mb-3">Atlas Booking</h3>
+                    <h3 class="h5 fw-semibold mb-3">Atlas Booking</h3>
                     <p class="text-secondary-emphasis">
                       A responsive booking experience with search, availability, account management, and a simple
                       reservation flow.
@@ -711,16 +716,16 @@
       <section id="how-i-work" class="py-6 py-md-7 bg-white">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + two lead paragraphs -->
-          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3">
             <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
             <span class="text-nowrap">How I Work</span>
           </div>
-          <h2 class="h4 mb-3">Clear decisions. Strong foundations. Measurable outcomes.</h2>
-          <p class="lead text-secondary-emphasis">
+          <h2 class="mw-prose mb-3">Clear decisions. Strong foundations. Measurable outcomes.</h2>
+          <p class="lead text-secondary-emphasis mw-prose">
             I bring a Tech Lead mindset to both focused builds and complex platforms. I start by clarifying the real
             business problem, then shape a solution that is understandable, maintainable, and realistic to deliver.
           </p>
-          <p class="lead text-secondary-emphasis mb-4">
+          <p class="lead text-secondary-emphasis mw-prose mb-5">
             That means balancing speed with long-term quality: choosing reusable patterns where they matter, keeping
             unnecessary complexity out, validating decisions through working software, and using measurable results to
             guide the next improvement.
@@ -730,12 +735,12 @@
             <!-- Step 01 -->
             <li class="d-flex gap-4 py-4 border-bottom">
               <span
-                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 border bg-white text-primary fw-bold p-3 align-self-start"
+                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary fw-bold p-3 align-self-start"
               >
                 01
               </span>
               <div>
-                <h3 class="h5 mb-3">Frame the real problem</h3>
+                <h3 class="h5 fw-semibold mb-3">Frame the real problem</h3>
                 <p class="text-secondary-emphasis mb-0">
                   Clarify the user need, delivery constraints, business value, and the technical risks worth solving
                   first.
@@ -745,12 +750,12 @@
             <!-- Step 02 -->
             <li class="d-flex gap-4 py-4 border-bottom">
               <span
-                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 border bg-white text-primary fw-bold p-3 align-self-start"
+                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary fw-bold p-3 align-self-start"
               >
                 02
               </span>
               <div>
-                <h3 class="h5 mb-3">Design for reuse and scale</h3>
+                <h3 class="h5 fw-semibold mb-3">Design for reuse and scale</h3>
                 <p class="text-secondary-emphasis mb-0">
                   Choose patterns that remove duplicate work across teams, markets, or future features instead of
                   optimizing only for today.
@@ -760,12 +765,12 @@
             <!-- Step 03 -->
             <li class="d-flex gap-4 py-4 border-bottom">
               <span
-                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 border bg-white text-primary fw-bold p-3 align-self-start"
+                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary fw-bold p-3 align-self-start"
               >
                 03
               </span>
               <div>
-                <h3 class="h5 mb-3">Ship in visible increments</h3>
+                <h3 class="h5 fw-semibold mb-3">Ship in visible increments</h3>
                 <p class="text-secondary-emphasis mb-0">
                   Turn architecture into working software early, so stakeholders can validate direction before
                   complexity compounds.
@@ -775,12 +780,12 @@
             <!-- Step 04 -->
             <li class="d-flex gap-4 py-4 border-bottom">
               <span
-                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 border bg-white text-primary fw-bold p-3 align-self-start"
+                class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary fw-bold p-3 align-self-start"
               >
                 04
               </span>
               <div>
-                <h3 class="h5 mb-3">Measure and improve</h3>
+                <h3 class="h5 fw-semibold mb-3">Measure and improve</h3>
                 <p class="text-secondary-emphasis mb-0">
                   Use performance, adoption, cost, reliability, and delivery metrics to guide what gets optimized next.
                 </p>
@@ -796,12 +801,12 @@
       <section id="contact" class="py-6 py-md-7">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + lead -->
-          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+          <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3">
             <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
             <span class="text-nowrap">Contact</span>
           </div>
-          <h2 class="h4 mb-3">Need a technical lead, senior engineer, or someone to untangle a complex build?</h2>
-          <p class="lead text-secondary-emphasis mb-4">
+          <h2 class="mw-prose mb-3">Need a technical lead, senior engineer, or someone to untangle a complex build?</h2>
+          <p class="lead text-secondary-emphasis mw-prose mb-5">
             Send me a note about the problem you’re solving, an opportunity you’d like to discuss, or request a copy of
             my resume. I’m happy to continue the conversation by email or LinkedIn.
           </p>
@@ -815,7 +820,7 @@
               >
                 <span class="d-flex align-items-center gap-3"
                   ><span
-                    class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 bg-light text-primary"
+                    class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 bg-primary-subtle text-primary"
                     ><i class="bi bi-envelope fs-3" aria-hidden="true"></i></span
                   ><span>Email me<br /><small class="text-secondary">liandrejohn88@gmail.com</small></span></span
                 ><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
@@ -831,7 +836,7 @@
               >
                 <span class="d-flex align-items-center gap-3"
                   ><span
-                    class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 bg-light text-primary"
+                    class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 bg-primary-subtle text-primary"
                     ><i class="bi bi-linkedin fs-3" aria-hidden="true"></i></span
                   ><span
                     >Message me on LinkedIn<br /><small class="text-secondary">linkedin.com/in/lpdecastro</small></span
@@ -841,7 +846,7 @@
             </div>
           </div>
           <!-- Message form: main.js intercepts submit and opens a prefilled mailto: -->
-          <form id="contactForm" class="card shadow-sm">
+          <form id="contactForm" class="card">
             <div class="card-body">
               <!-- Field: full name -->
               <div class="mb-3">

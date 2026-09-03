@@ -2,9 +2,9 @@
 // set of hand-written selectors lives below it, only where Bootstrap has no
 // equivalent (see CLAUDE.md "Styling model").
 //
-// NOTE: the old header said "no custom CSS selectors are defined" — that is no
-// longer true (see .tracking-wide, .hero-image and the #projectStrip* rules at
-// the bottom).
+// The values below follow local/design-spec.md (the 2026 redesign): a brighter
+// blue accent on a cool near-white ground, Inter throughout, 16px cards that
+// lift on hover with an icon-tile "flip".
 
 // Bootstrap's functions load first (its documented customization order) so the
 // overrides below can use tint-color() / shade-color() / mix(). `variables` and
@@ -17,61 +17,84 @@
 @import 'bootstrap/scss/functions';
 
 // ---------------------------------------------------------------------------
-// Colors
+// Palette — single source of truth. Swap these seven values to reskin the whole
+// site (local/notes.md: "code such that I can easily switch palette").
 // ---------------------------------------------------------------------------
-$primary: #0275b0;
-$secondary: #64748b;
-$dark: #0f172a;
-$light: #f0f4f8;
+$primary: #2563eb; // accent — section label, icons, links, hover states
+$secondary: #475569; // secondary text — body copy, decks, card descriptions
+$dark: #0f172a; // primary text + hero / navbar / footer ground
+$light: #f8fafc; // page background
+$border-subtle: #e2e8f0; // card + divider borders
+$border-hover: #bfdbfe; // card border on hover
+$accent-soft: #eff6ff; // icon-tile wash + card hover wash
 
 $body-bg: $light;
 $body-color: $dark;
 $body-secondary-color: $secondary;
 
+// Resolve `.text-secondary-emphasis` to the exact spec body color instead of
+// Bootstrap's darker shade, so every deck / card description reads at #475569.
+$secondary-text-emphasis: $secondary;
+// `.bg-primary-subtle` (icon tiles, project image placeholders) becomes the
+// spec's "Accent Soft" wash rather than Bootstrap's computed 80% tint.
+$primary-bg-subtle: $accent-soft;
+
 // ---------------------------------------------------------------------------
-// Typography
+// Typography — Inter, per the redesign spec.
 // ---------------------------------------------------------------------------
 $font-family-sans-serif:
-  'Plus Jakarta Sans',
+  'Inter',
   system-ui,
   -apple-system,
   'Segoe UI',
   sans-serif;
 $font-size-base: 1rem;
-$line-height-base: 1.6;
+$line-height-base: 1.6; // spec: description line-height
 
-// One weight for every heading (h1–h6 and the .h1–.h6 utilities). Markup carries
-// no per-heading `fw-*` override — set it here or not at all.
-$headings-font-weight: 600;
-$headings-line-height: 1.12;
+$lead-font-size: 1.125rem; // spec: description / deck = 18px
+$lead-font-weight: 400;
+
+$h5-font-size: 1.125rem; // spec: card / step title = 18px
+
+// Section titles run 700 (spec "Main Title"); card/step titles drop back to 600
+// via `fw-semibold` in the markup.
+$headings-font-weight: 700;
+$headings-line-height: 1.2; // spec: main title line-height
 
 // ---------------------------------------------------------------------------
 // Borders, radii, elevation
 // ---------------------------------------------------------------------------
-$border-color: rgba($dark, 0.1);
+$border-color: $border-subtle;
 $border-radius: 0.625rem;
 $border-radius-sm: 0.5rem;
-$border-radius-lg: 1.375rem;
-$border-radius-xl: 1.875rem;
-$border-radius-xxl: 2rem;
+$border-radius-lg: 0.75rem; // 12px — icon tiles / step-number badges (spec §5)
+$border-radius-xl: 1rem;
+$border-radius-xxl: 1.25rem;
 
-// Elevation scale — all three tint with $dark (navy) so they read as one family;
-// alpha ramps 0.08 -> 0.1 -> 0.2 as the shadow grows.
-$box-shadow-sm: 0 10px 28px rgba($dark, 0.08);
-$box-shadow: 0 14px 36px rgba($dark, 0.1);
+// Elevation — spec §4. `-sm` is the resting shadow on every card; the base token
+// is the hover shadow (used by the #what-i-do hover rule below); `-lg` stays
+// largest for the hero portrait.
+$box-shadow-sm:
+  0 4px 6px -1px rgba(#000, 0.05),
+  0 2px 4px -2px rgba(#000, 0.05);
+$box-shadow:
+  0 20px 25px -5px rgba(#000, 0.08),
+  0 8px 10px -6px rgba(#000, 0.05);
 $box-shadow-lg: 0 26px 80px rgba($dark, 0.2);
 
-// No xxl key: above 1400px `.container` keeps the xl width (1140px), which keeps
-// line length in check on very wide screens. (Dropping the key also means no
-// `.container-xxl` is generated, but the markup only uses plain `.container`.)
+// Container caps at the spec's 1200px from the xl breakpoint up. No xxl key —
+// Bootstrap keeps the xl width above 1400px, which is the intent.
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1140px,
+  xl: 1200px,
 );
+// 24px of horizontal breathing room inside every `.container` (spec §1). Mobile
+// lands at 24 rather than 20 — within tolerance.
+$container-padding-x: 3rem;
 
-$grid-gutter-width: 1.5rem;
+$grid-gutter-width: 1.5rem; // card-grid gap = 24px (spec §4); also the strip gap
 
 // ---------------------------------------------------------------------------
 // Components (buttons, cards, forms, navbar, carousel)
@@ -86,22 +109,19 @@ $btn-padding-x-lg: 1.5rem;
 $btn-font-size-lg: 1.125rem;
 // Buttons share the 0.5rem corner of $input-border-radius so a button next to a
 // field in #contactForm matches.
-// NOTE: -lg is now equal to the default too (all three 0.5rem) — bump it if a
-// large button should round more.
 $btn-border-radius: 0.5rem;
 $btn-border-radius-sm: 0.5rem;
 $btn-border-radius-lg: 0.5rem;
 
 $card-border-color: $border-color;
-// One card radius everywhere — equals the `.rounded-2` utility ($border-radius),
-// so `.card` markup needs no `rounded-*` override.
-$card-border-radius: $border-radius;
-// Cards stay pure white so they lift off the off-white ($light) page background.
-// Literal #fff, not $white — Bootstrap's variables aren't imported yet here.
+$card-border-radius: 1rem; // spec §4: 16px
+// Cards stay pure white so they lift off the near-white ($light) page. Literal
+// #fff, not $white — Bootstrap's variables aren't imported yet here.
 $card-bg: #fff;
 $card-cap-bg: transparent;
-$card-spacer-y: 1.5rem;
-$card-spacer-x: 1.5rem;
+$card-spacer-y: 2rem; // spec §4: 32px vertical padding
+$card-spacer-x: 1.75rem; // spec §4: 28px horizontal padding
+$card-box-shadow: $box-shadow-sm; // spec §4 resting shadow on every card
 
 // A 60% white tint of $secondary (slate) instead of a magic slate hex.
 $input-border-color: tint-color($secondary, 60%);
@@ -140,12 +160,13 @@ $link-decoration: none;
 // ---------------------------------------------------------------------------
 // Utility API additions
 // ---------------------------------------------------------------------------
-// The short accent bar above each section eyebrow (and the hero eyebrow) is a
-// `border-top` on an inline-block element that needs a fixed 2rem width.
-// Bootstrap's `width` utility is percentage-only, so this is its own single-value
-// utility (`.w-rule`) instead of a length wedged into the `w-*` scale. The `null`
-// value key is Bootstrap's own "no suffix" pattern (same as `.shadow`).
-// Bootstrap's default `width` utility (w-25/50/75/100/auto) is left untouched.
+// - `.w-rule` — the short accent bar above each section eyebrow: a `border-top`
+//   on an inline-block element that needs a fixed 2rem width. Bootstrap's `width`
+//   utility is percentage-only. The `null` value key is Bootstrap's own "no
+//   suffix" pattern (same as `.shadow`).
+// - `.mw-prose` — caps the section title + deck at the spec's 640px measure
+//   (spec §1/§2). Bootstrap only ships `.mw-100`, so the default `max-width`
+//   utility is re-declared here with the extra step (100% is kept).
 $utilities: (
   'rule-width': (
     property: width,
@@ -154,32 +175,41 @@ $utilities: (
       null: 2rem,
     ),
   ),
+  'max-width': (
+    property: max-width,
+    class: mw,
+    values: (
+      100: 100%,
+      prose: 40rem,
+    ),
+  ),
 );
 
 // Pull in Bootstrap's default variables (functions are already imported at the
 // top) so $font-sizes exists, then extend it with a 7th step before the rest of
-// Bootstrap compiles the `.fs-*` utilities. (fs-6 is 1rem; the project-card
-// eyebrows need smaller.) Re-importing functions/variables from `bootstrap`
-// below is idempotent — all defaults are already set.
+// Bootstrap compiles the `.fs-*` utilities. (fs-6 is 1rem; the eyebrows need
+// smaller.) Re-importing functions/variables from `bootstrap` below is
+// idempotent — all defaults are already set.
 @import 'bootstrap/scss/variables';
 
 $font-sizes: map-merge(
   $font-sizes,
   (
-    7: 0.75rem,
+    7: 0.8125rem,
   )
-);
+); // 13px — spec §2 section label
 
 // Extend Bootstrap's default spacer scale (which tops out at 5 = 3rem) with three
-// larger steps for the section rhythm: 6 = 4.5rem, 7 = 6rem, 8 = 7.5rem. Every
-// main section uses `py-6 py-md-7`; only the first section adds `pt-7 pt-md-8` so
-// it clears the hero. Nothing below 6 is overridden.
+// larger steps for the section rhythm: 6 = 3.75rem (60px, spec mobile section
+// padding), 7 = 5rem (80px, spec desktop section padding), 8 = 6.25rem (first
+// section's top clearance under the fixed navbar). Every main section uses
+// `py-6 py-md-7`; only the first adds `pt-7 pt-md-8`. Nothing below 6 is touched.
 $spacers: map-merge(
   $spacers,
   (
-    6: 4.5rem,
-    7: 6rem,
-    8: 7.5rem,
+    6: 3.75rem,
+    7: 5rem,
+    8: 6.25rem,
   )
 );
 
@@ -211,8 +241,17 @@ html {
   }
 }
 
+// Uppercase-label tracking (section + hero eyebrows, footer headings). Spec §2:
+// 0.08em.
 .tracking-wide {
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
+}
+
+// Section titles: fluid per spec §2 (`clamp(1.75rem, 4vw, 2.5rem)`). Bootstrap's
+// RFS would otherwise step-scale a fixed rem instead of tracking the viewport.
+h2,
+.h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
 // Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
@@ -236,6 +275,49 @@ html {
     ),
     radial-gradient(circle at 14% 82%, rgba($primary, 0.17), transparent 25%),
     $dark;
+}
+
+// #what-i-do service cards — the redesign's signature interaction (spec §4, §7):
+// on card hover the whole card lifts, a soft blue wash and lighter-blue border
+// fade in, and the icon tile flips from tinted-blue to solid-blue with a white
+// glyph. Bootstrap has no card hover state, fixed-square sizing, or multi-stop
+// background utility, so scope all of it here. The icon wrapper carries the
+// `[data-icon-tile]` attribute hook in the markup (same idea as
+// `[data-strip-scroll]` below).
+#what-i-do .card {
+  background-color: #fff;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+#what-i-do .card [data-icon-tile] {
+  width: 3rem; // spec §5: 48 × 48 tile
+  height: 3rem;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+#what-i-do .card:hover {
+  transform: translateY(-6px);
+  border-color: $border-hover;
+  background-color: $accent-soft;
+  box-shadow: $box-shadow;
+}
+
+#what-i-do .card:hover [data-icon-tile] {
+  background-color: $primary;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #what-i-do .card,
+  #what-i-do .card [data-icon-tile] {
+    transition: none;
+  }
 }
 
 // Desktop projects strip: scrolls one card at a time (assets/js/main.js drives the
