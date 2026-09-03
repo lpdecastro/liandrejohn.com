@@ -48,10 +48,10 @@ $font-family-sans-serif:
   -apple-system,
   'Segoe UI',
   sans-serif;
-$font-size-base: 1rem;
+$font-size-base: 0.9375rem; // 15px body text
 $line-height-base: 1.6; // spec: description line-height
 
-$lead-font-size: 1.125rem; // spec: description / deck = 18px
+$lead-font-size: 1.0625rem; // spec: description / deck = 17px
 $lead-font-weight: 400;
 
 $h5-font-size: 1.125rem; // spec: card / step title = 18px
@@ -123,8 +123,12 @@ $card-spacer-y: 2rem; // spec §4: 32px vertical padding
 $card-spacer-x: 1.75rem; // spec §4: 28px horizontal padding
 $card-box-shadow: $box-shadow-sm; // spec §4 resting shadow on every card
 
-// A 60% white tint of $secondary (slate) instead of a magic slate hex.
-$input-border-color: tint-color($secondary, 60%);
+// Inputs stay pure white (like $card-bg) rather than Bootstrap 5.3's default of
+// $body-bg, so fields read as white against the near-white ($light) page.
+$input-bg: #fff;
+// Muted 1px hairline — the same subtle border as cards and dividers, matching
+// the redesign reference (was a darker 60% white tint of slate).
+$input-border-color: $border-subtle;
 $input-border-radius: 0.5rem;
 $input-padding-y: 0.8125rem;
 $input-padding-x: 0.875rem;
@@ -199,10 +203,11 @@ $font-sizes: map-merge(
   )
 ); // 13px — spec §2 section label
 
-// Extend Bootstrap's default spacer scale (which tops out at 5 = 3rem) with three
+// Extend Bootstrap's default spacer scale (which tops out at 5 = 3rem) with four
 // larger steps for the section rhythm: 6 = 3.75rem (60px, spec mobile section
 // padding), 7 = 5rem (80px, spec desktop section padding), 8 = 6.25rem (first
-// section's top clearance under the fixed navbar). Every main section uses
+// section's top clearance under the fixed navbar), 9 = 7.5rem (extra hero top
+// clearance under the fixed navbar on mobile). Every main section uses
 // `py-6 py-md-7`; only the first adds `pt-7 pt-md-8`. Nothing below 6 is touched.
 $spacers: map-merge(
   $spacers,
@@ -210,6 +215,7 @@ $spacers: map-merge(
     6: 3.75rem,
     7: 5rem,
     8: 6.25rem,
+    9: 7.5rem,
   )
 );
 
@@ -226,10 +232,7 @@ $spacers: map-merge(
 // (top + bottom) + the brand's line box — plus 1rem of breathing room, so it
 // tracks any change to those Sass vars instead of a hand-tuned 60px.
 html {
-  scroll-padding-top: calc(
-    #{$navbar-padding-y} * 2 + #{$navbar-brand-font-size} *
-      #{$line-height-base} + 1rem
-  );
+  scroll-padding-top: calc(#{$navbar-padding-y} * 2 + #{$navbar-brand-font-size} * #{$line-height-base} + 1rem);
 }
 
 // Smooth anchor scrolling only when the OS isn't asking for reduced motion
@@ -247,11 +250,22 @@ html {
   letter-spacing: 0.08em;
 }
 
-// Section titles: fluid per spec §2 (`clamp(1.75rem, 4vw, 2.5rem)`). Bootstrap's
-// RFS would otherwise step-scale a fixed rem instead of tracking the viewport.
+// Section titles: fixed 36px. Overrides Bootstrap's RFS step-scaling of $h2-font-size.
 h2,
 .h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: 2.25rem; // 36px
+}
+
+// Responsive button size: default (`.btn`) metrics up to lg, `.btn-lg` metrics
+// from lg. Bootstrap's `.btn-lg` applies at every breakpoint and ships no
+// responsive size utility. Reuses the same four `$btn-*-lg` vars `.btn-lg` does,
+// so it tracks the theme. Used on the hero CTAs.
+@include media-breakpoint-up(lg) {
+  .btn-lg-lg-up {
+    padding: $btn-padding-y-lg $btn-padding-x-lg;
+    font-size: $btn-font-size-lg;
+    border-radius: $btn-border-radius-lg;
+  }
 }
 
 // Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
@@ -268,13 +282,38 @@ h2,
 // hard-coded sky-blue). Bootstrap has no multi-layer gradient utility.
 .bg-hero {
   background:
-    radial-gradient(
-      circle at 78% 18%,
-      rgba(tint-color($primary, 50%), 0.16),
-      transparent 25%
-    ),
-    radial-gradient(circle at 14% 82%, rgba($primary, 0.17), transparent 25%),
-    $dark;
+    radial-gradient(circle at 78% 18%, rgba(tint-color($primary, 50%), 0.16), transparent 25%),
+    radial-gradient(circle at 14% 82%, rgba($primary, 0.17), transparent 25%), $dark;
+}
+
+// Fixed navbar chrome. It rests transparent over the dark hero at the top of the
+// page; a solid $dark background and a hairline bottom border fade in once the
+// page is scrolled (assets/js/main.js toggles `.scrolled`). Below lg the bar is
+// always solid so the collapsed menu opens onto an opaque backdrop. Bootstrap's
+// navbar has no scroll-aware background state.
+#mainNav {
+  border-bottom: $border-width solid transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+#mainNav.scrolled {
+  background-color: $dark;
+  border-bottom-color: rgba($light, 0.1);
+}
+
+@include media-breakpoint-down(lg) {
+  #mainNav {
+    background-color: $dark;
+    border-bottom-color: rgba($light, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mainNav {
+    transition: none;
+  }
 }
 
 // #what-i-do service cards — the redesign's signature interaction (spec §4, §7):
@@ -283,7 +322,7 @@ h2,
 // glyph. Bootstrap has no card hover state, fixed-square sizing, or multi-stop
 // background utility, so scope all of it here. The icon wrapper carries the
 // `[data-icon-tile]` attribute hook in the markup (same idea as
-// `[data-strip-scroll]` below).
+// `[data-strip-scroll]` below); the #contact direct links reuse the same tile.
 #what-i-do .card {
   background-color: #fff;
   transition:
@@ -293,7 +332,7 @@ h2,
     background-color 0.25s ease;
 }
 
-#what-i-do .card [data-icon-tile] {
+[data-icon-tile] {
   width: 3rem; // spec §5: 48 × 48 tile
   height: 3rem;
   transition:
@@ -308,14 +347,15 @@ h2,
   box-shadow: $box-shadow;
 }
 
-#what-i-do .card:hover [data-icon-tile] {
+#what-i-do .card:hover [data-icon-tile],
+#contact a:hover [data-icon-tile] {
   background-color: $primary;
   color: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {
   #what-i-do .card,
-  #what-i-do .card [data-icon-tile] {
+  [data-icon-tile] {
     transition: none;
   }
 }
@@ -372,4 +412,113 @@ h2,
 
 #projectStripDots > button[aria-current='true'] {
   background-color: $primary;
+}
+
+// Mobile projects carousel (<lg): reveal a sliver of the next card so the strip
+// reads as swipeable. Bootstrap's carousel shows only the active item at rest
+// (`display: none` on the others) and slides via translateX, so let the inner
+// track overflow and force the card *after* the active one visible, parked just
+// past the active card's right edge. No next sibling on the last slide
+// (data-bs-wrap="false"), so the peek falls away there on its own.
+//
+// --card-w is shared by the slide width and every peek offset so the number
+// lives in one place (mirrors #projectStripDesktop's --card-basis). --peek-gap
+// is the space between the active card and the sliver.
+#projectCarouselMobile {
+  --card-w: 85%;
+  --peek-gap: #{$grid-gutter-width * 0.5};
+  overflow: hidden; // re-clip the peek that .carousel-inner now lets through
+}
+
+// Stack every slide in one CSS grid cell so the track is always as tall as the
+// tallest card, and swap Bootstrap's per-slide `display` toggle for `visibility`
+// so off-screen slides keep contributing that height instead of collapsing it
+// (translateX still drives the slide; `.card` fills the equalized item height so
+// the "View Site" buttons line up too).
+#projectCarouselMobile .carousel-inner {
+  overflow: visible;
+  display: grid;
+}
+
+#projectCarouselMobile .carousel-item {
+  grid-area: 1 / 1;
+  width: var(--card-w);
+  margin-right: 0;
+  display: block;
+  visibility: hidden;
+  // No transition at rest. Bootstrap puts `transition: transform .6s` on every
+  // item and relies on off-screen items being `display: none` so the pre-slide
+  // setup (moving them to the start position) doesn't animate. Here they are
+  // `visibility`-hidden instead, so without this that setup — and the offset
+  // jumps at the end of a slide — would animate as stray glides. Re-enabled just
+  // below, only for the two items Bootstrap is actively moving and only once its
+  // directional class is on (i.e. after its reflow commits the start position).
+  transition: none;
+}
+
+#projectCarouselMobile .carousel-item.active,
+#projectCarouselMobile .carousel-item-next,
+#projectCarouselMobile .carousel-item-prev,
+#projectCarouselMobile .carousel-item.active + .carousel-item {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #projectCarouselMobile .carousel-item.active.carousel-item-start,
+  #projectCarouselMobile .carousel-item.active.carousel-item-end,
+  #projectCarouselMobile .carousel-item-next.carousel-item-start,
+  #projectCarouselMobile .carousel-item-prev.carousel-item-end {
+    transition: transform 0.6s ease-in-out;
+  }
+
+  // On a forward slide, glide the on-deck card in from the right in step with the
+  // rest so the new peek arrives smoothly instead of popping in at the end. It
+  // finishes exactly where the resting peek rule below parks it (2·card - card
+  // via translateX = 1·card, + the gap), so the class swap at slide-end is a
+  // no-op. Degrades to an instant appear if :has() or this transition is skipped.
+  #projectCarouselMobile:has(.carousel-item-next)
+    .carousel-item.active
+    + .carousel-item
+    + .carousel-item {
+    visibility: visible;
+    left: calc(var(--card-w) * 2 + var(--peek-gap));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  // On a backward slide, the current peek keeps `.active + .carousel-item` (the
+  // outgoing active still holds `.active` until slide-end) so the resting rule
+  // would freeze it in place — a stray sliver of the old peek left behind while
+  // everything else moves. Slide it off the right edge in step with the rest;
+  // slide-end then hides it. Same graceful degradation as the forward glide.
+  #projectCarouselMobile:has(.carousel-item-prev)
+    .carousel-item.active
+    + .carousel-item {
+    transform: translateX(100%);
+    transition: transform 0.6s ease-in-out;
+  }
+}
+
+#projectCarouselMobile .carousel-item > .card {
+  height: 100%;
+}
+
+// Resting peek: park the card after the active one just past the active card's
+// right edge. Offset with `left` (not `transform`) so it is never caught by the
+// slide transition — it snaps cleanly in/out as the active card changes instead
+// of gliding to a new resting spot. Excludes the transition-state classes so
+// Bootstrap owns the transform while a slide is in flight.
+#projectCarouselMobile .carousel-item.active + .carousel-item:not(.carousel-item-next):not(.carousel-item-prev) {
+  left: calc(var(--card-w) + var(--peek-gap));
+}
+
+// Bootstrap parks the card entering (or leaving) on the right at exactly
+// translateX(100%) — flush against the active card. The resting peek above sits
+// one gap further out, so when Bootstrap's transform takes over from that `left`
+// offset the peek would jump inward by one gap (visible as the gap collapsing at
+// the start of a Next, and reappearing at the end). Add the gap here so the
+// hand-off is seamless in both directions.
+#projectCarouselMobile .carousel-item-next:not(.carousel-item-start),
+#projectCarouselMobile .carousel-item.active.carousel-item-end {
+  transform: translateX(calc(100% + var(--peek-gap)));
 }

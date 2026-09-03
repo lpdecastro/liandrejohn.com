@@ -117,6 +117,21 @@ if (backToTop && hero && 'IntersectionObserver' in window) {
   }
 }
 
+// The fixed navbar rests transparent over the hero at the top of the page and
+// gains its solid background + hairline border (src/scss/main.scss) as soon as
+// the page is scrolled. Under lg the CSS keeps the bar solid regardless, so the
+// collapsed menu always opens onto an opaque backdrop.
+const mainNav = document.getElementById('mainNav');
+
+if (mainNav) {
+  const syncNav = () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 4);
+  };
+
+  window.addEventListener('scroll', syncNav, { passive: true });
+  syncNav();
+}
+
 if (contactForm && formStatus) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
