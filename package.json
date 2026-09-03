@@ -5,11 +5,11 @@
   "description": "Single-page portfolio rebuilt with Bootstrap utilities/components and Sass variable overrides.",
   "scripts": {
     "build:css": "sass --load-path=node_modules src/scss/main.scss assets/css/main.css --style=compressed --no-source-map",
-    "watch:css": "sass --load-path=node_modules --watch src/scss/main.scss:assets/css/main.css"
+    "watch:css": "sass --load-path=node_modules --watch src/scss/main.scss:assets/css/main.css",
+    "vendor:js": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js/bootstrap.bundle.min.js && sed -i.bak '/sourceMappingURL/d' assets/js/bootstrap.bundle.min.js && rm -f assets/js/bootstrap.bundle.min.js.bak"
   },
   "dependencies": {
-    "bootstrap": "5.3.8",
-    "bootstrap-icons": "1.13.1"
+    "bootstrap": "5.3.8"
   },
   "devDependencies": {
     "sass": "1.103.1"
