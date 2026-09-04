@@ -1,9 +1,6 @@
 # Node modules
 node_modules/
 
-# Parcel cache
-.parcel-cache/
-
 # Dist folder
 dist/
 
@@ -13,6 +10,9 @@ dist/
 
 # Compiled CSS
 css/
+
+# Generated JS bundle (copied from node_modules by copy:bootstrap)
+assets/js/bootstrap.bundle.min.js
 
 # MacOS system files
 .DS_Store
