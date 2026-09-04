@@ -11,8 +11,8 @@ dist/
 # Compiled CSS
 css/
 
-# Generated JS bundle (copied from node_modules by copy:bootstrap)
-assets/js/bootstrap.bundle.min.js
+# Generated JS (copied from node_modules / src/js by copy:js)
+assets/js/
 
 # MacOS system files
 .DS_Store
