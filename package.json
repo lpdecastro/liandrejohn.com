@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "sass --load-path=node_modules src/scss/main.scss assets/css/main.css --style=compressed --no-source-map",
     "watch:css": "sass --load-path=node_modules --watch src/scss/main.scss:assets/css/main.css",
-    "vendor:js": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js/bootstrap.bundle.min.js && sed -i.bak '/sourceMappingURL/d' assets/js/bootstrap.bundle.min.js && rm -f assets/js/bootstrap.bundle.min.js.bak"
+    "vendor:js": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js/bootstrap.bundle.min.js && sed -i.bak '/sourceMappingURL/d' assets/js/bootstrap.bundle.min.js && rm -f assets/js/bootstrap.bundle.min.js.bak",
+    "hash:assets": "node scripts/hash-assets.mjs"
   },
   "dependencies": {
     "bootstrap": "5.3.8"

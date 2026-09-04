@@ -16,6 +16,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          # Full history so the freshness stamp below can read the last commit
+          # date for index.html.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -35,6 +39,17 @@ jobs:
           # logo, and any stray .DS_Store so only real site files ship.
           rm -f dist/assets/css/*.map dist/assets/css/theme-preview.css dist/assets/images/logo.png
           find dist -name '.DS_Store' -delete
+          # Stamp freshness signals from the last commit that touched index.html so
+          # sitemap.xml <lastmod> and the JSON-LD dateModified can never drift.
+          LASTMOD="$(git log -1 --format=%cs -- index.html)"
+          [ -n "$LASTMOD" ] || LASTMOD="$(git log -1 --format=%cs)"
+          sed -i "s#<lastmod>[0-9-]\{10\}</lastmod>#<lastmod>${LASTMOD}</lastmod>#" dist/sitemap.xml
+          sed -i "s#\"dateModified\": \"[0-9-]\{10\}\"#\"dateModified\": \"${LASTMOD}\"#" dist/index.html
+          # Content-hash css/js/fonts/images and rewrite every reference so the
+          # CloudFront + S3 layer can serve them immutable for a year while each
+          # deploy still ships fresh filenames. Favicons + og-card keep stable
+          # URLs and are downgraded to a short TTL after the sync below.
+          node scripts/hash-assets.mjs dist
           find dist -type f | sort
 
       - name: Configure AWS credentials
@@ -43,21 +58,34 @@ jobs:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      # Assets: content is stable per deploy, so cache for a day. --delete is
-      # scoped to assets/* so this pass never touches the HTML pass's files.
+      # Assets: filenames are content-hashed (see hash-assets.mjs), so they are
+      # safe to cache forever. --delete is scoped to assets/* so this pass never
+      # touches the HTML pass's files and prunes last deploy's stale hashes.
       - name: Deploy assets to S3
         run: |
           aws s3 sync dist/ s3://liandrejohn.com --delete \
             --exclude "*" --include "assets/*" \
-            --cache-control "public, max-age=86400"
+            --cache-control "public, max-age=31536000, immutable"
 
       # awscli's mimetypes table has no .woff2 entry, so sync uploads the fonts
-      # as binary/octet-stream. Re-put just the woff2 files with the right type.
+      # as binary/octet-stream. Re-put just the woff2 files with the right type
+      # (still immutable — the filenames are hashed).
       - name: Fix font content-type
         run: |
           aws s3 cp dist/assets/fonts/ s3://liandrejohn.com/assets/fonts/ \
             --recursive --exclude "*" --include "*.woff2" \
             --content-type "font/woff2" \
+            --cache-control "public, max-age=31536000, immutable"
+
+      # Favicons + og-card keep stable, un-hashed URLs (browsers and social
+      # scrapers request them by well-known path), so they must NOT be immutable
+      # for a year. Downgrade just those to a one-day TTL; content-type is
+      # guessed per file from the extension.
+      - name: Downgrade cache on stable-URL assets
+        run: |
+          aws s3 cp dist/assets/images/ s3://liandrejohn.com/assets/images/ \
+            --recursive --exclude "*" \
+            --include "favicon*" --include "apple-touch-icon.png" --include "og-card.*" \
             --cache-control "public, max-age=86400"
 
       # HTML + crawl files: must always revalidate. --delete here excludes
@@ -67,3 +95,12 @@ jobs:
           aws s3 sync dist/ s3://liandrejohn.com --delete \
             --exclude "assets/*" \
             --cache-control "no-cache"
+
+      # Bust the CloudFront edge cache so the new HTML (and any re-pointed asset
+      # refs) go live immediately. Hashed assets make "/*" cheap in practice.
+      # The deploy role needs cloudfront:CreateInvalidation.
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*"

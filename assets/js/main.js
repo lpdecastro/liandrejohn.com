@@ -133,14 +133,30 @@ if (mainNav) {
   syncNav();
 }
 
+// Keep the footer copyright year current without a yearly edit (2026 ships as
+// the no-JS fallback in the markup).
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+// Email is stored split so it isn't a clean string in the served HTML; assemble
+// it into the visible link/label text on load. The mailto: href stays intact for
+// no-JS visitors.
+(() => {
+  const address = ['liandrejohn88', 'gmail.com'].join('@');
+  document.querySelectorAll('[data-email-text]').forEach((el) => {
+    el.textContent = address;
+  });
+})();
+
 if (contactForm && formStatus) {
   const submitButton = contactForm.querySelector('button[type="submit"]');
 
   // tone: 'info' (sending), 'success' (delivered), 'error' (fell back to mailto).
-  // Stays hidden (no stray margin under the button) until there's a message.
+  // The element stays in the DOM so the live region is always watched; the mt-3
+  // spacer is only added while it carries a message, so it takes no room empty.
   const setStatus = (message, tone = 'info') => {
     formStatus.textContent = message;
-    formStatus.classList.toggle('d-none', !message);
+    formStatus.classList.toggle('mt-3', Boolean(message));
     formStatus.classList.toggle('text-primary', tone === 'info');
     formStatus.classList.toggle('text-success', tone === 'success');
     formStatus.classList.toggle('text-danger', tone === 'error');
@@ -192,6 +208,7 @@ if (contactForm && formStatus) {
       setStatus('Thanks for reaching out — your message came through. You’ll hear back from me shortly.', 'success');
     } catch (error) {
       setStatus('That didn’t go through — opening your email app so your message isn’t lost.', 'error');
+      formStatus.focus();
       openMailtoFallback(fields);
     } finally {
       if (submitButton) submitButton.disabled = false;
