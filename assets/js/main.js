@@ -151,6 +151,23 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 if (contactForm && formStatus) {
   const submitButton = contactForm.querySelector('button[type="submit"]');
 
+  // contact_form_start: fires once, on the first focus or edit of a
+  // meaningful field (not the honeypot or the resume checkbox), so it
+  // reflects real intent rather than an accidental tab-through.
+  const meaningfulFields = ['fullName', 'email', 'projectDetails']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  let formStarted = false;
+  const markFormStarted = () => {
+    if (formStarted) return;
+    formStarted = true;
+    window.trackEvent?.('contact_form_start', { section_name: 'get_in_touch', form_id: 'contact' });
+  };
+  meaningfulFields.forEach((field) => {
+    field.addEventListener('focusin', markFormStarted, { once: true });
+    field.addEventListener('input', markFormStarted, { once: true });
+  });
+
   // tone: 'info' (sending), 'success' (delivered), 'error' (fell back to mailto).
   // The element stays in the DOM so the live region is always watched; the mt-3
   // spacer is only added while it carries a message, so it takes no room empty.
@@ -176,11 +193,12 @@ if (contactForm && formStatus) {
     event.preventDefault();
 
     const data = new FormData(contactForm);
+    const resumeRequested = Boolean(data.get('requestResume'));
     const fields = {
       name: data.get('fullName'),
       email: data.get('email'),
       details: data.get('projectDetails'),
-      wantsResume: data.get('requestResume') ? 'Yes' : 'No',
+      wantsResume: resumeRequested ? 'Yes' : 'No',
     };
 
     // Give Web3Forms a readable subject and spell out the resume request as its
@@ -206,10 +224,23 @@ if (contactForm && formStatus) {
 
       contactForm.reset();
       setStatus('Thanks for reaching out — your message came through. You’ll hear back from me shortly.', 'success');
+
+      // contact_form_submit is the primary conversion; resume_request is a
+      // second, distinct signal fired only when the checkbox was ticked —
+      // one successful submission can legitimately be both.
+      window.trackEvent?.('contact_form_submit', {
+        section_name: 'get_in_touch',
+        contact_method: 'form',
+        resume_requested: resumeRequested,
+      });
+      if (resumeRequested) {
+        window.trackEvent?.('resume_request', { section_name: 'get_in_touch', contact_method: 'form' });
+      }
     } catch (error) {
       setStatus('That didn’t go through — opening your email app so your message isn’t lost.', 'error');
       formStatus.focus();
       openMailtoFallback(fields);
+      window.trackEvent?.('contact_form_error', { section_name: 'get_in_touch', error_type: 'submit_failed' });
     } finally {
       if (submitButton) submitButton.disabled = false;
     }

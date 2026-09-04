@@ -4,6 +4,19 @@
     <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in assets/js/analytics.js, not here. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-Q3EPREERQJ');
+    </script>
+
     <meta
       name="description"
       content="Liandre John de Castro — Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global consumer health brands."
@@ -288,12 +301,43 @@
             </button>
             <div class="collapse navbar-collapse" id="primaryNav">
               <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0">
-                <a class="nav-link" href="#what-i-do">What I Do</a>
-                <a class="nav-link" href="#featured-work">Featured Work</a>
-                <a class="nav-link" href="#concept-builds">Concept Builds</a>
-                <a class="nav-link" href="#how-i-work">How I Work</a>
+                <a
+                  class="nav-link"
+                  href="#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >What I Do</a
+                >
+                <a
+                  class="nav-link"
+                  href="#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >Featured Work</a
+                >
+                <a
+                  class="nav-link"
+                  href="#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >Concept Builds</a
+                >
+                <a
+                  class="nav-link"
+                  href="#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >How I Work</a
+                >
               </div>
-              <a class="btn btn-primary ms-lg-3" href="#get-in-touch">Get in Touch</a>
+              <a
+                class="btn btn-primary ms-lg-3"
+                href="#get-in-touch"
+                data-analytics-event="cta_click"
+                data-analytics-button-name="get_in_touch"
+                data-analytics-section-name="navbar"
+                >Get in Touch</a
+              >
             </div>
           </div>
         </nav>
@@ -320,8 +364,22 @@
                   across the team.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                  <a class="btn btn-primary btn-lg-lg-up" href="#featured-work">View Featured Work</a>
-                  <a class="btn btn-outline-light btn-lg-lg-up" href="#get-in-touch">Request My Resume</a>
+                  <a
+                    class="btn btn-primary btn-lg-lg-up"
+                    href="#featured-work"
+                    data-analytics-event="cta_click"
+                    data-analytics-button-name="view_featured_work"
+                    data-analytics-section-name="hero"
+                    >View Featured Work</a
+                  >
+                  <a
+                    class="btn btn-outline-light btn-lg-lg-up"
+                    href="#get-in-touch"
+                    data-analytics-event="cta_click"
+                    data-analytics-button-name="request_my_resume"
+                    data-analytics-section-name="hero"
+                    >Request My Resume</a
+                  >
                 </div>
               </div>
               <!-- Right column: square, rounded profile portrait with name caption -->
@@ -621,7 +679,14 @@
                     Stack: Java 17, Spring, Magnolia CMS, Next.js, TypeScript, Azure, AWS, Node.js
                   </p>
                   <div class="mt-auto">
-                    <a class="btn btn-primary" href="#get-in-touch">Request a detailed walkthrough</a>
+                    <a
+                      class="btn btn-primary"
+                      href="#get-in-touch"
+                      data-analytics-event="cta_click"
+                      data-analytics-button-name="request_walkthrough"
+                      data-analytics-section-name="featured_work"
+                      >Request a detailed walkthrough</a
+                    >
                   </div>
                 </div>
               </div>
@@ -653,7 +718,12 @@
               <p class="lead text-secondary-emphasis mw-prose mb-0">
                 Four live sites across marketing, booking, and e-commerce — each built to production standards and
                 shipped fast with an AI-assisted workflow. Find the one closest to what you need, and
-                <a class="link-primary text-decoration-underline link-offset-2" href="#get-in-touch"
+                <a
+                  class="link-primary text-decoration-underline link-offset-2"
+                  href="#get-in-touch"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="lets_start_there"
+                  data-analytics-section-name="concept_builds"
                   >let’s start there</a
                 >.
               </p>
@@ -664,6 +734,9 @@
                 href="https://github.com/lpdecastro"
                 target="_blank"
                 rel="noopener"
+                data-analytics-event="social_click"
+                data-analytics-section-name="concept_builds"
+                data-analytics-position="body"
                 >View all on GitHub
                 <svg
                   class="bi ms-1"
@@ -741,6 +814,11 @@
                       href="https://construction.liandrejohn.com/"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="altamira"
+                      data-analytics-project-type="marketing_site"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
                       >View Site</a
                     >
                     <a
@@ -748,6 +826,11 @@
                       href="https://github.com/lpdecastro/construction.liandrejohn.com"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="altamira"
+                      data-analytics-project-type="marketing_site"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
                       >View Code</a
                     >
                   </div>
@@ -798,6 +881,11 @@
                       href="https://handa.liandrejohn.com/"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="handa"
+                      data-analytics-project-type="booking"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
                       >View Site</a
                     >
                     <a
@@ -805,6 +893,11 @@
                       href="https://github.com/lpdecastro/handa.liandrejohn.com"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="handa"
+                      data-analytics-project-type="booking"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
                       >View Code</a
                     >
                   </div>
@@ -850,6 +943,11 @@
                       href="https://sereva.liandrejohn.com/"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="sereva"
+                      data-analytics-project-type="consumer_brand"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
                       >View Site</a
                     >
                     <a
@@ -857,6 +955,11 @@
                       href="https://github.com/lpdecastro/sereva.liandrejohn.com"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="sereva"
+                      data-analytics-project-type="consumer_brand"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
                       >View Code</a
                     >
                   </div>
@@ -902,6 +1005,11 @@
                       href="https://shopify.liandrejohn.com/"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="stillward"
+                      data-analytics-project-type="ecommerce"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
                       >View Site</a
                     >
                     <a
@@ -909,6 +1017,11 @@
                       href="https://github.com/lpdecastro/shopify-liandrejohn-com"
                       target="_blank"
                       rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="stillward"
+                      data-analytics-project-type="ecommerce"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
                       >View Code</a
                     >
                   </div>
@@ -1097,6 +1210,10 @@
                     class="d-flex h-100 align-items-center justify-content-between gap-4 py-3 ps-2 pe-4 border rounded-2 bg-white fw-semibold text-dark"
                     href="mailto:liandrejohn88@gmail.com"
                     rel="me"
+                    data-analytics-event="email_click"
+                    data-analytics-contact-method="email"
+                    data-analytics-section-name="get_in_touch"
+                    data-analytics-position="body"
                   >
                     <span class="d-flex align-items-center gap-3"
                       ><span
@@ -1142,6 +1259,10 @@
                     href="https://www.linkedin.com/in/lpdecastro"
                     target="_blank"
                     rel="me noopener"
+                    data-analytics-event="linkedin_click"
+                    data-analytics-contact-method="linkedin"
+                    data-analytics-section-name="get_in_touch"
+                    data-analytics-position="body"
                   >
                     <span class="d-flex align-items-center gap-3"
                       ><span
@@ -1315,19 +1436,49 @@
             <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Explore</h3>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
               <li>
-                <a class="link-light text-decoration-none" href="#what-i-do">What I Do</a>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >What I Do</a
+                >
               </li>
               <li>
-                <a class="link-light text-decoration-none" href="#featured-work">Featured Work</a>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Featured Work</a
+                >
               </li>
               <li>
-                <a class="link-light text-decoration-none" href="#concept-builds">Concept Builds</a>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Concept Builds</a
+                >
               </li>
               <li>
-                <a class="link-light text-decoration-none" href="#how-i-work">How I Work</a>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >How I Work</a
+                >
               </li>
               <li>
-                <a class="link-light text-decoration-none" href="#get-in-touch">Get in Touch</a>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#get-in-touch"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Get in Touch</a
+                >
               </li>
             </ul>
           </div>
@@ -1336,7 +1487,15 @@
             <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Connect</h3>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
               <li>
-                <a class="link-light text-decoration-none" href="mailto:liandrejohn88@gmail.com" rel="me" data-email-text
+                <a
+                  class="link-light text-decoration-none"
+                  href="mailto:liandrejohn88@gmail.com"
+                  rel="me"
+                  data-email-text
+                  data-analytics-event="email_click"
+                  data-analytics-contact-method="email"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
                   >liandrejohn88 [at] gmail [dot] com</a
                 >
               </li>
@@ -1346,6 +1505,10 @@
                   href="https://www.linkedin.com/in/lpdecastro"
                   target="_blank"
                   rel="me noopener"
+                  data-analytics-event="linkedin_click"
+                  data-analytics-contact-method="linkedin"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
                   >linkedin.com/in/lpdecastro</a
                 >
               </li>
@@ -1355,6 +1518,9 @@
                   href="https://github.com/lpdecastro"
                   target="_blank"
                   rel="me noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
                   >github.com/lpdecastro</a
                 >
               </li>
@@ -1388,8 +1554,11 @@
       </div>
     </footer>
 
-    <!-- Scripts: Bootstrap bundle (navbar, scrollspy) then site behaviors -->
+    <!-- Scripts: Bootstrap bundle (navbar, scrollspy), then the analytics helper
+         (must load before main.js, which calls trackEvent for form events),
+         then site behaviors -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/analytics.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
