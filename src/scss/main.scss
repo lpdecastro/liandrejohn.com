@@ -282,6 +282,19 @@ html {
   letter-spacing: 0.08em;
 }
 
+// Muted body copy on the dark hero / footer. Bootstrap's `.text-white-50`
+// (rgba(255,255,255,0.5)) lands right on the 4.5:1 line over the $dark ground
+// and slips under it once the `.bg-hero` glows lift the background — so the hero
+// lead, profile caption, stat descriptions, footer blurb and copyright used it
+// below AA. This token keeps the "muted" read while measuring well clear of
+// 4.5:1 on both the hero and footer grounds. `!important` matches how Bootstrap's
+// own text-colour utilities behave.
+$on-dark-muted: rgba(#fff, 0.78);
+
+.text-on-dark-muted {
+  color: $on-dark-muted !important;
+}
+
 // Inline icons (was the Bootstrap Icons web font). Each `<i class="bi bi-*">` is
 // now an inline `<svg class="bi">` sized in `em` so `.fs-*` still scales it; this
 // rule just restores the baseline alignment the font gave us. `flex-shrink: 0`

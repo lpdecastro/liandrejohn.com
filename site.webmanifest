@@ -1,0 +1,14 @@
+{
+  "name": "Liandre John de Castro — Tech Lead, Enterprise Digital Platforms",
+  "short_name": "Liandre John",
+  "description": "Portfolio of Liandre John de Castro — Tech Lead for enterprise digital platforms.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/assets/images/favicon-32x32.png", "type": "image/png", "sizes": "32x32" },
+    { "src": "/assets/images/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

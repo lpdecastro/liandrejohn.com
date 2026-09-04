@@ -8,7 +8,18 @@
       name="description"
       content="Liandre John de Castro — Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands."
     />
-    <link rel="icon" href="assets/images/favicon.svg" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
     <title>Liandre John de Castro — Tech Lead, Enterprise Digital Platforms</title>
 
     <!-- Canonical: single indexable URL (host + trailing slash normalized) -->
@@ -61,7 +72,11 @@
             "inLanguage": "en",
             "isPartOf": { "@id": "https://liandrejohn.com/#website" },
             "mainEntity": { "@id": "https://liandrejohn.com/#person" },
-            "primaryImageOfPage": "https://liandrejohn.com/assets/images/profile.webp"
+            "primaryImageOfPage": "https://liandrejohn.com/assets/images/profile.webp",
+            "hasPart": [
+              { "@id": "https://liandrejohn.com/#featured-work" },
+              { "@id": "https://liandrejohn.com/#concept-builds" }
+            ]
           },
           {
             "@type": "Person",
@@ -106,7 +121,11 @@
               "email": "liandrejohn88@gmail.com",
               "url": "https://liandrejohn.com/#get-in-touch"
             },
-            "sameAs": ["https://www.linkedin.com/in/lpdecastro", "https://github.com/lpdecastro"]
+            "sameAs": ["https://www.linkedin.com/in/lpdecastro", "https://github.com/lpdecastro"],
+            "subjectOf": [
+              { "@id": "https://liandrejohn.com/#featured-work" },
+              { "@id": "https://liandrejohn.com/#concept-builds" }
+            ]
           },
           {
             "@type": "WebSite",
@@ -116,6 +135,100 @@
             "description": "Portfolio of Liandre John de Castro — Tech Lead for enterprise digital platforms.",
             "inLanguage": "en",
             "publisher": { "@id": "https://liandrejohn.com/#person" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://liandrejohn.com/#featured-work",
+            "name": "Enterprise Magnolia CMS Platform",
+            "description": "A reusable Magnolia CMS platform serving 150+ localized sites across global healthcare and consumer-health brands. It replaced one-off site builds with shared capabilities, integrated marketing and CRM systems through a single configurable layer, and gave content teams self-service tools to launch and manage sites without engineering.",
+            "creator": { "@id": "https://liandrejohn.com/#person" },
+            "about": "Enterprise CMS platform architecture and delivery",
+            "keywords": "Java 17, Spring, Magnolia CMS, Next.js, TypeScript, Azure, AWS, Node.js",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://liandrejohn.com/#profilepage" }
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://liandrejohn.com/#concept-builds",
+            "name": "Concept Builds",
+            "description": "Four self-directed sites across marketing, booking, and e-commerce, each built to production standards with an AI-assisted workflow.",
+            "itemListOrder": "https://schema.org/ItemListOrderAscending",
+            "numberOfItems": 4,
+            "isPartOf": { "@id": "https://liandrejohn.com/#profilepage" },
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Altamira Construction Group",
+                  "description": "A marketing site for a general contractor: filterable project gallery, step-by-step build process, and a quote request that lands as a qualified lead.",
+                  "url": "https://construction.liandrejohn.com/",
+                  "about": "Marketing site",
+                  "keywords": "marketing site, lead generation, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Altamira Construction Group — source",
+                    "codeRepository": "https://github.com/lpdecastro/construction.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Handa Home Services",
+                  "description": "Online booking for a home-services company (aircon, cleaning, repairs): book a service in about a minute, self-serve reschedule and cancel, and instant booking confirmation.",
+                  "url": "https://handa.liandrejohn.com/",
+                  "about": "Booking and scheduling",
+                  "keywords": "online booking, scheduling, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Handa Home Services — source",
+                    "codeRepository": "https://github.com/lpdecastro/handa.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Sereva",
+                  "description": "A direct-to-consumer digestive-health brand: a four-question product finder, side-by-side product comparison, and a store locator across 30 products.",
+                  "url": "https://sereva.liandrejohn.com/",
+                  "about": "Direct-to-consumer brand",
+                  "keywords": "direct-to-consumer, product finder, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Sereva — source",
+                    "codeRepository": "https://github.com/lpdecastro/sereva.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Stillward",
+                  "description": "A minimalist furniture and homeware store: filter, sort, and search the catalog, product pages with ratings and reviews, and a cart and checkout flow.",
+                  "url": "https://shopify.liandrejohn.com/",
+                  "about": "E-commerce storefront",
+                  "keywords": "e-commerce, storefront, checkout, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Stillward — source",
+                    "codeRepository": "https://github.com/lpdecastro/shopify-liandrejohn-com"
+                  }
+                }
+              }
+            ]
           }
         ]
       }
@@ -133,7 +246,11 @@
   </head>
   <!-- data-bs-spy: Bootstrap Scrollspy highlights the matching nav link as each section scrolls into view -->
   <body data-bs-spy="scroll" data-bs-target="#primaryNav" data-bs-root-margin="0px 0px -35%">
-    <main>
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2" href="#main"
+      >Skip to content</a
+    >
+    <main id="main">
       <!-- ============================================================
            HERO ZONE (#top) — full-height dark panel: navbar + headline + stats bar
            ============================================================ -->
@@ -191,7 +308,7 @@
                   <span class="visually-hidden">Liandre John de Castro — Tech Lead. </span>Architecting Magnolia CMS and
                   cloud platforms for global brands, from system design to delivery.
                 </h1>
-                <p class="lead text-white-50 mb-0">
+                <p class="lead text-on-dark-muted mb-0">
                   I’m Liandre. For 6+ years I’ve built enterprise digital platforms with Java, Next.js, AWS, and
                   Magnolia CMS for global pharmaceutical and consumer health brands. I lead 7 engineers, own platform
                   architecture end to end, and use AI-assisted development to raise delivery speed and code quality
@@ -217,7 +334,7 @@
                       fetchpriority="high"
                     />
                   </div>
-                  <figcaption class="text-center text-white-50 fs-7 fw-semibold mt-3">
+                  <figcaption class="text-center text-on-dark-muted fs-7 fw-semibold mt-3">
                     Liandre John de Castro · Tech Lead
                   </figcaption>
                 </figure>
@@ -227,28 +344,32 @@
         </header>
 
         <!-- Stats bar: four career-highlight metrics; 2-up on mobile, 4-up from md -->
-        <section class="border-top border-light border-opacity-10 py-3 py-md-4" aria-label="Career highlights">
+        <section
+          class="border-top border-light border-opacity-10 py-3 py-md-4"
+          aria-labelledby="career-highlights-title"
+        >
+          <h2 id="career-highlights-title" class="visually-hidden">Career highlights</h2>
           <div class="container">
             <div class="row row-cols-2 row-cols-md-4 text-center">
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">6+ yrs</div>
-                <div class="small text-white-50">
+                <div class="small text-on-dark-muted">
                   Building enterprise digital platforms, from architecture to delivery
                 </div>
               </div>
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">$1M</div>
-                <div class="small text-white-50">
+                <div class="small text-on-dark-muted">
                   Statement of work secured through technical solutioning and client POCs
                 </div>
               </div>
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">150+</div>
-                <div class="small text-white-50">Localized websites migrated to Magnolia CMS platform</div>
+                <div class="small text-on-dark-muted">Localized websites migrated to Magnolia CMS platform</div>
               </div>
               <div class="col p-4">
                 <div class="fs-1 fw-bold lh-1 mb-3">15</div>
-                <div class="small text-white-50">Engineers mentored across teams, with 5 now leading workstreams</div>
+                <div class="small text-on-dark-muted">Engineers mentored across teams, with 5 now leading workstreams</div>
               </div>
             </div>
           </div>
@@ -258,7 +379,7 @@
       <!-- ============================================================
            WHAT I DO (#what-i-do) — intro copy + 4 service cards (1 / 2 / 4-up grid)
            ============================================================ -->
-      <section id="what-i-do" class="pt-7 pt-md-8 pb-6 pb-md-7 bg-white">
+      <section id="what-i-do" class="pt-7 pt-md-8 pb-6 pb-md-7 bg-white" aria-labelledby="what-i-do-title">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + lead (both capped at the 640px prose measure) -->
           <div
@@ -267,7 +388,7 @@
             <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
             <span class="text-nowrap">What I Do</span>
           </div>
-          <h2 class="mw-prose mb-3">From product idea to production-ready platform.</h2>
+          <h2 id="what-i-do-title" class="mw-prose mb-3">From product idea to production-ready platform.</h2>
           <p class="lead text-secondary-emphasis mw-prose mb-5">
             I work across the stack, but my strongest value is connecting architecture, implementation, performance, and
             delivery into one clear technical path.
@@ -417,7 +538,7 @@
            shown as a full-width feature card (not part of any carousel).
            Followed by the CONCEPT BUILDS section (#concept-builds) below.
            ============================================================ -->
-      <section id="featured-work" class="py-6 py-md-7">
+      <section id="featured-work" class="py-6 py-md-7" aria-labelledby="featured-work-title">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + lead -->
           <div class="row g-3 mb-5">
@@ -428,7 +549,9 @@
                 <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                 <span class="text-nowrap">Featured Work</span>
               </div>
-              <h2 class="mw-prose mb-3">Architecting and delivering an enterprise CMS platform.</h2>
+              <h2 id="featured-work-title" class="mw-prose mb-3">
+                Architecting and delivering an enterprise CMS platform.
+              </h2>
               <p class="lead text-secondary-emphasis mw-prose mb-0">
                 One client engagement at platform scale, from architecture and team leadership to cloud integration and
                 measurable business impact. It shows how I operate as a Tech Lead when the stakes are enterprise-sized.
@@ -500,7 +623,7 @@
            buttons and #projectStripDots at every viewport; touch-swipe scrolls
            it on mobile.
            ============================================================ -->
-      <section id="concept-builds" class="py-6 py-md-7 bg-white">
+      <section id="concept-builds" class="py-6 py-md-7 bg-white" aria-labelledby="concept-builds-title">
         <div class="container">
           <!-- Section heading: eyebrow + h2 + lead, with a "View all on GitHub" link alongside -->
           <div class="row align-items-end g-3 mb-5">
@@ -511,11 +634,10 @@
                 <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                 <span class="text-nowrap">Concept Builds</span>
               </div>
-              <h2 class="mw-prose mb-3">Your product idea has a head start here.</h2>
+              <h2 id="concept-builds-title" class="mw-prose mb-3">Your product idea has a head start here.</h2>
               <p class="lead text-secondary-emphasis mw-prose mb-0">
-                Self-directed builds across marketing, booking, and e-commerce — no page builders, no framework
-                lock-in, just hand-built HTML, CSS, and JavaScript taken to production quality and shipped fast with an
-                AI-assisted workflow. Each one is live; pick the one nearest your idea and
+                Four live sites across marketing, booking, and e-commerce — each built to production standards and
+                shipped fast with an AI-assisted workflow. Find the one closest to what you need, and
                 <a class="link-primary text-decoration-underline link-offset-2" href="#get-in-touch"
                   >let’s start there</a
                 >.
@@ -592,18 +714,12 @@
                     >Marketing Site
                   </p>
                   <h3 class="h5 fw-semibold mb-3">Altamira Construction Group</h3>
-                  <p class="text-secondary-emphasis">
-                    A marketing site for a general contractor — service lines, a filterable project portfolio, and a
-                    qualified-lead quote flow, built around one promise: “Built to the drawing. Delivered on the date.”
-                  </p>
-                  <p class="small text-secondary-emphasis">
-                    <span class="fw-semibold">Demonstrates:</span> a token-based design system, a keyboard- and
-                    touch-accessible before/after slider, project filtering with live counts, animated stat counters,
-                    and validated multi-step forms — all vanilla, no framework, on a strict image performance budget.
-                  </p>
-                  <p class="small text-secondary">
-                    Stack: HTML, CSS, vanilla JavaScript, Bootstrap 5.3, CSS design tokens
-                  </p>
+                  <p class="text-secondary-emphasis mb-3">A marketing site for a general contractor.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Filterable project gallery</li>
+                    <li>Step-by-step build process</li>
+                    <li>Quote request that lands as a qualified lead</li>
+                  </ul>
                   <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
                     <a
                       class="btn btn-primary btn-sm"
@@ -653,16 +769,14 @@
                     >Booking &amp; Scheduling
                   </p>
                   <h3 class="h5 fw-semibold mb-3">Handa Home Services</h3>
-                  <p class="text-secondary-emphasis">
-                    An appointment-booking site for a Metro Manila home-services company — aircon care, cleaning, and
-                    repairs: “Pick the service, choose your team, lock a time.”
+                  <p class="text-secondary-emphasis mb-3">
+                    Online booking for a home-services company — aircon, cleaning, repairs.
                   </p>
-                  <p class="small text-secondary-emphasis">
-                    <span class="fw-semibold">Demonstrates:</span> a five-step booking wizard with URL state and
-                    localStorage persistence, slot availability logic, reschedule and cancel flows, .ics calendar
-                    export, a postcode coverage checker, and print-ready confirmations.
-                  </p>
-                  <p class="small text-secondary">Stack: HTML, CSS, vanilla JavaScript, Bootstrap 5</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Book a service in about a minute</li>
+                    <li>Self-serve reschedule and cancel</li>
+                    <li>Instant booking confirmation</li>
+                  </ul>
                   <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
                     <a
                       class="btn btn-primary btn-sm"
@@ -709,16 +823,12 @@
                     >Consumer Brand
                   </p>
                   <h3 class="h5 fw-semibold mb-3">Sereva</h3>
-                  <p class="text-secondary-emphasis">
-                    A direct-to-consumer digestive-health brand built around one idea — “Digestion is personal, and so
-                    is the right format.” A four-question finder matches each visitor to the right product.
-                  </p>
-                  <p class="small text-secondary-emphasis">
-                    <span class="fw-semibold">Demonstrates:</span> a 30-page catalog driven from a single shared data
-                    layer, an interactive product finder and comparison tool, a store locator, CSS-generated product
-                    packaging (no photography), and designed loading, empty, and error states.
-                  </p>
-                  <p class="small text-secondary">Stack: HTML, CSS, vanilla JavaScript, shared data.js layer</p>
+                  <p class="text-secondary-emphasis mb-3">A direct-to-consumer digestive-health brand.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Four-question product finder</li>
+                    <li>Side-by-side product comparison</li>
+                    <li>Store locator across 30 products</li>
+                  </ul>
                   <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
                     <a
                       class="btn btn-primary btn-sm"
@@ -765,16 +875,12 @@
                     >E-commerce Storefront
                   </p>
                   <h3 class="h5 fw-semibold mb-3">Stillward</h3>
-                  <p class="text-secondary-emphasis">
-                    A minimalist furniture and home-decor storefront — “Make room for less noise.” Browsing by room
-                    function, a curated “small edit” collection, and reviews tied to individual products.
-                  </p>
-                  <p class="small text-secondary-emphasis">
-                    <span class="fw-semibold">Demonstrates:</span> catalog modeling with category-filtered navigation, a
-                    sortable product grid, reusable product-card and review components, and storefront patterns — a
-                    free-shipping threshold, 30-day returns, checkout scaffolding — ready for a backend.
-                  </p>
-                  <p class="small text-secondary">Stack: HTML, CSS, vanilla JavaScript, Bootstrap 5</p>
+                  <p class="text-secondary-emphasis mb-3">A minimalist furniture and homeware store.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Filter, sort, and search the catalog</li>
+                    <li>Product pages with ratings and reviews</li>
+                    <li>Cart and checkout flow</li>
+                  </ul>
                   <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
                     <a
                       class="btn btn-primary btn-sm"
@@ -849,7 +955,7 @@
       <!-- ============================================================
            HOW I WORK (#how-i-work) — approach copy + numbered 4-step process list
            ============================================================ -->
-      <section id="how-i-work" class="py-6 py-md-7">
+      <section id="how-i-work" class="py-6 py-md-7" aria-labelledby="how-i-work-title">
         <div class="container">
           <div class="row g-5 g-lg-6">
             <!-- Left column: section heading (eyebrow + h2) + two lead paragraphs -->
@@ -860,7 +966,9 @@
                 <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                 <span class="text-nowrap">How I Work</span>
               </div>
-              <h2 class="mw-prose mb-3">Clear decisions. Strong foundations. Measurable outcomes.</h2>
+              <h2 id="how-i-work-title" class="mw-prose mb-3">
+                Clear decisions. Strong foundations. Measurable outcomes.
+              </h2>
               <p class="lead text-secondary-emphasis mw-prose">
                 I bring a Tech Lead mindset to both focused builds and complex platforms. I start by clarifying the real
                 business problem, then shape a solution that is understandable, maintainable, and realistic to deliver.
@@ -947,7 +1055,7 @@
       <!-- ============================================================
            CONTACT (#get-in-touch) — intro + direct email/LinkedIn links + message form
            ============================================================ -->
-      <section id="get-in-touch" class="py-6 py-md-7 bg-white">
+      <section id="get-in-touch" class="py-6 py-md-7 bg-white" aria-labelledby="get-in-touch-title">
         <div class="container">
           <div class="row g-5 g-lg-7">
             <!-- Left column: section heading (eyebrow + h2) + lead + direct contact links -->
@@ -958,7 +1066,9 @@
                 <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                 <span class="text-nowrap">Get in Touch</span>
               </div>
-              <h2 class="mw-prose mb-3">Whether you’re hiring or scoping a build, start here.</h2>
+              <h2 id="get-in-touch-title" class="mw-prose mb-3">
+                Whether you’re hiring or scoping a build, start here.
+              </h2>
               <p class="lead text-secondary-emphasis mw-prose mb-4">
                 Filling a role? Share the details and you’ll get my resume and availability. Planning a platform or
                 untangling a stalled build? Outline it and I’ll tell you how I’d approach the work. Email or LinkedIn —
@@ -971,6 +1081,7 @@
                   <a
                     class="d-flex h-100 align-items-center justify-content-between gap-4 py-3 ps-2 pe-4 border rounded-2 bg-white fw-semibold text-dark"
                     href="mailto:liandrejohn88@gmail.com"
+                    rel="me"
                   >
                     <span class="d-flex align-items-center gap-3"
                       ><span
@@ -1015,7 +1126,7 @@
                     class="d-flex h-100 align-items-center justify-content-between gap-4 py-3 ps-2 pe-4 border rounded-2 bg-white fw-semibold text-dark"
                     href="https://www.linkedin.com/in/lpdecastro"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="me noopener noreferrer"
                   >
                     <span class="d-flex align-items-center gap-3"
                       ><span
@@ -1159,7 +1270,11 @@
     <!-- ============================================================
          FOOTER — brand blurb + "Explore" anchor links + "Connect" links + copyright
          ============================================================ -->
-    <footer class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4" aria-label="Site footer">
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
       <div class="container">
         <div class="row g-4">
           <!-- Brand column: logo + one-line summary -->
@@ -1172,13 +1287,13 @@
               loading="lazy"
               class="mb-4"
             />
-            <p class="small text-white-50 mb-0" style="max-width: 34ch">
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
               Tech Lead building enterprise digital platforms, APIs, cloud systems, and performant web experiences.
             </p>
           </div>
           <!-- Explore column: in-page section anchors -->
           <div class="col-6 col-lg-3">
-            <h2 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Explore</h2>
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Explore</h3>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
               <li>
                 <a class="link-light text-decoration-none" href="#what-i-do">What I Do</a>
@@ -1199,10 +1314,10 @@
           </div>
           <!-- Connect column: external contact links -->
           <div class="col-6 col-lg-3">
-            <h2 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Connect</h2>
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Connect</h3>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
               <li>
-                <a class="link-light text-decoration-none" href="mailto:liandrejohn88@gmail.com"
+                <a class="link-light text-decoration-none" href="mailto:liandrejohn88@gmail.com" rel="me"
                   >liandrejohn88@gmail.com</a
                 >
               </li>
@@ -1211,7 +1326,7 @@
                   class="link-light text-decoration-none"
                   href="https://www.linkedin.com/in/lpdecastro"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   >linkedin.com/in/lpdecastro</a
                 >
               </li>
@@ -1220,7 +1335,7 @@
                   class="link-light text-decoration-none"
                   href="https://github.com/lpdecastro"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   >github.com/lpdecastro</a
                 >
               </li>
@@ -1230,7 +1345,7 @@
         <!-- Footer bottom bar: copyright + back-to-top link -->
         <hr class="border-light border-opacity-10 opacity-100 my-6" />
         <div
-          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-white-50"
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
         >
           <p class="mb-0">© 2026 Liandre John de Castro. All rights reserved.</p>
           <a class="link-light text-decoration-none" href="#top"

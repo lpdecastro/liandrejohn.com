@@ -17,12 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6
-        with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -36,7 +30,7 @@ jobs:
           npm run build:css
           npm run vendor:js
           mkdir -p dist
-          cp -R index.html robots.txt sitemap.xml assets dist/
+          cp -R index.html robots.txt sitemap.xml llms.txt site.webmanifest assets dist/
           # Drop source maps, the local-only theme preview, the unreferenced heavy
           # logo, and any stray .DS_Store so only real site files ship.
           rm -f dist/assets/css/*.map dist/assets/css/theme-preview.css dist/assets/images/logo.png
