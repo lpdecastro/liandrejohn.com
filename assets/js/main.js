@@ -1,12 +1,13 @@
-// Bootstrap handles the navbar collapse and the mobile project carousel.
+// Bootstrap handles the navbar collapse and scrollspy.
 // This small handler preserves the original static-demo mailto behavior.
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 
-// Desktop projects strip: advance exactly one card (+ gap) per prev/next click,
+// Concept builds strip: advance exactly one card (+ gap) per prev/next click,
 // disable the buttons at either end, and keep the position dots in sync. CSS
-// scroll-snap settles the final position.
-const projectStrip = document.getElementById('projectStripDesktop');
+// scroll-snap settles the final position. Same strip at every viewport — the
+// card width (src/scss/main.scss) is what changes.
+const projectStrip = document.getElementById('projectStrip');
 const stripButtons = document.querySelectorAll('[data-strip-scroll]');
 const stripDots = document.getElementById('projectStripDots');
 

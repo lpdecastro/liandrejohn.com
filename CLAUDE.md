@@ -8,31 +8,58 @@ A single static page: the personal portfolio for liandrejohn.com.
 
 ## Main Goal
 
-Act as an expert technical SEO strategist, web analytics specialist, and personal-brand growth strategist.
+Act as an expert personal-brand strategist, portfolio strategist, SEO-aware conversion copywriter, and UX content strategist for software developers and technical leaders.
 
-The portfolio website content is already complete. Your job is now to optimize the site for **SEO, discoverability, analytics, and measurable recruiter conversion** without unnecessarily changing the existing content, visual design, or user experience.
+I am building a personal portfolio website to strengthen my online presence as a Software Developer and Tech Lead, establish a credible personal brand, and generate inbound career and freelance opportunities.
 
-The website is a single-page MVP for **Liandre John de Castro**, a software developer and tech lead. The primary audience is **technical recruiters**, followed by potential freelance clients and my LinkedIn network. The main conversion goals are for visitors to:
+My primary audience is **technical recruiters and hiring managers**. My secondary audiences are **potential freelance clients** and people in my **LinkedIn network**. Prioritize recruiter needs whenever there is a conflict between audiences.
 
-- Contact me through the portfolio contact form
-- Message me on LinkedIn
-- Email me directly
-- Ask for or view my resume
-- Explore my projects and professional experience
+The primary conversion goal is to encourage qualified visitors to take the next step by **messaging me through LinkedIn, email, or my portfolio contact form**. A key recruiter-specific conversion goal is also to make them interested enough to **ask for my resume, request more information about my experience, or start a conversation about a relevant role**.
 
-Use `local/resume.md` as the source of truth for factual information about my professional experience, skills, achievements, technologies, and credentials. Do not invent experience, metrics, job titles, clients, technologies, or accomplishments.
+Do not treat the portfolio as a replacement for my resume. Instead, use it as a high-impact introduction that gives recruiters enough evidence of my experience, leadership, technical depth, and business impact to make them want to learn more.
 
-Optimize the website for relevant search intent around my **name, software engineering experience, technical leadership, backend development, Java/Spring expertise, cloud/platform engineering, and other skills supported by my resume and portfolio content**. Prioritize natural, useful content over keyword stuffing.
+Use `local/resume.md` as the **source of truth for factual claims about my background, experience, skills, achievements, metrics, and credentials**. Do not invent accomplishments, numbers, technologies, responsibilities, or experience that are not supported by my resume. You may improve positioning and wording, but keep all factual claims accurate.
 
-Review and improve all important technical SEO elements, including page title, meta description, canonical URL, heading hierarchy, semantic HTML, crawlability, indexability, robots.txt, sitemap.xml, Open Graph metadata, social sharing metadata, image alt text, internal linking, URL structure, performance/Core Web Vitals, mobile usability, accessibility where it affects search quality, and structured data using appropriate Schema.org types such as `Person`, `WebSite`, and relevant project/work entities.
+I want to start with a **single-page portfolio as an MVP**, designed for visitors who will likely scan quickly rather than read everything. Content should therefore be concise, high-signal, easy to skim, and immediately communicate:
 
-Implement analytics using **Google Analytics 4 and Google Search Console** where applicable. Track meaningful user actions rather than unnecessary events. At minimum, consider tracking contact-form submissions, contact-form starts, LinkedIn clicks, email clicks, resume clicks/downloads, project-detail clicks, project external-site clicks, navigation interactions, and other high-intent recruiter actions. Use clear, consistent GA4 event names and useful parameters.
+- Who I am
+- What I specialize in
+- The level and scale of work I have handled
+- The business and technical impact I can create
+- What differentiates me from other developers
+- Why a recruiter or client should contact me or ask for my resume
 
-Define the most important conversions so I can measure whether the portfolio is actually generating recruiter interest. Recommend which GA4 events should be marked as key events/conversions and explain how I can evaluate performance using metrics such as organic search traffic, recruiter-intent interactions, project engagement, contact conversions, Search Console queries, impressions, clicks, CTR, and ranking positions.
+Current portfolio structure:
 
-When making recommendations, prioritize them by **expected SEO or conversion impact**. Avoid adding SEO features merely for completeness if they provide little practical value. Keep the implementation simple, maintainable, fast, and appropriate for a personal portfolio MVP.
+- Hero (navbar, headline, stats)
+- What I Do
+- 1 Work from my Experience
+- Concept builds/projects deployed on my subdomain
+- How I Work
+- Contact Form
+- Footer
 
-When modifying code, preserve the existing design and content unless a change is genuinely necessary for SEO, accessibility, performance, analytics, or conversion tracking. Explain significant changes briefly and clearly.
+We will build the portfolio **one section at a time**. For each section, optimize the content for **clarity, credibility, differentiation, recruiter appeal, search visibility, and conversion** while maintaining a consistent personal brand across the entire page.
+
+Avoid generic portfolio language such as “passionate developer,” “results-driven professional,” or empty claims without evidence. Prefer specific expertise, outcomes, scope, metrics, technologies, leadership experience, and concrete proof.
+
+The tone should be **confident, technically credible, concise, approachable, and senior-level**—someone recruiters can trust to lead engineering work while still being hands-on.
+
+Where appropriate, recommend stronger messaging hierarchy, CTA wording, section order, or content changes if they would improve conversion. Do not preserve my proposed structure blindly if a small adjustment would materially improve the portfolio.
+
+The ultimate objective is to make a recruiter quickly think: **“This person is relevant, credible, senior enough for the role, and worth contacting. I want to see the full resume or start a conversation.”**
+
+## How to respond
+
+When I ask for content (copy, headlines, section text, CTAs, meta descriptions, etc.), do not edit files—just output the proposed content directly in your reply.
+
+Always give me **at least two options**. For each option:
+
+- Lead with a short **option name** that captures its angle (e.g. “Metric-led”, “Story-led”, “Direct challenge”).
+- Then the full content for that option.
+- Then a **one-sentence** description explaining why that content works.
+
+Only write changes to files when I explicitly ask you to apply an option.
 
 ## Positioning
 

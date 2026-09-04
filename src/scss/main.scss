@@ -14,6 +14,32 @@
 // @import deprecation warnings from inside node_modules/bootstrap on every run.
 // Those are upstream, not a local bug: blocked on Bootstrap 6 for the @use
 // migration (Bootstrap 5.3's partials still ship as @import).
+// ---------------------------------------------------------------------------
+// Self-hosted Inter (was Google Fonts). Two subsets pulled from Google's own
+// css2 output for Inter v20: `latin` covers the whole site; `latin-ext` only
+// loads if an extended-Latin glyph ever appears. Both files are the Inter
+// variable font, so one @font-face per subset spans weights 400–700.
+// Files: assets/fonts/inter-latin*.woff2 (path is relative to assets/css/main.css).
+// ---------------------------------------------------------------------------
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @import 'bootstrap/scss/functions';
 
 // ---------------------------------------------------------------------------
@@ -157,8 +183,8 @@ $navbar-dark-active-color: $light;
 // hover and stay there when active.
 $navbar-dark-hover-color: $navbar-dark-active-color;
 
-// Carousel indicators — used by the mobile carousel and, via these vars, by the
-// desktop #projectStripDots rules at the bottom of this file.
+// Carousel-indicator vars — reused, via these values, by the #projectStripDots
+// rules at the bottom of this file so the strip's position dots stay on spec.
 $carousel-control-color: $dark;
 $carousel-indicator-active-bg: $primary;
 $carousel-indicator-width: 24px;
@@ -256,6 +282,19 @@ html {
   letter-spacing: 0.08em;
 }
 
+// Inline icons (was the Bootstrap Icons web font). Each `<i class="bi bi-*">` is
+// now an inline `<svg class="bi">` sized in `em` so `.fs-*` still scales it; this
+// rule just restores the baseline alignment the font gave us. `flex-shrink: 0`
+// keeps icons from squashing inside flex rows (e.g. the #get-in-touch links).
+.bi {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+
 // `.bg-primary-muted` — a mid step between `.bg-primary-subtle` and `.bg-primary`
 // (see $primary-bg-muted). Bootstrap only generates one `-subtle` level per
 // theme colour; the #how-i-work step badges need one that holds up on $light.
@@ -348,8 +387,6 @@ h2,
 // #featured-work cards — a subtle hover: the card makes a small lift, the border warms
 // to the hover blue, and a soft shadow fades in (no background wash — the cards
 // carry a full-bleed image). Bootstrap has no card hover state, so scope it here.
-// Covers both the desktop strip and the mobile carousel; the carousel's slide
-// transform lives on `.carousel-item`, not `.card`, so the two never collide.
 #featured-work .card {
   transition:
     transform 0.25s ease,
@@ -369,34 +406,42 @@ h2,
   }
 }
 
-// Desktop projects strip: scrolls one card at a time (assets/js/main.js drives the
-// prev/next buttons) and keeps the next card peeking. Bootstrap has no scroll-snap
-// or fractional flex-basis utilities, so scope those here.
+// Concept builds strip: one horizontal scroll-snap strip for every viewport. It
+// scrolls one card at a time (assets/js/main.js drives the prev/next buttons) and
+// keeps the next card peeking; on touch it swipes like a carousel. Bootstrap has
+// no scroll-snap or fractional flex-basis utilities, so scope those here.
 //
-// --card-basis sizes each card so 3.25 fit in view — three whole cards plus a
-// quarter-card peek that signals "scroll for more". The `- $grid-gutter-width * 3`
-// removes the three gaps between/around those cards before the divide (a bare
-// `100% / 3.25` would ignore the gaps and overflow). $grid-gutter-width (1.5rem)
-// must stay equal to the strip's `gap-4` in index.html. One custom property so
-// the number lives in a single place.
-#projectStripDesktop {
-  --card-basis: calc((100% - #{$grid-gutter-width} * 3) / 3.25);
+// --card-basis sizes each card. Narrow viewports get one whole card plus a peek
+// that signals "swipe for more". From lg up, 3.25 cards fit in view — three whole
+// cards plus a quarter-card peek. The `- $grid-gutter-width * 3` removes the three
+// gaps between/around those three-plus cards before the divide (a bare `100% / 3.25`
+// would ignore the gaps and overflow). $grid-gutter-width (1.5rem) must stay equal
+// to the strip's `gap-4` in index.html. One custom property so the number lives in
+// a single place.
+#projectStrip {
+  --card-basis: 85%;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
 
-#projectStripDesktop::-webkit-scrollbar {
+@include media-breakpoint-up(lg) {
+  #projectStrip {
+    --card-basis: calc((100% - #{$grid-gutter-width} * 3) / 3.25);
+  }
+}
+
+#projectStrip::-webkit-scrollbar {
   display: none;
 }
 
-#projectStripDesktop > .card {
+#projectStrip > .card {
   flex: 0 0 var(--card-basis);
   scroll-snap-align: start;
 }
 
 // Scroll-position indicators for the strip (populated by assets/js/main.js). Pulls
-// size and spacing from the same $carousel-indicator-* vars the mobile carousel
-// uses, so the two indicator styles stay in sync.
+// size and spacing from the $carousel-indicator-* vars so the dots match the
+// redesign spec's indicator metrics.
 #projectStripDots {
   display: flex;
   align-items: center;
@@ -421,108 +466,4 @@ h2,
 
 #projectStripDots > button[aria-current='true'] {
   background-color: $primary;
-}
-
-// Mobile projects carousel (<lg): reveal a sliver of the next card so the strip
-// reads as swipeable. Bootstrap's carousel shows only the active item at rest
-// (`display: none` on the others) and slides via translateX, so let the inner
-// track overflow and force the card *after* the active one visible, parked just
-// past the active card's right edge. No next sibling on the last slide
-// (data-bs-wrap="false"), so the peek falls away there on its own.
-//
-// --card-w is shared by the slide width and every peek offset so the number
-// lives in one place (mirrors #projectStripDesktop's --card-basis). --peek-gap
-// is the space between the active card and the sliver.
-#projectCarouselMobile {
-  --card-w: 85%;
-  --peek-gap: #{$grid-gutter-width * 0.5};
-  overflow: hidden; // re-clip the peek that .carousel-inner now lets through
-}
-
-// Stack every slide in one CSS grid cell so the track is always as tall as the
-// tallest card, and swap Bootstrap's per-slide `display` toggle for `visibility`
-// so off-screen slides keep contributing that height instead of collapsing it
-// (translateX still drives the slide; `.card` fills the equalized item height so
-// the "View Site" buttons line up too).
-#projectCarouselMobile .carousel-inner {
-  overflow: visible;
-  display: grid;
-}
-
-#projectCarouselMobile .carousel-item {
-  grid-area: 1 / 1;
-  width: var(--card-w);
-  margin-right: 0;
-  display: block;
-  visibility: hidden;
-  // No transition at rest. Bootstrap puts `transition: transform .6s` on every
-  // item and relies on off-screen items being `display: none` so the pre-slide
-  // setup (moving them to the start position) doesn't animate. Here they are
-  // `visibility`-hidden instead, so without this that setup — and the offset
-  // jumps at the end of a slide — would animate as stray glides. Re-enabled just
-  // below, only for the two items Bootstrap is actively moving and only once its
-  // directional class is on (i.e. after its reflow commits the start position).
-  transition: none;
-}
-
-#projectCarouselMobile .carousel-item.active,
-#projectCarouselMobile .carousel-item-next,
-#projectCarouselMobile .carousel-item-prev,
-#projectCarouselMobile .carousel-item.active + .carousel-item {
-  visibility: visible;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  #projectCarouselMobile .carousel-item.active.carousel-item-start,
-  #projectCarouselMobile .carousel-item.active.carousel-item-end,
-  #projectCarouselMobile .carousel-item-next.carousel-item-start,
-  #projectCarouselMobile .carousel-item-prev.carousel-item-end {
-    transition: transform 0.6s ease-in-out;
-  }
-
-  // On a forward slide, glide the on-deck card in from the right in step with the
-  // rest so the new peek arrives smoothly instead of popping in at the end. It
-  // finishes exactly where the resting peek rule below parks it (2·card - card
-  // via translateX = 1·card, + the gap), so the class swap at slide-end is a
-  // no-op. Degrades to an instant appear if :has() or this transition is skipped.
-  #projectCarouselMobile:has(.carousel-item-next) .carousel-item.active + .carousel-item + .carousel-item {
-    visibility: visible;
-    left: calc(var(--card-w) * 2 + var(--peek-gap));
-    transform: translateX(-100%);
-    transition: transform 0.6s ease-in-out;
-  }
-
-  // On a backward slide, the current peek keeps `.active + .carousel-item` (the
-  // outgoing active still holds `.active` until slide-end) so the resting rule
-  // would freeze it in place — a stray sliver of the old peek left behind while
-  // everything else moves. Slide it off the right edge in step with the rest;
-  // slide-end then hides it. Same graceful degradation as the forward glide.
-  #projectCarouselMobile:has(.carousel-item-prev) .carousel-item.active + .carousel-item {
-    transform: translateX(100%);
-    transition: transform 0.6s ease-in-out;
-  }
-}
-
-#projectCarouselMobile .carousel-item > .card {
-  height: 100%;
-}
-
-// Resting peek: park the card after the active one just past the active card's
-// right edge. Offset with `left` (not `transform`) so it is never caught by the
-// slide transition — it snaps cleanly in/out as the active card changes instead
-// of gliding to a new resting spot. Excludes the transition-state classes so
-// Bootstrap owns the transform while a slide is in flight.
-#projectCarouselMobile .carousel-item.active + .carousel-item:not(.carousel-item-next):not(.carousel-item-prev) {
-  left: calc(var(--card-w) + var(--peek-gap));
-}
-
-// Bootstrap parks the card entering (or leaving) on the right at exactly
-// translateX(100%) — flush against the active card. The resting peek above sits
-// one gap further out, so when Bootstrap's transform takes over from that `left`
-// offset the peek would jump inward by one gap (visible as the gap collapsing at
-// the start of a Next, and reappearing at the end). Add the gap here so the
-// hand-off is seamless in both directions.
-#projectCarouselMobile .carousel-item-next:not(.carousel-item-start),
-#projectCarouselMobile .carousel-item.active.carousel-item-end {
-  transform: translateX(calc(100% + var(--peek-gap)));
 }

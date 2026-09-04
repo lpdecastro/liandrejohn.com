@@ -7,7 +7,7 @@ This is a Bootstrap/Sass rebuild of the supplied single-page portfolio from `loc
 - The HTML uses Bootstrap components and utility classes only.
 - No project-specific/custom CSS class names were added.
 - `src/scss/main.scss` customizes Bootstrap through Sass variables, then imports Bootstrap.
-- Navbar collapse and project carousels use Bootstrap JavaScript.
+- Navbar collapse and scrollspy use Bootstrap JavaScript.
 - A small custom JavaScript file remains only for the static contact form's `mailto:` composer because Bootstrap does not provide that behavior.
 
 ## Versions
