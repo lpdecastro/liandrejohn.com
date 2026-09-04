@@ -28,14 +28,6 @@ jobs:
           npm ci
           npm run build
 
-      # Allowlist: only these paths ever land in dist/, so only these are ever public.
-      - name: Copy to dist
-        run: |
-          rm -rf dist
-          mkdir -p dist
-          cp -R index.html robots.txt sitemap.xml site.webmanifest llms.txt assets dist/
-          rm -f dist/assets/css/*.map
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
