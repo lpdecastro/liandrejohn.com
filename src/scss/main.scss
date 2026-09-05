@@ -1,0 +1,485 @@
+// Bootstrap 5.3 theme. Sass variable overrides live above the `@import`; a small
+// set of hand-written selectors lives below it, only where Bootstrap has no
+// equivalent (see CLAUDE.md "Styling model").
+//
+// The values below follow local/design-spec.md (the 2026 redesign): a brighter
+// blue accent on a cool near-white ground, Inter throughout, 16px cards that
+// lift on hover with an icon-tile "flip".
+
+// Bootstrap's functions load first (its documented customization order) so the
+// overrides below can use tint-color() / shade-color() / mix(). `variables` and
+// the rest of Bootstrap come in lower down, after the overrides.
+//
+// `@import` is deprecated in Dart Sass — the build prints color-functions /
+// @import deprecation warnings from inside node_modules/bootstrap on every run.
+// Those are upstream, not a local bug: blocked on Bootstrap 6 for the @use
+// migration (Bootstrap 5.3's partials still ship as @import).
+// ---------------------------------------------------------------------------
+// Self-hosted Inter (was Google Fonts). Two subsets pulled from Google's own
+// css2 output for Inter v20: `latin` covers the whole site; `latin-ext` only
+// loads if an extended-Latin glyph ever appears. Both files are the Inter
+// variable font, so one @font-face per subset spans weights 400–700.
+// Files: public/fonts/inter-latin*.woff2 — Vite copies public/ to the dist root
+// unchanged, so these are referenced below by absolute path (/fonts/...), not
+// relative to this file. Kept out of the hashed asset pipeline on purpose: the
+// <link rel="preload"> in index.html needs a filename that's stable at build time.
+// ---------------------------------------------------------------------------
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@import 'bootstrap/scss/functions';
+
+// ---------------------------------------------------------------------------
+// Palette — single source of truth. Swap these seven values to reskin the whole
+// site (local/notes.md: "code such that I can easily switch palette").
+// ---------------------------------------------------------------------------
+$primary: #2563eb; // accent — section label, icons, links, hover states
+$secondary: #475569; // secondary text — body copy, decks, card descriptions
+$dark: #0f172a; // primary text + hero / navbar / footer ground
+$light: #f0f4f8; // page background
+// $light: #f0f4f8; // page background
+$border-subtle: #e2e8f0; // card + divider borders
+$border-hover: #bfdbfe; // card border on hover
+$accent-soft: #eff6ff; // icon-tile wash + card hover wash
+
+$body-bg: $light;
+$body-color: $dark;
+$body-secondary-color: $secondary;
+
+// Resolve `.text-secondary-emphasis` to the exact spec body color instead of
+// Bootstrap's darker shade, so every deck / card description reads at #475569.
+$secondary-text-emphasis: $secondary;
+// `.bg-primary-subtle` (icon tiles, project image placeholders) becomes the
+// spec's "Accent Soft" wash rather than Bootstrap's computed 80% tint.
+$primary-bg-subtle: $accent-soft;
+// A second, deeper primary wash for filled chips that must read on the
+// near-white $light ground — the #how-i-work step badges, where
+// `.bg-primary-subtle` is too faint and solid `.bg-primary` is too loud.
+// Exposed as the `.bg-primary-muted` class further down.
+$primary-bg-muted: tint-color($primary, 75%);
+
+// ---------------------------------------------------------------------------
+// Typography — Inter, per the redesign spec.
+// ---------------------------------------------------------------------------
+$font-family-sans-serif:
+  'Inter',
+  system-ui,
+  -apple-system,
+  'Segoe UI',
+  sans-serif;
+$font-size-base: 0.9375rem; // 15px body text
+$line-height-base: 1.6; // spec: description line-height
+
+$lead-font-size: 1.0625rem; // spec: description / deck = 17px
+$lead-font-weight: 400;
+
+$h5-font-size: 1.125rem; // spec: card / step title = 18px
+
+// Section titles run 700 (spec "Main Title"); card/step titles drop back to 600
+// via `fw-semibold` in the markup.
+$headings-font-weight: 700;
+$headings-line-height: 1.2; // spec: main title line-height
+
+// ---------------------------------------------------------------------------
+// Borders, radii, elevation
+// ---------------------------------------------------------------------------
+$border-color: $border-subtle;
+$border-radius: 0.625rem;
+$border-radius-sm: 0.5rem;
+$border-radius-lg: 0.75rem; // 12px — icon tiles / step-number badges (spec §5)
+$border-radius-xl: 1rem;
+$border-radius-xxl: 1.25rem;
+
+// Elevation — spec §4. `-sm` is the resting shadow on every card; the base token
+// is the hover shadow (used by the #what-i-do hover rule below); `-lg` stays
+// largest for the hero portrait.
+$box-shadow-sm:
+  0 4px 6px -1px rgba(#000, 0.05),
+  0 2px 4px -2px rgba(#000, 0.05);
+$box-shadow:
+  0 20px 25px -5px rgba(#000, 0.08),
+  0 8px 10px -6px rgba(#000, 0.05);
+$box-shadow-lg: 0 26px 80px rgba($dark, 0.2);
+
+// Container caps at the spec's 1200px from the xl breakpoint up. No xxl key —
+// Bootstrap keeps the xl width above 1400px, which is the intent.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+);
+// 24px of horizontal breathing room inside every `.container` (spec §1). Mobile
+// lands at 24 rather than 20 — within tolerance.
+$container-padding-x: 3rem;
+
+$grid-gutter-width: 1.5rem; // card-grid gap = 24px (spec §4); also the strip gap
+
+// ---------------------------------------------------------------------------
+// Components (buttons, cards, forms, navbar, carousel)
+// ---------------------------------------------------------------------------
+$btn-font-weight: 600;
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.25rem;
+$btn-padding-y-sm: 0.4375rem;
+$btn-padding-x-sm: 0.875rem;
+$btn-padding-y-lg: 0.75rem;
+$btn-padding-x-lg: 1.5rem;
+$btn-font-size-lg: 1.125rem;
+// Buttons share the 0.5rem corner of $input-border-radius so a button next to a
+// field in #contactForm matches.
+$btn-border-radius: 0.5rem;
+$btn-border-radius-sm: 0.5rem;
+$btn-border-radius-lg: 0.5rem;
+
+$card-border-color: $border-color;
+$card-border-radius: 1rem; // spec §4: 16px
+// Cards stay pure white so they lift off the near-white ($light) page. Literal
+// #fff, not $white — Bootstrap's variables aren't imported yet here.
+$card-bg: #fff;
+$card-cap-bg: transparent;
+$card-spacer-y: 2rem; // spec §4: 32px vertical padding
+$card-spacer-x: 1.75rem; // spec §4: 28px horizontal padding
+$card-box-shadow: $box-shadow-sm; // spec §4 resting shadow on every card
+
+// Inputs stay pure white (like $card-bg) rather than Bootstrap 5.3's default of
+// $body-bg, so fields read as white against the near-white ($light) page.
+$input-bg: #fff;
+// Muted 1px hairline — the same subtle border as cards and dividers, matching
+// the redesign reference (was a darker 60% white tint of slate).
+$input-border-color: $border-subtle;
+$input-border-radius: 0.5rem;
+$input-padding-y: 0.8125rem;
+$input-padding-x: 0.875rem;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($primary, 0.1);
+
+$form-check-input-checked-bg-color: $primary;
+$form-check-input-checked-border-color: $primary;
+
+$navbar-padding-y: 0.5rem;
+$navbar-brand-font-size: 1rem;
+$navbar-nav-link-padding-x: 0.5rem;
+// The <nav> opts into dark styling with `data-bs-theme="dark"` (the v6-safe
+// replacement for the deprecated `.navbar-dark` class). Bootstrap feeds that
+// selector from these $navbar-dark-* vars, so this is still where the colors are
+// tuned.
+$navbar-dark-color: rgba($light, 0.65);
+$navbar-dark-active-color: $light;
+// Hover matches the active/current-link color: links brighten to solid white on
+// hover and stay there when active.
+$navbar-dark-hover-color: $navbar-dark-active-color;
+
+// Carousel-indicator vars — reused, via these values, by the #projectStripDots
+// rules at the bottom of this file so the strip's position dots stay on spec.
+$carousel-control-color: $dark;
+$carousel-indicator-active-bg: $primary;
+$carousel-indicator-width: 24px;
+$carousel-indicator-height: 4px;
+$carousel-indicator-spacer: 4px;
+
+$link-decoration: none;
+
+// ---------------------------------------------------------------------------
+// Utility API additions
+// ---------------------------------------------------------------------------
+// - `.w-rule` — the short accent bar above each section eyebrow: a `border-top`
+//   on an inline-block element that needs a fixed 2rem width. Bootstrap's `width`
+//   utility is percentage-only. The `null` value key is Bootstrap's own "no
+//   suffix" pattern (same as `.shadow`).
+// - `.mw-prose` — caps the section title + deck at the spec's 640px measure
+//   (spec §1/§2). Bootstrap only ships `.mw-100`, so the default `max-width`
+//   utility is re-declared here with the extra step (100% is kept).
+$utilities: (
+  'rule-width': (
+    property: width,
+    class: w-rule,
+    values: (
+      null: 2rem,
+    ),
+  ),
+  'max-width': (
+    property: max-width,
+    class: mw,
+    values: (
+      100: 100%,
+      prose: 40rem,
+    ),
+  ),
+);
+
+// Pull in Bootstrap's default variables (functions are already imported at the
+// top) so $font-sizes exists, then extend it with a 7th step before the rest of
+// Bootstrap compiles the `.fs-*` utilities. (fs-6 is 1rem; the eyebrows need
+// smaller.) Re-importing functions/variables from `bootstrap` below is
+// idempotent — all defaults are already set.
+@import 'bootstrap/scss/variables';
+
+$font-sizes: map-merge(
+  $font-sizes,
+  (
+    7: 0.8125rem,
+  )
+); // 13px — spec §2 section label
+
+// Extend Bootstrap's default spacer scale (which tops out at 5 = 3rem) with four
+// larger steps for the section rhythm: 6 = 3.75rem (60px, spec mobile section
+// padding), 7 = 5rem (80px, spec desktop section padding), 8 = 6.25rem (first
+// section's top clearance under the fixed navbar), 9 = 7.5rem (extra hero top
+// clearance under the fixed navbar on mobile). Every main section uses
+// `py-6 py-md-7`; only the first adds `pt-7 pt-md-8`. Nothing below 6 is touched.
+$spacers: map-merge(
+  $spacers,
+  (
+    6: 3.75rem,
+    7: 5rem,
+    8: 6.25rem,
+    9: 7.5rem,
+  )
+);
+
+@import 'bootstrap/scss/bootstrap';
+
+// ===========================================================================
+// Hand-written selectors — only where Bootstrap has no equivalent utility.
+// Keep this list short; prefer composing existing utilities in the markup.
+// ===========================================================================
+
+// Anchor-link scrolling for the in-page nav (#what-i-do / #featured-work / #how-i-work
+// / #get-in-touch). scroll-padding-top keeps the fixed navbar from covering the target
+// section's heading. Derived from the navbar's own metrics — vertical padding
+// (top + bottom) + the brand's line box — plus 1rem of breathing room, so it
+// tracks any change to those Sass vars instead of a hand-tuned 60px.
+html {
+  scroll-padding-top: calc(#{$navbar-padding-y} * 2 + #{$navbar-brand-font-size} * #{$line-height-base} + 1rem);
+}
+
+// Smooth anchor scrolling only when the OS isn't asking for reduced motion
+// (matches how Bootstrap gates its own scroll-behavior). src/js/main.js
+// makes the same check before its programmatic smooth scrolls.
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+// Uppercase-label tracking (section + hero eyebrows, footer headings). Spec §2:
+// 0.08em.
+.tracking-wide {
+  letter-spacing: 0.08em;
+}
+
+// Muted body copy on the dark hero / footer. Bootstrap's `.text-white-50`
+// (rgba(255,255,255,0.5)) lands right on the 4.5:1 line over the $dark ground
+// and slips under it once the `.bg-hero` glows lift the background — so the hero
+// lead, profile caption, stat descriptions, footer blurb and copyright used it
+// below AA. This token keeps the "muted" read while measuring well clear of
+// 4.5:1 on both the hero and footer grounds. `!important` matches how Bootstrap's
+// own text-colour utilities behave.
+$on-dark-muted: rgba(#fff, 0.78);
+
+.text-on-dark-muted {
+  color: $on-dark-muted !important;
+}
+
+// Inline icons (was the Bootstrap Icons web font). Each `<i class="bi bi-*">` is
+// now an inline `<svg class="bi">` sized in `em` so `.fs-*` still scales it; this
+// rule just restores the baseline alignment the font gave us. `flex-shrink: 0`
+// keeps icons from squashing inside flex rows (e.g. the #get-in-touch links).
+.bi {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+
+// `.bg-primary-muted` — a mid step between `.bg-primary-subtle` and `.bg-primary`
+// (see $primary-bg-muted). Bootstrap only generates one `-subtle` level per
+// theme colour; the #how-i-work step badges need one that holds up on $light.
+.bg-primary-muted {
+  background-color: $primary-bg-muted;
+}
+
+// Section titles: fluid, capped at 36px on desktop and scaling down to 28px on
+// the smallest viewports. Overrides Bootstrap's RFS step-scaling of $h2-font-size.
+h2,
+.h2 {
+  font-size: clamp(1.75rem, 1.125rem + 2vw, 2.25rem); // 28px at 500px -> 36px at 900px
+}
+
+// Responsive button size: default (`.btn`) metrics up to lg, `.btn-lg` metrics
+// from lg. Bootstrap's `.btn-lg` applies at every breakpoint and ships no
+// responsive size utility. Reuses the same four `$btn-*-lg` vars `.btn-lg` does,
+// so it tracks the theme. Used on the hero CTAs.
+@include media-breakpoint-up(lg) {
+  .btn-lg-lg-up {
+    padding: $btn-padding-y-lg $btn-padding-x-lg;
+    font-size: $btn-font-size-lg;
+    border-radius: $btn-border-radius-lg;
+  }
+}
+
+// Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
+// `brightness`/`contrast` pair stands in for the old 50%-opacity `.bg-dark`
+// overlay <span> that used to sit over the image inside the `.ratio` box.
+// .hero-image {
+//   filter: sepia(0.2) brightness(0.7) contrast(1.05);
+// }
+
+// Hero backdrop for #top: two soft radial glows over the dark navy base.
+// Previously an inline `style` on the #top element with raw hex; moved here so
+// the wash tracks the theme — the glows and base derive from $primary / $dark
+// (the top-right glow is a light tint of $primary, standing in for the old
+// hard-coded sky-blue). Bootstrap has no multi-layer gradient utility.
+.bg-hero {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(tint-color($primary, 50%), 0.16), transparent 25%),
+    radial-gradient(circle at 14% 82%, rgba($primary, 0.17), transparent 25%), $dark;
+}
+
+// Fixed navbar chrome. It rests transparent over the dark hero at the top of the
+// page; a solid $dark background and a hairline bottom border fade in once the
+// page is scrolled (src/js/main.js toggles `.scrolled`). Below lg the bar is
+// always solid so the collapsed menu opens onto an opaque backdrop. Bootstrap's
+// navbar has no scroll-aware background state.
+#mainNav {
+  border-bottom: $border-width solid transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+#mainNav.scrolled {
+  background-color: $dark;
+  border-bottom-color: rgba($light, 0.1);
+}
+
+@include media-breakpoint-down(lg) {
+  #mainNav {
+    background-color: $dark;
+    border-bottom-color: rgba($light, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mainNav {
+    transition: none;
+  }
+}
+
+// #what-i-do service cards sit on a plain white ground (Bootstrap's `.card` bg
+// tracks the theme; pin it so it stays white on the near-white page). No hover
+// state — the cards are static.
+#what-i-do .card {
+  background-color: #fff;
+}
+
+// 48 × 48 icon tile (spec §5), used by the #what-i-do cards and the #get-in-touch
+// direct links. Static — no hover state. Bootstrap has no fixed-square sizing
+// utility for this.
+[data-icon-tile] {
+  width: 3rem;
+  height: 3rem;
+}
+
+// #featured-work cards — a subtle hover: the card makes a small lift, the border warms
+// to the hover blue, and a soft shadow fades in (no background wash — the cards
+// carry a full-bleed image). Bootstrap has no card hover state, so scope it here.
+#featured-work .card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+#featured-work .card:hover {
+  transform: translateY(-4px);
+  border-color: $border-hover;
+  box-shadow: $box-shadow-sm;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #featured-work .card {
+    transition: none;
+  }
+}
+
+// Concept builds strip: one horizontal scroll-snap strip for every viewport. It
+// scrolls one card at a time (src/js/main.js drives the prev/next buttons) and
+// keeps the next card peeking; on touch it swipes like a carousel. Bootstrap has
+// no scroll-snap or fractional flex-basis utilities, so scope those here.
+//
+// --card-basis sizes each card. Narrow viewports get one whole card plus a peek
+// that signals "swipe for more". From lg up, 3.25 cards fit in view — three whole
+// cards plus a quarter-card peek. The `- $grid-gutter-width * 3` removes the three
+// gaps between/around those three-plus cards before the divide (a bare `100% / 3.25`
+// would ignore the gaps and overflow). $grid-gutter-width (1.5rem) must stay equal
+// to the strip's `gap-4` in index.html. One custom property so the number lives in
+// a single place.
+#projectStrip {
+  --card-basis: 85%;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+@include media-breakpoint-up(lg) {
+  #projectStrip {
+    --card-basis: calc((100% - #{$grid-gutter-width} * 3) / 3.25);
+  }
+}
+
+#projectStrip::-webkit-scrollbar {
+  display: none;
+}
+
+#projectStrip > .card {
+  flex: 0 0 var(--card-basis);
+  scroll-snap-align: start;
+}
+
+// Scroll-position indicators for the strip (populated by src/js/main.js). Pulls
+// size and spacing from the $carousel-indicator-* vars so the dots match the
+// redesign spec's indicator metrics.
+#projectStripDots {
+  display: flex;
+  align-items: center;
+  gap: $carousel-indicator-spacer;
+}
+
+#projectStripDots > button {
+  width: $carousel-indicator-width;
+  height: $carousel-indicator-height;
+  padding: 0;
+  border: 0;
+  border-radius: $carousel-indicator-height * 0.5; // pill
+  background-color: rgba($dark, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #projectStripDots > button {
+    transition: none;
+  }
+}
+
+#projectStripDots > button[aria-current='true'] {
+  background-color: $primary;
+}

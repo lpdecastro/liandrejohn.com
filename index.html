@@ -1,0 +1,1570 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in src/js/analytics.js, not here. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-Q3EPREERQJ');
+    </script>
+
+    <meta
+      name="description"
+      content="Liandre John de Castro — Tech Lead building enterprise digital platforms with Java, Next.js, AWS, Magnolia CMS, and AI engineering."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Liandre John de Castro — Tech Lead, Enterprise Digital Platforms</title>
+
+    <!-- Canonical: single indexable URL (host + trailing slash normalized) -->
+    <link rel="canonical" href="https://liandrejohn.com/" />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta property="og:title" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms" />
+    <meta
+      property="og:description"
+      content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands — with AI engineering (AI-assisted engineering: Claude Code, ChatGPT, prompt/context engineering) as a delivery multiplier."
+    />
+    <meta property="og:url" content="https://liandrejohn.com/" />
+    <meta property="og:image" content="https://liandrejohn.com/images/og-card.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms. Java, Next.js, AWS, Magnolia CMS."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Liandre John" />
+    <meta property="profile:last_name" content="de Castro" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms" />
+    <meta
+      name="twitter:description"
+      content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS — plus AI engineering (AI-assisted engineering) with Claude Code, ChatGPT, and prompt/context engineering."
+    />
+    <meta name="twitter:image" content="https://liandrejohn.com/images/og-card.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms. Java, Next.js, AWS, Magnolia CMS."
+    />
+
+    <!-- Structured data: ProfilePage > Person (+ WebSite) so search engines and AI answer engines resolve the full name, role, employer, and profiles -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "https://liandrejohn.com/#profilepage",
+            "url": "https://liandrejohn.com/",
+            "name": "Liandre John de Castro — Tech Lead, Enterprise Digital Platforms",
+            "dateModified": "2026-09-04",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://liandrejohn.com/#website" },
+            "mainEntity": { "@id": "https://liandrejohn.com/#person" },
+            "primaryImageOfPage": "https://liandrejohn.com/images/profile.webp",
+            "hasPart": [
+              { "@id": "https://liandrejohn.com/#featured-work" },
+              { "@id": "https://liandrejohn.com/#concept-builds" }
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "givenName": "Liandre John",
+            "familyName": "de Castro",
+            "jobTitle": "Tech Lead",
+            "description": "Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS, applying AI engineering (AI-assisted engineering with Claude Code, ChatGPT, prompt and context engineering) to accelerate delivery for global pharmaceutical and consumer health brands.",
+            "url": "https://liandrejohn.com/",
+            "mainEntityOfPage": { "@id": "https://liandrejohn.com/#profilepage" },
+            "image": "https://liandrejohn.com/images/profile.webp",
+            "email": "mailto:liandrejohn88@gmail.com",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Crescendo Collective"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "University of the Philippines Diliman"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Quezon City",
+              "addressRegion": "Metro Manila",
+              "addressCountry": "PH"
+            },
+            "nationality": { "@type": "Country", "name": "Philippines" },
+            "knowsLanguage": ["en"],
+            "knowsAbout": [
+              "Java",
+              "Next.js",
+              "AWS",
+              "Magnolia CMS",
+              "Enterprise Digital Platforms",
+              "Cloud Architecture",
+              "Full-Stack Development",
+              "AI Engineering",
+              "AI-assisted Development",
+              "Prompt Engineering",
+              "Context Engineering",
+              "Agentic AI",
+              "Model Context Protocol (MCP)",
+              "Generative Engine Optimization (GEO)"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Professional inquiries",
+              "email": "liandrejohn88@gmail.com",
+              "url": "https://liandrejohn.com/#get-in-touch"
+            },
+            "sameAs": ["https://www.linkedin.com/in/lpdecastro", "https://github.com/lpdecastro"],
+            "subjectOf": [
+              { "@id": "https://liandrejohn.com/#featured-work" },
+              { "@id": "https://liandrejohn.com/#concept-builds" }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://liandrejohn.com/#website",
+            "url": "https://liandrejohn.com/",
+            "name": "Liandre John de Castro",
+            "description": "Portfolio of Liandre John de Castro — Tech Lead for enterprise digital platforms.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://liandrejohn.com/#person" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://liandrejohn.com/#featured-work",
+            "name": "Enterprise Magnolia CMS Platform",
+            "description": "A reusable Magnolia CMS platform serving 150+ localized sites across global healthcare and consumer-health brands. It replaced one-off site builds with shared capabilities, integrated marketing and CRM systems through a single configurable layer, and gave content teams self-service tools to launch and manage sites without engineering.",
+            "creator": { "@id": "https://liandrejohn.com/#person" },
+            "about": "Enterprise CMS platform architecture and delivery",
+            "keywords": "Java 17, Spring, Magnolia CMS, Next.js, TypeScript, Azure, AWS, Node.js",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://liandrejohn.com/#profilepage" }
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://liandrejohn.com/#concept-builds",
+            "name": "Concept Builds",
+            "description": "Four self-directed sites across marketing, booking, and e-commerce, each built to production standards with an AI-assisted workflow.",
+            "itemListOrder": "https://schema.org/ItemListOrderAscending",
+            "numberOfItems": 4,
+            "isPartOf": { "@id": "https://liandrejohn.com/#profilepage" },
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Altamira Construction Group",
+                  "description": "A marketing site for a general contractor: filterable project gallery, step-by-step build process, and a quote request that lands as a qualified lead.",
+                  "url": "https://construction.liandrejohn.com/",
+                  "mainEntityOfPage": "https://liandrejohn.com/#concept-altamira",
+                  "about": "Marketing site",
+                  "keywords": "marketing site, lead generation, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Altamira Construction Group — source",
+                    "codeRepository": "https://github.com/lpdecastro/construction.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Handa Home Services",
+                  "description": "Online booking for a home-services company (aircon, cleaning, repairs): book a service in about a minute, self-serve reschedule and cancel, and instant booking confirmation.",
+                  "url": "https://handa.liandrejohn.com/",
+                  "mainEntityOfPage": "https://liandrejohn.com/#concept-handa",
+                  "about": "Booking and scheduling",
+                  "keywords": "online booking, scheduling, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Handa Home Services — source",
+                    "codeRepository": "https://github.com/lpdecastro/handa.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Sereva",
+                  "description": "A direct-to-consumer digestive-health brand: a four-question product finder, side-by-side product comparison, and a store locator across 30 products.",
+                  "url": "https://sereva.liandrejohn.com/",
+                  "mainEntityOfPage": "https://liandrejohn.com/#concept-sereva",
+                  "about": "Direct-to-consumer brand",
+                  "keywords": "direct-to-consumer, product finder, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Sereva — source",
+                    "codeRepository": "https://github.com/lpdecastro/sereva.liandrejohn.com"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Stillward",
+                  "description": "A minimalist furniture and homeware store: filter, sort, and search the catalog, product pages with ratings and reviews, and a cart and checkout flow.",
+                  "url": "https://shopify.liandrejohn.com/",
+                  "mainEntityOfPage": "https://liandrejohn.com/#concept-stillward",
+                  "about": "E-commerce storefront",
+                  "keywords": "e-commerce, storefront, checkout, concept build, AI-assisted development",
+                  "creator": { "@id": "https://liandrejohn.com/#person" },
+                  "hasPart": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "Stillward — source",
+                    "codeRepository": "https://github.com/lpdecastro/shopify-liandrejohn-com"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Preload the hero portrait (LCP candidate) -->
+    <link rel="preload" as="image" href="/images/profile.webp" fetchpriority="high" />
+
+    <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
+         Preload the latin file — it renders all above-the-fold text. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+
+    <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+  </head>
+  <!-- data-bs-spy: Bootstrap Scrollspy highlights the matching nav link as each section scrolls into view -->
+  <body data-bs-spy="scroll" data-bs-target="#primaryNav" data-bs-root-margin="0px 0px -35%">
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2" href="#main"
+      >Skip to content</a
+    >
+    <main id="main">
+      <!-- ============================================================
+           HERO ZONE (#top) — full-height dark panel: navbar + headline + stats bar
+           ============================================================ -->
+      <div id="top" class="min-vh-100 d-flex flex-column bg-hero text-white overflow-hidden">
+        <!-- Navbar: brand logo + anchor links + "Let's Connect" CTA; collapses to a toggler under lg -->
+        <nav
+          id="mainNav"
+          class="navbar navbar-expand-lg fixed-top"
+          data-bs-theme="dark"
+          aria-label="Primary navigation"
+        >
+          <div class="container">
+            <a
+              class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+              href="#top"
+              aria-label="Liandre John de Castro home"
+            >
+              <img src="/images/logo-dark.webp" alt="" width="150" height="50" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#primaryNav"
+              aria-controls="primaryNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="primaryNav">
+              <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0">
+                <a
+                  class="nav-link"
+                  href="#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >What I Do</a
+                >
+                <a
+                  class="nav-link"
+                  href="#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >Featured Work</a
+                >
+                <a
+                  class="nav-link"
+                  href="#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >Concept Builds</a
+                >
+                <a
+                  class="nav-link"
+                  href="#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >How I Work</a
+                >
+              </div>
+              <a
+                class="btn btn-primary ms-lg-3"
+                href="#get-in-touch"
+                data-analytics-event="cta_click"
+                data-analytics-button-name="get_in_touch"
+                data-analytics-section-name="navbar"
+                >Get in Touch</a
+              >
+            </div>
+          </div>
+        </nav>
+
+        <!-- Hero header: eyebrow + headline + intro + CTAs on the left, profile photo on the right -->
+        <header class="flex-grow-1 d-flex align-items-center pt-9 pt-lg-7 pb-4">
+          <div class="container">
+            <div class="row align-items-center g-4">
+              <!-- Left column: copy + call-to-action buttons -->
+              <div class="col-lg-7 d-flex flex-column gap-4">
+                <!-- Eyebrow: short rule + label (repeated pattern above every section heading) -->
+                <div class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide">
+                  <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+                  <span class="text-nowrap">Tech Lead · Enterprise Digital Platforms</span>
+                </div>
+                <h1 class="fs-1 mb-0">
+                  <span class="visually-hidden">Liandre John de Castro — Tech Lead. </span>Architecting Magnolia CMS and
+                  cloud platforms for global brands, from system design to delivery.
+                </h1>
+                <p class="lead text-on-dark-muted mb-0">
+                  I’m Liandre. For 6+ years I’ve built enterprise digital platforms with Java, Next.js, AWS, and
+                  Magnolia CMS for global pharmaceutical and consumer health brands. I lead 7 engineers, own platform
+                  architecture end to end as a full-stack Tech Lead, and apply AI engineering — Claude Code,
+                  ChatGPT, and prompt/context engineering — to raise delivery speed and code quality across the team.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                  <a
+                    class="btn btn-primary btn-lg-lg-up"
+                    href="#featured-work"
+                    data-analytics-event="cta_click"
+                    data-analytics-button-name="view_featured_work"
+                    data-analytics-section-name="hero"
+                    >View Featured Work</a
+                  >
+                  <a
+                    class="btn btn-outline-light btn-lg-lg-up"
+                    href="#get-in-touch"
+                    data-analytics-event="cta_click"
+                    data-analytics-button-name="request_my_resume"
+                    data-analytics-section-name="hero"
+                    >Request My Resume</a
+                  >
+                </div>
+              </div>
+              <!-- Right column: square, rounded profile portrait with name caption -->
+              <div class="col-lg-5">
+                <figure class="position-relative mx-auto mb-0">
+                  <div
+                    class="ratio ratio-1x1 rounded-5 overflow-hidden border border-white border-opacity-25 shadow-lg bg-dark"
+                  >
+                    <img
+                      class="w-100 h-100 object-fit-cover hero-image"
+                      src="/images/profile.webp"
+                      alt="Liandre John de Castro - Tech Lead"
+                      width="1086"
+                      height="1448"
+                      fetchpriority="high"
+                    />
+                  </div>
+                  <figcaption class="text-center text-on-dark-muted fs-7 fw-semibold mt-3">
+                    Liandre John de Castro · Tech Lead
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Stats bar: four career-highlight metrics; 2-up on mobile, 4-up from md -->
+        <section
+          class="border-top border-light border-opacity-10 py-3 py-md-4"
+          aria-labelledby="career-highlights-title"
+        >
+          <h2 id="career-highlights-title" class="visually-hidden">Career highlights</h2>
+          <div class="container">
+            <div class="row row-cols-2 row-cols-md-4 text-center">
+              <div class="col p-4">
+                <dl class="my-0">
+                  <dt class="fs-1 fw-bold lh-1 mb-3">6+ yrs</dt>
+                  <dd class="small text-on-dark-muted mb-0 ms-0">
+                    Building enterprise digital platforms, from architecture to delivery
+                  </dd>
+                </dl>
+              </div>
+              <div class="col p-4">
+                <dl class="my-0">
+                  <dt class="fs-1 fw-bold lh-1 mb-3">$1M</dt>
+                  <dd class="small text-on-dark-muted mb-0 ms-0">
+                    Statement of work secured through technical solutioning and client POCs
+                  </dd>
+                </dl>
+              </div>
+              <div class="col p-4">
+                <dl class="my-0">
+                  <dt class="fs-1 fw-bold lh-1 mb-3">150+</dt>
+                  <dd class="small text-on-dark-muted mb-0 ms-0">Localized websites migrated to Magnolia CMS platform</dd>
+                </dl>
+              </div>
+              <div class="col p-4">
+                <dl class="my-0">
+                  <dt class="fs-1 fw-bold lh-1 mb-3">15</dt>
+                  <dd class="small text-on-dark-muted mb-0 ms-0">
+                    Engineers mentored across teams, with 5 now leading workstreams
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============================================================
+           WHAT I DO (#what-i-do) — intro copy + 4 service cards (1 / 2 / 4-up grid)
+           ============================================================ -->
+      <section id="what-i-do" class="pt-7 pt-md-8 pb-6 pb-md-7 bg-white" aria-labelledby="what-i-do-title">
+        <div class="container">
+          <!-- Section heading: eyebrow + h2 + lead (both capped at the 640px prose measure) -->
+          <div
+            class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+          >
+            <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+            <span class="text-nowrap">What I Do</span>
+          </div>
+          <h2 id="what-i-do-title" class="mw-prose mb-3">From product idea to production-ready platform.</h2>
+          <p class="lead text-secondary-emphasis mw-prose mb-5">
+            I work across the stack, but my strongest value is connecting architecture, implementation, performance, and
+            delivery into one clear technical path.
+          </p>
+
+          <!-- Service cards: icon tile + h3 + blurb. h-100 keeps them equal height; the
+               lift / wash / icon-flip hover lives in src/scss/main.scss (#what-i-do .card). -->
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Card 1: Full-stack web -->
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
+                    aria-hidden="true"
+                  >
+                    <svg
+                      class="bi fs-4"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0"
+                      />
+                    </svg>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Full-Stack Web Applications</h3>
+                  <p class="text-secondary-emphasis mb-0">
+                    Websites engineered to win the search, not just look good — ranking in Google and AI answer
+                    engines through SEO and GEO, then fast enough to convert the moment customers land.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2: Backend & APIs -->
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
+                    aria-hidden="true"
+                  >
+                    <svg
+                      class="bi fs-4"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M14 10a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1zM2 9a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2z"
+                      />
+                      <path
+                        d="M5 11.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M14 3a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"
+                      />
+                      <path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+                    </svg>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Backend Systems &amp; API Architecture</h3>
+                  <p class="text-secondary-emphasis mb-0">
+                    Backend systems that plug into your CRM and marketing stack — reliable APIs and integrations
+                    that keep every customer record in sync, built in Java, Spring, Node.js, and SQL patterns.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3: AI-assisted engineering -->
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
+                    aria-hidden="true"
+                  >
+                    <svg
+                      class="bi fs-4"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"
+                      />
+                    </svg>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">AI Engineering &amp; Agentic Workflows</h3>
+                  <p class="text-secondary-emphasis mb-0">
+                    Ship production work faster with Claude Code, ChatGPT, and Gemini, using prompt and context
+                    engineering plus agentic and MCP-based workflows to raise delivery speed and code quality.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4: Cloud & DevOps -->
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary mb-3"
+                    data-icon-tile
+                    aria-hidden="true"
+                  >
+                    <svg
+                      class="bi fs-4"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"
+                      />
+                      <path
+                        d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"
+                      />
+                    </svg>
+                  </span>
+                  <h3 class="h5 fw-semibold mb-3">Cloud Deployments &amp; DevOps</h3>
+                  <p class="text-secondary-emphasis mb-0">
+                    Ship reliable workloads across AWS and Azure using Docker, Kubernetes, Nginx, and GitHub Actions
+                    CI/CD — with repeatable deployment practices that keep environments consistent.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SELECTED WORK (#featured-work) — one anonymized client engagement,
+           shown as a full-width feature card (not part of any carousel).
+           Followed by the CONCEPT BUILDS section (#concept-builds) below.
+           ============================================================ -->
+      <section id="featured-work" class="py-6 py-md-7" aria-labelledby="featured-work-title">
+        <div class="container">
+          <!-- Section heading: eyebrow + h2 + lead -->
+          <div class="row g-3 mb-5">
+            <div class="col-lg-9">
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+                <span class="text-nowrap">Featured Work</span>
+              </div>
+              <h2 id="featured-work-title" class="mw-prose mb-3">
+                Architecting and delivering an enterprise CMS platform.
+              </h2>
+              <p class="lead text-secondary-emphasis mw-prose mb-0">
+                One client engagement at platform scale, from architecture and team leadership to cloud integration and
+                measurable business impact. It shows how I operate as a Tech Lead when the stakes are enterprise-sized.
+              </p>
+            </div>
+          </div>
+
+          <!-- ---- Block A: anonymized client engagement (horizontal feature card) ---- -->
+          <article class="card overflow-hidden">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img
+                  class="w-100 h-100 object-fit-cover bg-primary-subtle"
+                  style="min-height: 260px; object-position: left top"
+                  src="/images/magnolia-cms-admincentral.webp"
+                  alt="Magnolia CMS AdminCentral managing 150+ localized brand sites from one platform"
+                  loading="lazy"
+                  width="2966"
+                  height="2254"
+                />
+              </div>
+              <div class="col-md-7">
+                <div class="card-body h-100 d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+                    <svg
+                      class="bi me-2"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"
+                      /></svg
+                    >Client Engagement
+                  </p>
+                  <h3 class="h4 fw-semibold mb-3">Enterprise Magnolia CMS Platform</h3>
+                  <p class="text-secondary-emphasis mb-3">
+                    <span class="fw-semibold">Role:</span> Tech Lead — owned end-to-end architecture and delivery,
+                    leading a team of 7 engineers.
+                  </p>
+                  <p class="text-secondary-emphasis mb-3">
+                    A reusable Magnolia CMS platform serving 150+ localized sites across global healthcare and
+                    consumer-health brands. It replaced one-off site builds with shared capabilities, integrated
+                    marketing and CRM systems through a single configurable layer, and gave marketing and content teams
+                    self-service tools to launch and manage sites without engineering.
+                  </p>
+                  <p class="small text-secondary mb-4">
+                    Stack: Java 17, Spring, Magnolia CMS, Next.js, TypeScript, Azure, AWS, Node.js
+                  </p>
+                  <div class="mt-auto">
+                    <a
+                      class="btn btn-primary"
+                      href="#get-in-touch"
+                      data-analytics-event="cta_click"
+                      data-analytics-button-name="request_walkthrough"
+                      data-analytics-section-name="featured_work"
+                      >Request a detailed walkthrough</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CONCEPT BUILDS (#concept-builds) — four self-directed builds in one
+           horizontal scroll-snap strip (#projectStrip), rendered once. Card
+           widths are responsive in src/scss/main.scss: one card + peek on narrow
+           viewports, 3.25 cards from lg up. src/js/main.js wires the prev/next
+           buttons and #projectStripDots at every viewport; touch-swipe scrolls
+           it on mobile.
+           ============================================================ -->
+      <section id="concept-builds" class="py-6 py-md-7 bg-white" aria-labelledby="concept-builds-title">
+        <div class="container">
+          <!-- Section heading: eyebrow + h2 + lead, with a "View all on GitHub" link alongside -->
+          <div class="row align-items-end g-3 mb-5">
+            <div class="col-lg-8">
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+                <span class="text-nowrap">Concept Builds</span>
+              </div>
+              <h2 id="concept-builds-title" class="mw-prose mb-3">Your product idea has a head start here.</h2>
+              <p class="lead text-secondary-emphasis mw-prose mb-0">
+                Four live sites across marketing, booking, and e-commerce — each built to production standards and
+                shipped fast with an AI-assisted workflow. Find the one closest to what you need, and
+                <a
+                  class="link-primary text-decoration-underline link-offset-2"
+                  href="#get-in-touch"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="lets_start_there"
+                  data-analytics-section-name="concept_builds"
+                  >let’s start there</a
+                >.
+              </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <a
+                class="link-primary fw-bold text-nowrap d-inline-block"
+                href="https://github.com/lpdecastro"
+                target="_blank"
+                rel="noopener"
+                data-analytics-event="social_click"
+                data-analytics-section-name="concept_builds"
+                data-analytics-position="body"
+                >View all on GitHub
+                <svg
+                  class="bi ms-1"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- ---- Horizontal scroll-snap strip (all viewports) ----
+               Card widths set in src/scss/main.scss. main.js wires the prev/next
+               buttons ([data-strip-scroll]) and builds the #projectStripDots. -->
+          <div>
+            <div
+              id="projectStrip"
+              class="d-flex flex-nowrap gap-4 overflow-x-auto pb-3 mb-3"
+              tabindex="0"
+              role="region"
+              aria-label="Concept builds"
+            >
+              <!-- Concept build 1: Altamira Construction Group (Marketing Site) -->
+              <article id="concept-altamira" class="card overflow-hidden">
+                <span class="ratio ratio-16x9 bg-primary-subtle"
+                  ><img
+                    class="w-100 h-100 object-fit-cover"
+                    src="/images/concept-altamira.webp"
+                    alt="Altamira Construction Group marketing site concept"
+                    loading="lazy"
+                    width="1200"
+                    height="675"
+                /></span>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+                    <svg
+                      class="bi me-2"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"
+                      />
+                      <path
+                        d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z"
+                      /></svg
+                    >Marketing Site
+                  </p>
+                  <h3 class="h5 fw-semibold mb-3">Altamira Construction Group</h3>
+                  <p class="text-secondary-emphasis mb-3">A marketing site for a general contractor.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Filterable project gallery</li>
+                    <li>Step-by-step build process</li>
+                    <li>Quote request that lands as a qualified lead</li>
+                  </ul>
+                  <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="https://construction.liandrejohn.com/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="altamira"
+                      data-analytics-project-type="marketing_site"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
+                      >View Site</a
+                    >
+                    <a
+                      class="btn btn-outline-secondary btn-sm"
+                      href="https://github.com/lpdecastro/construction.liandrejohn.com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="altamira"
+                      data-analytics-project-type="marketing_site"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
+                      >View Code</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <!-- Concept build 2: Handa Home Services (Booking & Scheduling) -->
+              <article id="concept-handa" class="card overflow-hidden">
+                <span class="ratio ratio-16x9 bg-primary-subtle"
+                  ><img
+                    class="w-100 h-100 object-fit-cover"
+                    src="/images/concept-handa.webp"
+                    alt="Handa Home Services booking site concept"
+                    loading="lazy"
+                    width="1200"
+                    height="675"
+                /></span>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+                    <svg
+                      class="bi me-2"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"
+                      />
+                      <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
+                      /></svg
+                    >Booking &amp; Scheduling
+                  </p>
+                  <h3 class="h5 fw-semibold mb-3">Handa Home Services</h3>
+                  <p class="text-secondary-emphasis mb-3">
+                    Online booking for a home-services company — aircon, cleaning, repairs.
+                  </p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Book a service in about a minute</li>
+                    <li>Self-serve reschedule and cancel</li>
+                    <li>Instant booking confirmation</li>
+                  </ul>
+                  <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="https://handa.liandrejohn.com/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="handa"
+                      data-analytics-project-type="booking"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
+                      >View Site</a
+                    >
+                    <a
+                      class="btn btn-outline-secondary btn-sm"
+                      href="https://github.com/lpdecastro/handa.liandrejohn.com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="handa"
+                      data-analytics-project-type="booking"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
+                      >View Code</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <!-- Concept build 3: Sereva (Consumer Brand) -->
+              <article id="concept-sereva" class="card overflow-hidden">
+                <span class="ratio ratio-16x9 bg-primary-subtle"
+                  ><img
+                    class="w-100 h-100 object-fit-cover"
+                    src="/images/concept-sereva.webp"
+                    alt="Sereva direct-to-consumer brand concept"
+                    loading="lazy"
+                    width="1200"
+                    height="675"
+                /></span>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+                    <svg
+                      class="bi me-2"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+                      /></svg
+                    >Consumer Brand
+                  </p>
+                  <h3 class="h5 fw-semibold mb-3">Sereva</h3>
+                  <p class="text-secondary-emphasis mb-3">A direct-to-consumer digestive-health brand.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Four-question product finder</li>
+                    <li>Side-by-side product comparison</li>
+                    <li>Store locator across 30 products</li>
+                  </ul>
+                  <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="https://sereva.liandrejohn.com/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="sereva"
+                      data-analytics-project-type="consumer_brand"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
+                      >View Site</a
+                    >
+                    <a
+                      class="btn btn-outline-secondary btn-sm"
+                      href="https://github.com/lpdecastro/sereva.liandrejohn.com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="sereva"
+                      data-analytics-project-type="consumer_brand"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
+                      >View Code</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <!-- Concept build 4: Stillward (E-commerce Storefront) -->
+              <article id="concept-stillward" class="card overflow-hidden">
+                <span class="ratio ratio-16x9 bg-primary-subtle"
+                  ><img
+                    class="w-100 h-100 object-fit-cover"
+                    src="/images/concept-stillward.webp"
+                    alt="Stillward minimalist furniture storefront concept"
+                    loading="lazy"
+                    width="1200"
+                    height="675"
+                /></span>
+                <div class="card-body d-flex flex-column">
+                  <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-3">
+                    <svg
+                      class="bi me-2"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"
+                      /></svg
+                    >E-commerce Storefront
+                  </p>
+                  <h3 class="h5 fw-semibold mb-3">Stillward</h3>
+                  <p class="text-secondary-emphasis mb-3">A minimalist furniture and homeware store.</p>
+                  <ul class="small text-secondary-emphasis ps-3 mb-0 lh-lg">
+                    <li>Filter, sort, and search the catalog</li>
+                    <li>Product pages with ratings and reviews</li>
+                    <li>Cart and checkout flow</li>
+                  </ul>
+                  <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="https://shopify.liandrejohn.com/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="stillward"
+                      data-analytics-project-type="ecommerce"
+                      data-analytics-link-type="live_site"
+                      data-analytics-section-name="concept_builds"
+                      >View Site</a
+                    >
+                    <a
+                      class="btn btn-outline-secondary btn-sm"
+                      href="https://github.com/lpdecastro/shopify-liandrejohn-com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="project_click"
+                      data-analytics-project-name="stillward"
+                      data-analytics-project-type="ecommerce"
+                      data-analytics-link-type="source_code"
+                      data-analytics-section-name="concept_builds"
+                      >View Code</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+            <!-- Strip controls: prev/next buttons + JS-generated position dots -->
+            <div class="d-flex align-items-center justify-content-center gap-4">
+              <button
+                class="btn btn-light border bg-white fs-6 lh-1 p-3 d-inline-flex align-items-center justify-content-center"
+                type="button"
+                data-strip-scroll="prev"
+                aria-controls="projectStrip"
+                aria-label="Previous projects"
+              >
+                <svg
+                  class="bi"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+                  />
+                </svg>
+              </button>
+              <div id="projectStripDots" role="group" aria-label="Project groups"></div>
+              <button
+                class="btn btn-light border bg-white fs-6 lh-1 p-3 d-inline-flex align-items-center justify-content-center"
+                type="button"
+                data-strip-scroll="next"
+                aria-controls="projectStrip"
+                aria-label="Next projects"
+              >
+                <svg
+                  class="bi"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           HOW I WORK (#how-i-work) — approach copy + numbered 4-step process list
+           ============================================================ -->
+      <section id="how-i-work" class="py-6 py-md-7" aria-labelledby="how-i-work-title">
+        <div class="container">
+          <div class="row g-5 g-lg-6">
+            <!-- Left column: section heading (eyebrow + h2) + two lead paragraphs -->
+            <div class="col-lg-6">
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+                <span class="text-nowrap">How I Work</span>
+              </div>
+              <h2 id="how-i-work-title" class="mw-prose mb-3">
+                Clear decisions. Strong foundations. Measurable outcomes.
+              </h2>
+              <p class="lead text-secondary-emphasis mw-prose">
+                I bring a Tech Lead mindset to both focused builds and complex platforms. I start by clarifying the real
+                business problem, then shape a solution that is understandable, maintainable, and realistic to deliver.
+              </p>
+              <p class="lead text-secondary-emphasis mw-prose mb-0">
+                That means balancing speed with long-term quality: choosing reusable patterns where they matter, keeping
+                unnecessary complexity out, validating decisions through working software, and using measurable results
+                to guide the next improvement.
+              </p>
+            </div>
+            <!-- Right column: process steps — numbered badge + h3 + description, one <li> per step -->
+            <div class="col-lg-6">
+              <ol class="list-unstyled vstack gap-3 mb-0">
+                <!-- Step 01 -->
+                <li class="d-flex gap-4 py-4 border-bottom">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                    style="width: 3rem; height: 3rem"
+                  >
+                    01
+                  </span>
+                  <div>
+                    <h3 class="h5 fw-semibold mb-3">Frame the real problem</h3>
+                    <p class="text-secondary-emphasis mb-0">
+                      Clarify the user need, delivery constraints, business value, and the technical risks worth solving
+                      first.
+                    </p>
+                  </div>
+                </li>
+                <!-- Step 02 -->
+                <li class="d-flex gap-4 py-4 border-bottom">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                    style="width: 3rem; height: 3rem"
+                  >
+                    02
+                  </span>
+                  <div>
+                    <h3 class="h5 fw-semibold mb-3">Design for reuse and scale</h3>
+                    <p class="text-secondary-emphasis mb-0">
+                      Choose patterns that remove duplicate work across teams, markets, or future features instead of
+                      optimizing only for today.
+                    </p>
+                  </div>
+                </li>
+                <!-- Step 03 -->
+                <li class="d-flex gap-4 py-4 border-bottom">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                    style="width: 3rem; height: 3rem"
+                  >
+                    03
+                  </span>
+                  <div>
+                    <h3 class="h5 fw-semibold mb-3">Ship in visible increments</h3>
+                    <p class="text-secondary-emphasis mb-0">
+                      Turn architecture into working software early — using AI-assisted workflows to move faster
+                      without cutting corners — so stakeholders can validate direction before complexity compounds.
+                    </p>
+                  </div>
+                </li>
+                <!-- Step 04 -->
+                <li class="d-flex gap-4 py-4 border-bottom">
+                  <span
+                    class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                    style="width: 3rem; height: 3rem"
+                  >
+                    04
+                  </span>
+                  <div>
+                    <h3 class="h5 fw-semibold mb-3">Measure and improve</h3>
+                    <p class="text-secondary-emphasis mb-0">
+                      Use performance, adoption, cost, reliability, and delivery metrics to guide what gets optimized
+                      next.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CONTACT (#get-in-touch) — intro + direct email/LinkedIn links + message form
+           ============================================================ -->
+      <section id="get-in-touch" class="py-6 py-md-7 bg-white" aria-labelledby="get-in-touch-title">
+        <div class="container">
+          <div class="row g-5 g-lg-7">
+            <!-- Left column: section heading (eyebrow + h2) + lead + direct contact links -->
+            <div class="col-lg-6">
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+                <span class="text-nowrap">Get in Touch</span>
+              </div>
+              <h2 id="get-in-touch-title" class="mw-prose mb-3">
+                Whether you’re hiring or scoping a build, start here.
+              </h2>
+              <p class="lead text-secondary-emphasis mw-prose mb-4">
+                Filling a role? Share the details and you’ll get my resume and availability. Planning a platform or
+                untangling a stalled build? Outline it and I’ll tell you how I’d approach the work. Email or LinkedIn —
+                whichever’s easier for you.
+              </p>
+              <!-- Direct contact links: email + LinkedIn (stacked) -->
+              <div class="row row-cols-1 g-3 mb-0">
+                <!-- Email link -->
+                <div class="col">
+                  <a
+                    class="d-flex h-100 align-items-center justify-content-between gap-4 py-3 ps-2 pe-4 border rounded-2 bg-white fw-semibold text-dark"
+                    href="mailto:liandrejohn88@gmail.com"
+                    rel="me"
+                    data-analytics-event="email_click"
+                    data-analytics-contact-method="email"
+                    data-analytics-section-name="get_in_touch"
+                    data-analytics-position="body"
+                  >
+                    <span class="d-flex align-items-center gap-3"
+                      ><span
+                        class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary"
+                        data-icon-tile
+                        ><svg
+                          class="bi fs-4"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 16 16"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                          /></svg></span
+                      ><span>Email me<br /><small class="text-secondary" data-email-text>liandrejohn88 [at] gmail [dot] com</small></span></span
+                    ><svg
+                      class="bi"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <!-- LinkedIn link -->
+                <div class="col">
+                  <a
+                    class="d-flex h-100 align-items-center justify-content-between gap-4 py-3 ps-2 pe-4 border rounded-2 bg-white fw-semibold text-dark"
+                    href="https://www.linkedin.com/in/lpdecastro"
+                    target="_blank"
+                    rel="me noopener"
+                    data-analytics-event="linkedin_click"
+                    data-analytics-contact-method="linkedin"
+                    data-analytics-section-name="get_in_touch"
+                    data-analytics-position="body"
+                  >
+                    <span class="d-flex align-items-center gap-3"
+                      ><span
+                        class="d-inline-flex align-items-center justify-content-center rounded-3 bg-primary-subtle text-primary"
+                        data-icon-tile
+                        ><svg
+                          class="bi fs-4"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 16 16"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path
+                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+                          /></svg></span
+                      ><span
+                        >Connect on LinkedIn<br /><small class="text-secondary">linkedin.com/in/lpdecastro</small></span
+                      ></span
+                    ><svg
+                      class="bi"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Right column: message form — posts to Web3Forms via main.js; falls back to a prefilled mailto: on failure -->
+            <div class="col-lg-6">
+              <form id="contactForm" class="card" action="https://api.web3forms.com/submit" method="POST">
+                <div class="card-body">
+                  <!-- Web3Forms delivery config + spam honeypot (hidden from humans) -->
+                  <input type="hidden" name="access_key" value="a3ae2de1-146c-4053-9466-cedd5d78f0b2" />
+                  <input type="hidden" name="subject" value="New portfolio inquiry" />
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    class="d-none"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                  />
+                  <!-- Field: full name -->
+                  <div class="mb-4">
+                    <label class="form-label fw-medium small" for="fullName">Full name</label
+                    ><input
+                      class="form-control"
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      autocomplete="name"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  <!-- Field: email -->
+                  <div class="mb-4">
+                    <label class="form-label fw-medium small" for="email">Email</label
+                    ><input
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="you@company.com"
+                      required
+                    />
+                  </div>
+                  <!-- Field: project details -->
+                  <div class="mb-4">
+                    <label class="form-label fw-medium small" for="projectDetails">Project details</label
+                    ><textarea
+                      class="form-control"
+                      id="projectDetails"
+                      name="projectDetails"
+                      rows="5"
+                      placeholder="Tell me what you're working on, what you need help with, or the role you'd like to discuss."
+                      required
+                    ></textarea>
+                  </div>
+                  <!-- Optional: request resume checkbox -->
+                  <div class="form-check mb-4">
+                    <input class="form-check-input" id="requestResume" name="requestResume" type="checkbox" /><label
+                      class="form-check-label small text-secondary"
+                      for="requestResume"
+                      >I’d also like to request a copy of your resume.</label
+                    >
+                  </div>
+                  <!-- Submit + live status line (populated by main.js). Always in the
+                       DOM so the live region is watched; main.js adds mt-3 only when it
+                       carries a message, so it takes no space while empty. -->
+                  <button class="btn btn-primary w-100" type="submit">Send Message</button>
+                  <p
+                    id="formStatus"
+                    class="small fw-semibold text-center mb-0"
+                    role="status"
+                    aria-live="polite"
+                    tabindex="-1"
+                  ></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Back-to-top button: hidden by default; main.js toggles .d-flex once scrolled past the hero -->
+    <a
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
+      href="#top"
+      aria-label="Back to top"
+      ><svg
+        class="bi"
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
+
+    <!-- ============================================================
+         FOOTER — brand blurb + "Explore" anchor links + "Connect" links + copyright
+         ============================================================ -->
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand column: logo + one-line summary -->
+          <div class="col-lg-4">
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="160"
+              height="53"
+              loading="lazy"
+              class="mb-4"
+            />
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
+              Tech Lead building enterprise digital platforms, APIs, and cloud systems — with AI-assisted engineering
+              as a delivery multiplier.
+            </p>
+          </div>
+          <!-- Explore column: in-page section anchors -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Explore</h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >What I Do</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Featured Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Concept Builds</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >How I Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="#get-in-touch"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Get in Touch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Connect column: external contact links -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Connect</h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="mailto:liandrejohn88@gmail.com"
+                  rel="me"
+                  data-email-text
+                  data-analytics-event="email_click"
+                  data-analytics-contact-method="email"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >liandrejohn88 [at] gmail [dot] com</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://www.linkedin.com/in/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="linkedin_click"
+                  data-analytics-contact-method="linkedin"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >linkedin.com/in/lpdecastro</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://github.com/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >github.com/lpdecastro</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer bottom bar: copyright + back-to-top link -->
+        <hr class="border-light border-opacity-10 opacity-100 my-6" />
+        <div
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
+        >
+          <p class="mb-0">© <span id="year">2026</span> Liandre John de Castro. All rights reserved.</p>
+          <a class="link-light text-decoration-none" href="#top"
+            >Back to top
+            <svg
+              class="bi"
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Bootstrap bundle (navbar, scrollspy), then the analytics helper
+         (must load before main.js, which calls trackEvent for form events),
+         then site behaviors -->
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

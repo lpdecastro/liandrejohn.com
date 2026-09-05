@@ -1,0 +1,45 @@
+# Liandre John de Castro
+
+> Tech Lead · Enterprise Digital Platforms. 6+ years building enterprise digital
+> platforms for global pharmaceutical and consumer health brands, with end-to-end
+> ownership of a Magnolia CMS platform behind 150+ localized websites. Based in
+> Quezon City, Philippines. Primary audience for this site: technical recruiters.
+
+## Summary
+
+- Tech Lead at Crescendo Collective, leading 7 engineers across Java, Next.js, and Azure.
+- Owns architecture and delivery of a reusable Magnolia CMS platform serving 150+ localized sites across 10 global brands, replacing one-off site builds with shared platform capabilities.
+- Led technical solutioning and three client POC demos that secured a $1M statement of work.
+- Architected an AWS serverless product data platform (Node.js, Lambda, API Gateway) that retired a legacy system and cut annual operating costs by 30%.
+- Built a self-service "Website Kiosk" that cut site provisioning from days to minutes and saved 1,000+ engineering hours a year.
+- Mentored 15 engineers; 5 now lead workstreams independently.
+- B.S. Electrical Engineering, University of the Philippines Diliman (cum laude).
+
+## Headline stack
+
+- Java — backend systems, services, and integrations (Java 17, Spring, Spring Boot).
+- Next.js — front-end and web application delivery (React, TypeScript).
+- AWS — cloud architecture and serverless platforms (Lambda, API Gateway, DynamoDB).
+- Magnolia CMS — enterprise CMS platform work.
+- Supporting: Node.js, SQL/PostgreSQL, Azure, Docker, Kubernetes, GitHub Actions CI/CD.
+
+## AI engineering
+
+- Ships production work with AI-assisted development (Claude Code, ChatGPT).
+- Prompt and context engineering: designing prompts, context, and workflows for reliable LLM results.
+- Applies AI in real engineering work to accelerate delivery, raise code quality, and support technical decisions across a team. A force multiplier on the stack above, not a replacement for it.
+
+## Selected work
+
+- [Enterprise Magnolia CMS Platform](https://liandrejohn.com/#featured-work) — Tech Lead; architecture and delivery of a reusable CMS platform behind 150+ localized brand sites. Client engagement; walkthrough on request.
+- [Altamira Construction Group](https://construction.liandrejohn.com/) — marketing site concept build. Code: https://github.com/lpdecastro/construction.liandrejohn.com
+- [Handa Home Services](https://handa.liandrejohn.com/) — booking & scheduling concept build. Code: https://github.com/lpdecastro/handa.liandrejohn.com
+- [Sereva](https://sereva.liandrejohn.com/) — direct-to-consumer brand concept build. Code: https://github.com/lpdecastro/sereva.liandrejohn.com
+- [Stillward](https://shopify.liandrejohn.com/) — e-commerce storefront concept build. Code: https://github.com/lpdecastro/shopify-liandrejohn-com
+
+## Contact
+
+- Email: liandrejohn88@gmail.com
+- LinkedIn: https://www.linkedin.com/in/lpdecastro
+- GitHub: https://github.com/lpdecastro
+- Best way to reach me: email or LinkedIn with the role or project details. Resume available on request via the contact form at https://liandrejohn.com/#get-in-touch
