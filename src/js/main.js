@@ -2,7 +2,7 @@
 // window.trackEvent before any of the code below runs (import order = execution
 // order for ES modules). This is the single entry point Vite bundles from
 // index.html — see the <script type="module"> tag there.
-import 'bootstrap';
+import { Collapse } from 'bootstrap';
 import './analytics.js';
 
 // This small handler preserves the original static-demo mailto behavior.
@@ -137,6 +137,20 @@ if (mainNav) {
 
   window.addEventListener('scroll', syncNav, { passive: true });
   syncNav();
+}
+
+// Under lg the navbar collapses into a menu; Bootstrap only auto-closes it on
+// the toggler click, not on a link click, so the menu stays open over the page
+// after navigating. Close it manually whenever a nav link inside it is clicked.
+const primaryNav = document.getElementById('primaryNav');
+
+if (primaryNav) {
+  primaryNav.querySelectorAll('.nav-link, .btn').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (!primaryNav.classList.contains('show')) return;
+      Collapse.getOrCreateInstance(primaryNav).hide();
+    });
+  });
 }
 
 // Keep the footer copyright year current without a yearly edit (2026 ships as
