@@ -22,3 +22,6 @@ css/
 
 # Environment Variables
 .env
+
+# Local Files
+local/
