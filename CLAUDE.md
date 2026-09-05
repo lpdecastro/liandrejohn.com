@@ -8,60 +8,36 @@ A single static page: the personal portfolio for liandrejohn.com.
 
 ## Main Goal
 
-Act as an expert technical SEO strategist, web analytics specialist, and personal-brand growth strategist.
+Act as an expert AWS DevOps engineer and static-site performance specialist. Help me deploy my portfolio website to AWS using a simple, clean, production-grade setup. Assume I am comfortable with development but still learning AWS infrastructure and DevOps, so explain important AWS decisions clearly and guide me step-by-step through anything I need to configure manually in the AWS Console. Do not introduce Terraform, CDK, or other Infrastructure as Code for now.
 
-The portfolio website content is already complete. Your job is now to optimize the site for **SEO, discoverability, analytics, and measurable recruiter conversion** without unnecessarily changing the existing content, visual design, or user experience.
+My existing infrastructure is already mostly set up: a GitHub repository, GitHub Actions, an S3 bucket, CloudFront, Route 53, ACM, and GitHub Actions authentication to AWS using IAM OIDC with an IAM role and policy. My GitHub repository variables are `AWS_REGION=ap-southeast-1`, `AWS_ROLE_ARN=arn:aws:iam::891022338050:role/GitHubDeployRole`, and `S3_BUCKET=liandrejohn.com`. Do not require a `CLOUDFRONT_DISTRIBUTION_ID` or automatically invalidate the CloudFront distribution after every deployment because I want to avoid unnecessary invalidations and keep the deployment simple and cost-conscious. Instead, design caching and asset versioning so new deployments propagate correctly without depending on routine CloudFront invalidations.
 
-The website is a single-page MVP for **Liandre John de Castro**, a software developer and tech lead. The primary audience is **technical recruiters**, followed by potential freelance clients and my LinkedIn network. The main conversion goals are for visitors to:
+The build tool is Vite — this is settled, not open for reconsideration. Vite's production build (`npm run build`) already minifies HTML, CSS, and JavaScript and emits content-hashed/fingerprinted filenames for CSS, JS, and other bundled assets by default, with no custom `vite.config.js` needed for this project. Rely on those defaults instead of adding extra build steps, plugins, or another tool. `dist/` is the only thing deployed to S3; never upload development files, source files, `node_modules`, or config files.
 
-- Contact me through the portfolio contact form
-- Message me on LinkedIn
-- Email me directly
-- Ask for my resume
-- Explore my projects and professional experience
+Keep the CI/CD exactly as simple as it is today: a minimal `package.json` (`dev` / `build` / `preview` scripts, no extra tooling) and a single GitHub Actions job in `.github/workflows/deploy.yml` that runs `npm ci && npm run build` then `aws s3 sync ./dist "s3://$S3_BUCKET" --delete`. No matrix builds, no extra jobs, no additional plugins or steps — this simplicity is intentional and is only possible because Vite's defaults already produce a minified, hashed, deploy-ready `dist/` folder. Only add complexity if there's a concrete, meaningful benefit, and call it out explicitly before doing so.
 
-Use `local/resume.md` as the source of truth for factual information about my professional experience, skills, achievements, technologies, and credentials. Do not invent experience, metrics, job titles, clients, technologies, or accomplishments.
+Recommend sensible S3 and CloudFront `Cache-Control` behavior, such as long-lived immutable caching for fingerprinted assets while keeping HTML short-lived or revalidated so website updates become visible without CloudFront invalidations.
 
-Optimize the website for relevant search intent around my **name, software engineering experience, technical leadership, backend development, Java/Spring expertise, cloud/platform engineering, and other skills supported by my resume and portfolio content**. Prioritize natural, useful content over keyword stuffing.
+The canonical production domain must be `https://liandrejohn.com/`. Treat this as the single source of truth for SEO. `https://www.liandrejohn.com` or `https://www.liandrejohn.com/` must permanently redirect to the equivalent URL on `https://liandrejohn.com/`, preserving the path and query string where appropriate. Because I already have CloudFront, Route 53, and ACM, prefer the simplest robust production-grade AWS approach rather than adding another server or unnecessary service. Prefer implementing the `www` → non-`www` redirect at the CloudFront edge using a lightweight CloudFront Function on the viewer-request event when appropriate. Guide me step-by-step through creating the function, attaching it to the correct CloudFront behavior, making sure the CloudFront distribution accepts both `liandrejohn.com` and `www.liandrejohn.com` as alternate domain names, ensuring the ACM certificate covers both hostnames, and configuring Route 53 alias records correctly. The redirect should use an SEO-safe permanent status such as `301`, preserve the requested pathname and query string, and avoid redirect loops. Explain any CloudFront configuration changes before asking me to make them.
 
-Review and improve all important technical SEO elements, including page title, meta description, canonical URL, heading hierarchy, semantic HTML, crawlability, indexability, robots.txt, sitemap.xml, Open Graph metadata, social sharing metadata, image alt text, internal linking, URL structure, performance/Core Web Vitals, mobile usability, accessibility where it affects search quality, and structured data using appropriate Schema.org types such as `Person`, `WebSite`, and relevant project/work entities.
+Also make sure the website itself consistently uses `https://liandrejohn.com` for canonical URLs, Open Graph URLs, structured data URLs, sitemap URLs, internal absolute URLs where applicable, and other SEO-related references. There should be only one indexable version of each page. Check for duplicate-host issues involving HTTP vs HTTPS and `www` vs non-`www`, and recommend the simplest configuration that normalizes all public traffic to HTTPS on the non-`www` domain.
 
-Implement analytics using **Google Analytics 4 and Google Search Console** where applicable. Track meaningful user actions rather than unnecessary events. At minimum, consider tracking contact-form submissions, contact-form starts, LinkedIn clicks, email clicks, resume clicks/downloads, project-detail clicks, project external-site clicks, navigation interactions, and other high-intent recruiter actions. Use clear, consistent GA4 event names and useful parameters.
+Work incrementally. First inspect or ask me for the relevant existing files such as `package.json`, the GitHub Actions workflow, build configuration, and current deployment structure before changing code. Reuse the AWS infrastructure I already have instead of rebuilding it. When AWS Console work is required, tell me the exact AWS service, menu, field, and value to use. Clearly distinguish between changes required in GitHub, the application repository, S3, CloudFront, Route 53, ACM, and IAM. Avoid unnecessary AWS services, unnecessary dependencies, overengineering, and premature infrastructure automation. The final result should be a fast static portfolio website with a minimal build process, clean GitHub Actions CI/CD, secure OIDC-based AWS deployment, efficient CloudFront caching, no routine cache invalidations, and a reliable `www.liandrejohn.com` → `liandrejohn.com` canonical redirect.
 
-Define the most important conversions so I can measure whether the portfolio is actually generating recruiter interest. Recommend which GA4 events should be marked as key events/conversions and explain how I can evaluate performance using metrics such as organic search traffic, recruiter-intent interactions, project engagement, contact conversions, Search Console queries, impressions, clicks, CTR, and ranking positions.
-
-When making recommendations, prioritize them by **expected SEO or conversion impact**. Avoid adding SEO features merely for completeness if they provide little practical value. Keep the implementation simple, maintainable, fast, and appropriate for a personal portfolio MVP.
-
-When modifying code, preserve the existing design and content unless a change is genuinely necessary for SEO, accessibility, performance, analytics, or conversion tracking. Explain significant changes briefly and clearly.
-
-## Positioning
-
-Lead with this identity everywhere it fits (hero, nav eyebrow, meta, section framing):
-
-- **Tech Lead • Enterprise Digital Platforms**
-
-When surfacing technical depth, prioritize these four technologies as the headline stack. Mention others from `local/resume.md` only as supporting detail:
-
-- **Java** — backend systems, services, and integrations
-- **Next.js** — front-end and web application delivery
-- **AWS** — cloud architecture and serverless platforms
-- **Magnolia CMS** — enterprise CMS platform work
-
-Never use the word "headless" anywhere in the portfolio content or in proposed copy options.
-
-Also highlight **AI engineering** as a differentiator that complements (not replaces) the headline stack above — pair it with full-stack framing (Java + Next.js already spans backend and frontend) rather than positioning AI as a separate specialty. Position it as a modern force multiplier on delivery speed, quality, and leadership—not as a buzzword. Cover:
-
-- **AI-assisted development** — shipping production work with tools like Claude Code, ChatGPT, and Gemini
-- **Prompt and context engineering** — designing effective prompts, context, and workflows to get reliable results from LLMs
-- **Agentic AI & MCP (Model Context Protocol)** — working with agentic workflows and MCP-based tooling as part of the delivery toolkit
-- **Applying AI in real engineering work** — using these tools to accelerate delivery, raise code quality, and support technical decision-making across a team, plus the GEO (Generative Engine Optimization) work that turned AI answer engines into a real referral-traffic channel
-
-Keep all AI-engineering claims consistent with `local/resume.md`; do not invent specific tools, projects, metrics, or seniority/expertise levels ("expert," "years of experience," etc.) that it does not support. Confident framing, prioritization, and emphasis are fair game for differentiation — fabricated claims are not, since they put the person's credibility at risk with recruiters who verify.
 
 ## Commands
 
 ```bash
 npm install            # required before anything works
-npm run build:css      # compile src/scss/main.scss -> assets/css/main.css (compressed, no sourcemap)
-npm run watch:css      # same, in watch mode (also emits assets/css/main.css.map)
+npm run dev             # Vite dev server (src/scss/main.scss, src/js/*.js)
+npm run build           # production build -> dist/ (hashed/minified CSS+JS, public/ copied as-is)
+npm run preview         # serve dist/ locally to sanity-check a build
 ```
+
+## File layout
+
+- `src/` — hand-authored source: `scss/main.scss`, `js/main.js`, `js/analytics.js`. Never edit generated output directly.
+- `public/` — static files copied as-is into `dist/` at the site root, unhashed (images, fonts, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `llms.txt`). Referenced from `index.html`/`main.scss` by absolute path (e.g. `/images/...`, `/fonts/...`), not relative to the source file.
+- `dist/` — generated by `npm run build`, gitignored. The only thing deployed to S3.
+- Bootstrap's JS is never copied into the repo — `src/js/main.js` does `import 'bootstrap'` and Vite bundles it into the hashed output.
+- Fonts are self-hosted in `public/fonts/` (not run through the hashed asset pipeline) so the `<link rel="preload">` in `index.html` can reference a filename that's stable at build time.
