@@ -37,9 +37,8 @@ jobs:
       - name: Deploy to S3
         run: aws s3 sync ./dist "s3://${{ vars.S3_BUCKET }}" --delete
 
-      # Commented out to reduce cost — invalidate manually for now
-      # - name: Invalidate CloudFront cache
-      #   run: |
-      #     aws cloudfront create-invalidation \
-      #       --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
-      #       --paths "/*"
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*"
