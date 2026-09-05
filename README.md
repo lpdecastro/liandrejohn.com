@@ -17,21 +17,22 @@ This is a Bootstrap/Sass rebuild of the supplied single-page portfolio from `loc
 
 ## Files
 
-- `index.html` — converted page; uses Bootstrap 5.3.8 CDN so it opens immediately
+- `index.html` — page markup; entry point for the Vite build
 - `src/scss/main.scss` — Bootstrap Sass variable overrides
-- `assets/css/theme-preview.css` — direct-open preview fallback that mirrors the Sass values and only targets Bootstrap/root selectors
-- `assets/js/main.js` — contact form mailto behavior only
-- `package.json` — local Sass build dependencies/scripts
+- `src/js/main.js` / `src/js/analytics.js` — site behavior and GA4 event tracking
+- `public/` — static files copied as-is to the build output (images, fonts, robots.txt, sitemap.xml, site.webmanifest, llms.txt)
+- `package.json` — build dependencies/scripts
 
-## Compile the real Sass build locally
+## Build locally
 
 ```bash
 npm install
-npm run build:css
+npm run build      # outputs the production site to dist/
 ```
 
 For development:
 
 ```bash
-npm run watch:css
+npm run dev         # starts the Vite dev server
+npm run preview     # serves the dist/ build locally, to sanity-check a build
 ```

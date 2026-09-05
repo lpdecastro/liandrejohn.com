@@ -8,12 +8,6 @@ dist/
 *.sass-cache
 *.scss-cache
 
-# Compiled CSS
-css/
-
-# Generated JS (copied from node_modules / src/js by copy:js)
-assets/js/
-
 # MacOS system files
 .DS_Store
 

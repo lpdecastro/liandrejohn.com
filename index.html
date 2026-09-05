@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
-         Event tracking lives in assets/js/analytics.js, not here. -->
+         Event tracking lives in src/js/analytics.js, not here. -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,11 +26,11 @@
     <meta name="color-scheme" content="light" />
 
     <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
     <meta name="theme-color" content="#0f172a" />
     <title>Liandre John de Castro — Tech Lead, Enterprise Digital Platforms</title>
@@ -47,7 +47,7 @@
       content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands."
     />
     <meta property="og:url" content="https://liandrejohn.com/" />
-    <meta property="og:image" content="https://liandrejohn.com/assets/images/og-card.jpg" />
+    <meta property="og:image" content="https://liandrejohn.com/images/og-card.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -66,7 +66,7 @@
       name="twitter:description"
       content="Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands."
     />
-    <meta name="twitter:image" content="https://liandrejohn.com/assets/images/og-card.jpg" />
+    <meta name="twitter:image" content="https://liandrejohn.com/images/og-card.jpg" />
     <meta
       name="twitter:image:alt"
       content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms. Java, Next.js, AWS, Magnolia CMS."
@@ -86,7 +86,7 @@
             "inLanguage": "en",
             "isPartOf": { "@id": "https://liandrejohn.com/#website" },
             "mainEntity": { "@id": "https://liandrejohn.com/#person" },
-            "primaryImageOfPage": "https://liandrejohn.com/assets/images/profile.webp",
+            "primaryImageOfPage": "https://liandrejohn.com/images/profile.webp",
             "hasPart": [
               { "@id": "https://liandrejohn.com/#featured-work" },
               { "@id": "https://liandrejohn.com/#concept-builds" }
@@ -102,7 +102,7 @@
             "description": "Tech Lead building enterprise digital platforms with Java, Next.js, AWS, and Magnolia CMS for global pharmaceutical and consumer health brands.",
             "url": "https://liandrejohn.com/",
             "mainEntityOfPage": { "@id": "https://liandrejohn.com/#profilepage" },
-            "image": "https://liandrejohn.com/assets/images/profile.webp",
+            "image": "https://liandrejohn.com/images/profile.webp",
             "email": "mailto:liandrejohn88@gmail.com",
             "worksFor": {
               "@type": "Organization",
@@ -253,14 +253,14 @@
     </script>
 
     <!-- Preload the hero portrait (LCP candidate) -->
-    <link rel="preload" as="image" href="assets/images/profile.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/profile.webp" fetchpriority="high" />
 
     <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
          Preload the latin file — it renders all above-the-fold text. -->
-    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
 
     <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/src/scss/main.scss" />
   </head>
   <!-- data-bs-spy: Bootstrap Scrollspy highlights the matching nav link as each section scrolls into view -->
   <body data-bs-spy="scroll" data-bs-target="#primaryNav" data-bs-root-margin="0px 0px -35%">
@@ -286,7 +286,7 @@
               href="#top"
               aria-label="Liandre John de Castro home"
             >
-              <img src="assets/images/logo-dark.webp" alt="" width="150" height="50" />
+              <img src="/images/logo-dark.webp" alt="" width="150" height="50" />
             </a>
             <button
               class="navbar-toggler"
@@ -390,7 +390,7 @@
                   >
                     <img
                       class="w-100 h-100 object-fit-cover hero-image"
-                      src="assets/images/profile.webp"
+                      src="/images/profile.webp"
                       alt="Liandre John de Castro - Tech Lead"
                       width="1086"
                       height="1448"
@@ -639,7 +639,7 @@
                 <img
                   class="w-100 h-100 object-fit-cover bg-primary-subtle"
                   style="min-height: 260px; object-position: left top"
-                  src="assets/images/magnolia-cms-admincentral.webp"
+                  src="/images/magnolia-cms-admincentral.webp"
                   alt="Magnolia CMS AdminCentral managing 150+ localized brand sites from one platform"
                   loading="lazy"
                   width="2966"
@@ -699,7 +699,7 @@
            CONCEPT BUILDS (#concept-builds) — four self-directed builds in one
            horizontal scroll-snap strip (#projectStrip), rendered once. Card
            widths are responsive in src/scss/main.scss: one card + peek on narrow
-           viewports, 3.25 cards from lg up. assets/js/main.js wires the prev/next
+           viewports, 3.25 cards from lg up. src/js/main.js wires the prev/next
            buttons and #projectStripDots at every viewport; touch-swipe scrolls
            it on mobile.
            ============================================================ -->
@@ -776,7 +776,7 @@
                 <span class="ratio ratio-16x9 bg-primary-subtle"
                   ><img
                     class="w-100 h-100 object-fit-cover"
-                    src="assets/images/concept-altamira.webp"
+                    src="/images/concept-altamira.webp"
                     alt="Altamira Construction Group marketing site concept"
                     loading="lazy"
                     width="1200"
@@ -841,7 +841,7 @@
                 <span class="ratio ratio-16x9 bg-primary-subtle"
                   ><img
                     class="w-100 h-100 object-fit-cover"
-                    src="assets/images/concept-handa.webp"
+                    src="/images/concept-handa.webp"
                     alt="Handa Home Services booking site concept"
                     loading="lazy"
                     width="1200"
@@ -908,7 +908,7 @@
                 <span class="ratio ratio-16x9 bg-primary-subtle"
                   ><img
                     class="w-100 h-100 object-fit-cover"
-                    src="assets/images/concept-sereva.webp"
+                    src="/images/concept-sereva.webp"
                     alt="Sereva direct-to-consumer brand concept"
                     loading="lazy"
                     width="1200"
@@ -970,7 +970,7 @@
                 <span class="ratio ratio-16x9 bg-primary-subtle"
                   ><img
                     class="w-100 h-100 object-fit-cover"
-                    src="assets/images/concept-stillward.webp"
+                    src="/images/concept-stillward.webp"
                     alt="Stillward minimalist furniture storefront concept"
                     loading="lazy"
                     width="1200"
@@ -1420,7 +1420,7 @@
           <!-- Brand column: logo + one-line summary -->
           <div class="col-lg-4">
             <img
-              src="assets/images/logo-dark.webp"
+              src="/images/logo-dark.webp"
               alt="Liandre John de Castro"
               width="160"
               height="53"
@@ -1557,8 +1557,6 @@
     <!-- Scripts: Bootstrap bundle (navbar, scrollspy), then the analytics helper
          (must load before main.js, which calls trackEvent for form events),
          then site behaviors -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/analytics.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>

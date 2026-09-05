@@ -4,15 +4,15 @@
   "private": true,
   "description": "Single-page portfolio rebuilt with Bootstrap utilities/components and Sass variable overrides.",
   "scripts": {
-    "dev": "npm run copy:js && sass src/scss/main.scss assets/css/main.css --load-path=node_modules --watch",
-    "build": "npm run copy:js && sass src/scss/main.scss assets/css/main.css --load-path=node_modules --style=compressed --no-source-map && npm run create:dist",
-    "copy:js": "mkdir -p assets/js && cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js/bootstrap.bundle.min.js && cp src/js/main.js assets/js/main.js && cp src/js/analytics.js assets/js/analytics.js",
-    "create:dist": "rm -rf dist && mkdir -p dist && cp -R index.html robots.txt sitemap.xml site.webmanifest llms.txt assets dist/ && rm -f dist/assets/css/*.map && find dist -name .DS_Store -delete"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "bootstrap": "5.3.8"
   },
   "devDependencies": {
-    "sass": "1.103.1"
+    "sass": "1.103.1",
+    "vite": "^8.2.2"
   }
 }

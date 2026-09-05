@@ -1,4 +1,10 @@
-// Bootstrap handles the navbar collapse and scrollspy.
+// Bootstrap handles the navbar collapse and scrollspy. analytics.js defines
+// window.trackEvent before any of the code below runs (import order = execution
+// order for ES modules). This is the single entry point Vite bundles from
+// index.html — see the <script type="module"> tag there.
+import 'bootstrap';
+import './analytics.js';
+
 // This small handler preserves the original static-demo mailto behavior.
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');

@@ -19,14 +19,17 @@
 // css2 output for Inter v20: `latin` covers the whole site; `latin-ext` only
 // loads if an extended-Latin glyph ever appears. Both files are the Inter
 // variable font, so one @font-face per subset spans weights 400–700.
-// Files: assets/fonts/inter-latin*.woff2 (path is relative to assets/css/main.css).
+// Files: public/fonts/inter-latin*.woff2 — Vite copies public/ to the dist root
+// unchanged, so these are referenced below by absolute path (/fonts/...), not
+// relative to this file. Kept out of the hashed asset pipeline on purpose: the
+// <link rel="preload"> in index.html needs a filename that's stable at build time.
 // ---------------------------------------------------------------------------
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('../fonts/inter-latin.woff2') format('woff2');
+  src: url('/fonts/inter-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -35,7 +38,7 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('../fonts/inter-latin-ext.woff2') format('woff2');
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -268,7 +271,7 @@ html {
 }
 
 // Smooth anchor scrolling only when the OS isn't asking for reduced motion
-// (matches how Bootstrap gates its own scroll-behavior). assets/js/main.js
+// (matches how Bootstrap gates its own scroll-behavior). src/js/main.js
 // makes the same check before its programmatic smooth scrolls.
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -354,7 +357,7 @@ h2,
 
 // Fixed navbar chrome. It rests transparent over the dark hero at the top of the
 // page; a solid $dark background and a hairline bottom border fade in once the
-// page is scrolled (assets/js/main.js toggles `.scrolled`). Below lg the bar is
+// page is scrolled (src/js/main.js toggles `.scrolled`). Below lg the bar is
 // always solid so the collapsed menu opens onto an opaque backdrop. Bootstrap's
 // navbar has no scroll-aware background state.
 #mainNav {
@@ -420,7 +423,7 @@ h2,
 }
 
 // Concept builds strip: one horizontal scroll-snap strip for every viewport. It
-// scrolls one card at a time (assets/js/main.js drives the prev/next buttons) and
+// scrolls one card at a time (src/js/main.js drives the prev/next buttons) and
 // keeps the next card peeking; on touch it swipes like a carousel. Bootstrap has
 // no scroll-snap or fractional flex-basis utilities, so scope those here.
 //
@@ -452,7 +455,7 @@ h2,
   scroll-snap-align: start;
 }
 
-// Scroll-position indicators for the strip (populated by assets/js/main.js). Pulls
+// Scroll-position indicators for the strip (populated by src/js/main.js). Pulls
 // size and spacing from the $carousel-indicator-* vars so the dots match the
 // redesign spec's indicator metrics.
 #projectStripDots {
