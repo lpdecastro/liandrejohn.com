@@ -657,3 +657,192 @@ h2,
 .post-tree-comment {
   color: rgba($light, 0.5);
 }
+
+// ===========================================================================
+// Section 3 — "Claude Code". The section runs long, so it's split into four
+// numbered sub-parts (03.1 … 03.4). Each opens with a one-line rule
+// (.post-callout), then working material — dark code panels (.post-code), a
+// numbered workflow, an audit table — and closes with a "Why it works" note
+// (.post-why). Pieces Bootstrap has no direct equivalent for.
+// ===========================================================================
+
+// Sub-part wrapper + "03.1" numeral. Echoes .post-section-number a size down so
+// the sub-parts read as children of the section header, not new sections.
+.post-sub + .post-sub {
+  margin-top: 3rem;
+}
+
+.post-sub-number {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $primary;
+  font-variant-numeric: tabular-nums;
+}
+
+// One-line rule under each sub-part heading — the editorial "do this, not that"
+// line. A quiet accent wash with a solid edge, set in the same Source Serif 4
+// as .post-lead so the two editorial voices match.
+.post-callout {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid $primary;
+  border-radius: 0 $border-radius $border-radius 0;
+  background-color: $accent-soft;
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: $body-emphasis-color;
+}
+
+// Code panel — the dark "editor" surface for prompt / file snippets. Same
+// $dark ground and window chrome as .post-tree, with a small label in the bar.
+// `pre` scrolls on its own x-axis so a long line never widens the page.
+.post-code {
+  background-color: $dark;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+}
+
+.post-code + .post-code {
+  margin-top: 0.75rem;
+}
+
+.post-code-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.625rem 1rem;
+  border-bottom: $border-width solid rgba($light, 0.1);
+}
+
+.post-code-label {
+  margin-left: auto;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba($light, 0.55);
+}
+
+.post-code pre {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  color: rgba($light, 0.92);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+// Dimmed inline note inside a code panel (comments, "iterate…" asides).
+.post-code-comment {
+  color: rgba($light, 0.5);
+}
+
+// "Why it works" note that closes each sub-part. Neutral slate wash so it reads
+// as a summary aside rather than another rule; the label carries the accent.
+.post-why {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: $border-radius;
+  background-color: #f1f5f9; // slate 100 — matches .post-facts card 2
+}
+
+.post-why-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: $font-size-base * 0.8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $primary;
+}
+
+// Audit table (03.4). Bootstrap's .table draws the grid; this clips it into the
+// same rounded, bordered frame the section figures use.
+.post-table {
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+}
+
+.post-table .table {
+  margin: 0;
+}
+
+.post-table .table > :not(caption) > * > * {
+  padding: 0.75rem 1rem;
+}
+
+// Inline code in the article — filenames, class names, short path fragments.
+// Bootstrap's default is pink on transparent; this is the site's quieter slate
+// chip. Guarded so code inside the dark .post-code panels is untouched.
+.post :not(pre) > code {
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  background-color: #f1f5f9;
+  color: $body-emphasis-color;
+  font-size: 0.875em;
+}
+
+// ===========================================================================
+// Section 4 — "Results". A four-up band of Lighthouse scores (all 100) shown
+// beside the report screenshot, then a gallery of result screenshots. The
+// score tiles cycle the same cool washes as the §1–2 card grids (by column
+// position) in a centred, number-dominant layout that echoes the homepage
+// career-stats bar.
+// ===========================================================================
+
+.post-score {
+  height: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: $border-radius-lg;
+  text-align: center;
+}
+
+.post-scores > [class*='col']:nth-child(4n + 1) .post-score {
+  background-color: #eff6ff; // blue 50
+}
+
+.post-scores > [class*='col']:nth-child(4n + 2) .post-score {
+  background-color: #f1f5f9; // slate 100
+}
+
+.post-scores > [class*='col']:nth-child(4n + 3) .post-score {
+  background-color: #eef2ff; // indigo 50
+}
+
+.post-scores > [class*='col']:nth-child(4n + 4) .post-score {
+  background-color: #f5f3ff; // violet 50
+}
+
+.post-score-value {
+  font-size: clamp(2rem, 1.6rem + 1.8vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: $primary;
+  font-variant-numeric: tabular-nums;
+}
+
+// The "/ 100" denominator — quiet, so the 100 carries the tile.
+.post-score-value span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $secondary;
+}
+
+.post-score-label {
+  margin-top: 0.625rem;
+  font-size: $font-size-base * 0.8;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $secondary;
+}
+
+// Screenshot frames that should present from their top edge rather than the
+// centre (full-page and other tall captures), paired with .object-fit-cover.
+.object-position-top {
+  object-position: top;
+}

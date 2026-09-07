@@ -234,9 +234,10 @@
           </nav>
         </div>
 
-        <!-- Article header: eyebrow + title + lead + byline + CTAs, kept to a
-             ~60%-width column. The hero image (right column) is deferred to a
-             later pass, per spec. -->
+        <!-- Article header: eyebrow + title + lead + byline + CTAs in the
+             left ~60% column; the right column holds a decorative "prompt"
+             panel standing in for the hero image (spec defers the real
+             image). -->
         <header class="flex-grow-1 d-flex align-items-center pt-4 pb-6">
           <div class="container">
             <div class="row align-items-center">
@@ -291,7 +292,37 @@
                   >
                 </div>
               </div>
-              <!-- Right column: hero image area — deferred -->
+              <!-- Right column: hero media placeholder. A framed "prompt"
+                   panel that borrows the §2 project-tree chrome (window bar +
+                   dots) and echoes this post's thesis — short prompts over a
+                   strong system. Purely decorative (aria-hidden); the real
+                   hero image drops in here later (spec: "skip the actual image
+                   for now"). Solid $dark + a hairline light border lifts it
+                   off the hero gradient, the same way .post-tree does on white. -->
+              <div class="col-lg-5 mt-5 mt-lg-0" aria-hidden="true">
+                <div class="post-tree rounded-4 overflow-hidden border border-light border-opacity-10">
+                  <div class="post-tree-bar">
+                    <span class="post-tree-dot"></span>
+                    <span class="post-tree-dot"></span>
+                    <span class="post-tree-dot"></span>
+                    <span class="ms-2 small text-on-dark-muted font-monospace">claude-code — portfolio</span>
+                  </div>
+                  <div class="p-4 p-lg-5 font-monospace small lh-lg">
+                    <p class="mb-3 text-white">
+                      <span class="text-primary">❯</span> claude “Build the hero section.”
+                    </p>
+                    <p class="mb-3 text-white">
+                      <span class="text-primary">❯</span> claude “Build the ‘What I Do’ section.”
+                    </p>
+                    <p class="mb-0 text-white">
+                      <span class="text-primary">❯</span> claude “Fix the mobile nav spacing.”<span
+                        class="text-primary"
+                        >&nbsp;▍</span
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -502,6 +533,564 @@
                     The whole repository — small enough to hold in your head, and to hand to an agent.
                   </figcaption>
                 </figure>
+              </section>
+
+              <!-- ---- Section 3: Claude Code ---- -->
+              <section id="claude-code" class="post-section" aria-labelledby="claude-code-title">
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                  <span class="post-section-number" aria-hidden="true">03</span>
+                  <h2 id="claude-code-title" class="mb-0">Claude Code</h2>
+                </div>
+                <!-- The hook: same serif .post-lead as §1–2. -->
+                <p class="post-lead mw-prose mb-3">
+                  Claude Code works best for me as a collaborator inside a system of constraints — not as an
+                  agent I hand a giant prompt and a blank canvas.
+                </p>
+                <p class="text-secondary mw-prose mb-5">
+                  Most of my prompts are surprisingly short. They work because I spend the effort on the context
+                  <em>around</em> the prompt: persistent instructions, focused sessions, task-specific rules, and
+                  review artifacts the agent can work through one step at a time. Four habits do most of the work.
+                </p>
+
+                <!-- ---- 03.1 — persistent context ---- -->
+                <div class="post-sub" aria-labelledby="claude-code-1-title">
+                  <div class="d-flex align-items-baseline gap-3 mb-2">
+                    <span class="post-sub-number" aria-hidden="true">03.1</span>
+                    <h3 id="claude-code-1-title" class="h4 fw-bold mb-0">
+                      Write your stack down once, then keep every prompt short
+                    </h3>
+                  </div>
+                  <p class="post-callout mw-prose">
+                    Stop re-explaining your stack in every prompt. Put the context in the repo once, and let the
+                    prompts get short.
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">
+                    I don’t open sessions with paragraph-long preambles about my tech stack, styling preferences, or
+                    design rules. That persistent context lives in a <code>CLAUDE.md</code> file at the root of the
+                    repo, and it loads automatically into every session.
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">My <code>CLAUDE.md</code> follows a lightweight pattern:</p>
+
+                  <figure class="mb-3">
+                    <div class="post-code">
+                      <div class="post-code-bar">
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-code-label">CLAUDE.md</span>
+                      </div>
+                      <pre class="mb-0"><code># Portfolio Context
+
+## What This Project Is
+Personal developer portfolio for [Your Name], showcasing
+backend systems and developer tooling.
+
+## Tech Stack &amp; Architecture
+- Next.js (App Router), Tailwind CSS, TypeScript
+- UI: clean, minimal, high-contrast developer aesthetic
+
+## Rules &amp; Constraints
+- Always use semantic HTML tags (&lt;main&gt;, &lt;section&gt;, &lt;article&gt;)
+- Use mobile-first Tailwind classes
+- Do not add external dependencies without asking</code></pre>
+                    </div>
+                  </figure>
+
+                  <p class="text-secondary mw-prose mb-3">
+                    Because that loads on its own, the actual prompt is whatever’s left:
+                  </p>
+
+                  <figure class="mb-0">
+                    <div class="post-code">
+                      <div class="post-code-bar">
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-code-label">prompt</span>
+                      </div>
+                      <pre class="mb-0"><code>Build the hero section.</code></pre>
+                    </div>
+                  </figure>
+
+                  <div class="post-why mw-prose">
+                    <span class="post-why-label">Why it works</span>
+                    <p class="text-secondary mb-0">
+                      When the surrounding context is strong, short prompts beat massive inline ones. The agent
+                      spends its attention on the execution step instead of parsing a wall of instructions.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ---- 03.2 — swappable context files ---- -->
+                <div class="post-sub" aria-labelledby="claude-code-2-title">
+                  <div class="d-flex align-items-baseline gap-3 mb-2">
+                    <span class="post-sub-number" aria-hidden="true">03.2</span>
+                    <h3 id="claude-code-2-title" class="h4 fw-bold mb-0">One project, six personalities</h3>
+                  </div>
+                  <p class="post-callout mw-prose">
+                    Don’t stuff every rule into a single file. Swap context files when you swap work phases.
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">
+                    A single <code>CLAUDE.md</code> covering design, content tone, SEO, accessibility, <em>and</em>
+                    deployment scripts gets noisy fast. Instead I keep specialised instruction files, one per project
+                    mode:
+                  </p>
+
+                  <figure class="mb-3">
+                    <div class="post-code">
+                      <div class="post-code-bar">
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-code-label">context files</span>
+                      </div>
+                      <pre class="mb-0"><code>├── CLAUDE.md             <span class="post-code-comment"># Default development context</span>
+├── CLAUDE-design.md      <span class="post-code-comment"># UI components, layout tokens, spacing</span>
+├── CLAUDE-content.md     <span class="post-code-comment"># Messaging tone, copy length, value props</span>
+├── CLAUDE-seo.md         <span class="post-code-comment"># Open Graph rules, metadata, alt text</span>
+├── CLAUDE-analytics.md   <span class="post-code-comment"># Events, params, what not to track</span>
+└── CLAUDE-deployment.md  <span class="post-code-comment"># Deploy config, build verification steps</span></code></pre>
+                    </div>
+                  </figure>
+
+                  <p class="text-secondary mw-prose mb-0">
+                    Moving from UI work to SEO tuning, I don’t cram new rules into the live conversation — I swap the
+                    relevant file into <code>CLAUDE.md</code> and start a fresh session.
+                  </p>
+
+                  <div class="post-why mw-prose">
+                    <span class="post-why-label">Why it works</span>
+                    <p class="text-secondary mb-0">
+                      You change the agent’s operating lens instead of fighting context-window degradation. It
+                      evaluates the codebase against one laser-focused set of domain constraints at a time.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ---- 03.3 — fresh sessions ---- -->
+                <div class="post-sub" aria-labelledby="claude-code-3-title">
+                  <div class="d-flex align-items-baseline gap-3 mb-2">
+                    <span class="post-sub-number" aria-hidden="true">03.3</span>
+                    <h3 id="claude-code-3-title" class="h4 fw-bold mb-0">
+                      The 15% rule: restart before the agent drifts
+                    </h3>
+                  </div>
+                  <p class="post-callout mw-prose">
+                    One focused session per meaningful unit of work. Long conversations breed sloppy code.
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">
+                    It’s tempting to leave one session open for hours, but long contexts accumulate hallucinated
+                    variables, obsolete errors, and stale instructions. My heuristic: restart once context usage hits
+                    ~15%, or whenever a distinct task is done.
+                  </p>
+
+                  <p class="fs-7 fw-semibold text-uppercase tracking-wide text-secondary mb-3">
+                    Layout iteration workflow
+                  </p>
+                  <ol class="list-unstyled vstack gap-3 mb-0">
+                    <li class="d-flex gap-4">
+                      <span
+                        class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                        style="width: 3rem; height: 3rem"
+                        >01</span
+                      >
+                      <div class="flex-grow-1">
+                        <h4 class="h6 fw-semibold mb-2">Session 1 — Hero section</h4>
+                        <div class="post-code">
+                          <div class="post-code-bar">
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-code-label">prompt</span>
+                          </div>
+                          <pre class="mb-0"><code>Build the hero section with a headline, bio
+snippet, and primary CTA.</code></pre>
+                        </div>
+                        <p class="small text-secondary mt-2 mb-0">
+                          Iterate on feedback until complete, then exit the session.
+                        </p>
+                      </div>
+                    </li>
+                    <li class="d-flex gap-4">
+                      <span
+                        class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                        style="width: 3rem; height: 3rem"
+                        >02</span
+                      >
+                      <div class="flex-grow-1">
+                        <h4 class="h6 fw-semibold mb-2">Session 2 — “What I Do” section</h4>
+                        <div class="post-code">
+                          <div class="post-code-bar">
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-tree-dot" aria-hidden="true"></span>
+                            <span class="post-code-label">prompt</span>
+                          </div>
+                          <pre class="mb-0"><code>Build the "What I Do" section displaying my core
+engineering focus areas.</code></pre>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+
+                  <div class="post-why mw-prose">
+                    <span class="post-why-label">Why it works</span>
+                    <p class="text-secondary mb-0">
+                      Less accumulated noise means faster responses, sharper adherence to constraints, and easier
+                      course correction when an execution path goes off the rails.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ---- 03.4 — review artifacts ---- -->
+                <div class="post-sub" aria-labelledby="claude-code-4-title">
+                  <div class="d-flex align-items-baseline gap-3 mb-2">
+                    <span class="post-sub-number" aria-hidden="true">03.4</span>
+                    <h3 id="claude-code-4-title" class="h4 fw-bold mb-0">
+                      Review artifacts: turn loose audits into executable checklists
+                    </h3>
+                  </div>
+                  <p class="post-callout mw-prose">
+                    Never ask an agent to “review and fix everything.” Make it write a Markdown task tracker first.
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">
+                    Asking for a sweeping fix invites sweeping, unexpected changes. Instead I make the agent commit an
+                    explicit review artifact to the repo before it touches a line of code.
+                  </p>
+
+                  <p class="fs-7 fw-semibold text-uppercase tracking-wide text-secondary mb-2">
+                    Step 1 — Generate the audit log
+                  </p>
+                  <figure class="mb-3">
+                    <div class="post-code">
+                      <div class="post-code-bar">
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-code-label">prompt</span>
+                      </div>
+                      <pre class="mb-0"><code>Review the homepage for mobile spacing and design
+inconsistencies. Flag each issue, suggest a fix, add
+a Status column, and save the result to
+local/design-review.md.</code></pre>
+                    </div>
+                  </figure>
+
+                  <p class="text-secondary mw-prose mb-3">It produces a structured Markdown file:</p>
+                  <figure class="mb-3">
+                    <div class="post-table table-responsive">
+                      <table class="table align-middle mb-0">
+                        <caption class="visually-hidden">
+                          Example design review audit generated as a Markdown table
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col" class="fs-7 text-uppercase tracking-wide text-secondary">Item</th>
+                            <th scope="col" class="fs-7 text-uppercase tracking-wide text-secondary">Issue</th>
+                            <th scope="col" class="fs-7 text-uppercase tracking-wide text-secondary">Suggested fix</th>
+                            <th scope="col" class="fs-7 text-uppercase tracking-wide text-secondary">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Hero padding too large on mobile</td>
+                            <td>Reduce top padding to <code>pt-8</code> at the <code>sm</code> breakpoint</td>
+                            <td><span class="badge text-bg-secondary fw-medium">Pending</span></td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Code block overflow</td>
+                            <td>Add <code>overflow-x-auto</code> to <code>pre</code> tags</td>
+                            <td><span class="badge text-bg-secondary fw-medium">Pending</span></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>CTA button contrast</td>
+                            <td>Upgrade text from <code>text-gray-400</code> to <code>text-gray-100</code></td>
+                            <td><span class="badge text-bg-secondary fw-medium">Pending</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </figure>
+
+                  <p class="fs-7 fw-semibold text-uppercase tracking-wide text-secondary mb-2">
+                    Step 2 — Execute granular fixes
+                  </p>
+                  <p class="text-secondary mw-prose mb-3">
+                    Now I review the list, drop the non-issues, and work it one row at a time:
+                  </p>
+                  <figure class="mb-0">
+                    <div class="post-code">
+                      <div class="post-code-bar">
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-tree-dot" aria-hidden="true"></span>
+                        <span class="post-code-label">prompt</span>
+                      </div>
+                      <pre class="mb-0"><code>Fix item 1 in local/design-review.md. Mark as Done
+when complete.</code></pre>
+                    </div>
+                  </figure>
+
+                  <div class="post-why mw-prose">
+                    <span class="post-why-label">Why it works</span>
+                    <p class="text-secondary mb-0">
+                      The Markdown file is a shared source of truth between you and the agent. You get full oversight
+                      before a single file changes — a vague feedback loop becomes a deterministic checklist.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- ---- Section 4: Results ---- -->
+              <section id="results" class="post-section" aria-labelledby="results-title">
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                  <span class="post-section-number" aria-hidden="true">04</span>
+                  <h2 id="results-title" class="mb-0">Results</h2>
+                </div>
+                <!-- The hook: same serif .post-lead as §1–3. -->
+                <p class="post-lead mw-prose mb-3">
+                  Near-perfect Lighthouse scores — 100 on accessibility, best practices, and SEO, and 99 on
+                  performance.
+                </p>
+                <p class="text-secondary mw-prose mb-5">
+                  In practice that means near-instant loads from the CDN, same-day indexing in Google Search Console,
+                  and — with no server or database in the picture — nothing to patch or secure.
+                </p>
+
+                <!-- Lighthouse: the category scores as a scannable band, then the
+                     report itself. Score tiles cycle the same cool washes as the
+                     §1–2 card grids (src/scss/main.scss: .post-scores). -->
+                <div class="row row-cols-2 row-cols-lg-4 g-3 post-scores mb-4">
+                  <div class="col">
+                    <div class="post-score">
+                      <p class="post-score-value mb-0">99<span>&nbsp;/ 100</span></p>
+                      <p class="post-score-label mb-0">Performance</p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="post-score">
+                      <p class="post-score-value mb-0">100<span>&nbsp;/ 100</span></p>
+                      <p class="post-score-label mb-0">Accessibility</p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="post-score">
+                      <p class="post-score-value mb-0">100<span>&nbsp;/ 100</span></p>
+                      <p class="post-score-label mb-0">Best Practices</p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="post-score">
+                      <p class="post-score-value mb-0">100<span>&nbsp;/ 100</span></p>
+                      <p class="post-score-label mb-0">SEO</p>
+                    </div>
+                  </div>
+                </div>
+
+                <figure class="mb-5">
+                  <div class="rounded-4 overflow-hidden border shadow-sm bg-white">
+                    <div class="ratio" style="--bs-aspect-ratio: 26%">
+                      <img
+                        class="w-100 h-100 object-fit-cover"
+                        style="object-position: 50% 12%"
+                        src="/images/blog/Lighthouse.png"
+                        alt="Lighthouse report for liandrejohn.com: 100 for Accessibility, Best Practices, and SEO, and 99 for Performance."
+                        width="2040"
+                        height="2356"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <figcaption class="small text-secondary mt-3 mb-0">
+                    The Lighthouse run — three categories at 100, performance one point short.
+                  </figcaption>
+                </figure>
+
+                <!-- Proof gallery: Search Console + Analytics 2-up, then a
+                     full-page capture of the live site in a browser-window
+                     frame. The tall captures present from the top edge
+                     (src/scss/main.scss: .object-position-top). -->
+                <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                  <div class="col">
+                    <figure class="mb-0">
+                      <div class="ratio ratio-16x9 rounded-4 overflow-hidden border shadow-sm bg-primary-subtle">
+                        <img
+                          class="w-100 h-100 object-fit-cover object-position-top"
+                          src="/images/blog/Google_Search_Console.png"
+                          alt="Google Search Console for liandrejohn.com showing indexed pages and rising impressions."
+                          width="3354"
+                          height="1546"
+                          loading="lazy"
+                        />
+                      </div>
+                      <figcaption class="small text-secondary mt-3 mb-0">
+                        Search Console — indexed within a day of the first deploy.
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <figure class="mb-0">
+                      <div class="ratio ratio-16x9 rounded-4 overflow-hidden border shadow-sm bg-primary-subtle">
+                        <img
+                          class="w-100 h-100 object-fit-cover object-position-top"
+                          src="/images/blog/Analytics.png"
+                          alt="Google Analytics dashboard for liandrejohn.com with page views and engagement by channel."
+                          width="2636"
+                          height="1932"
+                          loading="lazy"
+                        />
+                      </div>
+                      <figcaption class="small text-secondary mt-3 mb-0">
+                        Analytics — enough signal to learn what works, nothing that tracks people around.
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+
+                <figure class="mb-0">
+                  <div class="post-tree rounded-4 overflow-hidden border shadow-sm">
+                    <div class="post-tree-bar">
+                      <span class="post-tree-dot" aria-hidden="true"></span>
+                      <span class="post-tree-dot" aria-hidden="true"></span>
+                      <span class="post-tree-dot" aria-hidden="true"></span>
+                      <span class="ms-2 small text-on-dark-muted font-monospace">liandrejohn.com</span>
+                    </div>
+                    <div class="ratio bg-white" style="--bs-aspect-ratio: 66%">
+                      <img
+                        class="w-100 h-100 object-fit-cover object-position-top"
+                        src="/images/blog/Portfolio_Website.png"
+                        alt="Full-page screenshot of the finished liandrejohn.com, from the dark hero down into the work sections."
+                        width="2964"
+                        height="11440"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <figcaption class="small text-secondary mt-3 mb-0">
+                    The finished site, live on CloudFront.
+                  </figcaption>
+                </figure>
+              </section>
+
+              <!-- ---- Section 5: Conclusion ---- -->
+              <section id="conclusion" class="post-section" aria-labelledby="conclusion-title">
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                  <span class="post-section-number" aria-hidden="true">05</span>
+                  <h2 id="conclusion-title" class="mb-0">Conclusion</h2>
+                </div>
+                <!-- The hook: same serif .post-lead as §1–4. -->
+                <p class="post-lead mw-prose mb-3">
+                  The results came from a disciplined system, not from prompt engineering.
+                </p>
+                <p class="text-secondary mw-prose mb-5">
+                  Four habits did the work — the same four from §3, in the order they mattered. Together they
+                  turned the agent into a high-precision execution tool.
+                </p>
+
+                <!-- Recap: the four §3 habits as a numbered list, reusing the
+                     workflow pattern from 03.3 (3rem number badge + heading +
+                     one supporting line) so the takeaways read as one sequence. -->
+                <ol class="list-unstyled vstack gap-4 mb-5">
+                  <li class="d-flex gap-4">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                      style="width: 3rem; height: 3rem"
+                      >01</span
+                    >
+                    <div class="flex-grow-1">
+                      <h3 class="h5 fw-bold mb-2">Write <code>CLAUDE.md</code> once, save time forever</h3>
+                      <p class="text-secondary mw-prose mb-0">
+                        Keeping the architecture rules in the repo meant every build command could stay short and
+                        precise.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="d-flex gap-4">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                      style="width: 3rem; height: 3rem"
+                      >02</span
+                    >
+                    <div class="flex-grow-1">
+                      <h3 class="h5 fw-bold mb-2">Change operating lenses as you work</h3>
+                      <p class="text-secondary mw-prose mb-0">
+                        Swapping context files for UI, SEO, and CI/CD kept the agent judging the codebase against
+                        only the constraints that applied.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="d-flex gap-4">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                      style="width: 3rem; height: 3rem"
+                      >03</span
+                    >
+                    <div class="flex-grow-1">
+                      <h3 class="h5 fw-bold mb-2">Start fresh before the agent drifts</h3>
+                      <p class="text-secondary mw-prose mb-0">
+                        Restarting around ~15% context usage stopped stale bugs and accumulated noise from working
+                        their way into clean code.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="d-flex gap-4">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
+                      style="width: 3rem; height: 3rem"
+                      >04</span
+                    >
+                    <div class="flex-grow-1">
+                      <h3 class="h5 fw-bold mb-2">Make the agent build its own task list</h3>
+                      <p class="text-secondary mw-prose mb-0">
+                        A Markdown checklist gave me full oversight before a single file changed.
+                      </p>
+                    </div>
+                  </li>
+                </ol>
+
+                <!-- Closing thesis — the same serif accent rule (.post-callout)
+                     that opened each §3 sub-part, reused here to land the point. -->
+                <p class="post-callout mw-prose mb-0">
+                  Claude Code accelerated the build, but the system around it kept me in control. AI-assisted
+                  engineering isn’t about typing fewer lines of code — it’s about building the constraints that make
+                  execution clean and predictable.
+                </p>
+              </section>
+
+              <!-- ---- Section 6: Resources ---- -->
+              <section id="resources" class="post-section" aria-labelledby="resources-title">
+                <div class="d-flex align-items-baseline gap-3 mb-3">
+                  <span class="post-section-number" aria-hidden="true">06</span>
+                  <h2 id="resources-title" class="mb-0">Resources</h2>
+                </div>
+                <!-- Just the two canonical links. Plain list, no cards. -->
+                <ul class="list-unstyled vstack gap-2 mb-0">
+                  <li>
+                    <a
+                      href="https://liandrejohn.com/"
+                      data-analytics-event="cta_click"
+                      data-analytics-button-name="view_site"
+                      data-analytics-section-name="blog_post_resources"
+                      >liandrejohn.com</a
+                    >
+                    <span class="text-secondary">— the live portfolio</span>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/lpdecastro/liandrejohn.com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="social_click"
+                      data-analytics-section-name="blog_post_resources"
+                      data-analytics-position="resources"
+                      >github.com/lpdecastro/liandrejohn.com</a
+                    >
+                    <span class="text-secondary">— the full source</span>
+                  </li>
+                </ul>
               </section>
             </div>
           </div>
