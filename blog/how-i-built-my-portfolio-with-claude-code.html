@@ -250,7 +250,7 @@
                   <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
                   <span class="text-nowrap">AI-assisted engineering</span>
                 </div>
-                <h1 class="display-3 fw-bold mb-0">How I built my portfolio with Claude Code</h1>
+                <h1 class="display-5 fw-bold mb-0">How I built my portfolio with Claude Code</h1>
                 <p class="lead text-on-dark-muted mb-0">
                   The useful part wasn’t asking AI to write more code. It was giving it a smaller, clearer system to
                   reason inside — then reviewing each decision before it shipped.
@@ -263,33 +263,36 @@
                   <span aria-hidden="true">·</span>
                   <span>6 min read</span>
                 </p>
-                <div class="d-flex flex-wrap gap-3">
+                <!-- One primary action (start reading). "View site" / "Open on
+                     GitHub" drop to quiet inline links here and reappear as
+                     buttons in the closing author card. -->
+                <div class="d-flex flex-column align-items-start gap-3">
                   <a
                     class="btn btn-primary"
                     href="#what-i-built"
                     data-analytics-event="cta_click"
-                    data-analytics-button-name="read_the_blog"
+                    data-analytics-button-name="start_reading"
                     data-analytics-section-name="blog_post_header"
-                    >Read the blog</a
+                    >Start reading</a
                   >
-                  <a
-                    class="btn btn-outline-light"
-                    href="https://liandrejohn.com/"
-                    data-analytics-event="cta_click"
-                    data-analytics-button-name="view_site"
-                    data-analytics-section-name="blog_post_header"
-                    >View site</a
-                  >
-                  <a
-                    class="btn btn-outline-light"
-                    href="https://github.com/lpdecastro/liandrejohn.com"
-                    target="_blank"
-                    rel="noopener"
-                    data-analytics-event="social_click"
-                    data-analytics-section-name="blog_post_header"
-                    data-analytics-position="header"
-                    >Open on GitHub</a
-                  >
+                  <span class="post-hero-links d-flex flex-wrap gap-3 small">
+                    <a
+                      href="https://liandrejohn.com/"
+                      data-analytics-event="cta_click"
+                      data-analytics-button-name="view_site"
+                      data-analytics-section-name="blog_post_header"
+                      >View the live site &rarr;</a
+                    >
+                    <a
+                      href="https://github.com/lpdecastro/liandrejohn.com"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="social_click"
+                      data-analytics-section-name="blog_post_header"
+                      data-analytics-position="header"
+                      >Source on GitHub &rarr;</a
+                    >
+                  </span>
                 </div>
               </div>
               <!-- Right column: hero media placeholder. A framed "prompt"
@@ -300,7 +303,9 @@
                    for now"). Solid $dark + a hairline light border lifts it
                    off the hero gradient, the same way .post-tree does on white. -->
               <div class="col-lg-5 mt-5 mt-lg-0" aria-hidden="true">
-                <div class="post-tree rounded-4 overflow-hidden border border-light border-opacity-10">
+                <div
+                  class="post-tree post-hero-panel rounded-4 overflow-hidden border border-light border-opacity-10"
+                >
                   <div class="post-tree-bar">
                     <span class="post-tree-dot"></span>
                     <span class="post-tree-dot"></span>
@@ -309,16 +314,12 @@
                   </div>
                   <div class="p-4 p-lg-5 font-monospace small lh-lg">
                     <p class="mb-3 text-white">
-                      <span class="text-primary">❯</span> claude “Build the hero section.”
+                      <span class="text-primary">❯</span> claude “Add the concept-builds section.”
                     </p>
-                    <p class="mb-3 text-white">
-                      <span class="text-primary">❯</span> claude “Build the ‘What I Do’ section.”
-                    </p>
-                    <p class="mb-0 text-white">
-                      <span class="text-primary">❯</span> claude “Fix the mobile nav spacing.”<span
-                        class="text-primary"
-                        >&nbsp;▍</span
-                      >
+                    <p class="mb-2 text-on-dark-muted">context&nbsp;&nbsp;CLAUDE.md + CLAUDE-design.md</p>
+                    <p class="mb-2 text-on-dark-muted">plan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local/design-review.md</p>
+                    <p class="mb-0 text-on-dark-muted">
+                      result&nbsp;&nbsp;&nbsp;1 section, reviewed row by row<span class="text-primary">&nbsp;▍</span>
                     </p>
                   </div>
                 </div>
@@ -341,15 +342,62 @@
             <!-- Table of contents: #tocNav is the ScrollSpy target (see <body>). -->
             <div class="col-lg-3">
               <nav id="tocNav" class="post-toc" aria-label="On this page">
-                <p class="text-uppercase fs-7 fw-semibold tracking-wide text-secondary mb-3">On this page</p>
-                <ol class="nav flex-column mb-0">
-                  <li class="nav-item"><a class="nav-link" href="#what-i-built">What I built</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#tech-stack">Tech stack</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#claude-code">Claude Code</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#results">Results</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#conclusion">Conclusion</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
-                </ol>
+                <!-- Desktop: a static heading above the sticky rail. Mobile: the
+                     same label becomes a <details> summary so the six-item box
+                     can be folded away. -->
+                <p
+                  class="post-toc-heading d-none d-lg-block text-uppercase fs-7 fw-semibold tracking-wide text-secondary mb-3"
+                >
+                  On this page
+                </p>
+                <details class="post-toc-details" open>
+                  <summary class="post-toc-summary d-lg-none">
+                    <span class="post-toc-summary-inner">
+                      <span class="text-uppercase fs-7 fw-semibold tracking-wide text-secondary">On this page</span>
+                      <svg
+                        class="post-toc-chevron"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path d="M3 5h10L8 11z" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <ol class="nav flex-column mb-0 mt-3 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#what-i-built">What I built</a></li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#tech-stack">Tech stack: no framework, no server</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#claude-code">Claude Code: four habits that did the work</a>
+                      <ol class="nav flex-column post-toc-sub">
+                        <li class="nav-item">
+                          <a class="nav-link" href="#claude-code-context">Write the stack down once</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#claude-code-files">Swap context files by phase</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#claude-code-sessions">Restart before it drifts</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#claude-code-review">Make it write a checklist first</a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#results">Results: near-perfect Lighthouse, same-day indexing</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#conclusion">What I’d tell you to copy</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+                  </ol>
+                </details>
               </nav>
             </div>
 
@@ -357,8 +405,8 @@
             <div class="col-lg-9">
               <!-- ---- Section 1: What I built ---- -->
               <section id="what-i-built" class="post-section" aria-labelledby="what-i-built-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">01</span>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">01 / 06</span>
                   <h2 id="what-i-built-title" class="mb-0">What I built</h2>
                 </div>
                 <!-- The hook: larger and darker than the supporting line so a
@@ -376,12 +424,12 @@
                 <!-- Four decisions that shaped the build. Each card sits on its own
                      faint cool wash (src/scss/main.scss: .post-facts); the name is
                      the dominant line, the eyebrow a quiet category tag. -->
-                <div class="row row-cols-1 row-cols-sm-2 g-3 post-facts mb-4">
+                <div class="row row-cols-1 row-cols-sm-2 g-3 post-facts post-bleed mb-4">
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
                         <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Structure</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">Single page</h3>
+                        <h3 class="h5 fw-semibold text-dark mb-2">Single page</h3>
                         <p class="text-secondary mb-0">
                           One deliberate narrative instead of a maze of pages.
                         </p>
@@ -392,7 +440,7 @@
                     <div class="card h-100">
                       <div class="card-body">
                         <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Discoverability</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">SEO &amp; GEO</h3>
+                        <h3 class="h5 fw-semibold text-dark mb-2">SEO &amp; GEO</h3>
                         <p class="text-secondary mb-0">
                           Structured data, a clear site map, and explicit crawler guidance.
                         </p>
@@ -403,7 +451,7 @@
                     <div class="card h-100">
                       <div class="card-body">
                         <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Delivery</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">CI/CD</h3>
+                        <h3 class="h5 fw-semibold text-dark mb-2">CI/CD</h3>
                         <p class="text-secondary mb-0">
                           A repeatable path from a merged change to a live site.
                         </p>
@@ -414,7 +462,7 @@
                     <div class="card h-100">
                       <div class="card-body">
                         <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Trust</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">Analytics</h3>
+                        <h3 class="h5 fw-semibold text-dark mb-2">Analytics</h3>
                         <p class="text-secondary mb-0">
                           Enough signal to learn what works without tracking people around.
                         </p>
@@ -424,7 +472,7 @@
                 </div>
 
                 <!-- Screenshot: the finished homepage this post is about. -->
-                <figure class="mb-0">
+                <figure class="post-bleed mb-0">
                   <div class="ratio ratio-16x9 rounded-4 overflow-hidden border shadow-sm bg-primary-subtle">
                     <img
                       class="w-100 h-100 object-fit-cover"
@@ -443,8 +491,8 @@
 
               <!-- ---- Section 2: Tech stack ---- -->
               <section id="tech-stack" class="post-section" aria-labelledby="tech-stack-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">02</span>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">02 / 06</span>
                   <h2 id="tech-stack-title" class="mb-0">Tech stack</h2>
                 </div>
                 <!-- The hook: same serif .post-lead as §1. -->
@@ -453,60 +501,44 @@
                   and an AI agent to understand correctly on the first try.
                 </p>
 
-                <!-- Four stack choices, one per layer. Same faint cool washes and
-                     card treatment as §1 (src/scss/main.scss: .post-facts) so the
-                     two grids read as one system. -->
-                <div class="row row-cols-1 row-cols-sm-2 g-3 post-facts mb-4">
-                  <div class="col">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Frontend</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">Bootstrap + Sass</h3>
-                        <p class="text-secondary mb-0">
-                          Utilities, components, design tokens, self-hosted Inter, and inline SVG icons.
-                        </p>
-                      </div>
-                    </div>
+                <!-- Four stack choices, one per layer — a hairline-divided spec
+                     list, deliberately not §1's washed card grid (spec: don't
+                     force every section into the same layout). -->
+                <dl class="post-stack mb-4">
+                  <div>
+                    <dt>
+                      <span class="post-stack-layer">Frontend</span>
+                      <span class="post-stack-choice">Bootstrap + Sass</span>
+                    </dt>
+                    <dd>Utilities, components, design tokens, self-hosted Inter, and inline SVG icons.</dd>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Build tooling</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">Vite</h3>
-                        <p class="text-secondary mb-0">
-                          Multi-page output, with the blog and homepage defined as explicit build entries.
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <dt>
+                      <span class="post-stack-layer">Build tooling</span>
+                      <span class="post-stack-choice">Vite</span>
+                    </dt>
+                    <dd>Multi-page output, with the blog and homepage defined as explicit build entries.</dd>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Hosting</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">S3 + CloudFront</h3>
-                        <p class="text-secondary mb-0">
-                          Private bucket, CDN delivery, Route 53, and ACM for DNS and TLS.
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <dt>
+                      <span class="post-stack-layer">Hosting</span>
+                      <span class="post-stack-choice">S3 + CloudFront</span>
+                    </dt>
+                    <dd>Private bucket, CDN delivery, Route 53, and ACM for DNS and TLS.</dd>
                   </div>
-                  <div class="col">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Automation</p>
-                        <h3 class="h4 fw-bold text-dark mb-3">GitHub Actions</h3>
-                        <p class="text-secondary mb-0">
-                          Build, sync, invalidate, and authenticate with IAM OIDC — no static AWS keys.
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <dt>
+                      <span class="post-stack-layer">Automation</span>
+                      <span class="post-stack-choice">GitHub Actions</span>
+                    </dt>
+                    <dd>Build, sync, invalidate, and authenticate with IAM OIDC — no static AWS keys.</dd>
                   </div>
-                </div>
+                </dl>
 
                 <!-- Project tree: a dark "file explorer" panel that echoes the hero
                      ground. The "# …" notes are dimmed (.post-tree-comment) so the
                      structure reads first. -->
-                <figure class="mb-0">
+                <figure class="post-bleed mb-0">
                   <div class="post-tree rounded-4 overflow-hidden border shadow-sm">
                     <div class="post-tree-bar">
                       <span class="post-tree-dot" aria-hidden="true"></span>
@@ -537,8 +569,8 @@
 
               <!-- ---- Section 3: Claude Code ---- -->
               <section id="claude-code" class="post-section" aria-labelledby="claude-code-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">03</span>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">03 / 06</span>
                   <h2 id="claude-code-title" class="mb-0">Claude Code</h2>
                 </div>
                 <!-- The hook: same serif .post-lead as §1–2. -->
@@ -546,14 +578,35 @@
                   Claude Code works best for me as a collaborator inside a system of constraints — not as an
                   agent I hand a giant prompt and a blank canvas.
                 </p>
-                <p class="text-secondary mw-prose mb-5">
+                <p class="text-secondary mw-prose mb-4">
                   Most of my prompts are surprisingly short. They work because I spend the effort on the context
                   <em>around</em> the prompt: persistent instructions, focused sessions, task-specific rules, and
-                  review artifacts the agent can work through one step at a time. Four habits do most of the work.
+                  review artifacts the agent can work through one step at a time. Four habits do most of the work:
                 </p>
 
+                <!-- The whole shape of §3 in one scan — each row deep-links to its
+                     sub-part (mirrored by the nested table of contents). -->
+                <ol class="post-habits">
+                  <li>
+                    <a href="#claude-code-context"
+                      ><span>01</span> Write the stack down once, then keep every prompt short</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#claude-code-files"><span>02</span> Swap context files when you swap work phases</a>
+                  </li>
+                  <li>
+                    <a href="#claude-code-sessions"><span>03</span> Restart the session before the agent drifts</a>
+                  </li>
+                  <li>
+                    <a href="#claude-code-review"
+                      ><span>04</span> Make the agent write a checklist before it edits</a
+                    >
+                  </li>
+                </ol>
+
                 <!-- ---- 03.1 — persistent context ---- -->
-                <div class="post-sub" aria-labelledby="claude-code-1-title">
+                <div class="post-sub" id="claude-code-context" aria-labelledby="claude-code-1-title">
                   <div class="d-flex align-items-baseline gap-3 mb-2">
                     <span class="post-sub-number" aria-hidden="true">03.1</span>
                     <h3 id="claude-code-1-title" class="h4 fw-bold mb-0">
@@ -600,17 +653,10 @@ backend systems and developer tooling.
                     Because that loads on its own, the actual prompt is whatever’s left:
                   </p>
 
-                  <figure class="mb-0">
-                    <div class="post-code">
-                      <div class="post-code-bar">
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-code-label">prompt</span>
-                      </div>
-                      <pre class="mb-0"><code>Build the hero section.</code></pre>
-                    </div>
-                  </figure>
+                  <p class="post-prompt">
+                    <span class="post-prompt-caret" aria-hidden="true">❯</span>
+                    <span>Build the hero section.</span>
+                  </p>
 
                   <div class="post-why mw-prose">
                     <span class="post-why-label">Why it works</span>
@@ -622,7 +668,7 @@ backend systems and developer tooling.
                 </div>
 
                 <!-- ---- 03.2 — swappable context files ---- -->
-                <div class="post-sub" aria-labelledby="claude-code-2-title">
+                <div class="post-sub" id="claude-code-files" aria-labelledby="claude-code-2-title">
                   <div class="d-flex align-items-baseline gap-3 mb-2">
                     <span class="post-sub-number" aria-hidden="true">03.2</span>
                     <h3 id="claude-code-2-title" class="h4 fw-bold mb-0">One project, six personalities</h3>
@@ -668,7 +714,7 @@ backend systems and developer tooling.
                 </div>
 
                 <!-- ---- 03.3 — fresh sessions ---- -->
-                <div class="post-sub" aria-labelledby="claude-code-3-title">
+                <div class="post-sub" id="claude-code-sessions" aria-labelledby="claude-code-3-title">
                   <div class="d-flex align-items-baseline gap-3 mb-2">
                     <span class="post-sub-number" aria-hidden="true">03.3</span>
                     <h3 id="claude-code-3-title" class="h4 fw-bold mb-0">
@@ -691,44 +737,35 @@ backend systems and developer tooling.
                     <li class="d-flex gap-4">
                       <span
                         class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                        style="width: 3rem; height: 3rem"
+                        style="width: 2.25rem; height: 2.25rem"
                         >01</span
                       >
                       <div class="flex-grow-1">
                         <h4 class="h6 fw-semibold mb-2">Session 1 — Hero section</h4>
-                        <div class="post-code">
-                          <div class="post-code-bar">
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-code-label">prompt</span>
-                          </div>
-                          <pre class="mb-0"><code>Build the hero section with a headline, bio
-snippet, and primary CTA.</code></pre>
-                        </div>
-                        <p class="small text-secondary mt-2 mb-0">
-                          Iterate on feedback until complete, then exit the session.
+                        <p class="post-prompt mb-2">
+                          <span class="post-prompt-caret" aria-hidden="true">❯</span>
+                          <span>Build the hero section with a headline, bio snippet, and primary CTA.</span>
+                        </p>
+                        <p class="small text-secondary mb-0">
+                          Iterate on feedback until it’s done, then exit the session.
                         </p>
                       </div>
                     </li>
                     <li class="d-flex gap-4">
                       <span
                         class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                        style="width: 3rem; height: 3rem"
+                        style="width: 2.25rem; height: 2.25rem"
                         >02</span
                       >
                       <div class="flex-grow-1">
                         <h4 class="h6 fw-semibold mb-2">Session 2 — “What I Do” section</h4>
-                        <div class="post-code">
-                          <div class="post-code-bar">
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-tree-dot" aria-hidden="true"></span>
-                            <span class="post-code-label">prompt</span>
-                          </div>
-                          <pre class="mb-0"><code>Build the "What I Do" section displaying my core
-engineering focus areas.</code></pre>
-                        </div>
+                        <p class="post-prompt mb-2">
+                          <span class="post-prompt-caret" aria-hidden="true">❯</span>
+                          <span>Build the “What I Do” section displaying my core engineering focus areas.</span>
+                        </p>
+                        <p class="small text-secondary mb-0">
+                          Fresh context, same loop — review, land it, then exit before section three.
+                        </p>
                       </div>
                     </li>
                   </ol>
@@ -743,7 +780,7 @@ engineering focus areas.</code></pre>
                 </div>
 
                 <!-- ---- 03.4 — review artifacts ---- -->
-                <div class="post-sub" aria-labelledby="claude-code-4-title">
+                <div class="post-sub" id="claude-code-review" aria-labelledby="claude-code-4-title">
                   <div class="d-flex align-items-baseline gap-3 mb-2">
                     <span class="post-sub-number" aria-hidden="true">03.4</span>
                     <h3 id="claude-code-4-title" class="h4 fw-bold mb-0">
@@ -777,7 +814,7 @@ local/design-review.md.</code></pre>
                   </figure>
 
                   <p class="text-secondary mw-prose mb-3">It produces a structured Markdown file:</p>
-                  <figure class="mb-3">
+                  <figure class="post-bleed mb-3">
                     <div class="post-table table-responsive">
                       <table class="table align-middle mb-0">
                         <caption class="visually-hidden">
@@ -821,18 +858,10 @@ local/design-review.md.</code></pre>
                   <p class="text-secondary mw-prose mb-3">
                     Now I review the list, drop the non-issues, and work it one row at a time:
                   </p>
-                  <figure class="mb-0">
-                    <div class="post-code">
-                      <div class="post-code-bar">
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-tree-dot" aria-hidden="true"></span>
-                        <span class="post-code-label">prompt</span>
-                      </div>
-                      <pre class="mb-0"><code>Fix item 1 in local/design-review.md. Mark as Done
-when complete.</code></pre>
-                    </div>
-                  </figure>
+                  <p class="post-prompt">
+                    <span class="post-prompt-caret" aria-hidden="true">❯</span>
+                    <span>Fix item 1 in local/design-review.md. Mark as Done when complete.</span>
+                  </p>
 
                   <div class="post-why mw-prose">
                     <span class="post-why-label">Why it works</span>
@@ -846,24 +875,23 @@ when complete.</code></pre>
 
               <!-- ---- Section 4: Results ---- -->
               <section id="results" class="post-section" aria-labelledby="results-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">04</span>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">04 / 06</span>
                   <h2 id="results-title" class="mb-0">Results</h2>
                 </div>
                 <!-- The hook: same serif .post-lead as §1–3. -->
                 <p class="post-lead mw-prose mb-3">
-                  Near-perfect Lighthouse scores — 100 on accessibility, best practices, and SEO, and 99 on
-                  performance.
+                  A Lighthouse run one point off a clean sweep — the numbers are in the band below.
                 </p>
                 <p class="text-secondary mw-prose mb-5">
                   In practice that means near-instant loads from the CDN, same-day indexing in Google Search Console,
                   and — with no server or database in the picture — nothing to patch or secure.
                 </p>
 
-                <!-- Lighthouse: the category scores as a scannable band, then the
-                     report itself. Score tiles cycle the same cool washes as the
-                     §1–2 card grids (src/scss/main.scss: .post-scores). -->
-                <div class="row row-cols-2 row-cols-lg-4 g-3 post-scores mb-4">
+                <!-- Lighthouse: the category scores as one dark band that echoes
+                     the homepage career-stats bar (src/scss/main.scss:
+                     .post-scores). -->
+                <div class="row row-cols-2 row-cols-lg-4 g-3 post-scores post-bleed mb-5">
                   <div class="col">
                     <div class="post-score">
                       <p class="post-score-value mb-0">99<span>&nbsp;/ 100</span></p>
@@ -890,30 +918,11 @@ when complete.</code></pre>
                   </div>
                 </div>
 
-                <figure class="mb-5">
-                  <div class="rounded-4 overflow-hidden border shadow-sm bg-white">
-                    <div class="ratio" style="--bs-aspect-ratio: 26%">
-                      <img
-                        class="w-100 h-100 object-fit-cover"
-                        style="object-position: 50% 12%"
-                        src="/images/blog/Lighthouse.png"
-                        alt="Lighthouse report for liandrejohn.com: 100 for Accessibility, Best Practices, and SEO, and 99 for Performance."
-                        width="2040"
-                        height="2356"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                  <figcaption class="small text-secondary mt-3 mb-0">
-                    The Lighthouse run — three categories at 100, performance one point short.
-                  </figcaption>
-                </figure>
-
                 <!-- Proof gallery: Search Console + Analytics 2-up, then a
-                     full-page capture of the live site in a browser-window
-                     frame. The tall captures present from the top edge
-                     (src/scss/main.scss: .object-position-top). -->
-                <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                     full-page capture of the live site in a scrollable
+                     browser-window frame. The 2-up captures present from the
+                     top edge (src/scss/main.scss: .object-position-top). -->
+                <div class="row row-cols-1 row-cols-md-2 g-4 post-bleed mb-4">
                   <div class="col">
                     <figure class="mb-0">
                       <div class="ratio ratio-16x9 rounded-4 overflow-hidden border shadow-sm bg-primary-subtle">
@@ -950,7 +959,7 @@ when complete.</code></pre>
                   </div>
                 </div>
 
-                <figure class="mb-0">
+                <figure class="post-bleed mb-0">
                   <div class="post-tree rounded-4 overflow-hidden border shadow-sm">
                     <div class="post-tree-bar">
                       <span class="post-tree-dot" aria-hidden="true"></span>
@@ -958,11 +967,15 @@ when complete.</code></pre>
                       <span class="post-tree-dot" aria-hidden="true"></span>
                       <span class="ms-2 small text-on-dark-muted font-monospace">liandrejohn.com</span>
                     </div>
-                    <div class="ratio bg-white" style="--bs-aspect-ratio: 66%">
+                    <div
+                      class="post-shot-scroll"
+                      tabindex="0"
+                      role="group"
+                      aria-label="Full-page screenshot of the finished liandrejohn.com — scroll to view the whole page"
+                    >
                       <img
-                        class="w-100 h-100 object-fit-cover object-position-top"
                         src="/images/blog/Portfolio_Website.png"
-                        alt="Full-page screenshot of the finished liandrejohn.com, from the dark hero down into the work sections."
+                        alt="Full-page screenshot of the finished liandrejohn.com, from the dark hero down through the work, concept builds, and contact sections."
                         width="2964"
                         height="11440"
                         loading="lazy"
@@ -970,86 +983,32 @@ when complete.</code></pre>
                     </div>
                   </div>
                   <figcaption class="small text-secondary mt-3 mb-0">
-                    The finished site, live on CloudFront.
+                    The finished site, live on CloudFront — scroll inside the frame for the full page.
                   </figcaption>
                 </figure>
               </section>
 
               <!-- ---- Section 5: Conclusion ---- -->
               <section id="conclusion" class="post-section" aria-labelledby="conclusion-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">05</span>
-                  <h2 id="conclusion-title" class="mb-0">Conclusion</h2>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">05 / 06</span>
+                  <h2 id="conclusion-title" class="mb-0">What I’d tell you to copy</h2>
                 </div>
                 <!-- The hook: same serif .post-lead as §1–4. -->
                 <p class="post-lead mw-prose mb-3">
                   The results came from a disciplined system, not from prompt engineering.
                 </p>
-                <p class="text-secondary mw-prose mb-5">
-                  Four habits did the work — the same four from §3, in the order they mattered. Together they
-                  turned the agent into a high-precision execution tool.
+                <p class="text-secondary mw-prose mb-4">
+                  Every habit in Section 3 pulls the same direction: keep the agent’s working context small,
+                  current, and scoped to one job. Persistent instructions in <code>CLAUDE.md</code> so prompts
+                  never re-explain the stack. Swapped context files so it judges the code against one domain at a
+                  time. Fresh sessions so hallucinated variables and stale errors never reach clean work. A
+                  committed review artifact so “fix everything” becomes a checklist I approve row by row.
                 </p>
-
-                <!-- Recap: the four §3 habits as a numbered list, reusing the
-                     workflow pattern from 03.3 (3rem number badge + heading +
-                     one supporting line) so the takeaways read as one sequence. -->
-                <ol class="list-unstyled vstack gap-4 mb-5">
-                  <li class="d-flex gap-4">
-                    <span
-                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                      style="width: 3rem; height: 3rem"
-                      >01</span
-                    >
-                    <div class="flex-grow-1">
-                      <h3 class="h5 fw-bold mb-2">Write <code>CLAUDE.md</code> once, save time forever</h3>
-                      <p class="text-secondary mw-prose mb-0">
-                        Keeping the architecture rules in the repo meant every build command could stay short and
-                        precise.
-                      </p>
-                    </div>
-                  </li>
-                  <li class="d-flex gap-4">
-                    <span
-                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                      style="width: 3rem; height: 3rem"
-                      >02</span
-                    >
-                    <div class="flex-grow-1">
-                      <h3 class="h5 fw-bold mb-2">Change operating lenses as you work</h3>
-                      <p class="text-secondary mw-prose mb-0">
-                        Swapping context files for UI, SEO, and CI/CD kept the agent judging the codebase against
-                        only the constraints that applied.
-                      </p>
-                    </div>
-                  </li>
-                  <li class="d-flex gap-4">
-                    <span
-                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                      style="width: 3rem; height: 3rem"
-                      >03</span
-                    >
-                    <div class="flex-grow-1">
-                      <h3 class="h5 fw-bold mb-2">Start fresh before the agent drifts</h3>
-                      <p class="text-secondary mw-prose mb-0">
-                        Restarting around ~15% context usage stopped stale bugs and accumulated noise from working
-                        their way into clean code.
-                      </p>
-                    </div>
-                  </li>
-                  <li class="d-flex gap-4">
-                    <span
-                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-muted text-primary-emphasis fw-bold lh-1 align-self-start"
-                      style="width: 3rem; height: 3rem"
-                      >04</span
-                    >
-                    <div class="flex-grow-1">
-                      <h3 class="h5 fw-bold mb-2">Make the agent build its own task list</h3>
-                      <p class="text-secondary mw-prose mb-0">
-                        A Markdown checklist gave me full oversight before a single file changed.
-                      </p>
-                    </div>
-                  </li>
-                </ol>
+                <p class="text-secondary mw-prose mb-5">
+                  None of it is specific to this portfolio. Any codebase small enough to describe on one page can
+                  be built the same way.
+                </p>
 
                 <!-- Closing thesis — the same serif accent rule (.post-callout)
                      that opened each §3 sub-part, reused here to land the point. -->
@@ -1062,41 +1021,153 @@ when complete.</code></pre>
 
               <!-- ---- Section 6: Resources ---- -->
               <section id="resources" class="post-section" aria-labelledby="resources-title">
-                <div class="d-flex align-items-baseline gap-3 mb-3">
-                  <span class="post-section-number" aria-hidden="true">06</span>
+                <div class="post-section-head">
+                  <span class="post-section-number" aria-hidden="true">06 / 06</span>
                   <h2 id="resources-title" class="mb-0">Resources</h2>
                 </div>
-                <!-- Just the two canonical links. Plain list, no cards. -->
-                <ul class="list-unstyled vstack gap-2 mb-0">
+                <p class="post-lead mw-prose mb-4">The references behind the workflow in this post.</p>
+                <!-- Genuinely additive links (the live site + source moved to the
+                     closing card below, where they were already headed). -->
+                <ul class="post-resources">
                   <li>
+                    <a
+                      href="https://docs.anthropic.com/en/docs/claude-code/overview"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="cta_click"
+                      data-analytics-section-name="blog_post_resources"
+                      >Claude Code documentation</a
+                    >
+                    <p>Setup, <code>CLAUDE.md</code> memory files, sessions, and the review tooling this post leans on.</p>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.anthropic.com/engineering/claude-code-best-practices"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="cta_click"
+                      data-analytics-section-name="blog_post_resources"
+                      >Claude Code: best practices for agentic coding</a
+                    >
+                    <p>Anthropic’s engineering write-up on context files, scoped sessions, and plan-first workflows.</p>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/lpdecastro/liandrejohn.com/blob/main/CLAUDE.md"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="social_click"
+                      data-analytics-section-name="blog_post_resources"
+                      >This project’s <code>CLAUDE.md</code></a
+                    >
+                    <p>The actual persistent-context file that shaped every session in this build.</p>
+                  </li>
+                  <li>
+                    <a
+                      href="https://vite.dev/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="cta_click"
+                      data-analytics-section-name="blog_post_resources"
+                      >Vite</a
+                    >
+                    <p>The multi-page build tool behind both the homepage and this post.</p>
+                  </li>
+                  <li>
+                    <a
+                      href="https://getbootstrap.com/"
+                      target="_blank"
+                      rel="noopener"
+                      data-analytics-event="cta_click"
+                      data-analytics-section-name="blog_post_resources"
+                      >Bootstrap</a
+                    >
+                    <p>The utility and component layer the whole site is styled with.</p>
+                  </li>
+                </ul>
+              </section>
+
+              <!-- Closing author card + primary CTA (H2). Not a numbered section —
+                   it's the article's final beat. The two canonical links demoted
+                   from the hero land here as buttons. -->
+              <aside class="post-endcard" aria-label="About the author">
+                <img
+                  class="post-endcard-avatar"
+                  src="/images/profile.webp"
+                  alt="Liandre John de Castro"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+                <div class="post-endcard-body">
+                  <p class="post-endcard-name">Liandre John de Castro</p>
+                  <p class="post-endcard-bio">
+                    Tech Lead building enterprise digital platforms, APIs, and cloud systems — with AI-assisted
+                    engineering as a delivery multiplier.
+                  </p>
+                  <div class="post-endcard-actions">
+                    <a
+                      class="btn btn-primary"
+                      href="/#get-in-touch"
+                      data-analytics-event="cta_click"
+                      data-analytics-button-name="get_in_touch"
+                      data-analytics-section-name="blog_post_close"
+                      >Hiring or scoping a build? Get in touch</a
+                    >
                     <a
                       href="https://liandrejohn.com/"
                       data-analytics-event="cta_click"
                       data-analytics-button-name="view_site"
-                      data-analytics-section-name="blog_post_resources"
-                      >liandrejohn.com</a
+                      data-analytics-section-name="blog_post_close"
+                      >View the live site</a
                     >
-                    <span class="text-secondary">— the live portfolio</span>
-                  </li>
-                  <li>
                     <a
                       href="https://github.com/lpdecastro/liandrejohn.com"
                       target="_blank"
                       rel="noopener"
                       data-analytics-event="social_click"
-                      data-analytics-section-name="blog_post_resources"
-                      data-analytics-position="resources"
-                      >github.com/lpdecastro/liandrejohn.com</a
+                      data-analytics-section-name="blog_post_close"
+                      >Source on GitHub</a
                     >
-                    <span class="text-secondary">— the full source</span>
-                  </li>
-                </ul>
-              </section>
+                  </div>
+                </div>
+              </aside>
+              <a
+                class="post-backlink"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-section-name="blog_post_close"
+                >&larr; All posts</a
+              >
             </div>
           </div>
         </div>
       </article>
     </main>
+
+    <!-- Back-to-top button: hidden by default; main.js toggles .d-inline-flex once
+         scrolled past the hero and hides it again at the footer. Same markup and
+         wiring as the homepage. -->
+    <a
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
+      href="#top"
+      aria-label="Back to top"
+      ><svg
+        class="bi"
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
 
     <!-- ============================================================
          FOOTER — brand blurb + "Explore" anchor links + "Connect" links + copyright

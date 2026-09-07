@@ -568,17 +568,40 @@ h2,
   }
 }
 
-// "01" — big, faint, decorative numeral that pairs with each section <h2>.
-.post-section-number {
-  font-size: clamp(1.5rem, 1rem + 2vw, 2rem);
-  font-weight: 700;
-  line-height: 1;
-  color: $primary;
+// Section kicker — Pass 2 (A4/A6): a quiet "01 / 06" wayfinding label above each
+// <h2>, carrying the same short accent rule the hero eyebrow uses so the header
+// system reads as one vocabulary (was a bold accent numeral that competed with
+// the title for the same visual weight).
+.post-section-head {
+  margin-bottom: 1rem;
 }
 
-// Space between stacked article sections (each section owns its lower margin).
+.post-section-number {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $primary;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-section-number::before {
+  content: '';
+  flex-shrink: 0;
+  width: 2rem;
+  border-top: 2px solid $primary;
+}
+
+// Pass 2 (A5): a hairline rule — not just 64px of whitespace — marks where each
+// new section begins on the long white page.
 .post-section + .post-section {
-  margin-top: 4rem;
+  margin-top: 3.25rem;
+  padding-top: 3.25rem;
+  border-top: $border-width solid $border-color;
 }
 
 // Section hook — the lead line straight under each section title. Set in the
@@ -596,8 +619,14 @@ h2,
 // "What I built" cards — four faint cool washes, all cohesive with the blue
 // accent and comfortably clear of AA against the $dark body text. The washes
 // cycle by column position so the grid stays balanced at every breakpoint.
+// Pass 2 (D3): one shared wash keeps the four cards cohesive; a 3px top edge in
+// four distinct accent hues gives each a scan-anchor the near-identical pastels
+// never did. Dark body text stays well clear of AA on the single #eff6ff ground.
 .post-facts > [class*='col'] .card {
   border: 0;
+  border-top: 3px solid;
+  border-radius: $border-radius-lg;
+  background-color: $accent-soft;
 }
 
 // Roomier than Bootstrap's 1rem card padding so the name has clear air above
@@ -607,19 +636,19 @@ h2,
 }
 
 .post-facts > [class*='col']:nth-child(4n + 1) .card {
-  background-color: #eff6ff; // blue 50
+  border-top-color: #2563eb; // blue
 }
 
 .post-facts > [class*='col']:nth-child(4n + 2) .card {
-  background-color: #f1f5f9; // slate 100
+  border-top-color: #0d9488; // teal
 }
 
 .post-facts > [class*='col']:nth-child(4n + 3) .card {
-  background-color: #eef2ff; // indigo 50
+  border-top-color: #4f46e5; // indigo
 }
 
 .post-facts > [class*='col']:nth-child(4n + 4) .card {
-  background-color: #f5f3ff; // violet 50
+  border-top-color: #7c3aed; // violet
 }
 
 // Section 2 — project tree. A dark "file explorer" panel that echoes the hero
@@ -672,8 +701,10 @@ h2,
   margin-top: 3rem;
 }
 
+// Pass 2 (E6): a touch more presence so the sub-part identifier (03.1 … 03.4) is
+// not visually outranked by the numbered badges that sit inside one sub-part.
 .post-sub-number {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1;
   color: $primary;
@@ -740,13 +771,14 @@ h2,
   color: rgba($light, 0.5);
 }
 
-// "Why it works" note that closes each sub-part. Neutral slate wash so it reads
-// as a summary aside rather than another rule; the label carries the accent.
+// "Why it works" note that closes each sub-part. Pass 2 (E3): dropped the slate
+// wash for a plain indented block with only the accent label, so the
+// .post-callout is the single tinted band per sub-part and the section reads
+// calmer.
 .post-why {
   margin-top: 1.25rem;
-  padding: 1rem 1.25rem;
-  border-radius: $border-radius;
-  background-color: #f1f5f9; // slate 100 — matches .post-facts card 2
+  padding-left: 1rem;
+  border-left: 2px solid rgba($primary, 0.25);
 }
 
 .post-why-label {
@@ -787,49 +819,42 @@ h2,
 }
 
 // ===========================================================================
-// Section 4 — "Results". A four-up band of Lighthouse scores (all 100) shown
-// beside the report screenshot, then a gallery of result screenshots. The
-// score tiles cycle the same cool washes as the §1–2 card grids (by column
-// position) in a centred, number-dominant layout that echoes the homepage
-// career-stats bar.
+// Section 4 — "Results". A four-up band of Lighthouse scores shown above the
+// result screenshots. Pass 2 (F3): the band is one dark surface — a deliberate
+// rhyme with the homepage career-stats bar — instead of a third outing of the
+// §1/§2 pastel-cycle. The row keeps its gutters; the dark ground shows through
+// them as hairline dividers between the four numbers.
 // ===========================================================================
+
+.post-scores {
+  // Cancel the row's negative inline margins so the dark band's edges line up
+  // with the screenshot frames below it (the vertical gutter is left alone — it
+  // only ever shows dark-on-dark between the two mobile rows).
+  margin-inline: 0;
+  background-color: $dark;
+  border-radius: $border-radius-xl;
+  padding: 0.75rem 0.5rem;
+}
 
 .post-score {
   height: 100%;
   padding: 1.5rem 1rem;
-  border-radius: $border-radius-lg;
   text-align: center;
-}
-
-.post-scores > [class*='col']:nth-child(4n + 1) .post-score {
-  background-color: #eff6ff; // blue 50
-}
-
-.post-scores > [class*='col']:nth-child(4n + 2) .post-score {
-  background-color: #f1f5f9; // slate 100
-}
-
-.post-scores > [class*='col']:nth-child(4n + 3) .post-score {
-  background-color: #eef2ff; // indigo 50
-}
-
-.post-scores > [class*='col']:nth-child(4n + 4) .post-score {
-  background-color: #f5f3ff; // violet 50
 }
 
 .post-score-value {
   font-size: clamp(2rem, 1.6rem + 1.8vw, 2.75rem);
   font-weight: 700;
   line-height: 1;
-  color: $primary;
+  color: #fff;
   font-variant-numeric: tabular-nums;
 }
 
-// The "/ 100" denominator — quiet, so the 100 carries the tile.
+// The "/ 100" denominator — quiet, so the number carries the tile.
 .post-score-value span {
   font-size: 1rem;
   font-weight: 600;
-  color: $secondary;
+  color: rgba(#fff, 0.55);
 }
 
 .post-score-label {
@@ -838,11 +863,332 @@ h2,
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $secondary;
+  color: rgba(#fff, 0.75);
 }
 
 // Screenshot frames that should present from their top edge rather than the
 // centre (full-page and other tall captures), paired with .object-fit-cover.
 .object-position-top {
   object-position: top;
+}
+
+// ===========================================================================
+// Blog post — Pass 1 refinements: reading comfort + one measure (A1/A2), a
+// distinct treatment for §2's stack (D1), light "prompt chips" for one-line
+// prompts so the dark editor panel stays meaningful (E1/E2), a scrollable
+// frame for the full-page capture (F2), and a nested table of contents (C2).
+// ===========================================================================
+
+// A1 — long-form body size. The 15px site base suits homepage cards but is
+// small for a 6-minute read; step the article prose to 17px / 1.7. Components
+// with their own compact scale are pinned back to the base right below.
+.post {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.post-toc,
+.post-facts,
+.post-scores,
+.post-table .table {
+  font-size: $font-size-base;
+}
+
+// A2 — one reading measure. Every direct child of a section (or of a §3
+// sub-part) shares a ~42rem line length, so prose and code panels stop
+// lurching between 640px and 830px. Deliberately wide blocks — card grids,
+// the results gallery, wide screenshots, the audit table — opt out with
+// .post-bleed.
+.post-section > *:not(.post-bleed):not(.post-sub),
+.post-sub > *:not(.post-bleed) {
+  max-width: 42rem;
+}
+
+// D1 — §2 stack as a hairline-divided spec list rather than a second 2×2 card
+// grid (§1 already owns that shape). Layer eyebrow + choice on the left, the
+// one-line rationale on the right from md up.
+.post-stack {
+  margin-bottom: 0;
+  font-size: $font-size-base;
+  border-top: $border-width solid $border-color;
+}
+
+.post-stack > div {
+  padding: 1.125rem 0;
+  border-bottom: $border-width solid $border-color;
+}
+
+.post-stack dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin-bottom: 0.375rem;
+}
+
+.post-stack dd {
+  margin: 0;
+  color: $secondary;
+}
+
+@include media-breakpoint-up(md) {
+  .post-stack > div {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    column-gap: 2rem;
+    align-items: baseline;
+  }
+
+  .post-stack dt {
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-bottom: 0;
+  }
+}
+
+.post-stack-layer {
+  font-size: $font-size-base * 0.8;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $primary;
+}
+
+.post-stack-choice {
+  font-weight: 700;
+  color: $body-emphasis-color;
+}
+
+// E1 / E2 — one-line prompts render as a light "prompt chip". The dark
+// .post-code panel is kept for genuine multi-line file / prompt snippets, so a
+// 20-character command no longer sits in an 800px dark box. `.post` prefix so
+// the 38rem cap wins over the section-child measure above.
+.post .post-prompt {
+  max-width: 38rem;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid $primary;
+  border-radius: 0 $border-radius $border-radius 0;
+  background-color: #f1f5f9; // slate 100
+  color: $body-emphasis-color;
+  font-family: var(--bs-font-monospace);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.post-prompt-caret {
+  margin-right: 0.5rem;
+  color: $primary;
+  font-weight: 700;
+}
+
+// F2 — full-page capture shown at column width inside a fixed-height window the
+// reader scrolls, instead of an 11,440px image cropped down to just its hero.
+.post-shot-scroll {
+  max-height: 32rem;
+  overflow-y: auto;
+  background-color: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.post-shot-scroll img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// C2 — nested table-of-contents entries for the four §3 sub-parts. The parent
+// rail (.post-toc border-left) already draws the vertical line; these just
+// indent one step and read a size down.
+.post-toc-sub {
+  margin: 0.125rem 0 0.5rem;
+  padding-left: 1.75rem; // clears the mobile rail's -0.875rem hang, then indents
+}
+
+@include media-breakpoint-up(lg) {
+  .post-toc-sub {
+    padding-left: 1rem;
+  }
+}
+
+.post-toc-sub .nav-link {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+// ===========================================================================
+// Blog post — Pass 2 refinements: a lifted hero panel + quiet hero links
+// (B2/B5), a four-habit preview for §3 (E7), a collapsible mobile TOC (C3),
+// an additive resource list (H1), and a closing author card + CTA (H2).
+// ===========================================================================
+
+// B5 — the hero's decorative prompt panel. A step up from the $dark hero ground
+// (slate-800) plus a real shadow and a hairline top highlight, so it reads as a
+// lifted surface rather than a flat rectangle painted on the gradient.
+.post-hero-panel {
+  background-color: #1e293b;
+  box-shadow:
+    0 24px 60px rgba(#000, 0.45),
+    inset 0 1px 0 rgba(#fff, 0.06);
+}
+
+// B2 — quiet secondary links beneath the single hero CTA (was two more buttons
+// competing with it for the primary action).
+.post-hero-links a {
+  color: rgba(#fff, 0.8);
+  text-decoration: none;
+}
+
+.post-hero-links a:hover,
+.post-hero-links a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+// E7 — a 3-second preview of §3's four habits, right after the section intro.
+// Doubles as the deep-link map the nested TOC mirrors.
+.post-habits {
+  list-style: none;
+  margin: 0 0 3rem;
+  padding: 0;
+  border-top: $border-width solid $border-color;
+  font-size: $font-size-base;
+}
+
+.post-habits li {
+  border-bottom: $border-width solid $border-color;
+}
+
+.post-habits a {
+  display: flex;
+  gap: 0.875rem;
+  padding: 0.8125rem 0;
+  color: $body-emphasis-color;
+  text-decoration: none;
+}
+
+.post-habits a:hover,
+.post-habits a:focus-visible {
+  color: $primary;
+}
+
+.post-habits a > span {
+  flex-shrink: 0;
+  font-weight: 700;
+  color: $primary;
+  font-variant-numeric: tabular-nums;
+}
+
+// C3 — the mobile TOC folds into a <details>; the desktop rail keeps its own
+// always-visible "On this page" heading (.d-lg-none / .d-none.d-lg-block in the
+// markup switch between the two), so the sticky rail is never collapsible. The
+// label + caret sit in an inner wrapper span (grouped, not pushed apart) so the
+// small caret never lands against the narrow box's right edge.
+.post-toc-summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.post-toc-summary::-webkit-details-marker {
+  display: none;
+}
+
+.post-toc-summary-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-toc-chevron {
+  flex-shrink: 0;
+  color: $secondary;
+  transition: transform 0.15s ease;
+}
+
+.post-toc-details[open] .post-toc-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-toc-chevron {
+    transition: none;
+  }
+}
+
+// H1 — Resources as a genuine reference list (link + what it's for), not the
+// two links already carried by the hero and the footer.
+.post-resources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: $border-width solid $border-color;
+  font-size: $font-size-base;
+}
+
+.post-resources li {
+  padding: 0.875rem 0;
+  border-bottom: $border-width solid $border-color;
+}
+
+.post-resources a {
+  font-weight: 600;
+}
+
+.post-resources p {
+  margin: 0.1875rem 0 0;
+  color: $secondary;
+}
+
+// H2 — closing author card + primary CTA, behind the same hairline the sections
+// use so it reads as the article's final beat rather than a seventh section.
+.post-endcard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.5rem;
+  margin-top: 3.25rem;
+  padding-top: 3.25rem;
+  border-top: $border-width solid $border-color;
+}
+
+.post-endcard-avatar {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-endcard-body {
+  flex: 1 1 18rem;
+}
+
+.post-endcard-name {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+  color: $body-emphasis-color;
+}
+
+.post-endcard-bio {
+  margin: 0 0 1rem;
+  color: $secondary;
+  font-size: $font-size-base;
+}
+
+.post-endcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.post-endcard-actions a:not(.btn) {
+  font-weight: 600;
+}
+
+// "← All posts" back-link under the closing card (H3-adjacent).
+.post-backlink {
+  display: inline-block;
+  margin-top: 2rem;
+  font-weight: 600;
 }
