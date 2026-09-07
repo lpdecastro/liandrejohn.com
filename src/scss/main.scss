@@ -579,3 +579,39 @@ h2,
 .post-facts > [class*='col']:nth-child(4n + 4) .card {
   background-color: #f5f3ff; // violet 50
 }
+
+// Section 2 — project tree. A dark "file explorer" panel that echoes the hero
+// ground ($dark), with a three-dot window bar and a monospace listing. The
+// "# …" notes are dimmed so the directory structure reads first. Bootstrap has
+// no terminal/tree component; the rounding + clip come from utilities in the
+// markup (`rounded-4 overflow-hidden`).
+.post-tree {
+  background-color: $dark;
+}
+
+.post-tree-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: $border-width solid rgba($light, 0.1);
+}
+
+.post-tree-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background-color: rgba($light, 0.25);
+}
+
+.post-tree pre {
+  padding: 1.5rem;
+  overflow-x: auto;
+  color: rgba($light, 0.92);
+  font-size: 0.8125rem;
+  line-height: 1.85;
+}
+
+.post-tree-comment {
+  color: rgba($light, 0.5);
+}
