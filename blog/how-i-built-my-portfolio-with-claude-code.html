@@ -330,25 +330,28 @@
                   <span class="post-section-number" aria-hidden="true">01</span>
                   <h2 id="what-i-built-title" class="mb-0">What I built</h2>
                 </div>
-                <p class="lead text-secondary-emphasis mw-prose mb-3">
+                <!-- The hook: larger and darker than the supporting line so a
+                     scanner reads it first. -->
+                <p class="post-lead mw-prose mb-3">
                   A single-page portfolio for technical recruiters — built to lead with real numbers, not generic
                   copy, and to make the engineering behind it visible.
                 </p>
-                <p class="text-secondary-emphasis mw-prose mb-5">
+                <p class="text-secondary mw-prose mb-4">
                   The brief was intentionally focused: create a fast, legible surface for enterprise digital
                   platforms, APIs, and cloud systems, then use the build itself as a case study in AI-assisted
                   engineering.
                 </p>
 
                 <!-- Four decisions that shaped the build. Each card sits on its own
-                     faint cool wash (src/scss/main.scss: .post-facts). -->
-                <div class="row row-cols-1 row-cols-sm-2 g-4 post-facts mb-5">
+                     faint cool wash (src/scss/main.scss: .post-facts); the name is
+                     the dominant line, the eyebrow a quiet category tag. -->
+                <div class="row row-cols-1 row-cols-sm-2 g-3 post-facts mb-4">
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Structure</p>
-                        <h3 class="h5 fw-semibold mb-2">Single page</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Structure</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">Single page</h3>
+                        <p class="text-secondary mb-0">
                           One deliberate narrative instead of a maze of pages.
                         </p>
                       </div>
@@ -357,9 +360,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Discoverability</p>
-                        <h3 class="h5 fw-semibold mb-2">SEO &amp; GEO</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Discoverability</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">SEO &amp; GEO</h3>
+                        <p class="text-secondary mb-0">
                           Structured data, a clear site map, and explicit crawler guidance.
                         </p>
                       </div>
@@ -368,9 +371,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Delivery</p>
-                        <h3 class="h5 fw-semibold mb-2">CI/CD</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Delivery</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">CI/CD</h3>
+                        <p class="text-secondary mb-0">
                           A repeatable path from a merged change to a live site.
                         </p>
                       </div>
@@ -379,9 +382,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Trust</p>
-                        <h3 class="h5 fw-semibold mb-2">Analytics</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Trust</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">Analytics</h3>
+                        <p class="text-secondary mb-0">
                           Enough signal to learn what works without tracking people around.
                         </p>
                       </div>
@@ -413,21 +416,22 @@
                   <span class="post-section-number" aria-hidden="true">02</span>
                   <h2 id="tech-stack-title" class="mb-0">Tech stack</h2>
                 </div>
-                <p class="lead text-secondary-emphasis mw-prose mb-5">
+                <!-- The hook: same serif .post-lead as §1. -->
+                <p class="post-lead mw-prose mb-4">
                   No framework, no server, no CMS. A small, legible surface is easier for both a person
                   and an AI agent to understand correctly on the first try.
                 </p>
 
-                <!-- Four stack choices, one per layer. Same faint cool washes as
-                     §1 (src/scss/main.scss: .post-facts) so the two grids read as
-                     one system. -->
-                <div class="row row-cols-1 row-cols-sm-2 g-4 post-facts mb-5">
+                <!-- Four stack choices, one per layer. Same faint cool washes and
+                     card treatment as §1 (src/scss/main.scss: .post-facts) so the
+                     two grids read as one system. -->
+                <div class="row row-cols-1 row-cols-sm-2 g-3 post-facts mb-4">
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Frontend</p>
-                        <h3 class="h5 fw-semibold mb-2">Bootstrap + Sass</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Frontend</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">Bootstrap + Sass</h3>
+                        <p class="text-secondary mb-0">
                           Utilities, components, design tokens, self-hosted Inter, and inline SVG icons.
                         </p>
                       </div>
@@ -436,9 +440,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Build tooling</p>
-                        <h3 class="h5 fw-semibold mb-2">Vite</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Build tooling</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">Vite</h3>
+                        <p class="text-secondary mb-0">
                           Multi-page output, with the blog and homepage defined as explicit build entries.
                         </p>
                       </div>
@@ -447,9 +451,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Hosting</p>
-                        <h3 class="h5 fw-semibold mb-2">S3 + CloudFront</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Hosting</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">S3 + CloudFront</h3>
+                        <p class="text-secondary mb-0">
                           Private bucket, CDN delivery, Route 53, and ACM for DNS and TLS.
                         </p>
                       </div>
@@ -458,9 +462,9 @@
                   <div class="col">
                     <div class="card h-100">
                       <div class="card-body">
-                        <p class="text-secondary text-uppercase fs-7 fw-semibold tracking-wide mb-2">Automation</p>
-                        <h3 class="h5 fw-semibold mb-2">GitHub Actions</h3>
-                        <p class="text-secondary-emphasis mb-0">
+                        <p class="text-secondary text-uppercase fs-7 fw-medium tracking-wide mb-3">Automation</p>
+                        <h3 class="h4 fw-bold text-dark mb-3">GitHub Actions</h3>
+                        <p class="text-secondary mb-0">
                           Build, sync, invalidate, and authenticate with IAM OIDC — no static AWS keys.
                         </p>
                       </div>
