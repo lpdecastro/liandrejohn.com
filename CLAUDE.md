@@ -4,13 +4,73 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single static page: the personal portfolio for liandrejohn.com.
+A single static page: the personal portfolio for https://liandrejohn.com/.
 
 ## Main Goal
 
-Fix bugs.
-Enhancements.
-Post launch stuff.
+Act as an expert frontend developer, UI/UX designer, and technical content designer. Build `blog/how-i-built-my-portfolio-with-claude-code.html` using the content in `local/blog/first-blog-content.md` as the source of truth.
+
+The page should feel like a polished developer blog: practical, visually engaging, easy to scan, and concise. Preserve the substance and authentic engineering voice of the content, but improve presentation where needed. Use strong but credible hooks, clear section headings, short paragraphs, visual hierarchy, cards, code blocks, screenshots, and callouts so readers can understand the main lessons just by scanning.
+
+Write for readers who scan first and read second. Each subsection should quickly communicate its value through a strong heading or opening hook, so someone skimming the article can still learn something. If a subsection catches their attention, it should be short enough that they think, “I can read this in 30 seconds,” and useful enough that they think, “That’s a good idea—I’m going to try that.”
+
+Use catchy but credible hooks. Avoid clickbait, generic AI hype, corporate language, and overly clever headings that hide the actual lesson. Favor headings that combine curiosity with a clear takeaway.
+
+Follow the existing site's design system, components, typography, spacing, responsiveness, and navigation patterns rather than creating an unrelated blog theme.
+
+### Page layout
+
+* Nav
+* Header / hero
+* Main article with a sticky table of contents
+* Footer
+
+### Header
+
+Use a dark gradient background. The nav + header should occupy roughly 80vh.
+
+Left:
+
+* Eyebrow
+* Title
+* Lead text
+* Author · Published date · Reading time
+* Three CTA buttons
+
+Right:
+
+* Hero image area — skip the actual image for now
+
+### Article
+
+Use a white background for all article sections. Keep the article readable with a comfortable content width while placing a sticky table of contents beside it on desktop. The table of contents should automatically highlight the section currently in view and adapt cleanly on mobile.
+
+### Section 1
+
+* Section number + title
+* Lead text
+* Supporting text
+* 2×2 card grid
+* Screenshot/image
+
+Card structure:
+
+* Eyebrow
+* Heading
+* Short supporting text
+
+Give each card a subtly different washed/dark-tinted background while keeping the overall design cohesive and accessible.
+
+### Section 2
+
+* Section number + title
+* Lead text
+* 2×2 card grid
+* Project directory/tree visualization
+
+Continue the same visual language for the remaining sections based on their content in `local/blog/first-blog-content.md`. Do not force every section into the exact same layout—choose the best presentation for the material, especially for code examples, workflows, screenshots, results, and resources.
+
+Prioritize excellent responsive design, semantic HTML, accessibility, clean code, and scanability. Reuse existing project styles and assets whenever possible instead of introducing unnecessary dependencies or one-off styling.
 
 
 ## Commands

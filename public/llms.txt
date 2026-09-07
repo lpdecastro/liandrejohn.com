@@ -37,6 +37,10 @@
 - [Sereva](https://sereva.liandrejohn.com/) — direct-to-consumer brand concept build. Code: https://github.com/lpdecastro/sereva.liandrejohn.com
 - [Stillward](https://shopify.liandrejohn.com/) — e-commerce storefront concept build. Code: https://github.com/lpdecastro/shopify-liandrejohn-com
 
+## Blog
+
+- [Building My Portfolio with Claude Code: A Practical Guide to AI Engineering & Context Engineering](https://liandrejohn.com/blog/how-i-built-this-portfolio-with-claude-code.html) — how this site itself was built with Claude Code: prompt and context engineering with scoped instruction files, the Vite/Bootstrap stack, structured data for AI answer engines, and a from-scratch AWS deployment pipeline.
+
 ## Contact
 
 - Email: liandrejohn88@gmail.com

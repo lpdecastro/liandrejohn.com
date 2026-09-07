@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in src/js/analytics.js, not here. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-Q3EPREERQJ');
+    </script>
+
+    <meta
+      name="description"
+      content="Notes from Liandre John de Castro — Tech Lead — on enterprise digital platforms, AI-assisted engineering, and building for AI answer engines."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Blog — Liandre John de Castro</title>
+
+    <!-- Canonical: single indexable URL (host + trailing slash normalized) -->
+    <link rel="canonical" href="https://liandrejohn.com/blog/" />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta property="og:title" content="Blog — Liandre John de Castro" />
+    <meta
+      property="og:description"
+      content="Notes on enterprise digital platforms, AI-assisted engineering, and building for AI answer engines."
+    />
+    <meta property="og:url" content="https://liandrejohn.com/blog/" />
+    <meta property="og:image" content="https://liandrejohn.com/images/og-card-v2.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms." />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog — Liandre John de Castro" />
+    <meta
+      name="twitter:description"
+      content="Notes on enterprise digital platforms, AI-assisted engineering, and building for AI answer engines."
+    />
+    <meta name="twitter:image" content="https://liandrejohn.com/images/og-card-v2.jpg" />
+    <meta name="twitter:image:alt" content="Liandre John de Castro — Tech Lead, Enterprise Digital Platforms." />
+
+    <!-- Structured data: Blog listing page, tying posts back to the Person on the homepage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Blog",
+            "@id": "https://liandrejohn.com/blog/#blog",
+            "url": "https://liandrejohn.com/blog/",
+            "name": "Blog — Liandre John de Castro",
+            "description": "Notes on enterprise digital platforms, AI-assisted engineering, and building for AI answer engines.",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://liandrejohn.com/#website" },
+            "author": { "@id": "https://liandrejohn.com/#person" },
+            "publisher": { "@id": "https://liandrejohn.com/#person" },
+            "blogPost": [{ "@id": "https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code.html" }]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
+         Preload the latin file — it renders all above-the-fold text. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+
+    <!-- Styles: compiled Bootstrap + Sass bundle. Icons are inline SVG (no icon font). -->
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+  </head>
+  <body>
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2" href="#main"
+      >Skip to content</a
+    >
+    <main id="main">
+      <!-- ============================================================
+           PAGE HEADER — same navbar chrome as the homepage hero, shortened
+           (no min-vh-100, no hero copy) so the header stays visually
+           consistent across the site.
+           ============================================================ -->
+      <div class="bg-hero text-white">
+        <nav
+          id="mainNav"
+          class="navbar navbar-expand-lg fixed-top"
+          data-bs-theme="dark"
+          aria-label="Primary navigation"
+        >
+          <div class="container">
+            <a
+              class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+              href="/"
+              aria-label="Liandre John de Castro home"
+            >
+              <img src="/images/logo-dark.webp" alt="" width="150" height="50" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#primaryNav"
+              aria-controls="primaryNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="primaryNav">
+              <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0">
+                <a class="nav-link" href="/#what-i-do">What I Do</a>
+                <a class="nav-link" href="/#featured-work">Featured Work</a>
+                <a class="nav-link" href="/#concept-builds">Concept Builds</a>
+                <a class="nav-link active" aria-current="page" href="/blog/">Blog</a>
+              </div>
+              <a class="btn btn-primary ms-lg-3" href="/#get-in-touch">Get in Touch</a>
+            </div>
+          </div>
+        </nav>
+
+        <header class="pt-9 pt-lg-8 pb-5">
+          <div class="container">
+            <div
+              class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide mb-3"
+            >
+              <span class="border-top border-2 border-primary d-inline-block w-rule"></span>
+              <span class="text-nowrap">Blog</span>
+            </div>
+            <h1 class="fs-1 mb-3">Notes on building enterprise platforms with AI-assisted engineering.</h1>
+            <p class="lead text-on-dark-muted mw-prose mb-0">
+              Write-ups from real work: platform architecture, AI-assisted delivery, and building for both search
+              engines and AI answer engines.
+            </p>
+          </div>
+        </header>
+      </div>
+
+      <!-- ============================================================
+           POST LIST — one card per post. Add a new <article> here for
+           each future post; keep newest first.
+           ============================================================ -->
+      <section class="py-6 py-md-7" aria-label="Posts">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <article class="card">
+                <div class="card-body d-flex flex-column">
+                  <p class="small text-secondary mb-3">
+                    <time datetime="2026-09-05">September 5, 2026</time>
+                    <span aria-hidden="true"> · </span>
+                    <span>5 min read</span>
+                  </p>
+                  <h2 class="h4 fw-semibold mb-3">
+                    <a
+                      class="link-dark text-decoration-none stretched-link"
+                      href="/blog/how-i-built-my-portfolio-with-claude-code.html"
+                      >Building My Portfolio with Claude Code: A Practical Guide to AI Engineering & Context
+                      Engineering</a
+                    >
+                  </h2>
+                  <p class="text-secondary-emphasis mb-0">
+                    A practical AI engineering walkthrough with screenshots: the false starts, the prompt and context
+                    engineering technique that made Claude Code fast instead of chaotic, the Vite/Bootstrap stack,
+                    structured data for AI answer engines, and a from-scratch AWS deployment pipeline.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+         FOOTER — brand blurb + "Explore" anchor links + "Connect" links + copyright
+         ============================================================ -->
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand column: logo + one-line summary -->
+          <div class="col-lg-4">
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="160"
+              height="53"
+              loading="lazy"
+              class="mb-4"
+            />
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
+              Tech Lead building enterprise digital platforms, APIs, and cloud systems — with AI-assisted engineering
+              as a delivery multiplier.
+            </p>
+          </div>
+          <!-- Explore column: in-page section anchors -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Explore</h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li><a class="link-light text-decoration-none" href="/#what-i-do">What I Do</a></li>
+              <li><a class="link-light text-decoration-none" href="/#featured-work">Featured Work</a></li>
+              <li><a class="link-light text-decoration-none" href="/#concept-builds">Concept Builds</a></li>
+              <li><a class="link-light text-decoration-none" href="/#how-i-work">How I Work</a></li>
+              <li><a class="link-light text-decoration-none" href="/blog/">Blog</a></li>
+              <li><a class="link-light text-decoration-none" href="/#get-in-touch">Get in Touch</a></li>
+            </ul>
+          </div>
+          <!-- Connect column: external contact links -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">Connect</h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a class="link-light text-decoration-none" href="mailto:liandrejohn88@gmail.com" rel="me" data-email-text
+                  >liandrejohn88 [at] gmail [dot] com</a
+                >
+              </li>
+              <li>
+                <a class="link-light text-decoration-none" href="https://www.linkedin.com/in/lpdecastro" target="_blank" rel="me noopener"
+                  >linkedin.com/in/lpdecastro</a
+                >
+              </li>
+              <li>
+                <a class="link-light text-decoration-none" href="https://github.com/lpdecastro" target="_blank" rel="me noopener"
+                  >github.com/lpdecastro</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer bottom bar: copyright + back-to-top link -->
+        <hr class="border-light border-opacity-10 opacity-100 my-6" />
+        <div
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
+        >
+          <p class="mb-0">© <span id="year">2026</span> Liandre John de Castro. All rights reserved.</p>
+          <a class="link-light text-decoration-none" href="#main">Back to top</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Bootstrap bundle (navbar), then the analytics helper, then site behaviors -->
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
