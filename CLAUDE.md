@@ -16,6 +16,12 @@ Design for readers who scan first and read second. Each subsection should quickl
 
 Use catchy but credible hooks. Avoid clickbait, generic AI hype, corporate language, and overly clever headings that hide the actual lesson. Favor headings that combine curiosity with a clear takeaway.
 
+## Important
+
+- Do not check prior blog HTML versions in git
+- Do not export prior blog versions to scratchpad
+- Do not check reset commit and current SCSS post classes
+
 ## Commands
 
 ```bash
