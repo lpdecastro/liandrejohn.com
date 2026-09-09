@@ -268,6 +268,45 @@
         font-weight: 600;
       }
 
+      /* Page-scoped: the collapsed in-article nav shown below lg, where the
+         sticky TOC is dropped (in source order it sits after the whole
+         article). Native <details> — no script — with the summary carrying the
+         same eyebrow treatment as the sticky list's heading and a chevron that
+         flips when open. The list reuses .blog-toc__link. */
+      .blog-toc-mobile {
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius-lg);
+        padding: 0.75rem 1rem;
+      }
+      .blog-toc-mobile > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        cursor: pointer;
+        list-style: none;
+      }
+      .blog-toc-mobile > summary::-webkit-details-marker {
+        display: none;
+      }
+      .blog-toc-mobile > summary::after {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        flex-shrink: 0;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.15s ease;
+      }
+      .blog-toc-mobile[open] > summary::after {
+        transform: translateY(2px) rotate(-135deg);
+      }
+      .blog-toc-mobile > summary:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 4px;
+      }
+
       /* Page-scoped: the shared rule derives scroll-padding from the navbar's
          Sass metrics, which don't account for this page's full logo lockup in
          the bar. Bump it so a TOC jump lands the target heading clear of the
@@ -469,7 +508,7 @@
                   class="btn btn-primary d-inline-flex align-items-center gap-2"
                   href="#1-what-i-built"
                   data-analytics-event="cta_click"
-                  data-analytics-button-name="read_the_blog"
+                  data-analytics-button-name="read_the_article"
                   data-analytics-section-name="blog_header"
                 >
                   <svg
@@ -490,7 +529,7 @@
                 </a>
                 <a
                   class="btn btn-outline-light d-inline-flex align-items-center gap-2"
-                  href="https://liandrejohn.com/"
+                  href="/"
                   data-analytics-event="cta_click"
                   data-analytics-button-name="view_site"
                   data-analytics-section-name="blog_header"
@@ -553,6 +592,111 @@
         <div class="row g-5 g-lg-6">
           <!-- Left column: the article's numbered sections -->
           <div class="col-lg-9">
+            <!-- Mobile in-article nav: the sticky TOC in the right column is
+                 dropped below lg (in source order it sits after the whole
+                 article), so phones get this collapsed <details> version at the
+                 top of the article instead. Same anchors and labels as the
+                 sticky list; native disclosure, no script. -->
+            <details class="blog-toc-mobile d-lg-none mb-5">
+              <summary
+                class="text-primary text-uppercase fs-7 fw-semibold tracking-wide"
+              >
+                On this page
+              </summary>
+              <ul class="list-unstyled border-start mt-3 mb-0">
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#1-what-i-built"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >1. What I Built</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#2-tech-stack"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >2. Tech Stack</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#3-claude-code"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3. Claude Code</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link blog-toc__link--sub"
+                    href="#3-1-claude-md"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3.1 CLAUDE.md</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link blog-toc__link--sub"
+                    href="#3-2-context-files"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3.2 Context files</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link blog-toc__link--sub"
+                    href="#3-3-fresh-sessions"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3.3 Fresh sessions</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link blog-toc__link--sub"
+                    href="#3-4-review-artifacts"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3.4 Review artifacts</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-results"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >4. Results</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#5-conclusion"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >5. Conclusion</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#6-resources"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >6. Resources</a
+                  >
+                </li>
+              </ul>
+            </details>
+
             <!-- Lead / TL;DR: what the post covers, before the numbered sections -->
             <p class="lead text-secondary-emphasis mb-5">
               A practical walkthrough of how I built
@@ -909,7 +1053,11 @@
                       </div>
                       <p class="text-secondary-emphasis mb-0">
                         A private bucket behind a CDN, with Route 53 and ACM for
-                        DNS and TLS.
+                        DNS and TLS —
+                        <a
+                          href="/blog/how-i-deployed-my-portfolio-to-aws"
+                          >how I deployed it to AWS</a
+                        >.
                       </p>
                     </div>
                   </div>
@@ -2119,9 +2267,10 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                 code.textContent.replace(/\s+$/, "") + "\n",
               );
               if (label) label.textContent = "Copied";
+              // page_type is stamped by trackEvent() from <body data-page>,
+              // same as code_copy_error below — no need to pass it explicitly.
               window.trackEvent?.("code_copy", {
                 snippet_name: snippetName,
-                page_type: "blog",
               });
             } catch {
               if (label) label.textContent = "Press ⌘C";

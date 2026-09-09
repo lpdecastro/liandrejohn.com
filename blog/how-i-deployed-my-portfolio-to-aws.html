@@ -1,0 +1,2660 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in src/js/analytics.js, not here.
+         NOTE: same snippet as blog/index.html (content_group: 'blog'); the
+         homepage uses 'portfolio'. Keep them in sync. -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Q3EPREERQJ", { content_group: "blog" });
+    </script>
+
+    <meta
+      name="description"
+      content="How I deployed my portfolio to AWS without overengineering it: S3, CloudFront, Route 53, ACM and GitHub Actions with IAM OIDC — no servers, no containers, no Terraform."
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>
+      How I Deployed My Portfolio to AWS Without Overengineering It
+    </title>
+
+    <!-- Canonical: single indexable URL (host + path, no trailing slash on the post) -->
+    <link
+      rel="canonical"
+      href="https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws"
+    />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta
+      property="og:title"
+      content="How I Deployed My Portfolio to AWS Without Overengineering It"
+    />
+    <meta
+      property="og:description"
+      content="I wanted my portfolio deployment to be cheap, fast, and simple enough to actually maintain — the small AWS stack that does exactly that, with no servers, containers, or Terraform."
+    />
+    <meta
+      property="og:url"
+      content="https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws"
+    />
+    <meta
+      property="og:image"
+      content="https://liandrejohn.com/images/og-blog-aws-deployment.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="How I deployed my portfolio to AWS without overengineering it — Liandre John de Castro"
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="article:published_time"
+      content="2026-09-09T00:00:00+00:00"
+    />
+    <meta
+      property="article:modified_time"
+      content="2026-09-09T00:00:00+00:00"
+    />
+    <meta property="article:author" content="Liandre John de Castro" />
+    <meta property="article:section" content="Cloud &amp; DevOps" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="How I Deployed My Portfolio to AWS Without Overengineering It"
+    />
+    <meta
+      name="twitter:description"
+      content="I wanted my portfolio deployment to be cheap, fast, and simple enough to actually maintain — the small AWS stack that does exactly that, with no servers, containers, or Terraform."
+    />
+    <meta
+      name="twitter:image"
+      content="https://liandrejohn.com/images/og-blog-aws-deployment.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="How I deployed my portfolio to AWS without overengineering it — Liandre John de Castro"
+    />
+
+    <!-- Structured data: BlogPosting tied into the Blog + a BreadcrumbList that
+         mirrors the on-page breadcrumb. The Person node reuses the site-wide @id
+         from index.html so the author resolves to one entity across pages. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "@id": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws#article",
+            "headline": "How I deployed my portfolio to AWS without overengineering it",
+            "description": "How I deployed my portfolio to AWS without overengineering it: S3, CloudFront, Route 53, ACM and GitHub Actions with IAM OIDC — no servers, no containers, no Terraform.",
+            "url": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws",
+            "mainEntityOfPage": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws",
+            "datePublished": "2026-09-09T00:00:00+00:00",
+            "dateModified": "2026-09-09T00:00:00+00:00",
+            "inLanguage": "en-US",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://liandrejohn.com/images/og-blog-aws-deployment.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "articleSection": "Cloud & DevOps",
+            "wordCount": 1200,
+            "timeRequired": "PT5M",
+            "isPartOf": { "@id": "https://liandrejohn.com/blog/#blog" },
+            "author": { "@id": "https://liandrejohn.com/#person" },
+            "publisher": { "@id": "https://liandrejohn.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "url": "https://liandrejohn.com/",
+            "sameAs": [
+              "https://www.linkedin.com/in/lpdecastro",
+              "https://github.com/lpdecastro"
+            ]
+          },
+          {
+            "@type": "Blog",
+            "@id": "https://liandrejohn.com/blog/#blog",
+            "url": "https://liandrejohn.com/blog/",
+            "name": "Blog — Liandre John de Castro",
+            "description": "Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://liandrejohn.com/#person" },
+            "blogPost": {
+              "@id": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws#article"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://liandrejohn.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://liandrejohn.com/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How I deployed my portfolio to AWS without overengineering it",
+                "item": "https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
+         Preload the latin file — it renders all above-the-fold text. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin.woff2"
+      crossorigin
+    />
+
+    <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+
+    <style>
+      /* Page-scoped: the terminal-style dark windows on the white article body —
+         command snippets, the env-var / config lists, and Section 11's
+         deployment tree. A title bar (with an optional copy button) over
+         syntax-tinted text, in the slate / sky family the rest of the site
+         already uses. Same chrome as the sister post; no other page has a code
+         block, so this stays out of the shared bundle. */
+      .code-window {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      .code-window__bar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .code-window .tok-dir,
+      .code-window .tok-heading {
+        color: #7dd3fc;
+      }
+      .code-window .tok-comment {
+        color: #94a3b8;
+      }
+      .code-window .tok-branch {
+        color: #64748b;
+      }
+
+      /* Page-scoped: the sticky table of contents in the article's right
+         column. A hairline vertical rail (Bootstrap .border-start on the list)
+         with the entry that's currently in view picked out — its rail segment
+         and label in the accent blue. `top` clears the fixed navbar; the
+         max-height + scroll keep a long list usable on short viewports. The
+         active state is toggled by the page-scoped script before </body>; the
+         entries are plain in-page anchors, so the list works without it. No
+         other page has a TOC, so this stays out of the shared bundle. */
+      .blog-toc {
+        top: 6rem;
+        max-height: calc(100vh - 7.5rem);
+        overflow-y: auto;
+      }
+      .blog-toc__link {
+        display: block;
+        margin-left: -1px;
+        padding: 0.3125rem 0 0.3125rem 1rem;
+        border-left: 2px solid transparent;
+        color: var(--bs-secondary-color);
+        font-size: 0.8125rem;
+        line-height: 1.4;
+      }
+      .blog-toc__link--sub {
+        padding-left: 1.75rem;
+      }
+      .blog-toc__link:hover,
+      .blog-toc__link:focus-visible {
+        color: var(--bs-primary);
+        border-left-color: rgba(var(--bs-primary-rgb), 0.35);
+      }
+      .blog-toc__link.is-active {
+        color: var(--bs-primary);
+        border-left-color: var(--bs-primary);
+        font-weight: 600;
+      }
+
+      /* Page-scoped: the collapsed in-article nav shown below lg, where the
+         sticky TOC is dropped (in source order it sits after the whole
+         article). Native <details> — no script — with the summary carrying the
+         same eyebrow treatment as the sticky list's heading and a chevron that
+         flips when open. The list reuses .blog-toc__link. */
+      .blog-toc-mobile {
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius-lg);
+        padding: 0.75rem 1rem;
+      }
+      .blog-toc-mobile > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        cursor: pointer;
+        list-style: none;
+      }
+      .blog-toc-mobile > summary::-webkit-details-marker {
+        display: none;
+      }
+      .blog-toc-mobile > summary::after {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        flex-shrink: 0;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.15s ease;
+      }
+      .blog-toc-mobile[open] > summary::after {
+        transform: translateY(2px) rotate(-135deg);
+      }
+      .blog-toc-mobile > summary:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 4px;
+      }
+
+      /* Page-scoped: the shared rule derives scroll-padding from the navbar's
+         Sass metrics, which don't account for this page's full logo lockup in
+         the bar. Bump it so a TOC jump lands the target heading clear of the
+         fixed navbar. */
+      html {
+        scroll-padding-top: 6rem;
+      }
+
+      /* Page-scoped: the site sets $link-decoration: none, but inline links sit
+         inside grey body copy where the accent blue is only ~1.5:1 against the
+         surrounding text — too low for colour alone to mark them as links
+         (WCAG 1.4.1 / axe link-in-text-block). Restore an underline for links
+         within the article prose. Buttons and the TOC rail carry their own
+         affordance, so they're excluded. */
+      #content :is(p, li, figcaption) a:not(.btn):not(.blog-toc__link) {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+    </style>
+  </head>
+  <body
+    data-page="blog"
+    data-article-id="how-i-deployed-my-portfolio-to-aws"
+    data-article-section="Cloud & DevOps"
+  >
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a
+      class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2"
+      href="#content"
+      >Skip to content</a
+    >
+
+    <!-- ============================================================
+         POST HEADER ZONE — full-width dark panel sized by its content:
+         navbar + breadcrumb + article header, as siblings
+         ============================================================ -->
+    <div id="top" class="bg-hero text-white d-flex flex-column overflow-hidden">
+      <!-- Navbar: same chrome as the homepage; anchor links jump back to the homepage sections -->
+      <nav
+        id="mainNav"
+        class="navbar navbar-expand-lg fixed-top"
+        data-bs-theme="dark"
+        aria-label="Primary navigation"
+      >
+        <div class="container">
+          <a
+            class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+            href="/"
+            data-analytics-event="nav_click"
+            data-analytics-position="navbar_brand"
+            data-analytics-link-scope="exit_to_portfolio"
+          >
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="150"
+              height="50"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#primaryNav"
+            aria-controls="primaryNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="primaryNav">
+            <div
+              class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0"
+            >
+              <a
+                class="nav-link"
+                href="/#what-i-do"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >What I Do</a
+              >
+              <a
+                class="nav-link"
+                href="/#featured-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Featured Work</a
+              >
+              <a
+                class="nav-link"
+                href="/#concept-builds"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Concept Builds</a
+              >
+              <a
+                class="nav-link"
+                href="/#how-i-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >How I Work</a
+              >
+              <!-- .active marks the current section; no aria-current="page" —
+                   this post isn't the blog index the link points at. -->
+              <a
+                class="nav-link active"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Blog</a
+              >
+            </div>
+            <a
+              class="btn btn-primary ms-lg-3"
+              href="/#get-in-touch"
+              data-analytics-event="cta_click"
+              data-analytics-button-name="get_in_touch"
+              data-analytics-section-name="navbar"
+              >Get in Touch</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb: clears the fixed navbar (homepage hero top padding, plus a little extra room below the bar) -->
+      <nav class="pt-9 pt-lg-8 pb-2" aria-label="Breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb mb-0 fs-7 fw-semibold" data-bs-theme="dark">
+            <li class="breadcrumb-item">
+              <a
+                class="link-light text-decoration-none"
+                href="/"
+                data-analytics-event="nav_click"
+                data-analytics-position="breadcrumb"
+                >Home</a
+              >
+            </li>
+            <li class="breadcrumb-item">
+              <a
+                class="link-light text-decoration-none"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-position="breadcrumb"
+                >Blog</a
+              >
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              How I deployed my portfolio to AWS without overengineering it
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Article header: eyebrow + headline + deck + byline + CTAs; content column spans two-thirds of the grid at lg+, left aligned -->
+      <header class="pt-8 pb-9">
+        <div class="container">
+          <div class="row">
+            <!-- Content column: 8/12 of the grid from lg up, full width below -->
+            <div class="col-lg-8 d-flex flex-column gap-4">
+              <!-- Eyebrow: short rule + label (same pattern as every homepage section heading) -->
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1"
+              >
+                <span
+                  class="border-top border-2 border-primary d-inline-block w-rule"
+                ></span>
+                <span class="text-nowrap">Cloud &amp; DevOps</span>
+              </div>
+
+              <h1 class="display-3 fw-bold mb-0">
+                How I deployed my portfolio to AWS without overengineering it
+              </h1>
+
+              <p class="lead text-on-dark-muted mb-0">
+                I wanted my portfolio deployment to be three things: cheap,
+                fast, and simple enough that I could actually maintain it. This
+                is the small AWS stack that does exactly that — no servers, no
+                containers, no Terraform.
+              </p>
+
+              <!-- Byline: author + publish date + reading time -->
+              <p
+                class="fs-7 text-on-dark-muted mb-0 d-flex flex-wrap align-items-center gap-2"
+              >
+                <span class="text-white fw-semibold"
+                  >By Liandre John de Castro</span
+                >
+                <span class="text-white-50" aria-hidden="true">·</span>
+                <time datetime="2026-09-09">September 9, 2026</time>
+                <span class="text-white-50" aria-hidden="true">·</span>
+                <span>5 min read</span>
+              </p>
+
+              <!-- CTAs: primary "read" jump-link + two outline links out to the live site and repo. Icon left of each label. -->
+              <div class="d-flex flex-wrap gap-3 pt-2">
+                <a
+                  class="btn btn-primary d-inline-flex align-items-center gap-2"
+                  href="#1-the-architecture"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="read_the_article"
+                  data-analytics-section-name="blog_header"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                    />
+                  </svg>
+                  Read the article
+                </a>
+                <a
+                  class="btn btn-outline-light d-inline-flex align-items-center gap-2"
+                  href="/"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="view_site"
+                  data-analytics-section-name="blog_header"
+                  data-analytics-link-scope="exit_to_portfolio"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49a7 7 0 0 0 .656 2.5zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm2.173 2.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M14.982 8.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.83 5c.174.782.282 1.623.312 2.5h2.49a7 7 0 0 0-.656-2.5zm-1.339-1.539q.226.451.421.906c.16.386.298.799.412 1.233h1.835A7 7 0 0 0 10.673 2.06zM8.5 1.077V4h2.355a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.281 8.5 1.077M7.5 4V1.077c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4z"
+                    />
+                  </svg>
+                  View site
+                </a>
+                <a
+                  class="btn btn-outline-light d-inline-flex align-items-center gap-2"
+                  href="https://github.com/lpdecastro/liandrejohn.com"
+                  target="_blank"
+                  rel="noopener"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="open_on_github"
+                  data-analytics-section-name="blog_header"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+                    />
+                  </svg>
+                  Open on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- ============================================================
+         ARTICLE BODY — white ground. Two columns from lg up: the article
+         sections on the left, a sticky table of contents on the right that
+         tracks the section currently in view. Below lg the TOC is dropped
+         (it would fall after the whole article in source order). Filled in
+         section by section.
+         ============================================================ -->
+    <main id="content" class="bg-white">
+      <div class="container py-6 py-md-7">
+        <div class="row g-5 g-lg-6">
+          <!-- Left column: the article's numbered sections -->
+          <div class="col-lg-9">
+            <!-- Mobile in-article nav: the sticky TOC in the right column is
+                 dropped below lg (in source order it sits after the whole
+                 article), so phones get this collapsed <details> version at the
+                 top of the article instead. Same anchors and labels as the
+                 sticky list; native disclosure, no script. -->
+            <details class="blog-toc-mobile d-lg-none mb-5">
+              <summary
+                class="text-primary text-uppercase fs-7 fw-semibold tracking-wide"
+              >
+                On this page
+              </summary>
+              <ul class="list-unstyled border-start mt-3 mb-0">
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#1-the-architecture"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >1. The Architecture</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#2-s3-and-cloudfront"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >2. S3 &amp; CloudFront</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#3-https-with-acm"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3. HTTPS With ACM</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-route-53"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >4. Route 53</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#5-github-actions"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >5. GitHub Actions</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#6-iam-oidc"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >6. IAM OIDC</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#7-clean-urls"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >7. Clean URLs</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#8-final-deployment-flow"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >8. The Final Flow</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#9-what-i-learned"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >9. What I Learned</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#10-what-id-add-next"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >10. What I'd Add Next</a
+                  >
+                </li>
+              </ul>
+            </details>
+
+            <!-- Lead / TL;DR: what the post covers, before the numbered sections -->
+            <p class="lead text-secondary-emphasis mb-5">
+              A walkthrough of how <a href="/">liandrejohn.com</a> is deployed
+              to AWS — Amazon S3 for storage, CloudFront as the CDN, Route 53
+              for DNS, ACM for HTTPS, and GitHub Actions for deployment, with
+              IAM OIDC so no long-lived AWS keys ever sit in GitHub. The goal
+              wasn't the most sophisticated pipeline; it was the smallest
+              production-ready setup that still teaches the important pieces.
+            </p>
+
+            <!-- Intro: why not a managed platform, then the end-to-end pipeline
+                 as a diagram, then the "no servers" framing. -->
+            <p class="text-secondary-emphasis mb-4">
+              I could have used Vercel or another managed platform, but I wanted
+              to understand the infrastructure behind the deployment and build
+              something closer to how a production static site might be hosted.
+              The final setup looks like this:
+            </p>
+
+            <figure class="mb-4">
+              <img
+                class="img-fluid rounded-4 border"
+                src="/images/blog/how-i-deployed-my-portfolio-to-aws/GitHub_to_Live_Website_Pipeline.webp"
+                alt="A left-to-right pipeline: GitHub (push code) to GitHub Actions (build and deploy) to Amazon S3 (store static assets) to CloudFront (distribute globally) to Route 53 (DNS routing) to liandrejohn.com, live on the web."
+                width="1672"
+                height="941"
+                fetchpriority="high"
+              />
+              <figcaption class="fs-7 text-secondary mt-3">
+                The deployment path end to end — a push to GitHub triggers
+                GitHub Actions, which builds the site and uploads it to Amazon
+                S3; CloudFront distributes it globally and Route 53 resolves the
+                domain to it.
+              </figcaption>
+            </figure>
+
+            <p class="text-secondary-emphasis mb-0">
+              No servers. No containers. No Terraform. Just a small AWS stack
+              that does exactly what I need.
+            </p>
+
+            <!-- ---- Section 1 ---- -->
+            <section
+              id="1-the-architecture"
+              class="mt-6 mt-md-7"
+              aria-labelledby="1-the-architecture-title"
+            >
+              <h2 id="1-the-architecture-title" class="mb-3">
+                1. The Architecture: Keep Static Hosting Actually Static
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                My portfolio is mostly HTML, CSS, JavaScript, and assets, so
+                running a server would be unnecessary. Instead, the whole site
+                rests on a handful of managed pieces:
+              </p>
+
+              <!-- The six services: icon tile + role kicker + name + one-line
+                   job, in a card grid — the same icon-tile card pattern as the
+                   sister post's "What I Built" / "Tech Stack" sections (and the
+                   homepage's "What I Do" services). h-100 keeps each row's cards
+                   equal height. -->
+              <div
+                class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 mt-0 mb-4"
+              >
+                <!-- Amazon S3 -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5m1.005 0a4.5 4.5 0 0 1 8.945 0zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"
+                            />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            Storage
+                          </p>
+                          <p class="h5 fw-semibold mb-0">Amazon S3</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Stores the built site in a private bucket.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- CloudFront -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49a7 7 0 0 0 .656 2.5zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm2.173 2.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M14.982 8.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.83 5c.174.782.282 1.623.312 2.5h2.49a7 7 0 0 0-.656-2.5zm-1.339-1.539q.226.451.421.906c.16.386.298.799.412 1.233h1.835A7 7 0 0 0 10.673 2.06zM8.5 1.077V4h2.355a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.281 8.5 1.077M7.5 4V1.077c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4z"
+                            />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            CDN
+                          </p>
+                          <p class="h5 fw-semibold mb-0">CloudFront</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Serves the site fast and globally, over HTTPS.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Route 53 -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M7 7V1.414a1 1 0 0 1 2 0V2h5a1 1 0 0 1 .8.4l.975 1.3a.5.5 0 0 1 0 .6L14.8 5.6a1 1 0 0 1-.8.4H9v10H7v-5H2a1 1 0 0 1-.8-.4L.225 9.3a.5.5 0 0 1 0-.6L1.2 7.4A1 1 0 0 1 2 7zm1 3V8H2l-.75 1L2 10zm0-5h6l.75-1L14 3H8z"
+                            />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            DNS
+                          </p>
+                          <p class="h5 fw-semibold mb-0">Route 53</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Points the domain at the CloudFront distribution.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- ACM -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"
+                            />
+                            <path
+                              d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415"
+                            />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            HTTPS
+                          </p>
+                          <p class="h5 fw-semibold mb-0">ACM</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Issues the TLS certificate for the domain and its
+                        subdomains.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- GitHub Actions -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+                            />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            Deployment
+                          </p>
+                          <p class="h5 fw-semibold mb-0">GitHub Actions</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Builds the site and uploads it on every push.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- IAM OIDC -->
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <div class="d-flex align-items-center gap-3 mb-3">
+                        <span
+                          class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary-subtle text-primary"
+                          data-icon-tile
+                          aria-hidden="true"
+                        >
+                          <svg
+                            class="bi fs-4"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"
+                            />
+                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                          </svg>
+                        </span>
+                        <div>
+                          <p
+                            class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-1"
+                            style="font-size: 0.6875rem"
+                          >
+                            Auth
+                          </p>
+                          <p class="h5 fw-semibold mb-0">IAM OIDC</p>
+                        </div>
+                      </div>
+                      <p class="text-secondary-emphasis mb-0">
+                        Lets GitHub authenticate to AWS with no stored access
+                        keys.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- The section's core idea, as a primary-subtle callout — the
+                   same icon-tile + kicker aside the sister post uses for its
+                   "Why it works" notes. -->
+              <aside class="card bg-primary-subtle border-0 rounded-4 mt-4">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-start gap-3">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary text-white"
+                      data-icon-tile
+                      aria-hidden="true"
+                    >
+                      <svg
+                        class="bi fs-4"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 14h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5m1.5-1.5a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1z"
+                        />
+                      </svg>
+                    </span>
+                    <div>
+                      <p
+                        class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-2"
+                        style="font-size: 0.6875rem"
+                      >
+                        The core idea
+                      </p>
+                      <p class="fs-5 text-body-emphasis mb-0">
+                        If your website is static, your infrastructure should
+                        probably be static too.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+
+              <p class="text-secondary-emphasis mt-4 mb-0">
+                There is very little infrastructure to maintain, and most
+                requests are served directly from CloudFront.
+              </p>
+            </section>
+
+            <!-- ---- Section 2 ---- -->
+            <section
+              id="2-s3-and-cloudfront"
+              class="mt-6 mt-md-7"
+              aria-labelledby="2-s3-and-cloudfront-title"
+            >
+              <h2 id="2-s3-and-cloudfront-title" class="mb-3">
+                2. S3 Stores the Website, CloudFront Serves It
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                I created a single S3 bucket named
+                <code>liandrejohn.com</code>, and the deployment uploads the
+                compiled site straight into it. Visitors never touch that bucket
+                directly — CloudFront sits in front of it:
+              </p>
+
+              <!-- Request path: a wrapping row of pill chips joined by arrows.
+                   Pure Bootstrap utilities (badge + flex), no new component —
+                   the last chip is filled to read as the origin. Reused for
+                   every short flow in this article. -->
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 my-4"
+                role="list"
+                aria-label="Request path: browser, then CloudFront, then S3"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Browser</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >CloudFront</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >S3</span
+                >
+              </div>
+
+              <p class="text-secondary-emphasis mb-4">
+                That layer is what gives me CDN caching, HTTPS, faster global
+                delivery, and real control over URLs and redirects. It also lets
+                the bucket stay completely private, instead of being exposed as a
+                public S3 website endpoint.
+              </p>
+
+              <figure class="mb-0">
+                <img
+                  class="img-fluid rounded-4 border"
+                  src="/images/blog/how-i-deployed-my-portfolio-to-aws/S3.webp"
+                  alt="The Amazon S3 console for the liandrejohn.com bucket, listing the deployed site: 404.html and index.html, folders for assets, blog, fonts and images, plus llms.txt, robots.txt, site.webmanifest and sitemap.xml."
+                  width="1600"
+                  height="901"
+                  loading="lazy"
+                />
+                <figcaption class="fs-7 text-secondary mt-3">
+                  The <code>liandrejohn.com</code> bucket — the built site,
+                  uploaded on every deploy and kept private behind CloudFront.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- ---- Section 3 ---- -->
+            <section
+              id="3-https-with-acm"
+              class="mt-6 mt-md-7"
+              aria-labelledby="3-https-with-acm-title"
+            >
+              <h2 id="3-https-with-acm-title" class="mb-3">3. HTTPS With ACM</h2>
+              <p class="text-secondary-emphasis mb-0">
+                HTTPS is handled by a single AWS Certificate Manager (ACM)
+                certificate that covers both the apex domain and a wildcard:
+              </p>
+
+              <div class="code-window rounded-4 overflow-hidden mt-3">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">liandrejohn.com
+*.liandrejohn.com</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mt-4 mb-3">
+                The wildcard matters because I also run small projects on
+                subdomains:
+              </p>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >todo.liandrejohn.com</span
+                >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >construction.liandrejohn.com</span
+                >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >handa.liandrejohn.com</span
+                >
+              </div>
+
+              <p class="text-secondary-emphasis mb-0">
+                One wildcard certificate covers all of them, so I never have to
+                request a completely new certificate for every experiment or
+                portfolio project.
+              </p>
+            </section>
+
+            <!-- ---- Section 4 ---- -->
+            <section
+              id="4-route-53"
+              class="mt-6 mt-md-7"
+              aria-labelledby="4-route-53-title"
+            >
+              <h2 id="4-route-53-title" class="mb-3">
+                4. Route 53 Connects the Domain to CloudFront
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                My DNS is already managed in Route 53, so the domain points
+                straight at the CloudFront distribution:
+              </p>
+
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 my-4"
+                role="list"
+                aria-label="Resolution path: domain, then Route 53, then CloudFront, then S3"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >liandrejohn.com</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Route 53</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >CloudFront</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >S3</span
+                >
+              </div>
+
+              <p class="text-secondary-emphasis mb-4">
+                CloudFront becomes the public entry point for the site. That is
+                important because it gives me one place to handle caching, HTTPS,
+                redirects, and URL behavior.
+              </p>
+
+              <figure class="mb-0">
+                <img
+                  class="img-fluid rounded-4 border"
+                  src="/images/blog/how-i-deployed-my-portfolio-to-aws/CloudFront.webp"
+                  alt="The CloudFront distribution's General tab: liandrejohn.com and www.liandrejohn.com as alternate domain names, a validated ACM certificate for liandrejohn.com, a TLSv1.2_2021 security policy, and index.html set as the default root object."
+                  width="1600"
+                  height="901"
+                  loading="lazy"
+                />
+                <figcaption class="fs-7 text-secondary mt-3">
+                  The distribution the domain resolves to — both
+                  <code>liandrejohn.com</code> and
+                  <code>www.liandrejohn.com</code> as alternate domain names, with
+                  the ACM certificate attached.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- ---- Section 5 ---- -->
+            <section
+              id="5-github-actions"
+              class="mt-6 mt-md-7"
+              aria-labelledby="5-github-actions-title"
+            >
+              <h2 id="5-github-actions-title" class="mb-3">
+                5. GitHub Actions Builds and Deploys the Site
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                I did not want deployment to mean manually uploading files into
+                S3, and I wanted the deployed version to be optimized production
+                files instead of the raw development source. The whole pipeline
+                now runs itself:
+              </p>
+
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 my-4"
+                role="list"
+                aria-label="Deployment pipeline: git push, then GitHub Actions, then install dependencies, then build, then minified production files, then upload to S3"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >git push</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >GitHub Actions</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Install dependencies</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Build</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Minified production files</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Upload to S3</span
+                >
+              </div>
+
+              <p class="text-secondary-emphasis mb-3">
+                A lightweight frontend build tool handles the heavy lifting:
+              </p>
+              <ul class="text-secondary-emphasis d-flex flex-column gap-2 mb-4">
+                <li>minifying JavaScript</li>
+                <li>minifying CSS</li>
+                <li>processing HTML</li>
+                <li>optimizing production assets</li>
+                <li>generating a clean <code>dist/</code> directory</li>
+              </ul>
+
+              <p class="text-secondary-emphasis mb-3">
+                So deploying a change is basically one command:
+              </p>
+              <div class="code-window rounded-4 overflow-hidden">
+                <div
+                  class="code-window__bar d-flex align-items-center justify-content-between gap-3 px-3 py-2"
+                >
+                  <span class="font-monospace fs-7 text-white-50">Terminal</span>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-light border-0 d-inline-flex align-items-center gap-2 py-1"
+                    data-copy-code
+                  >
+                    <svg
+                      class="bi"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"
+                      />
+                      <path
+                        d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"
+                      />
+                    </svg>
+                    <span data-copy-label aria-live="polite">Copy</span>
+                  </button>
+                </div>
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">git push origin main</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mt-4 mb-4">
+                GitHub Actions builds the project and syncs only the production
+                output to S3. It sounds like a small improvement, but it
+                completely changes the workflow: the repository becomes the
+                source of truth, instead of whatever happens to currently exist
+                inside the S3 bucket.
+              </p>
+
+              <figure class="mb-0">
+                <img
+                  class="img-fluid rounded-4 border"
+                  src="/images/blog/how-i-deployed-my-portfolio-to-aws/GitHub_Actions.webp"
+                  alt="The GitHub Actions tab showing the 'Deploy to AWS' workflow (deploy.yml) with a list of successful runs triggered by pushes to the main branch, each finishing in roughly 25 to 40 seconds."
+                  width="1600"
+                  height="901"
+                  loading="lazy"
+                />
+                <figcaption class="fs-7 text-secondary mt-3">
+                  The <code>Deploy to AWS</code> workflow — every push to
+                  <code>main</code> builds and syncs the site, each run finishing
+                  in well under a minute.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- ---- Section 6 ---- -->
+            <section
+              id="6-iam-oidc"
+              class="mt-6 mt-md-7"
+              aria-labelledby="6-iam-oidc-title"
+            >
+              <h2 id="6-iam-oidc-title" class="mb-3">
+                6. I Used IAM OIDC Instead of AWS Access Keys
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                One thing I specifically wanted to avoid was storing long-lived
+                credentials like these in GitHub:
+              </p>
+              <div class="code-window rounded-4 overflow-hidden mt-3">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mt-4 mb-3">
+                Instead, GitHub Actions authenticates to AWS using OpenID Connect
+                (OIDC):
+              </p>
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 mb-4"
+                role="list"
+                aria-label="OIDC flow: GitHub Actions, then OIDC token, then assume IAM role, then deploy to S3"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >GitHub Actions</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >OIDC token</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Assume IAM role</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >Deploy to S3</span
+                >
+              </div>
+
+              <p class="text-secondary-emphasis mb-3">
+                My GitHub repository only needs non-secret configuration such as:
+              </p>
+              <div class="code-window rounded-4 overflow-hidden">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">AWS_REGION
+AWS_ROLE_ARN
+S3_BUCKET</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mt-4 mb-0">
+                There are no long-lived AWS credentials sitting inside GitHub
+                Secrets. This was slightly more work to configure initially, but
+                it is a much cleaner deployment model.
+              </p>
+
+              <!-- "Why it works" callout: same icon-tile + kicker aside the
+                   sister post uses, on a primary-subtle wash. -->
+              <aside class="card bg-primary-subtle border-0 rounded-4 mt-4">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-start gap-3">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary text-white"
+                      data-icon-tile
+                      aria-hidden="true"
+                    >
+                      <svg
+                        class="bi fs-4"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"
+                        />
+                        <path
+                          d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415"
+                        />
+                      </svg>
+                    </span>
+                    <div>
+                      <p
+                        class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-2"
+                        style="font-size: 0.6875rem"
+                      >
+                        Why it works
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">
+                        There is no stored key to leak or rotate. GitHub requests
+                        a short-lived token for each run, AWS validates it against
+                        the IAM role's trust policy, and the access is gone the
+                        moment the job ends.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </section>
+
+            <!-- ---- Section 7 ---- -->
+            <section
+              id="7-clean-urls"
+              class="mt-6 mt-md-7"
+              aria-labelledby="7-clean-urls-title"
+            >
+              <h2 id="7-clean-urls-title" class="mb-3">
+                7. Clean URLs With CloudFront
+              </h2>
+              <p class="text-secondary-emphasis mb-4">
+                Static hosting introduces an interesting URL problem: the real
+                S3 object and the URL I actually want to expose do not match.
+              </p>
+
+              <p class="fw-semibold mb-2">
+                The real S3 object for my sister post,
+                <a href="/blog/how-i-built-my-portfolio-with-claude-code"
+                  >How I built my portfolio with Claude Code</a
+                >, might be:
+              </p>
+              <div class="code-window rounded-4 overflow-hidden mb-4">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">/blog/how-i-built-my-portfolio-with-claude-code.html</code></pre>
+              </div>
+
+              <p class="fw-semibold mb-2">But the public URL I want is:</p>
+              <div class="code-window rounded-4 overflow-hidden mb-4">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">/blog/how-i-built-my-portfolio-with-claude-code</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mb-4">
+                I do not want both versions indexed, because that can create
+                duplicate URLs for the same content. I also picked
+                <code>https://liandrejohn.com</code> as my canonical domain,
+                instead of <code>https://www.liandrejohn.com</code>.
+              </p>
+              <p class="text-secondary-emphasis mb-4">
+                CloudFront handles both problems with a single small
+                viewer-request function.
+              </p>
+
+              <p class="fw-semibold mb-2">
+                For <code>.html</code> URLs, it rewrites and redirects:
+              </p>
+              <p class="text-secondary-emphasis mb-4">
+                A request for <code>/blog/my-article</code> can internally
+                become <code>/blog/my-article.html</code> without changing the
+                URL the visitor sees — and if someone explicitly visits
+                <code>/blog/my-article.html</code>, they are redirected back to
+                <code>/blog/my-article</code>.
+              </p>
+
+              <p class="text-secondary-emphasis mb-0">
+                The same function also redirects the <code>www</code> host to
+                the apex domain:
+              </p>
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 my-4"
+                role="list"
+                aria-label="Redirect: https://www.liandrejohn.com to https://liandrejohn.com"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >https://www.liandrejohn.com</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >https://liandrejohn.com</span
+                >
+              </div>
+              <p class="text-secondary-emphasis mb-0">
+                So any non-canonical URL collapses to a single address:
+              </p>
+              <div
+                class="d-flex flex-wrap align-items-center gap-2 my-4"
+                role="list"
+                aria-label="Example: www.liandrejohn.com/blog/article.html eventually becomes liandrejohn.com/blog/article"
+              >
+                <span
+                  class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >www.liandrejohn.com/blog/article.html</span
+                >
+                <svg
+                  class="bi text-primary flex-shrink-0"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                <span
+                  class="badge rounded-pill text-bg-primary fw-semibold fs-7 text-nowrap px-3 py-2"
+                  role="listitem"
+                  >liandrejohn.com/blog/article</span
+                >
+              </div>
+              <p class="fs-5 text-body-emphasis mb-4">
+                The goal is simple: one public version of every page.
+              </p>
+              <p class="text-secondary-emphasis mb-4">
+                Now my canonical URLs, internal links, sitemap, and browser
+                URLs all agree.
+              </p>
+
+              <figure class="mb-0">
+                <img
+                  class="img-fluid rounded-4 border"
+                  src="/images/blog/how-i-deployed-my-portfolio-to-aws/URL_Canonicalization.webp"
+                  alt="A URL canonicalization diagram: '/blog/my-article.html' 301-redirects to '/blog/my-article' by removing the .html extension, and 'www.liandrejohn.com' 301-redirects to 'liandrejohn.com' as the canonical host."
+                  width="1672"
+                  height="941"
+                  loading="lazy"
+                />
+                <figcaption class="fs-7 text-secondary mt-3">
+                  Every non-canonical URL — the <code>.html</code> version, the
+                  <code>www</code> host — 301-redirects to one canonical URL.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- ---- Section 8 ---- -->
+            <section
+              id="8-final-deployment-flow"
+              class="mt-6 mt-md-7"
+              aria-labelledby="8-final-deployment-flow-title"
+            >
+              <h2 id="8-final-deployment-flow-title" class="mb-3">
+                8. The Final Deployment Flow
+              </h2>
+              <p class="text-secondary-emphasis mb-3">
+                Put together, the whole system is now:
+              </p>
+
+              <!-- The end-to-end tree: same .code-window chrome as the shorter
+                   snippets, tinted like the sister post's project tree — the
+                   stage names in sky, the branch glyphs muted. -->
+              <figure class="mb-4">
+                <div class="code-window rounded-4 overflow-hidden">
+                  <div
+                    class="code-window__bar d-flex align-items-center justify-content-between gap-3 px-3 py-2"
+                  >
+                    <span class="font-monospace fs-7 text-white-50"
+                      >Deployment flow</span
+                    >
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-light border-0 d-inline-flex align-items-center gap-2 py-1"
+                      data-copy-code
+                    >
+                      <svg
+                        class="bi"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"
+                        />
+                        <path
+                          d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"
+                        />
+                      </svg>
+                      <span data-copy-label aria-live="polite">Copy</span>
+                    </button>
+                  </div>
+                  <pre
+                    class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                  ><code class="font-monospace fs-7"><span class="tok-dir">Developer</span>
+   │
+   ▼
+<span class="tok-dir">git push</span>
+   │
+   ▼
+<span class="tok-dir">GitHub</span>
+   │
+   ▼
+<span class="tok-dir">GitHub Actions</span>
+<span class="tok-branch">   ├──</span> install dependencies
+<span class="tok-branch">   ├──</span> build production site
+<span class="tok-branch">   └──</span> assume AWS IAM role through OIDC
+            │
+            ▼
+          <span class="tok-dir">S3</span>
+            │
+            ▼
+       <span class="tok-dir">CloudFront</span>
+            │
+            ▼
+        <span class="tok-dir">Route 53</span>
+            │
+            ▼
+     <span class="tok-dir">liandrejohn.com</span></code></pre>
+                </div>
+                <figcaption class="fs-7 text-secondary mt-3">
+                  One push, then GitHub Actions installs, builds, authenticates
+                  through OIDC, and syncs to S3 — with CloudFront and Route 53
+                  serving the result.
+                </figcaption>
+              </figure>
+
+              <p class="text-secondary-emphasis mb-4">
+                There are more sophisticated ways to deploy a website. I could
+                manage everything with Terraform, add multiple environments,
+                implement advanced cache-control rules, or introduce a full
+                deployment platform. But that was not the goal.
+              </p>
+
+              <!-- The article's thesis, as a primary-subtle callout — the same
+                   treatment as Section 1's "core idea". -->
+              <aside class="card bg-primary-subtle border-0 rounded-4">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-start gap-3">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary text-white"
+                      data-icon-tile
+                      aria-hidden="true"
+                    >
+                      <svg
+                        class="bi fs-4"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 14h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5m1.5-1.5a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1z"
+                        />
+                      </svg>
+                    </span>
+                    <div>
+                      <p
+                        class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-2"
+                        style="font-size: 0.6875rem"
+                      >
+                        The goal
+                      </p>
+                      <p class="fs-5 text-body-emphasis mb-0">
+                        Build the smallest production-ready setup that teaches me
+                        the important pieces.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+
+              <p class="text-secondary-emphasis mt-4 mb-0">
+                And for a static portfolio, this architecture has been more than
+                enough.
+              </p>
+            </section>
+
+            <!-- ---- What I Learned ---- -->
+            <section
+              id="9-what-i-learned"
+              class="mt-6 mt-md-7"
+              aria-labelledby="9-what-i-learned-title"
+            >
+              <h2 id="9-what-i-learned-title" class="mb-3">
+                9. What I Learned Deploying a Static Site to AWS
+              </h2>
+              <p class="text-secondary-emphasis mb-0">
+                The biggest lesson was that deployment is not just about getting
+                files onto the internet. A good setup answers a handful of
+                important questions — and the answers do not need to be
+                complicated.
+              </p>
+
+              <!-- The questions and their answers as a card grid — the same
+                   card shell as Section 1's services, minus the icon tile.
+                   3x3 from lg up. -->
+              <div
+                class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 mt-0 mb-4"
+              >
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        Where does the site live?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">Amazon S3.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        Who actually serves it to visitors?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">CloudFront.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        How does HTTPS work?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">ACM provides the certificate.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        How does the domain reach the site?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">Route 53 points to CloudFront.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        How do deployments happen?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">Push to GitHub; GitHub Actions builds and uploads the site.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        How does GitHub authenticate to AWS?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">IAM OIDC, without long-lived access keys.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        What is the canonical URL?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0"><code>https://liandrejohn.com</code>.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        What happens to <code>www</code>?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">It redirects to the non-<code>www</code> domain.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-body p-4">
+                      <p class="text-body-emphasis fw-semibold mb-2">
+                        What happens to <code>.html</code> URLs?
+                      </p>
+                      <p class="text-secondary-emphasis mb-0">CloudFront redirects or rewrites them to clean URLs.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-secondary-emphasis mb-2">
+                Once I could answer those questions clearly, the infrastructure
+                stopped feeling complicated.
+              </p>
+              <p class="text-secondary-emphasis mb-0">
+                The result is a small stack where every service has one obvious
+                job.
+              </p>
+            </section>
+
+            <!-- ---- What I'd Add Next ---- -->
+            <section
+              id="10-what-id-add-next"
+              class="mt-6 mt-md-7"
+              aria-labelledby="10-what-id-add-next-title"
+            >
+              <h2 id="10-what-id-add-next-title" class="mb-3">
+                10. What I'd Add to the AWS Deployment Next
+              </h2>
+              <p class="text-secondary-emphasis mb-3">
+                My current setup is intentionally simple. The next improvements I
+                would consider are:
+              </p>
+              <div class="d-flex flex-wrap gap-2 mb-4">
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Infrastructure as Code</span
+                >
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Better CloudFront cache policies</span
+                >
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Preview deployments</span
+                >
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Automated Lighthouse checks</span
+                >
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Deployment notifications</span
+                >
+                <span
+                  class="badge rounded-pill text-bg-light border fw-semibold fs-7 text-nowrap px-3 py-2"
+                  >Security headers</span
+                >
+              </div>
+              <p class="text-secondary-emphasis mb-3">
+                But I would add them only when the project actually needs them.
+              </p>
+              <p class="text-secondary-emphasis mb-4">
+                That has become one of my favorite rules when working with cloud
+                infrastructure:
+              </p>
+
+              <!-- The closing rule, as a primary-subtle callout — same component
+                   as Section 8's "The goal". -->
+              <aside class="card bg-primary-subtle border-0 rounded-4">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-start gap-3">
+                    <span
+                      class="d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-3 bg-primary text-white"
+                      data-icon-tile
+                      aria-hidden="true"
+                    >
+                      <svg
+                        class="bi fs-4"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 14h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5m1.5-1.5a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1z"
+                        />
+                      </svg>
+                    </span>
+                    <div>
+                      <p
+                        class="text-primary text-uppercase fw-semibold tracking-wide lh-1 mb-2"
+                        style="font-size: 0.6875rem"
+                      >
+                        A rule I keep
+                      </p>
+                      <p class="fs-5 text-body-emphasis mb-0">
+                        Start with the smallest architecture that solves the
+                        problem, then earn the complexity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </section>
+
+            <!-- ---- End of article: back to the index + a get-in-touch CTA ---- -->
+            <div id="article-end" class="border-top mt-6 mt-md-7 pt-5">
+              <p class="text-secondary-emphasis mb-4">
+                Thanks for reading. If you're hiring or planning a cloud
+                deployment, I'd be glad to talk it through.
+              </p>
+              <div class="d-flex flex-wrap gap-3">
+                <a
+                  class="btn btn-primary d-inline-flex align-items-center gap-2"
+                  href="/#get-in-touch"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="get_in_touch"
+                  data-analytics-section-name="blog_end"
+                  data-analytics-link-scope="exit_to_portfolio"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"
+                    />
+                  </svg>
+                  Get in touch
+                </a>
+                <a
+                  class="btn btn-outline-secondary d-inline-flex align-items-center gap-2"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="blog_end"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                    />
+                  </svg>
+                  Back to all posts
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: sticky table of contents. Hidden below lg (in
+               source order it sits after the whole article). From lg up it
+               sticks beside the sections; the page-scoped script before
+               </body> flags the entry currently in view with .is-active.
+               Every entry is a plain in-page anchor, so the list still works
+               if that script never runs. Entries are added as each section
+               lands. -->
+          <div class="col-lg-3 d-none d-lg-block">
+            <nav
+              class="blog-toc position-sticky"
+              aria-labelledby="toc-heading"
+              data-toc
+            >
+              <p
+                id="toc-heading"
+                class="text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                On this page
+              </p>
+              <ul class="list-unstyled border-start mb-0">
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#1-the-architecture"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >1. The Architecture</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#2-s3-and-cloudfront"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >2. S3 &amp; CloudFront</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#3-https-with-acm"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >3. HTTPS With ACM</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-route-53"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >4. Route 53</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#5-github-actions"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >5. GitHub Actions</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#6-iam-oidc"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >6. IAM OIDC</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#7-clean-urls"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >7. Clean URLs</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#8-final-deployment-flow"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >8. The Final Flow</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#9-what-i-learned"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >9. What I Learned</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#10-what-id-add-next"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >10. What I'd Add Next</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Back-to-top button: hidden by default; main.js toggles it once the post
+         header is scrolled past, and hides it again over the footer (which has
+         its own "Back to top" link). Same markup + wiring as the homepage. -->
+    <a
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
+      href="#top"
+      aria-label="Back to top"
+      data-analytics-event="nav_click"
+      data-analytics-position="back_to_top"
+      data-analytics-link-text="back_to_top"
+      ><svg
+        class="bi"
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
+
+    <!-- ============================================================
+         FOOTER — shared with the homepage: brand blurb + "Explore" anchor
+         links + "Connect" links + copyright. Section anchors are absolute
+         (/#…) so they resolve back on the homepage from this post.
+         ============================================================ -->
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand column: logo + one-line summary -->
+          <div class="col-lg-4">
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="160"
+              height="53"
+              loading="lazy"
+              class="mb-4"
+            />
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
+              Tech Lead building enterprise digital platforms, APIs, and cloud
+              systems — with AI-assisted engineering as a delivery multiplier.
+            </p>
+          </div>
+          <!-- Explore column: homepage section anchors -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Explore
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >What I Do</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Featured Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Concept Builds</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >How I Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#get-in-touch"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Get in Touch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Connect column: external contact links -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Connect
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="mailto:liandrejohn88@gmail.com"
+                  rel="me"
+                  data-email-text
+                  data-analytics-event="email_click"
+                  data-analytics-contact-method="email"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >liandrejohn88 [at] gmail [dot] com</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://www.linkedin.com/in/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="linkedin_click"
+                  data-analytics-contact-method="linkedin"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >linkedin.com/in/lpdecastro</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://github.com/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >github.com/lpdecastro</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer bottom bar: copyright + back-to-top link -->
+        <hr class="border-light border-opacity-10 opacity-100 my-6" />
+        <div
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
+        >
+          <p class="mb-0">
+            © <span id="year">2026</span> Liandre John de Castro. All rights
+            reserved.
+          </p>
+          <a class="link-light text-decoration-none" href="#top"
+            >Back to top
+            <svg
+              class="bi"
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Bootstrap bundle (navbar collapse), analytics helper, then site behaviors
+         (navbar scroll state, mobile menu close, back-to-top toggle). Same entry point as the homepage. -->
+    <script type="module" src="/src/js/main.js"></script>
+
+    <!-- Code blocks: copy-to-clipboard for the .code-window blocks that carry a
+         title bar with a button. Page-scoped (no other page has a code block)
+         and progressive enhancement — each <pre> stays fully selectable if this
+         never runs. Windows without a copy button (the env-var and path lists)
+         are skipped. Same wiring as the sister post. -->
+    <script>
+      (() => {
+        document.querySelectorAll(".code-window").forEach((win) => {
+          const button = win.querySelector("[data-copy-code]");
+          const code = win.querySelector("code");
+          const label = button && button.querySelector("[data-copy-label]");
+          if (!button || !code || !navigator.clipboard) {
+            if (button) button.hidden = true;
+            return;
+          }
+          const idle = label ? label.textContent : "Copy";
+          // The title-bar label (e.g. "Terminal") names the snippet in the
+          // code_copy / code_copy_error events — never the clipboard contents.
+          const barLabel = win.querySelector(".code-window__bar span");
+          const snippetName = barLabel
+            ? barLabel.textContent.replace(/\s+/g, " ").trim()
+            : "unknown";
+          let resetTimer;
+          button.addEventListener("click", async () => {
+            try {
+              await navigator.clipboard.writeText(
+                code.textContent.replace(/\s+$/, "") + "\n",
+              );
+              if (label) label.textContent = "Copied";
+              // page_type is stamped by trackEvent() from <body data-page>,
+              // same as code_copy_error below — no need to pass it explicitly.
+              window.trackEvent?.("code_copy", {
+                snippet_name: snippetName,
+              });
+            } catch {
+              if (label) label.textContent = "Press ⌘C";
+              window.trackEvent?.("code_copy_error", {
+                snippet_name: snippetName,
+                error_type: "clipboard_denied",
+              });
+            }
+            clearTimeout(resetTimer);
+            resetTimer = setTimeout(() => {
+              if (label) label.textContent = idle;
+            }, 2000);
+          });
+        });
+      })();
+    </script>
+
+    <!-- Sticky TOC: flag the entry whose section is currently in view. Walks the
+         entries (authored in document order) and takes the last one whose top
+         has passed a line just below the fixed navbar; at the very bottom of the
+         page — where the short trailing sections can't scroll far enough to
+         cross that line — it takes the final entry instead. Clicking an entry
+         pins it until the jump settles. Page-scoped, and pure enhancement — the
+         list is plain anchors without it. -->
+    <script>
+      (() => {
+        const toc = document.querySelector("[data-toc]");
+        if (!toc) return;
+
+        const entries = [...toc.querySelectorAll('a[href^="#"]')]
+          .map((link) => ({
+            link,
+            target: document.getElementById(
+              decodeURIComponent(link.hash.slice(1)),
+            ),
+          }))
+          .filter((entry) => entry.target);
+        if (!entries.length) return;
+
+        // The line a section's top must cross to count as "current" — kept in
+        // step with `html { scroll-padding-top: 6rem }` so a jumped heading
+        // lands exactly where the active-state switches (fixed navbar + a
+        // little breathing room).
+        const OFFSET = 96;
+
+        let active = null;
+        const setActive = (link) => {
+          if (link === active) return;
+          if (active) {
+            active.classList.remove("is-active");
+            active.removeAttribute("aria-current");
+          }
+          if (link) {
+            link.classList.add("is-active");
+            link.setAttribute("aria-current", "true");
+          }
+          active = link;
+        };
+
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+
+          // The last entry whose section top has scrolled up past the reading
+          // line...
+          let current = entries[0].link;
+          for (const entry of entries) {
+            if (entry.target.getBoundingClientRect().top - OFFSET <= 1) {
+              current = entry.link;
+            } else {
+              break;
+            }
+          }
+
+          // ...except at the very bottom of the page: only force the final
+          // entry if its own heading has actually crossed the reading line.
+          const last = entries[entries.length - 1];
+          const atBottom =
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 2;
+          if (
+            atBottom &&
+            last.target.getBoundingClientRect().top - OFFSET <= 1
+          ) {
+            current = last.link;
+          }
+
+          setActive(current);
+        };
+
+        // While a click-jump is in flight, pin the clicked entry.
+        let pinned = false;
+        let pinTimer;
+        const unpin = () => {
+          pinned = false;
+        };
+
+        toc.addEventListener("click", (event) => {
+          const link = event.target.closest('a[href^="#"]');
+          if (!link) return;
+          setActive(link);
+          pinned = true;
+          clearTimeout(pinTimer);
+          pinTimer = setTimeout(unpin, 1000);
+        });
+        window.addEventListener("scrollend", unpin);
+
+        const onScroll = () => {
+          if (pinned || ticking) return;
+          ticking = true;
+          requestAnimationFrame(update);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        update();
+      })();
+    </script>
+  </body>
+</html>

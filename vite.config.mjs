@@ -20,6 +20,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         blogIndex: resolve(__dirname, 'blog/index.html'),
         blogPortfolioPost: resolve(__dirname, 'blog/how-i-built-my-portfolio-with-claude-code.html'),
+        blogAwsDeploymentPost: resolve(__dirname, 'blog/how-i-deployed-my-portfolio-to-aws.html'),
       },
     },
   },

@@ -4,7 +4,7 @@ A multi-page static professional portfolio deployed at liandrejohn.com to showca
 
 ## Main Goal
 
-Act as an expert web analytics specialist. Review my blog page and recommend practical analytics tracking so I can understand how visitors discover, read, and interact with the article without overcomplicating the implementation.
+Act as an expert web analytics specialist. Review my `blog/how-i-deployed-my-portfolio-to-aws.html` page and recommend practical analytics tracking so I can understand how visitors discover, read, and interact with the article without overcomplicating the implementation.
 
 Evaluate and recommend tracking for:
 
@@ -24,7 +24,7 @@ Evaluate and recommend tracking for:
 
 Output the recommendations in a concise table with **#**, **Impact**, **Area**, **Issue**, **Suggested Solution**, and **Status** columns.
 
-Also save the final analytics review and implementation recommendations as a Markdown file inside the `local/` folder.
+Also save the final analytics review and implementation recommendations as a Markdown file inside the `local/blog/how-i-deployed-my-portfolio-to-aws` folder.
 
 ## Commands
 

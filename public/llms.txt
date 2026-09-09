@@ -40,6 +40,7 @@
 ## Blog
 
 - [How I Built My Portfolio with Claude Code](https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code) — how this site itself was built with Claude Code: the useful part wasn't asking AI to write more code, it was giving it a smaller, clearer system to reason inside, then reviewing each decision before it shipped. Covers prompt and context engineering with scoped CLAUDE.md instruction files, the Vite/Bootstrap stack, structured data for AI answer engines, and a from-scratch AWS deployment pipeline.
+- [How I Deployed My Portfolio to AWS Without Overengineering It](https://liandrejohn.com/blog/how-i-deployed-my-portfolio-to-aws) — the smallest production-ready AWS stack for a static site: Amazon S3 for storage, CloudFront as the CDN, Route 53 for DNS, ACM for HTTPS, and GitHub Actions for deployment, with IAM OIDC so no long-lived AWS keys sit in GitHub. Also covers clean URL canonicalization (dropping .html, forcing the apex domain) with a single CloudFront viewer-request function. No servers, no containers, no Terraform.
 
 ## Contact
 

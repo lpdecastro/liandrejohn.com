@@ -125,7 +125,14 @@ function contentLinkParams(link) {
 document.addEventListener('click', (event) => {
   const el = event.target.closest('[data-analytics-event]');
   if (el) {
-    window.trackEvent(el.dataset.analyticsEvent, paramsFromDataset(el));
+    const name = el.dataset.analyticsEvent;
+    const params = paramsFromDataset(el);
+    // nav_click always describes a navigation chrome link (navbar / breadcrumb
+    // / footer / back-to-top / brand) — stamp link_type: 'nav' unless the
+    // markup set it, so the measurement plan's §6 link_type dimension is
+    // populated site-wide without repeating the attribute on every link.
+    if (name === 'nav_click' && !('link_type' in params)) params.link_type = 'nav';
+    window.trackEvent(name, params);
     return;
   }
 
@@ -147,36 +154,37 @@ document.addEventListener('click', (event) => {
 // with no recognised data-page is not instrumented here — this is what keeps
 // blog loads out of the homepage section funnel (they used to still emit a
 // hard-coded `hero` section_view on every page).
+//
+// The homepage keeps an explicit list — its sections aren't all inside one
+// container. A single article page (<body data-article-id>) derives the list
+// from the DOM: every <section id> inside <main id="content">, in document
+// order. No per-post section IDs live here, so every future article is
+// instrumented with no code change (previously this list was hard-coded to
+// the first post's IDs and fired nothing on any other post).
 (function observeSections() {
   if (!('IntersectionObserver' in window)) return;
 
-  const PAGE_SECTIONS = {
-    portfolio: [
-      ['what-i-do', 'what_i_do'],
-      ['featured-work', 'featured_work'],
-      ['concept-builds', 'concept_builds'],
-      ['how-i-work', 'how_i_work'],
-      ['get-in-touch', 'get_in_touch'],
-    ],
-    // Article sections + the 3.1–3.4 subsections, in document order.
-    // section_engaged ÷ section_view per section = attention / drop-off point.
-    blog: [
-      ['1-what-i-built', '1_what_i_built'],
-      ['2-tech-stack', '2_tech_stack'],
-      ['3-claude-code', '3_claude_code'],
-      ['3-1-claude-md', '3_1_claude_md'],
-      ['3-2-context-files', '3_2_context_files'],
-      ['3-3-fresh-sessions', '3_3_fresh_sessions'],
-      ['3-4-review-artifacts', '3_4_review_artifacts'],
-      ['4-results', '4_results'],
-      ['5-conclusion', '5_conclusion'],
-      ['6-resources', '6_resources'],
-    ],
-  };
+  const PORTFOLIO_SECTIONS = [
+    ['what-i-do', 'what_i_do'],
+    ['featured-work', 'featured_work'],
+    ['concept-builds', 'concept_builds'],
+    ['how-i-work', 'how_i_work'],
+    ['get-in-touch', 'get_in_touch'],
+  ];
 
   const page = document.body.dataset.page;
-  const sections = PAGE_SECTIONS[page];
-  if (!sections) return;
+
+  // section_engaged ÷ section_view per section = attention / drop-off point.
+  let sections;
+  if (page === 'portfolio') {
+    sections = PORTFOLIO_SECTIONS;
+  } else if (page === 'blog' && document.body.dataset.articleId) {
+    sections = [...document.querySelectorAll('#content section[id]')].map((el) => [
+      el.id,
+      el.id.replace(/-/g, '_'),
+    ]);
+  }
+  if (!sections || !sections.length) return;
 
   const ENGAGED_MS = 4000;
   // page_type is stamped on every event by trackEvent() itself.
@@ -251,6 +259,15 @@ document.addEventListener('click', (event) => {
 
   const withCtx = (extra) => Object.assign({ article_id: articleId }, extra);
 
+  // <body data-article-section> is written as prose ("Cloud & DevOps") — slugify
+  // it so article_section matches the snake_case vocabulary every other param
+  // uses, rather than splitting the dimension across posts.
+  const slugify = (s) =>
+    s
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+
   // fireOnce(id, event, params): the first time #id enters view, send `event`
   // and stop watching. Used for the start and completion funnel steps.
   const fireOnce = (id, name, extra) => {
@@ -269,13 +286,18 @@ document.addEventListener('click', (event) => {
     obs.observe(target);
   };
 
-  // article_start: section 1 enters view — the first read-through funnel step.
+  // article_start: the first in-article section entering view — the first
+  // read-through funnel step. The target ID is read from the DOM (the first
+  // <section id> in #content) so it tracks whatever post this is.
+  const firstSection = main.querySelector('section[id]');
   const articleSection = document.body.dataset.articleSection;
-  fireOnce(
-    '1-what-i-built',
-    'article_start',
-    articleSection ? { article_section: articleSection } : {}
-  );
+  if (firstSection) {
+    fireOnce(
+      firstSection.id,
+      'article_start',
+      articleSection ? { article_section: slugify(articleSection) } : {}
+    );
+  }
 
   // article_complete: the end-of-article block enters view.
   fireOnce('article-end', 'article_complete', {});
@@ -306,4 +328,46 @@ document.addEventListener('click', (event) => {
     main.appendChild(mark);
     depthObserver.observe(mark);
   });
+})();
+
+// Screenshot / diagram reach. The article's figures are its proof; section_view
+// is only a coarse proxy for "did the reader get to the picture". image_view
+// fires once per <figure> image inside <main id="content"> when it enters view.
+// image_name comes from an explicit data-analytics-image-name, else the src
+// file basename (slugified); section_name from the nearest <section id>. The
+// images aren't interactive, so there's no click/zoom event.
+(function observeImages() {
+  if (!('IntersectionObserver' in window)) return;
+
+  const articleId = document.body.dataset.articleId;
+  if (!articleId) return;
+
+  const images = document.querySelectorAll('#content figure img');
+  if (!images.length) return;
+
+  const nameOf = (img) => {
+    if (img.dataset.analyticsImageName) return img.dataset.analyticsImageName;
+    const file = (img.getAttribute('src') || '').split('/').pop() || '';
+    return file
+      .replace(/\.[a-z0-9]+$/i, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        const section = entry.target.closest('section[id]');
+        const params = { article_id: articleId, image_name: nameOf(entry.target) };
+        if (section) params.section_name = section.id.replace(/-/g, '_');
+        window.trackEvent('image_view', params);
+      }
+    },
+    { threshold: 0.1 }
+  );
+
+  images.forEach((img) => observer.observe(img));
 })();
