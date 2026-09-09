@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
-         Event tracking lives in src/js/analytics.js, not here. -->
+         Event tracking lives in src/js/analytics.js, not here.
+         NOTE: this config snippet is duplicated in blog/index.html and
+         blog/how-i-built-my-portfolio-with-claude-code.html — only content_group
+         differs ('portfolio' here, 'blog' there). Keep the three in sync. -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,7 +17,7 @@
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-Q3EPREERQJ');
+      gtag('config', 'G-Q3EPREERQJ', { content_group: 'portfolio' });
     </script>
 
     <meta
@@ -268,7 +271,7 @@
     <link rel="stylesheet" href="/src/scss/main.scss" />
   </head>
   <!-- data-bs-spy: Bootstrap Scrollspy highlights the matching nav link as each section scrolls into view -->
-  <body data-bs-spy="scroll" data-bs-target="#primaryNav" data-bs-root-margin="0px 0px -35%">
+  <body data-page="portfolio" data-bs-spy="scroll" data-bs-target="#primaryNav" data-bs-root-margin="0px 0px -35%">
     <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
     <a class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2" href="#main"
       >Skip to content</a
