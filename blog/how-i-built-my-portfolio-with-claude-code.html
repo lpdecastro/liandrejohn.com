@@ -275,6 +275,17 @@
       html {
         scroll-padding-top: 6rem;
       }
+
+      /* Page-scoped: the site sets $link-decoration: none, but inline links sit
+         inside grey body copy where the accent blue is only ~1.5:1 against the
+         surrounding text — too low for colour alone to mark them as links
+         (WCAG 1.4.1 / axe link-in-text-block). Restore an underline for links
+         within the article prose. Buttons, the TOC rail and the "back" links
+         carry their own affordance, so they're excluded. */
+      #content :is(p, li, figcaption) a:not(.btn):not(.blog-toc__link) {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
     </style>
   </head>
   <body
@@ -1599,11 +1610,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     />
                     <figcaption class="fs-7 text-secondary mt-3">
                       The shipped result, live at
-                      <a
-                        class="link-secondary"
-                        href="https://liandrejohn.com/"
-                        >liandrejohn.com</a
-                      >.
+                      <a href="https://liandrejohn.com/">liandrejohn.com</a>.
                     </figcaption>
                   </figure>
                 </div>
