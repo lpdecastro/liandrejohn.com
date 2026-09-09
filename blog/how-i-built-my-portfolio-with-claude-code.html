@@ -22,7 +22,7 @@
 
     <meta
       name="description"
-      content="How I built liandrejohn.com with Claude Code: the useful part wasn't asking AI to write more code — it was giving it a smaller, clearer system to reason inside, then reviewing each decision before it shipped."
+      content="How I built my portfolio with Claude Code: context engineering with scoped CLAUDE.md files, focused sessions, and reviewing each AI decision before it shipped."
     />
     <meta
       name="robots"
@@ -49,9 +49,7 @@
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0f172a" />
-    <title>
-      How I Built My Portfolio with Claude Code — Liandre John de Castro
-    </title>
+    <title>How I Built My Portfolio with Claude Code — Liandre John de Castro</title>
 
     <!-- Canonical: single indexable URL (host + path, no trailing slash on the post) -->
     <link
@@ -76,7 +74,7 @@
     />
     <meta
       property="og:image"
-      content="https://liandrejohn.com/images/og-card-v2.jpg"
+      content="https://liandrejohn.com/images/og-blog-claude-code.jpg"
     />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
@@ -88,6 +86,10 @@
     <meta property="og:locale" content="en_US" />
     <meta
       property="article:published_time"
+      content="2026-09-06T00:00:00+00:00"
+    />
+    <meta
+      property="article:modified_time"
       content="2026-09-06T00:00:00+00:00"
     />
     <meta property="article:author" content="Liandre John de Castro" />
@@ -105,14 +107,16 @@
     />
     <meta
       name="twitter:image"
-      content="https://liandrejohn.com/images/og-card-v2.jpg"
+      content="https://liandrejohn.com/images/og-blog-claude-code.jpg"
     />
     <meta
       name="twitter:image:alt"
       content="How I built my portfolio with Claude Code — Liandre John de Castro"
     />
 
-    <!-- Structured data: BlogPosting + a BreadcrumbList that mirrors the on-page breadcrumb -->
+    <!-- Structured data: BlogPosting tied into the Blog + a BreadcrumbList that
+         mirrors the on-page breadcrumb. The Person node reuses the site-wide @id
+         from index.html so the author resolves to one entity across pages. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -126,20 +130,40 @@
             "mainEntityOfPage": "https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code",
             "datePublished": "2026-09-06T00:00:00+00:00",
             "dateModified": "2026-09-06T00:00:00+00:00",
-            "inLanguage": "en",
-            "image": "https://liandrejohn.com/images/og-card-v2.jpg",
+            "inLanguage": "en-US",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://liandrejohn.com/images/og-blog-claude-code.jpg",
+              "width": 1200,
+              "height": 630
+            },
             "articleSection": "AI-assisted engineering",
             "wordCount": 1500,
             "timeRequired": "PT6M",
-            "author": {
-              "@type": "Person",
-              "name": "Liandre John de Castro",
-              "url": "https://liandrejohn.com/"
-            },
-            "publisher": {
-              "@type": "Person",
-              "name": "Liandre John de Castro",
-              "url": "https://liandrejohn.com/"
+            "isPartOf": { "@id": "https://liandrejohn.com/blog/#blog" },
+            "author": { "@id": "https://liandrejohn.com/#person" },
+            "publisher": { "@id": "https://liandrejohn.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "url": "https://liandrejohn.com/",
+            "sameAs": [
+              "https://www.linkedin.com/in/lpdecastro",
+              "https://github.com/lpdecastro"
+            ]
+          },
+          {
+            "@type": "Blog",
+            "@id": "https://liandrejohn.com/blog/#blog",
+            "url": "https://liandrejohn.com/blog/",
+            "name": "Blog — Liandre John de Castro",
+            "description": "Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://liandrejohn.com/#person" },
+            "blogPost": {
+              "@id": "https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code#article"
             }
           },
           {
@@ -280,9 +304,13 @@
           <a
             class="navbar-brand d-flex align-items-center gap-3 fw-bold"
             href="/"
-            aria-label="Liandre John de Castro home"
           >
-            <img src="/images/logo-dark.webp" alt="" width="150" height="50" />
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="150"
+              height="50"
+            />
           </a>
           <button
             class="navbar-toggler"
@@ -327,9 +355,10 @@
                 data-analytics-position="navbar"
                 >How I Work</a
               >
+              <!-- .active marks the current section; no aria-current="page" —
+                   this post isn't the blog index the link points at. -->
               <a
                 class="nav-link active"
-                aria-current="page"
                 href="/blog/"
                 data-analytics-event="nav_click"
                 data-analytics-position="navbar"
@@ -505,6 +534,19 @@
         <div class="row g-5 g-lg-6">
           <!-- Left column: the article's numbered sections -->
           <div class="col-lg-9">
+            <!-- Lead / TL;DR: what the post covers, before the numbered sections -->
+            <p class="lead text-secondary-emphasis mb-5">
+              A practical walkthrough of how I built
+              <a href="/">liandrejohn.com</a> with Claude Code — not by asking AI
+              to write more code, but by giving it a smaller system to work
+              inside. You'll see the context engineering behind it: a scoped
+              <code>CLAUDE.md</code> for persistent project rules, focused
+              sessions, task-specific instruction files, and a review step on
+              every decision before it shipped. It's the same
+              <a href="/#how-i-work">AI-assisted engineering</a> workflow I use
+              day to day, and it kept me in control of the output.
+            </p>
+
             <!-- ---- Section 1 ---- -->
             <section id="1-what-i-built" aria-labelledby="1-what-i-built-title">
               <h2 id="1-what-i-built-title" class="mb-3">1. What I Built</h2>
@@ -550,7 +592,7 @@
                           >
                             Structure
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">Single Page</h3>
+                          <p class="h5 fw-semibold mb-0">Single Page</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -590,7 +632,7 @@
                           >
                             Discoverability
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">SEO &amp; GEO</h3>
+                          <p class="h5 fw-semibold mb-0">SEO &amp; GEO</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -635,7 +677,7 @@
                           >
                             Delivery
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">CI/CD</h3>
+                          <p class="h5 fw-semibold mb-0">CI/CD</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -676,7 +718,7 @@
                           >
                             Trust
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">Analytics</h3>
+                          <p class="h5 fw-semibold mb-0">Analytics</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -691,14 +733,20 @@
               <figure class="mb-0">
                 <img
                   class="img-fluid rounded-4 border"
-                  src="/images/blog/Portfolio_Header.png"
+                  src="/images/blog/portfolio-header-1600.webp"
+                  srcset="
+                    /images/blog/portfolio-header-800.webp   800w,
+                    /images/blog/portfolio-header-1600.webp 1600w
+                  "
+                  sizes="(min-width: 992px) 66vw, 100vw"
                   alt="The liandrejohn.com homepage: a dark hero with the name and role beside a portrait, over the opening section links."
-                  width="3840"
-                  height="2162"
+                  width="1600"
+                  height="901"
                   loading="lazy"
                 />
                 <figcaption class="fs-7 text-secondary mt-3">
-                  The liandrejohn.com homepage — one page, one narrative.
+                  The <a href="/">liandrejohn.com homepage</a> — one page, one
+                  narrative.
                 </figcaption>
               </figure>
             </section>
@@ -751,9 +799,9 @@
                           >
                             Frontend
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">
+                          <p class="h5 fw-semibold mb-0">
                             Bootstrap &amp; Sass
-                          </h3>
+                          </p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -794,7 +842,7 @@
                           >
                             Build tooling
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">Vite</h3>
+                          <p class="h5 fw-semibold mb-0">Vite</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -835,9 +883,9 @@
                           >
                             Hosting
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">
+                          <p class="h5 fw-semibold mb-0">
                             S3 &amp; CloudFront
-                          </h3>
+                          </p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -878,7 +926,7 @@
                           >
                             Automation
                           </p>
-                          <h3 class="h5 fw-semibold mb-0">GitHub Actions</h3>
+                          <p class="h5 fw-semibold mb-0">GitHub Actions</p>
                         </div>
                       </div>
                       <p class="text-secondary-emphasis mb-0">
@@ -965,11 +1013,11 @@
                 blank canvas.
               </p>
               <p class="text-secondary-emphasis mt-3 mb-0">
-                Most of my prompts are surprisingly short. The reason they work
-                is that I spend more effort shaping the context around the
-                prompt: persistent instructions, focused sessions, task-specific
-                rules, and review artifacts Claude can work through one step at
-                a time.
+                Most of my prompts are surprisingly short. What makes them work
+                is context engineering — I put more effort into shaping the
+                context around the prompt than into the prompt itself:
+                persistent instructions, focused sessions, task-specific rules,
+                and review artifacts Claude can work through one step at a time.
               </p>
 
               <!-- ---- Section 3.1 ---- -->
@@ -1123,8 +1171,8 @@ Make the page easy to scan, visually engaging, and credible within seconds.
                 aria-labelledby="3-2-context-files-title"
               >
                 <h3 id="3-2-context-files-title" class="h4 fw-semibold mb-3">
-                  3.2 One project, six personalities: swap context files when
-                  you swap phases
+                  3.2 One project, six personalities: context engineering by
+                  phase
                 </h3>
                 <p class="text-secondary-emphasis mb-4">
                   Don't stuff every rule into a single file. A bloated
@@ -1476,7 +1524,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     <h3 class="h5 fw-semibold mb-3">Lighthouse report</h3>
                     <img
                       class="img-fluid rounded-4 border"
-                      src="/images/blog/Lighthouse.png"
+                      src="/images/blog/Lighthouse.webp"
                       alt="Chrome Lighthouse results for liandrejohn.com with top scores across Performance, Accessibility, Best Practices, and SEO."
                       width="1600"
                       height="902"
@@ -1494,7 +1542,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     <h3 class="h5 fw-semibold mb-3">Google Search Console</h3>
                     <img
                       class="img-fluid rounded-4 border"
-                      src="/images/blog/Google_Search_Console.png"
+                      src="/images/blog/Google_Search_Console.webp"
                       alt="Google Search Console for liandrejohn.com showing the site's pages indexed with no coverage errors."
                       width="1600"
                       height="902"
@@ -1512,7 +1560,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     <h3 class="h5 fw-semibold mb-3">Google Analytics</h3>
                     <img
                       class="img-fluid rounded-4 border"
-                      src="/images/blog/Analytics.png"
+                      src="/images/blog/Analytics.webp"
                       alt="Google Analytics 4 report for liandrejohn.com showing visitor sessions and engagement over time."
                       width="1600"
                       height="902"
@@ -1530,10 +1578,15 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     <h3 class="h5 fw-semibold mb-3">Live site</h3>
                     <img
                       class="img-fluid rounded-4 border"
-                      src="/images/blog/Portfolio_Header.png"
+                      src="/images/blog/portfolio-header-1600.webp"
+                      srcset="
+                        /images/blog/portfolio-header-800.webp   800w,
+                        /images/blog/portfolio-header-1600.webp 1600w
+                      "
+                      sizes="(min-width: 768px) 45vw, 100vw"
                       alt="The published liandrejohn.com homepage in a browser: a dark hero with name, role, and portrait above the section links."
-                      width="3840"
-                      height="2162"
+                      width="1600"
+                      height="901"
                       loading="lazy"
                     />
                     <figcaption class="fs-7 text-secondary mt-3">

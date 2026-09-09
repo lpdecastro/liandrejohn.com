@@ -4,14 +4,27 @@ A multi-page static professional portfolio deployed at liandrejohn.com to showca
 
 ## Main Goal
 
-Act as an expert frontend developer, UI/UX designer, and technical content designer. Build the `blog/how-i-built-my-portfolio-with-claude-code.html` page.
+Act as an expert web analytics specialist. Review my blog page and recommend practical analytics tracking so I can understand how visitors discover, read, and interact with the article without overcomplicating the implementation.
 
-## Important
+Evaluate and recommend tracking for:
 
-- Do not check prior blog HTML versions in git
-- Do not export prior blog versions to scratchpad
-- Do not check reset commit and current SCSS post classes
-- Ignore SEO and analytics for now
+* Page views and unique users
+* Traffic sources and referral channels
+* Scroll depth and article completion
+* Section engagement / most-read sections
+* Table of contents clicks
+* Internal and external link clicks
+* CTA and button clicks
+* Code block interactions, if applicable
+* Image or screenshot interactions
+* Time spent / engagement
+* Blog-to-portfolio navigation
+* Errors or failed interactions
+* GA4 event names, parameters, and custom dimensions where useful
+
+Output the recommendations in a concise table with **#**, **Impact**, **Area**, **Issue**, **Suggested Solution**, and **Status** columns.
+
+Also save the final analytics review and implementation recommendations as a Markdown file inside the `local/` folder.
 
 ## Commands
 

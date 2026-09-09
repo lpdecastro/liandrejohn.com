@@ -39,7 +39,7 @@
 
 ## Blog
 
-- [Building My Portfolio with Claude Code: A Practical Guide to AI Engineering & Context Engineering](https://liandrejohn.com/blog/how-i-built-this-portfolio-with-claude-code.html) — how this site itself was built with Claude Code: prompt and context engineering with scoped instruction files, the Vite/Bootstrap stack, structured data for AI answer engines, and a from-scratch AWS deployment pipeline.
+- [How I Built My Portfolio with Claude Code](https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code) — how this site itself was built with Claude Code: the useful part wasn't asking AI to write more code, it was giving it a smaller, clearer system to reason inside, then reviewing each decision before it shipped. Covers prompt and context engineering with scoped CLAUDE.md instruction files, the Vite/Bootstrap stack, structured data for AI answer engines, and a from-scratch AWS deployment pipeline.
 
 ## Contact
 
