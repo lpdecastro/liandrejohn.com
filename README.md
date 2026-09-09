@@ -1,38 +1,36 @@
-# Bootstrap + Sass Portfolio Conversion
+# Liandre John de Castro — Developer Portfolio
 
-This is a Bootstrap/Sass rebuild of the supplied single-page portfolio from `local/original-portfolio.html`.
+Personal portfolio and technical blog of **Liandre John de Castro**, a Tech Lead with 6+ years of experience building enterprise digital platforms.
 
-## Constraints followed
+🌐 **Live site:** https://liandrejohn.com/
 
-- The HTML uses Bootstrap components and utility classes only.
-- No project-specific/custom CSS class names were added.
-- `src/scss/main.scss` customizes Bootstrap through Sass variables, then imports Bootstrap.
-- Navbar collapse and scrollspy use Bootstrap JavaScript.
-- A small custom JavaScript file remains only for the static contact form's `mailto:` composer because Bootstrap does not provide that behavior.
+## About
 
-## Versions
+This repository contains my personal portfolio, featured software projects, technical articles, and experiments around modern software engineering and AI-assisted development.
 
-- Bootstrap: 5.3.8
-- Dart Sass: 1.103.1
+My primary areas of focus include:
 
-## Files
+* Java and Spring-based backend systems
+* Enterprise platform architecture
+* AWS and cloud deployment
+* API design and integrations
+* Technical SEO and web performance
+* Claude Code and AI engineering workflows
 
-- `index.html` — page markup; entry point for the Vite build
-- `src/scss/main.scss` — Bootstrap Sass variable overrides
-- `src/js/main.js` / `src/js/analytics.js` — site behavior and GA4 event tracking
-- `public/` — static files copied as-is to the build output (images, fonts, robots.txt, sitemap.xml, site.webmanifest, llms.txt)
-- `package.json` — build dependencies/scripts
+## Tech Stack
 
-## Build locally
+* HTML
+* Bootstrap 5
+* Sass
+* JavaScript
+* Vite
+* AWS S3
+* CloudFront
+* Route 53
+* GitHub Actions
 
-```bash
-npm install
-npm run build      # outputs the production site to dist/
-```
+## Featured Content
 
-For development:
-
-```bash
-npm run dev         # starts the Vite dev server
-npm run preview     # serves the dist/ build locally, to sanity-check a build
-```
+* Portfolio: https://liandrejohn.com/
+* Blog: https://liandrejohn.com/blog/
+* GitHub: https://github.com/lpdecastro

@@ -3,7 +3,13 @@
   <url>
     <loc>https://liandrejohn.com/</loc>
     <lastmod>2026-09-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://liandrejohn.com/blog/</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code</loc>
+    <lastmod>2026-09-06</lastmod>
   </url>
 </urlset>

@@ -81,7 +81,7 @@
             "url": "https://liandrejohn.com/",
             "name": "Liandre John de Castro — Tech Lead, Enterprise Digital Platforms",
             "dateModified": "2026-09-04T00:00:00+00:00",
-            "inLanguage": "en",
+            "inLanguage": "en-US",
             "isPartOf": { "@id": "https://liandrejohn.com/#website" },
             "mainEntity": { "@id": "https://liandrejohn.com/#person" },
             "primaryImageOfPage": "https://liandrejohn.com/images/profile.webp",
@@ -152,7 +152,7 @@
             "url": "https://liandrejohn.com/",
             "name": "Liandre John de Castro",
             "description": "Portfolio of Liandre John de Castro — Tech Lead for enterprise digital platforms.",
-            "inLanguage": "en",
+            "inLanguage": "en-US",
             "publisher": { "@id": "https://liandrejohn.com/#person" }
           },
           {
@@ -163,7 +163,7 @@
             "creator": { "@id": "https://liandrejohn.com/#person" },
             "about": "Enterprise CMS platform architecture and delivery",
             "keywords": "Java 17, Spring, Magnolia CMS, Next.js, TypeScript, Azure, AWS, Node.js",
-            "inLanguage": "en",
+            "inLanguage": "en-US",
             "isPartOf": { "@id": "https://liandrejohn.com/#profilepage" }
           },
           {
@@ -289,9 +289,13 @@
             <a
               class="navbar-brand d-flex align-items-center gap-3 fw-bold"
               href="#top"
-              aria-label="Liandre John de Castro home"
             >
-              <img src="/images/logo-dark.webp" alt="" width="150" height="50" />
+              <img
+                src="/images/logo-dark.webp"
+                alt="Liandre John de Castro"
+                width="150"
+                height="50"
+              />
             </a>
             <button
               class="navbar-toggler"
@@ -333,6 +337,13 @@
                   data-analytics-event="nav_click"
                   data-analytics-position="navbar"
                   >How I Work</a
+                >
+                <a
+                  class="nav-link"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="navbar"
+                  >Blog</a
                 >
               </div>
               <a
@@ -394,7 +405,7 @@
                     class="ratio ratio-1x1 rounded-5 overflow-hidden border border-white border-opacity-25 shadow-lg bg-dark"
                   >
                     <img
-                      class="w-100 h-100 object-fit-cover hero-image"
+                      class="w-100 h-100 object-fit-cover"
                       src="/images/profile.webp"
                       alt="Liandre John de Castro - Tech Lead"
                       width="1086"
@@ -1158,8 +1169,16 @@
                   <div>
                     <h3 class="h5 fw-semibold mb-3">Ship in visible increments</h3>
                     <p class="text-secondary-emphasis mb-0">
-                      Turn architecture into working software early — using AI-assisted workflows to move faster
-                      without cutting corners — so stakeholders can validate direction before complexity compounds.
+                      Turn architecture into working software early — using
+                      <a
+                        class="link-primary text-decoration-underline link-offset-2"
+                        href="/blog/how-i-built-my-portfolio-with-claude-code"
+                        data-analytics-event="nav_click"
+                        data-analytics-position="how_i_work"
+                        >AI-assisted workflows</a
+                      >
+                      to move faster without cutting corners — so stakeholders can validate direction before complexity
+                      compounds.
                     </p>
                   </div>
                 </li>
@@ -1475,6 +1494,15 @@
                   data-analytics-event="nav_click"
                   data-analytics-position="footer"
                   >How I Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Blog</a
                 >
               </li>
               <li>

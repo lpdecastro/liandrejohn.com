@@ -53,7 +53,6 @@ $primary: #2563eb; // accent — section label, icons, links, hover states
 $secondary: #475569; // secondary text — body copy, decks, card descriptions
 $dark: #0f172a; // primary text + hero / navbar / footer ground
 $light: #f0f4f8; // page background
-// $light: #f0f4f8; // page background
 $border-subtle: #e2e8f0; // card + divider borders
 $border-hover: #bfdbfe; // card border on hover
 $accent-soft: #eff6ff; // icon-tile wash + card hover wash
@@ -337,13 +336,6 @@ h2,
   }
 }
 
-// Bootstrap has no filter utilities. Warm the hero portrait and darken it — the
-// `brightness`/`contrast` pair stands in for the old 50%-opacity `.bg-dark`
-// overlay <span> that used to sit over the image inside the `.ratio` box.
-// .hero-image {
-//   filter: sepia(0.2) brightness(0.7) contrast(1.05);
-// }
-
 // Hero backdrop for #top: two soft radial glows over the dark navy base.
 // Previously an inline `style` on the #top element with raw hex; moved here so
 // the wash tracks the theme — the glows and base derive from $primary / $dark
@@ -483,3 +475,4 @@ h2,
 #projectStripDots > button[aria-current='true'] {
   background-color: $primary;
 }
+

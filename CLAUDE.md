@@ -1,17 +1,30 @@
-# CLAUDE.md
+# Portfolio Website
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## What this is
-
-A single static page: the personal portfolio for liandrejohn.com.
+A multi-page static professional portfolio deployed at liandrejohn.com to showcase my technical skills to technical recruiters and prospective freelance clients.
 
 ## Main Goal
 
-Fix bugs.
-Enhancements.
-Post launch stuff.
+Act as an expert web analytics specialist. Review my blog page and recommend practical analytics tracking so I can understand how visitors discover, read, and interact with the article without overcomplicating the implementation.
 
+Evaluate and recommend tracking for:
+
+* Page views and unique users
+* Traffic sources and referral channels
+* Scroll depth and article completion
+* Section engagement / most-read sections
+* Table of contents clicks
+* Internal and external link clicks
+* CTA and button clicks
+* Code block interactions, if applicable
+* Image or screenshot interactions
+* Time spent / engagement
+* Blog-to-portfolio navigation
+* Errors or failed interactions
+* GA4 event names, parameters, and custom dimensions where useful
+
+Output the recommendations in a concise table with **#**, **Impact**, **Area**, **Issue**, **Suggested Solution**, and **Status** columns.
+
+Also save the final analytics review and implementation recommendations as a Markdown file inside the `local/` folder.
 
 ## Commands
 

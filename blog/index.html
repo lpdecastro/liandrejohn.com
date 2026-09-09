@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in src/js/analytics.js, not here. -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Q3EPREERQJ");
+    </script>
+
+    <meta
+      name="description"
+      content="Writing from Liandre John de Castro on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control."
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Blog — Liandre John de Castro</title>
+
+    <!-- Canonical: single indexable URL (host + path, trailing slash on the index) -->
+    <link rel="canonical" href="https://liandrejohn.com/blog/" />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta property="og:title" content="Blog — Liandre John de Castro" />
+    <meta
+      property="og:description"
+      content="Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control."
+    />
+    <meta property="og:url" content="https://liandrejohn.com/blog/" />
+    <meta
+      property="og:image"
+      content="https://liandrejohn.com/images/og-card-v2.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Blog — Liandre John de Castro"
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog — Liandre John de Castro" />
+    <meta
+      name="twitter:description"
+      content="Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control."
+    />
+    <meta
+      name="twitter:image"
+      content="https://liandrejohn.com/images/og-card-v2.jpg"
+    />
+    <meta name="twitter:image:alt" content="Blog — Liandre John de Castro" />
+
+    <!-- Structured data: Blog + BreadcrumbList. The Blog @id matches the isPartOf
+         on every post page; the Person node reuses the site-wide @id from index.html. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Blog",
+            "@id": "https://liandrejohn.com/blog/#blog",
+            "url": "https://liandrejohn.com/blog/",
+            "name": "Blog — Liandre John de Castro",
+            "description": "Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control.",
+            "inLanguage": "en-US",
+            "mainEntityOfPage": "https://liandrejohn.com/blog/",
+            "publisher": { "@id": "https://liandrejohn.com/#person" },
+            "blogPost": [
+              {
+                "@type": "BlogPosting",
+                "@id": "https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code#article",
+                "headline": "How I built my portfolio with Claude Code",
+                "url": "https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code",
+                "datePublished": "2026-09-06T00:00:00+00:00",
+                "dateModified": "2026-09-06T00:00:00+00:00",
+                "author": { "@id": "https://liandrejohn.com/#person" }
+              }
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "url": "https://liandrejohn.com/",
+            "sameAs": [
+              "https://www.linkedin.com/in/lpdecastro",
+              "https://github.com/lpdecastro"
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://liandrejohn.com/blog/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://liandrejohn.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://liandrejohn.com/blog/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
+         Preload the latin file — it renders all above-the-fold text. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin.woff2"
+      crossorigin
+    />
+
+    <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+  </head>
+  <body>
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a
+      class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2"
+      href="#content"
+      >Skip to content</a
+    >
+
+    <!-- ============================================================
+         PAGE HEADER ZONE — full-width dark panel sized by its content:
+         navbar + breadcrumb + page header, as siblings
+         ============================================================ -->
+    <div
+      id="top"
+      class="bg-hero text-white d-flex flex-column overflow-hidden"
+    >
+      <!-- Navbar: same chrome as the homepage; anchor links jump back to the homepage sections -->
+      <nav
+        id="mainNav"
+        class="navbar navbar-expand-lg fixed-top"
+        data-bs-theme="dark"
+        aria-label="Primary navigation"
+      >
+        <div class="container">
+          <a
+            class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+            href="/"
+          >
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="150"
+              height="50"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#primaryNav"
+            aria-controls="primaryNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="primaryNav">
+            <div
+              class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0"
+            >
+              <a
+                class="nav-link"
+                href="/#what-i-do"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >What I Do</a
+              >
+              <a
+                class="nav-link"
+                href="/#featured-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Featured Work</a
+              >
+              <a
+                class="nav-link"
+                href="/#concept-builds"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Concept Builds</a
+              >
+              <a
+                class="nav-link"
+                href="/#how-i-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >How I Work</a
+              >
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Blog</a
+              >
+            </div>
+            <a
+              class="btn btn-primary ms-lg-3"
+              href="/#get-in-touch"
+              data-analytics-event="cta_click"
+              data-analytics-button-name="get_in_touch"
+              data-analytics-section-name="navbar"
+              >Get in Touch</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb: clears the fixed navbar (homepage hero top padding, plus a little extra room below the bar) -->
+      <nav class="pt-9 pt-lg-8 pb-2" aria-label="Breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb mb-0 fs-7 fw-semibold" data-bs-theme="dark">
+            <li class="breadcrumb-item">
+              <a
+                class="link-light text-decoration-none"
+                href="/"
+                data-analytics-event="nav_click"
+                data-analytics-position="breadcrumb"
+                >Home</a
+              >
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Page header: eyebrow + headline + deck; content column spans two-thirds of the grid at lg+, left aligned -->
+      <header class="pt-8 pb-9">
+        <div class="container">
+          <div class="row">
+            <!-- Content column: 8/12 of the grid from lg up, full width below -->
+            <div class="col-lg-8 d-flex flex-column gap-4">
+              <!-- Eyebrow: short rule + label (same pattern as every homepage section heading) -->
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1"
+              >
+                <span
+                  class="border-top border-2 border-primary d-inline-block w-rule"
+                ></span>
+                <span class="text-nowrap">Writing</span>
+              </div>
+
+              <h1 class="display-3 fw-bold mb-0">Blog</h1>
+
+              <p class="lead text-on-dark-muted mb-0">
+                Notes on building production software with AI in the loop — what
+                worked, what didn’t, and the systems that kept me in control.
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- ============================================================
+         POST LIST — white ground. One <article> per post: kicker + meta,
+         a headline that links to the post, a short deck, and a read link.
+         The whole article is the click target (Bootstrap .stretched-link).
+         Add a new <li> at the top for each new post.
+         ============================================================ -->
+    <main id="content" class="bg-white">
+      <div class="container py-6 py-md-7">
+        <div class="row">
+          <div class="col-lg-9 col-xl-8">
+            <ul class="list-unstyled mb-0">
+              <!-- ---- Post: How I built my portfolio with Claude Code ---- -->
+              <li>
+                <article class="position-relative border-top py-5">
+                  <div
+                    class="d-flex flex-wrap align-items-center gap-2 fs-7 mb-3"
+                  >
+                    <span
+                      class="text-primary text-uppercase fw-semibold tracking-wide lh-1"
+                      >AI-assisted engineering</span
+                    >
+                    <span class="text-secondary" aria-hidden="true">·</span>
+                    <time class="text-secondary" datetime="2026-09-06"
+                      >September 6, 2026</time
+                    >
+                    <span class="text-secondary" aria-hidden="true">·</span>
+                    <span class="text-secondary">6 min read</span>
+                  </div>
+
+                  <h2 class="h3 fw-bold mb-3">
+                    <a
+                      class="link-dark text-decoration-none stretched-link"
+                      href="/blog/how-i-built-my-portfolio-with-claude-code"
+                      data-analytics-event="nav_click"
+                      data-analytics-position="blog_index"
+                      >How I built my portfolio with Claude Code</a
+                    >
+                  </h2>
+
+                  <p class="text-secondary-emphasis mb-3">
+                    The useful part wasn’t asking AI to write more code. It was
+                    giving it a smaller, clearer system to reason inside — then
+                    reviewing each decision before it shipped.
+                  </p>
+
+                  <span
+                    class="d-inline-flex align-items-center gap-2 fw-semibold text-primary"
+                  >
+                    Read the post
+                    <svg
+                      class="bi"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                      />
+                    </svg>
+                  </span>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Back-to-top button: hidden by default; main.js toggles it once the page
+         header is scrolled past, and hides it again over the footer (which has
+         its own "Back to top" link). Same markup + wiring as the homepage. -->
+    <a
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
+      href="#top"
+      aria-label="Back to top"
+      ><svg
+        class="bi"
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
+
+    <!-- ============================================================
+         FOOTER — shared with the homepage: brand blurb + "Explore" anchor
+         links + "Connect" links + copyright. Section anchors are absolute
+         (/#…) so they resolve back on the homepage from here.
+         ============================================================ -->
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand column: logo + one-line summary -->
+          <div class="col-lg-4">
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="160"
+              height="53"
+              loading="lazy"
+              class="mb-4"
+            />
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
+              Tech Lead building enterprise digital platforms, APIs, and cloud
+              systems — with AI-assisted engineering as a delivery multiplier.
+            </p>
+          </div>
+          <!-- Explore column: homepage section anchors -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Explore
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >What I Do</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Featured Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Concept Builds</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >How I Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  aria-current="page"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#get-in-touch"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Get in Touch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Connect column: external contact links -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Connect
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="mailto:liandrejohn88@gmail.com"
+                  rel="me"
+                  data-email-text
+                  data-analytics-event="email_click"
+                  data-analytics-contact-method="email"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >liandrejohn88 [at] gmail [dot] com</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://www.linkedin.com/in/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="linkedin_click"
+                  data-analytics-contact-method="linkedin"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >linkedin.com/in/lpdecastro</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://github.com/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >github.com/lpdecastro</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer bottom bar: copyright + back-to-top link -->
+        <hr class="border-light border-opacity-10 opacity-100 my-6" />
+        <div
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
+        >
+          <p class="mb-0">
+            © <span id="year">2026</span> Liandre John de Castro. All rights
+            reserved.
+          </p>
+          <a class="link-light text-decoration-none" href="#top"
+            >Back to top
+            <svg
+              class="bi"
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Bootstrap bundle (navbar collapse), analytics helper, then site behaviors
+         (navbar scroll state, mobile menu close, back-to-top toggle). Same entry point as the homepage. -->
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
