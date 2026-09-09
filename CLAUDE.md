@@ -1,26 +1,17 @@
-# CLAUDE.md
+# Portfolio Website
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## What this is
-
-A single static page: the personal portfolio for https://liandrejohn.com/.
+A multi-page static professional portfolio deployed at liandrejohn.com to showcase my technical skills to technical recruiters and prospective freelance clients.
 
 ## Main Goal
 
-Act as an expert frontend developer, UI/UX designer, and technical content designer. Build the `blog/how-i-built-my-portfolio-with-claude-code.html` page using the content in `local/blog/first-blog-content.md` as the source of truth.
-
-The page should feel like a polished developer blog: practical, visually engaging, easy to scan, and concise. Preserve the substance and authentic engineering voice of the content, but improve presentation where needed. Use strong but credible hooks, clear section headings, short paragraphs, visual hierarchy, cards, code blocks, screenshots, and callouts so readers can understand the main lessons just by scanning.
-
-Design for readers who scan first and read second. Each subsection should quickly communicate its value through a strong heading or opening hook, so someone skimming the article can still learn something. If a subsection catches their attention, it should be short enough that they think, “I can read this in 30 seconds,” and useful enough that they think, “That’s a good idea—I’m going to try that.”
-
-Use catchy but credible hooks. Avoid clickbait, generic AI hype, corporate language, and overly clever headings that hide the actual lesson. Favor headings that combine curiosity with a clear takeaway.
+Act as an expert frontend developer, UI/UX designer, and technical content designer. Build the `blog/how-i-built-my-portfolio-with-claude-code.html` page.
 
 ## Important
 
 - Do not check prior blog HTML versions in git
 - Do not export prior blog versions to scratchpad
 - Do not check reset commit and current SCSS post classes
+- Ignore SEO and analytics for now
 
 ## Commands
 
