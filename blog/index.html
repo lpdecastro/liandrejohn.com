@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
-         Event tracking lives in src/js/analytics.js, not here. -->
+         Event tracking lives in src/js/analytics.js, not here.
+         NOTE: this config snippet is duplicated in /index.html and
+         blog/how-i-built-my-portfolio-with-claude-code.html — only content_group
+         differs ('blog' here and on the post, 'portfolio' on the homepage).
+         Keep the three in sync. -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"
@@ -17,7 +21,7 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-Q3EPREERQJ");
+      gtag("config", "G-Q3EPREERQJ", { content_group: "blog" });
     </script>
 
     <meta
@@ -161,7 +165,7 @@
     <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
     <link rel="stylesheet" href="/src/scss/main.scss" />
   </head>
-  <body>
+  <body data-page="blog">
     <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
     <a
       class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2"
@@ -339,8 +343,9 @@
                     <a
                       class="link-dark text-decoration-none stretched-link"
                       href="/blog/how-i-built-my-portfolio-with-claude-code"
-                      data-analytics-event="nav_click"
+                      data-analytics-event="post_click"
                       data-analytics-position="blog_index"
+                      data-analytics-article-id="how-i-built-my-portfolio-with-claude-code"
                       >How I built my portfolio with Claude Code</a
                     >
                   </h2>

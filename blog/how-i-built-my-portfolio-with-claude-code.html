@@ -277,7 +277,11 @@
       }
     </style>
   </head>
-  <body>
+  <body
+    data-page="blog"
+    data-article-id="how-i-built-my-portfolio-with-claude-code"
+    data-article-section="AI-assisted engineering"
+  >
     <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
     <a
       class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2"
@@ -304,6 +308,9 @@
           <a
             class="navbar-brand d-flex align-items-center gap-3 fw-bold"
             href="/"
+            data-analytics-event="nav_click"
+            data-analytics-position="navbar_brand"
+            data-analytics-link-scope="exit_to_portfolio"
           >
             <img
               src="/images/logo-dark.webp"
@@ -476,6 +483,7 @@
                   data-analytics-event="cta_click"
                   data-analytics-button-name="view_site"
                   data-analytics-section-name="blog_header"
+                  data-analytics-link-scope="exit_to_portfolio"
                 >
                   <svg
                     class="bi"
@@ -1685,6 +1693,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                     data-analytics-event="cta_click"
                     data-analytics-button-name="view_site"
                     data-analytics-section-name="blog_resources"
+                    data-analytics-link-scope="exit_to_portfolio"
                     >https://liandrejohn.com/</a
                   >
                 </li>
@@ -1704,7 +1713,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
             </section>
 
             <!-- ---- End of article: back to the index + a get-in-touch CTA ---- -->
-            <div class="border-top mt-6 mt-md-7 pt-5">
+            <div id="article-end" class="border-top mt-6 mt-md-7 pt-5">
               <p class="text-secondary-emphasis mb-4">
                 Thanks for reading. If you're hiring or planning an
                 AI-assisted build, I'd be glad to talk it through.
@@ -1716,6 +1725,7 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                   data-analytics-event="cta_click"
                   data-analytics-button-name="get_in_touch"
                   data-analytics-section-name="blog_end"
+                  data-analytics-link-scope="exit_to_portfolio"
                 >
                   <svg
                     class="bi"
@@ -1776,19 +1786,34 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
               >
                 On this page
               </p>
+              <!-- Each entry carries data-analytics-event="toc_click"; the
+                   delegated listener in analytics.js infers destination from
+                   the #hash (e.g. 3_1_claude_md) and link_text from the text. -->
               <ul class="list-unstyled border-start mb-0">
                 <li>
-                  <a class="blog-toc__link" href="#1-what-i-built"
+                  <a
+                    class="blog-toc__link"
+                    href="#1-what-i-built"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >1. What I Built</a
                   >
                 </li>
                 <li>
-                  <a class="blog-toc__link" href="#2-tech-stack"
+                  <a
+                    class="blog-toc__link"
+                    href="#2-tech-stack"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >2. Tech Stack</a
                   >
                 </li>
                 <li>
-                  <a class="blog-toc__link" href="#3-claude-code"
+                  <a
+                    class="blog-toc__link"
+                    href="#3-claude-code"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >3. Claude Code</a
                   >
                 </li>
@@ -1796,6 +1821,8 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                   <a
                     class="blog-toc__link blog-toc__link--sub"
                     href="#3-1-claude-md"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >3.1 CLAUDE.md</a
                   >
                 </li>
@@ -1803,6 +1830,8 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                   <a
                     class="blog-toc__link blog-toc__link--sub"
                     href="#3-2-context-files"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >3.2 Context files</a
                   >
                 </li>
@@ -1810,6 +1839,8 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                   <a
                     class="blog-toc__link blog-toc__link--sub"
                     href="#3-3-fresh-sessions"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >3.3 Fresh sessions</a
                   >
                 </li>
@@ -1817,19 +1848,35 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                   <a
                     class="blog-toc__link blog-toc__link--sub"
                     href="#3-4-review-artifacts"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >3.4 Review artifacts</a
                   >
                 </li>
                 <li>
-                  <a class="blog-toc__link" href="#4-results">4. Results</a>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-results"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >4. Results</a
+                  >
                 </li>
                 <li>
-                  <a class="blog-toc__link" href="#5-conclusion"
+                  <a
+                    class="blog-toc__link"
+                    href="#5-conclusion"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >5. Conclusion</a
                   >
                 </li>
                 <li>
-                  <a class="blog-toc__link" href="#6-resources"
+                  <a
+                    class="blog-toc__link"
+                    href="#6-resources"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
                     >6. Resources</a
                   >
                 </li>
@@ -1848,6 +1895,9 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
       class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
       href="#top"
       aria-label="Back to top"
+      data-analytics-event="nav_click"
+      data-analytics-position="back_to_top"
+      data-analytics-link-text="back_to_top"
       ><svg
         class="bi"
         width="1em"
@@ -2049,6 +2099,12 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
             return;
           }
           const idle = label ? label.textContent : "Copy";
+          // The title-bar label (e.g. "CLAUDE.md") names the snippet in the
+          // code_copy / code_copy_error events — never the clipboard contents.
+          const barLabel = win.querySelector(".code-window__bar span");
+          const snippetName = barLabel
+            ? barLabel.textContent.replace(/\s+/g, " ").trim()
+            : "unknown";
           let resetTimer;
           button.addEventListener("click", async () => {
             try {
@@ -2056,8 +2112,16 @@ Flag each issue, suggest a fix, add a Status column, and save the result to loca
                 code.textContent.replace(/\s+$/, "") + "\n",
               );
               if (label) label.textContent = "Copied";
+              window.trackEvent?.("code_copy", {
+                snippet_name: snippetName,
+                page_type: "blog",
+              });
             } catch {
               if (label) label.textContent = "Press ⌘C";
+              window.trackEvent?.("code_copy_error", {
+                snippet_name: snippetName,
+                error_type: "clipboard_denied",
+              });
             }
             clearTimeout(resetTimer);
             resetTimer = setTimeout(() => {
