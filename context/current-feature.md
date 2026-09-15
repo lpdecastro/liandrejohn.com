@@ -1,12 +1,15 @@
-# Current Feature
+# Current Feature: Add GitHub Link to Navbar
 
 ## Goals
 
-<!-- Bullet points of what success looks like -->
+- Add an icon-only link to https://github.com/lpdecastro in the navbar, next to the "Blog" link and before the "Get in Touch" CTA.
+- Apply consistently across all pages that share the navbar: `index.html`, `blog/index.html`, and every `blog/*.html` post.
 
 ## Notes
 
-<!-- Additional context, constraints, or details from spec -->
+- Reuse the existing inline GitHub logo SVG (`class="bi"`, viewBox 16x16) already used elsewhere in the codebase (e.g. blog post header "View repo" buttons) rather than inventing new icon markup — icons are inline SVGs, not the Bootstrap Icons web font (see `src/scss/main.scss` `.bi` comment).
+- Follow the existing GitHub link convention: `target="_blank" rel="noopener"`, `data-analytics-event="social_click"`, plus `data-analytics-position="navbar"`.
+- Icon-only link needs `aria-label="GitHub"` for accessibility since there's no visible text.
 
 ## History
 
