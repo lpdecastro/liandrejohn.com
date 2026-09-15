@@ -2,29 +2,14 @@
 
 A multi-page static professional portfolio deployed at liandrejohn.com to showcase my technical skills to technical recruiters and prospective freelance clients.
 
-## Main Goal
+## Context Files
 
-Act as an expert web analytics specialist. Review my `blog/how-i-deployed-my-portfolio-to-aws.html` page and recommend practical analytics tracking so I can understand how visitors discover, read, and interact with the article without overcomplicating the implementation.
+Read the following to get the full context of the project:
 
-Evaluate and recommend tracking for:
-
-* Page views and unique users
-* Traffic sources and referral channels
-* Scroll depth and article completion
-* Section engagement / most-read sections
-* Table of contents clicks
-* Internal and external link clicks
-* CTA and button clicks
-* Code block interactions, if applicable
-* Image or screenshot interactions
-* Time spent / engagement
-* Blog-to-portfolio navigation
-* Errors or failed interactions
-* GA4 event names, parameters, and custom dimensions where useful
-
-Output the recommendations in a concise table with **#**, **Impact**, **Area**, **Issue**, **Suggested Solution**, and **Status** columns.
-
-Also save the final analytics review and implementation recommendations as a Markdown file inside the `local/blog/how-i-deployed-my-portfolio-to-aws` folder.
+- @context/project-overview.md
+- @context/ai-interaction.md
+- @context/coding-standards.md
+- @context/current-feature.md
 
 ## Commands
 

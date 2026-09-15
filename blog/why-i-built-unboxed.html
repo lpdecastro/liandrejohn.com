@@ -1,0 +1,1217 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Meta / SEO: charset, responsive viewport, search description, favicon, page title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics 4 (gtag.js). Loaded async so it never blocks rendering.
+         Event tracking lives in src/js/analytics.js, not here.
+         NOTE: same snippet as blog/index.html (content_group: 'blog'); the
+         homepage uses 'portfolio'. Keep them in sync. -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q3EPREERQJ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Q3EPREERQJ", { content_group: "blog" });
+    </script>
+
+    <meta
+      name="description"
+      content="I own 8 board games and rarely play them, so I built Unboxed, a small rental site for Metro Manila. The decisions that made it real: what I kept manual, and what the site had to get right."
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <meta name="author" content="Liandre John de Castro" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Favicons: SVG first for capable browsers, PNG + .ico fallbacks, apple-touch-icon for iOS, manifest + theme-color for installable / mobile chrome -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>
+      I Own 8 Board Games. Here's What I Built Around Them.
+    </title>
+
+    <!-- Canonical: single indexable URL (host + path, no trailing slash on the post) -->
+    <link
+      rel="canonical"
+      href="https://liandrejohn.com/blog/why-i-built-unboxed"
+    />
+
+    <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Liandre John de Castro" />
+    <meta
+      property="og:title"
+      content="I Own 8 Board Games. Here's What I Built Around Them."
+    />
+    <meta
+      property="og:description"
+      content="Unboxed lets people in Metro Manila rent my 8 board games — GCash payment, Lalamove delivery, both checked by hand. The decisions that made it a real, shippable thing."
+    />
+    <meta
+      property="og:url"
+      content="https://liandrejohn.com/blog/why-i-built-unboxed"
+    />
+    <meta
+      property="og:image"
+      content="https://liandrejohn.com/images/og-card-v2.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Liandre John de Castro"
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="article:published_time"
+      content="2026-09-15T00:00:00+00:00"
+    />
+    <meta
+      property="article:modified_time"
+      content="2026-09-15T00:00:00+00:00"
+    />
+    <meta property="article:author" content="Liandre John de Castro" />
+    <meta property="article:section" content="Side projects" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="I Own 8 Board Games. Here's What I Built Around Them."
+    />
+    <meta
+      name="twitter:description"
+      content="Unboxed lets people in Metro Manila rent my 8 board games — GCash payment, Lalamove delivery, both checked by hand. The decisions that made it a real, shippable thing."
+    />
+    <meta
+      name="twitter:image"
+      content="https://liandrejohn.com/images/og-card-v2.jpg"
+    />
+    <meta name="twitter:image:alt" content="Liandre John de Castro" />
+
+    <!-- Structured data: BlogPosting tied into the Blog + a BreadcrumbList that
+         mirrors the on-page breadcrumb. The Person node reuses the site-wide @id
+         from index.html so the author resolves to one entity across pages. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#article",
+            "headline": "I Own 8 Board Games. Here's What I Built Around Them.",
+            "description": "I own 8 board games and rarely play them, so I built Unboxed, a small rental site for Metro Manila. The decisions that made it real: what I kept manual, and what the site had to get right.",
+            "url": "https://liandrejohn.com/blog/why-i-built-unboxed",
+            "mainEntityOfPage": "https://liandrejohn.com/blog/why-i-built-unboxed",
+            "datePublished": "2026-09-15T00:00:00+00:00",
+            "dateModified": "2026-09-15T00:00:00+00:00",
+            "inLanguage": "en-US",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://liandrejohn.com/images/og-card-v2.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "articleSection": "Side projects",
+            "wordCount": 950,
+            "timeRequired": "PT5M",
+            "isPartOf": { "@id": "https://liandrejohn.com/blog/#blog" },
+            "author": { "@id": "https://liandrejohn.com/#person" },
+            "publisher": { "@id": "https://liandrejohn.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://liandrejohn.com/#person",
+            "name": "Liandre John de Castro",
+            "url": "https://liandrejohn.com/",
+            "sameAs": [
+              "https://www.linkedin.com/in/lpdecastro",
+              "https://github.com/lpdecastro"
+            ]
+          },
+          {
+            "@type": "Blog",
+            "@id": "https://liandrejohn.com/blog/#blog",
+            "url": "https://liandrejohn.com/blog/",
+            "name": "Blog — Liandre John de Castro",
+            "description": "Writing on building production software with AI in the loop — what worked, what didn't, and the systems that kept me in control.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://liandrejohn.com/#person" },
+            "blogPost": {
+              "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#article"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://liandrejohn.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://liandrejohn.com/blog/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "I Own 8 Board Games. Here's What I Built Around Them.",
+                "item": "https://liandrejohn.com/blog/why-i-built-unboxed"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts: self-hosted Inter (woff2 subsets, @font-face + font-display:swap live in main.css).
+         Preload the latin file — it renders all above-the-fold text. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin.woff2"
+      crossorigin
+    />
+
+    <!-- Styles: compiled Bootstrap + Sass bundle (build:css). Icons are inline SVG (no icon font). -->
+    <link rel="stylesheet" href="/src/scss/main.scss" />
+
+    <style>
+      /* Page-scoped: the sticky table of contents in the article's right
+         column. A hairline vertical rail (Bootstrap .border-start on the list)
+         with the entry that's currently in view picked out — its rail segment
+         and label in the accent blue. `top` clears the fixed navbar; the
+         max-height + scroll keep a long list usable on short viewports. The
+         active state is toggled by the page-scoped script before </body>; the
+         entries are plain in-page anchors, so the list works without it. Same
+         rule as the two sister posts; no other page has a TOC, so this stays
+         out of the shared bundle. */
+      .blog-toc {
+        top: 6rem;
+        max-height: calc(100vh - 7.5rem);
+        overflow-y: auto;
+      }
+      .blog-toc__link {
+        display: block;
+        margin-left: -1px;
+        padding: 0.3125rem 0 0.3125rem 1rem;
+        border-left: 2px solid transparent;
+        color: var(--bs-secondary-color);
+        font-size: 0.8125rem;
+        line-height: 1.4;
+      }
+      .blog-toc__link:hover,
+      .blog-toc__link:focus-visible {
+        color: var(--bs-primary);
+        border-left-color: rgba(var(--bs-primary-rgb), 0.35);
+      }
+      .blog-toc__link.is-active {
+        color: var(--bs-primary);
+        border-left-color: var(--bs-primary);
+        font-weight: 600;
+      }
+
+      /* Page-scoped: the collapsed in-article nav shown below lg, where the
+         sticky TOC is dropped (in source order it sits after the whole
+         article). Native <details> — no script — with the summary carrying the
+         same eyebrow treatment as the sticky list's heading and a chevron that
+         flips when open. The list reuses .blog-toc__link. */
+      .blog-toc-mobile {
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius-lg);
+        padding: 0.75rem 1rem;
+      }
+      .blog-toc-mobile > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        cursor: pointer;
+        list-style: none;
+      }
+      .blog-toc-mobile > summary::-webkit-details-marker {
+        display: none;
+      }
+      .blog-toc-mobile > summary::after {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        flex-shrink: 0;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.15s ease;
+      }
+      .blog-toc-mobile[open] > summary::after {
+        transform: translateY(2px) rotate(-135deg);
+      }
+      .blog-toc-mobile > summary:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 4px;
+      }
+
+      /* Page-scoped: the shared rule derives scroll-padding from the navbar's
+         Sass metrics, which don't account for this page's full logo lockup in
+         the bar. Bump it so a TOC jump lands the target heading clear of the
+         fixed navbar. */
+      html {
+        scroll-padding-top: 6rem;
+      }
+
+      /* Page-scoped: the site sets $link-decoration: none, but inline links sit
+         inside grey body copy where the accent blue is only ~1.5:1 against the
+         surrounding text — too low for colour alone to mark them as links
+         (WCAG 1.4.1 / axe link-in-text-block). Restore an underline for links
+         within the article prose. Buttons and the TOC rail carry their own
+         affordance, so they're excluded. */
+      #content :is(p, li, figcaption) a:not(.btn):not(.blog-toc__link) {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+    </style>
+  </head>
+  <body
+    data-page="blog"
+    data-article-id="why-i-built-unboxed"
+    data-article-section="Side projects"
+  >
+    <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
+    <a
+      class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2"
+      href="#content"
+      >Skip to content</a
+    >
+
+    <!-- ============================================================
+         POST HEADER ZONE — full-width dark panel sized by its content:
+         navbar + breadcrumb + article header, as siblings
+         ============================================================ -->
+    <div id="top" class="bg-hero text-white d-flex flex-column overflow-hidden">
+      <!-- Navbar: same chrome as the homepage; anchor links jump back to the homepage sections -->
+      <nav
+        id="mainNav"
+        class="navbar navbar-expand-lg fixed-top"
+        data-bs-theme="dark"
+        aria-label="Primary navigation"
+      >
+        <div class="container">
+          <a
+            class="navbar-brand d-flex align-items-center gap-3 fw-bold"
+            href="/"
+            data-analytics-event="nav_click"
+            data-analytics-position="navbar_brand"
+            data-analytics-link-scope="exit_to_portfolio"
+          >
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="150"
+              height="50"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#primaryNav"
+            aria-controls="primaryNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="primaryNav">
+            <div
+              class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-3 mb-lg-0"
+            >
+              <a
+                class="nav-link"
+                href="/#what-i-do"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >What I Do</a
+              >
+              <a
+                class="nav-link"
+                href="/#featured-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Featured Work</a
+              >
+              <a
+                class="nav-link"
+                href="/#concept-builds"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Concept Builds</a
+              >
+              <a
+                class="nav-link"
+                href="/#how-i-work"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >How I Work</a
+              >
+              <!-- .active marks the current section; no aria-current="page" —
+                   this post isn't the blog index the link points at. -->
+              <a
+                class="nav-link active"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-position="navbar"
+                >Blog</a
+              >
+            </div>
+            <a
+              class="btn btn-primary ms-lg-3"
+              href="/#get-in-touch"
+              data-analytics-event="cta_click"
+              data-analytics-button-name="get_in_touch"
+              data-analytics-section-name="navbar"
+              >Get in Touch</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb: clears the fixed navbar (homepage hero top padding, plus a little extra room below the bar) -->
+      <nav class="pt-9 pt-lg-8 pb-2" aria-label="Breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb mb-0 fs-7 fw-semibold" data-bs-theme="dark">
+            <li class="breadcrumb-item">
+              <a
+                class="link-light text-decoration-none"
+                href="/"
+                data-analytics-event="nav_click"
+                data-analytics-position="breadcrumb"
+                >Home</a
+              >
+            </li>
+            <li class="breadcrumb-item">
+              <a
+                class="link-light text-decoration-none"
+                href="/blog/"
+                data-analytics-event="nav_click"
+                data-analytics-position="breadcrumb"
+                >Blog</a
+              >
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              I Own 8 Board Games. Here's What I Built Around Them.
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Article header: eyebrow + headline + deck + byline + CTAs; content column spans two-thirds of the grid at lg+, left aligned -->
+      <header class="pt-8 pb-9">
+        <div class="container">
+          <div class="row">
+            <!-- Content column: 8/12 of the grid from lg up, full width below -->
+            <div class="col-lg-8 d-flex flex-column gap-4">
+              <!-- Eyebrow: short rule + label (same pattern as every homepage section heading) -->
+              <div
+                class="d-flex align-items-center gap-3 text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1"
+              >
+                <span
+                  class="border-top border-2 border-primary d-inline-block w-rule"
+                ></span>
+                <span class="text-nowrap">Side projects</span>
+              </div>
+
+              <h1 class="display-3 fw-bold mb-0">
+                I Own 8 Board Games. Here's What I Built Around Them.
+              </h1>
+
+              <p class="lead text-on-dark-muted mb-0">
+                A small rental site for Metro Manila, run by one person in
+                spare time. This is the story of the decisions that made it
+                real — not the code.
+              </p>
+
+              <!-- Byline: author + publish date + reading time -->
+              <p
+                class="fs-7 text-on-dark-muted mb-0 d-flex flex-wrap align-items-center gap-2"
+              >
+                <span class="text-white fw-semibold"
+                  >By Liandre John de Castro</span
+                >
+                <span class="text-white-50" aria-hidden="true">·</span>
+                <time datetime="2026-09-15">September 15, 2026</time>
+                <span class="text-white-50" aria-hidden="true">·</span>
+                <span>5 min read</span>
+              </p>
+
+              <!-- CTAs: primary "read" jump-link + outline link out to the live site. No GitHub link — Unboxed isn't this repo. -->
+              <div class="d-flex flex-wrap gap-3 pt-2">
+                <a
+                  class="btn btn-primary d-inline-flex align-items-center gap-2"
+                  href="#1-the-constraint-that-shaped-everything"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="read_the_article"
+                  data-analytics-section-name="blog_header"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                    />
+                  </svg>
+                  Read the blog
+                </a>
+                <a
+                  class="btn btn-outline-light d-inline-flex align-items-center gap-2"
+                  href="https://unboxed.liandrejohn.com"
+                  target="_blank"
+                  rel="noopener"
+                  data-analytics-event="cta_click"
+                  data-analytics-button-name="view_site"
+                  data-analytics-section-name="blog_header"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49a7 7 0 0 0 .656 2.5zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm2.173 2.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M14.982 8.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.83 5c.174.782.282 1.623.312 2.5h2.49a7 7 0 0 0-.656-2.5zm-1.339-1.539q.226.451.421.906c.16.386.298.799.412 1.233h1.835A7 7 0 0 0 10.673 2.06zM8.5 1.077V4h2.355a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.281 8.5 1.077M7.5 4V1.077c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4z"
+                    />
+                  </svg>
+                  View site
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- ============================================================
+         ARTICLE BODY — white ground. Two columns from lg up: the article
+         sections on the left, a sticky table of contents on the right that
+         tracks the section currently in view. Below lg the TOC is dropped
+         (it would fall after the whole article in source order). Filled in
+         section by section.
+         ============================================================ -->
+    <main id="content" class="bg-white">
+      <div class="container py-6 py-md-7">
+        <div class="row g-5 g-lg-6">
+          <!-- Left column: the article's numbered sections -->
+          <div class="col-lg-9">
+            <!-- Mobile in-article nav: the sticky TOC in the right column is
+                 dropped below lg (in source order it sits after the whole
+                 article), so phones get this collapsed <details> version at the
+                 top of the article instead. Same anchors and labels as the
+                 sticky list; native disclosure, no script. -->
+            <details class="blog-toc-mobile d-lg-none mb-5">
+              <summary
+                class="text-primary text-uppercase fs-7 fw-semibold tracking-wide"
+              >
+                On this page
+              </summary>
+              <ul class="list-unstyled border-start mt-3 mb-0">
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#1-the-constraint-that-shaped-everything"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >1. The Constraint That Shaped Everything</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#2-policies-that-stay-consistent"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >2. Policies That Stay Consistent</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#3-what-the-website-is-responsible-for"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >3. What the Website Is Responsible For</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-why-im-sharing-this"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >4. Why I'm Sharing This</a
+                  >
+                </li>
+              </ul>
+            </details>
+
+            <!-- Lead / intro: the "8 board games" framing, before the numbered sections -->
+            <p class="lead text-secondary-emphasis mb-4">
+              I own 8 board games — Monopoly, Exploding Kittens, Monopoly
+              Deal, Game of Life, Herd Mentality, Piles, an RC Plane, and
+              Jackstones. Games I bought, played a handful of times, and then
+              watched sit on a shelf. So, mostly for fun, I built
+              <a
+                href="https://unboxed.liandrejohn.com"
+                target="_blank"
+                rel="noopener"
+                >Unboxed</a
+              >: a small site where people in Metro Manila can rent them from
+              me, pay via GCash, and get them delivered through Lalamove.
+            </p>
+
+            <p class="text-secondary-emphasis mb-4">
+              This post isn't about the code (that's Part 2). It's about the
+              decisions that made this a real, working thing I could actually
+              share instead of another idea that stayed half-built in a notes
+              app — because those decisions mattered more than the tech stack
+              did.
+            </p>
+
+            <figure class="mb-0">
+              <img
+                class="img-fluid rounded-4 border"
+                src="/images/blog/unboxed-homepage-1600x900.webp"
+                srcset="
+                  /images/blog/unboxed-homepage-800x450.webp   800w,
+                  /images/blog/unboxed-homepage-1600x900.webp 1600w
+                "
+                sizes="(min-width: 992px) 66vw, 100vw"
+                alt="The Unboxed homepage: a headline over a photo of the 8 rentable board games stacked together, with GCash and Lalamove rental details below."
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+              <figcaption class="fs-7 text-secondary mt-3">
+                The
+                <a
+                  href="https://unboxed.liandrejohn.com"
+                  target="_blank"
+                  rel="noopener"
+                  >Unboxed</a
+                >
+                homepage — 8 board games, one person renting them out.
+              </figcaption>
+            </figure>
+
+            <!-- ---- Section 1 ---- -->
+            <section
+              id="1-the-constraint-that-shaped-everything"
+              class="mt-6 mt-md-7"
+              aria-labelledby="1-the-constraint-that-shaped-everything-title"
+            >
+              <h2
+                id="1-the-constraint-that-shaped-everything-title"
+                class="mb-3"
+              >
+                1. The Constraint That Shaped Everything: It's Just Me, Doing
+                This for Fun
+              </h2>
+              <p class="text-secondary-emphasis mb-4">
+                No team, no warehouse — 8 physical games and one person (me)
+                coordinating delivery, checking payments, and answering
+                messages by hand, in whatever spare time I have. Every
+                decision below follows from that.
+              </p>
+
+              <p class="text-secondary-emphasis mb-4">
+                <strong class="text-body-emphasis"
+                  >Payment is GCash, checked manually.</strong
+                >
+                Someone pays the rental fee plus a refundable deposit, sends a
+                GCash reference number, and the booking sits as
+                <code>pending</code> until I personally confirm the money
+                actually landed. No payment gateway to integrate, no automated
+                reconciliation. For a handful of bookings a week, "I check my
+                GCash app" beats building and maintaining a payment
+                integration by a wide margin.
+              </p>
+
+              <p class="text-secondary-emphasis mb-4">
+                <strong class="text-body-emphasis"
+                  >Delivery is Lalamove, coordinated by text.</strong
+                >
+                I arrange the delivery, the renter pays the Lalamove fee
+                directly to the rider, and I text them once it's set. No
+                delivery API — texting someone "Hi Alex! Your booking BG-1024
+                for September 20–22 is confirmed" is genuinely not a
+                bottleneck at this scale.
+              </p>
+
+              <p class="text-secondary-emphasis mb-0">
+                <strong class="text-body-emphasis"
+                  >A game is a game — one copy, one booking at a time.</strong
+                >
+                No inventory system, because there's nothing dynamic about 8
+                physical objects I can see on a shelf.
+              </p>
+            </section>
+
+            <!-- ---- Section 2 ---- -->
+            <section
+              id="2-policies-that-stay-consistent"
+              class="mt-6 mt-md-7"
+              aria-labelledby="2-policies-that-stay-consistent-title"
+            >
+              <h2 id="2-policies-that-stay-consistent-title" class="mb-3">
+                2. Policies That Stay Consistent Even Without Automation
+              </h2>
+              <p class="text-secondary-emphasis mb-3">
+                Doing things by hand only works if the <em>rules</em> are
+                still clear and applied the same way every time — the manual
+                part can't turn into a "depends on my mood" part. So the
+                policies are explicit, even though a person (me) enforces
+                them:
+              </p>
+
+              <ul class="text-secondary-emphasis mb-4">
+                <li>
+                  Full payment (rental + deposit) is required before a
+                  booking counts as confirmed — no "I'll pay when it
+                  arrives."
+                </li>
+                <li>
+                  The security deposit comes back after I inspect the return,
+                  with late fees, damage, or missing pieces deducted from it —
+                  never from the rental fee, which is non-refundable once
+                  confirmed.
+                </li>
+                <li>
+                  Cancelling is free before confirmation; once confirmed, only
+                  the deposit comes back if the games haven't shipped yet.
+                </li>
+                <li>
+                  A 10% discount kicks in automatically when someone books 2+
+                  games — a small nudge toward exactly the kind of order that
+                  makes one delivery trip worth arranging.
+                </li>
+              </ul>
+
+              <p class="text-secondary-emphasis mb-4">
+                None of that needs code to be <em>true</em>. It needs code to
+                be <em>shown consistently</em> — which is really the site's
+                job: computing the right numbers every time, not deciding the
+                policy itself.
+              </p>
+
+              <figure class="mb-0">
+                <img
+                  class="img-fluid rounded-4 border"
+                  src="/images/blog/unboxed-booking-summary-1600x900.webp"
+                  srcset="
+                    /images/blog/unboxed-booking-summary-800x450.webp   800w,
+                    /images/blog/unboxed-booking-summary-1600x900.webp 1600w
+                  "
+                  sizes="(min-width: 992px) 66vw, 100vw"
+                  alt="The Unboxed booking page: a grid of available games next to a booking summary showing rental dates, per-game pricing, the multi-game discount, refundable deposits, and the total amount to pay."
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                />
+                <figcaption class="fs-7 text-secondary mt-3">
+                  The booking summary — dates, per-game pricing, the
+                  multi-game discount, deposits, and the total, computed every
+                  time.
+                </figcaption>
+              </figure>
+            </section>
+
+            <!-- ---- Section 3 ---- -->
+            <section
+              id="3-what-the-website-is-responsible-for"
+              class="mt-6 mt-md-7"
+              aria-labelledby="3-what-the-website-is-responsible-for-title"
+            >
+              <h2
+                id="3-what-the-website-is-responsible-for-title"
+                class="mb-3"
+              >
+                3. What the Website Is Actually Responsible For
+              </h2>
+              <p class="text-secondary-emphasis mb-3">
+                Given how much of this is manual, it's fair to ask what the
+                site even does. Three things, and it does them properly:
+              </p>
+
+              <ol class="text-secondary-emphasis mb-4">
+                <li class="mb-2">
+                  <strong class="text-body-emphasis"
+                    >Shows real availability.</strong
+                  >
+                  A booking that overlaps one I've already confirmed gets
+                  blocked automatically — nobody can double-book Monopoly, and
+                  I don't have to keep a mental calendar.
+                </li>
+                <li class="mb-2">
+                  <strong class="text-body-emphasis"
+                    >Computes the real price.</strong
+                  >
+                  Rental days, the multi-game discount, the deposit total, the
+                  grand total — calculated from the actual per-game rates, not
+                  typed in by a renter or guessed by me.
+                </li>
+                <li>
+                  <strong class="text-body-emphasis"
+                    >Only accepts deliveries inside Metro Manila.</strong
+                  >
+                  The one hard boundary of the whole idea (outside NCR,
+                  Lalamove coordination stops making sense) is caught at the
+                  address field, not discovered after someone's already paid.
+                </li>
+              </ol>
+
+              <p class="text-secondary-emphasis mb-0">
+                Everything past that — confirming the payment actually
+                arrived, deciding when a game is ready to hand off, inspecting
+                it on return — stays with me, because I'm the one actually
+                doing the renting-out.
+              </p>
+            </section>
+
+            <!-- ---- Section 4 ---- -->
+            <section
+              id="4-why-im-sharing-this"
+              class="mt-6 mt-md-7"
+              aria-labelledby="4-why-im-sharing-this-title"
+            >
+              <h2 id="4-why-im-sharing-this-title" class="mb-3">
+                4. Why I'm Sharing This Instead of Just Linking the Site
+              </h2>
+              <p class="text-secondary-emphasis mb-4">
+                The easy way to lose momentum on something like this is
+                over-building: a payment gateway integration for 8 games, a
+                full admin dashboard for something I run alone, SMS automation
+                for a few bookings a week. All real, all buildable, none of it
+                necessary at this size — and exactly the kind of scope that
+                turns a fun weekend project into one I never finish.
+              </p>
+
+              <p class="text-secondary-emphasis mb-0">
+                Deciding early which parts I was happy to keep manual —
+                checking payments, coordinating delivery, inspecting returns —
+                and which parts genuinely needed real logic — availability,
+                pricing, the Metro Manila boundary — is the actual reason
+                <a
+                  href="https://unboxed.liandrejohn.com"
+                  target="_blank"
+                  rel="noopener"
+                  >unboxed.liandrejohn.com</a
+                >
+                is a real site I can point people to, instead of a repo I
+                stopped touching. How it got built, and the tools I used to
+                build it, are worth their own post — that's Part 2.
+              </p>
+            </section>
+          </div>
+
+          <!-- Right column: sticky table of contents. Hidden below lg (in
+               source order it sits after the whole article). From lg up it
+               sticks beside the sections; the page-scoped script before
+               </body> flags the entry currently in view with .is-active.
+               Every entry is a plain in-page anchor, so the list still works
+               if that script never runs. Entries are added as each section
+               lands. -->
+          <div class="col-lg-3 d-none d-lg-block">
+            <nav
+              class="blog-toc position-sticky"
+              aria-labelledby="toc-heading"
+              data-toc
+            >
+              <p
+                id="toc-heading"
+                class="text-primary text-uppercase fs-7 fw-semibold tracking-wide lh-1 mb-3"
+              >
+                On this page
+              </p>
+              <ul class="list-unstyled border-start mb-0">
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#1-the-constraint-that-shaped-everything"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >1. The Constraint That Shaped Everything</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#2-policies-that-stay-consistent"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >2. Policies That Stay Consistent</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#3-what-the-website-is-responsible-for"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >3. What the Website Is Responsible For</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#4-why-im-sharing-this"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >4. Why I'm Sharing This</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Back-to-top button: hidden by default; main.js toggles it once the post
+         header is scrolled past, and hides it again over the footer (which has
+         its own "Back to top" link). Same markup + wiring as the homepage. -->
+    <a
+      id="backToTop"
+      class="btn btn-dark position-fixed end-0 bottom-0 m-4 shadow d-none align-items-center justify-content-center"
+      href="#top"
+      aria-label="Back to top"
+      data-analytics-event="nav_click"
+      data-analytics-position="back_to_top"
+      data-analytics-link-text="back_to_top"
+      ><svg
+        class="bi"
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
+
+    <!-- ============================================================
+         FOOTER — shared with the homepage: brand blurb + "Explore" anchor
+         links + "Connect" links + copyright. Section anchors are absolute
+         (/#…) so they resolve back on the homepage from this post.
+         ============================================================ -->
+    <footer
+      class="bg-dark text-white border-top border-light border-opacity-10 pt-6 pb-4"
+      aria-labelledby="site-footer-title"
+    >
+      <h2 id="site-footer-title" class="visually-hidden">Site footer</h2>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand column: logo + one-line summary -->
+          <div class="col-lg-4">
+            <img
+              src="/images/logo-dark.webp"
+              alt="Liandre John de Castro"
+              width="160"
+              height="53"
+              loading="lazy"
+              class="mb-4"
+            />
+            <p class="small text-on-dark-muted mb-0" style="max-width: 34ch">
+              Tech Lead building enterprise digital platforms, APIs, and cloud
+              systems — with AI-assisted engineering as a delivery multiplier.
+            </p>
+          </div>
+          <!-- Explore column: homepage section anchors -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Explore
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#what-i-do"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >What I Do</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#featured-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Featured Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#concept-builds"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Concept Builds</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#how-i-work"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >How I Work</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/blog/"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="/#get-in-touch"
+                  data-analytics-event="nav_click"
+                  data-analytics-position="footer"
+                  >Get in Touch</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Connect column: external contact links -->
+          <div class="col-6 col-lg-3">
+            <h3 class="fs-7 text-uppercase text-white-50 tracking-wide mb-4">
+              Connect
+            </h3>
+            <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="mailto:liandrejohn88@gmail.com"
+                  rel="me"
+                  data-email-text
+                  data-analytics-event="email_click"
+                  data-analytics-contact-method="email"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >liandrejohn88 [at] gmail [dot] com</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://www.linkedin.com/in/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="linkedin_click"
+                  data-analytics-contact-method="linkedin"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >linkedin.com/in/lpdecastro</a
+                >
+              </li>
+              <li>
+                <a
+                  class="link-light text-decoration-none"
+                  href="https://github.com/lpdecastro"
+                  target="_blank"
+                  rel="me noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-section-name="footer"
+                  data-analytics-position="footer"
+                  >github.com/lpdecastro</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Footer bottom bar: copyright + back-to-top link -->
+        <hr class="border-light border-opacity-10 opacity-100 my-6" />
+        <div
+          class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 small text-on-dark-muted"
+        >
+          <p class="mb-0">
+            © <span id="year">2026</span> Liandre John de Castro. All rights
+            reserved.
+          </p>
+          <a class="link-light text-decoration-none" href="#top"
+            >Back to top
+            <svg
+              class="bi"
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: Bootstrap bundle (navbar collapse), analytics helper, then site behaviors
+         (navbar scroll state, mobile menu close, back-to-top toggle). Same entry point as the homepage. -->
+    <script type="module" src="/src/js/main.js"></script>
+
+    <!-- Sticky TOC: flag the entry whose section is currently in view. Walks the
+         entries (authored in document order) and takes the last one whose top
+         has passed a line just below the fixed navbar; at the very bottom of the
+         page — where the short trailing sections can't scroll far enough to
+         cross that line — it takes the final entry instead. Clicking an entry
+         pins it until the jump settles. Page-scoped, and pure enhancement — the
+         list is plain anchors without it. -->
+    <script>
+      (() => {
+        const toc = document.querySelector("[data-toc]");
+        if (!toc) return;
+
+        const entries = [...toc.querySelectorAll('a[href^="#"]')]
+          .map((link) => ({
+            link,
+            target: document.getElementById(
+              decodeURIComponent(link.hash.slice(1)),
+            ),
+          }))
+          .filter((entry) => entry.target);
+        if (!entries.length) return;
+
+        // The line a section's top must cross to count as "current" — kept in
+        // step with `html { scroll-padding-top: 6rem }` so a jumped heading
+        // lands exactly where the active-state switches (fixed navbar + a
+        // little breathing room).
+        const OFFSET = 96;
+
+        let active = null;
+        const setActive = (link) => {
+          if (link === active) return;
+          if (active) {
+            active.classList.remove("is-active");
+            active.removeAttribute("aria-current");
+          }
+          if (link) {
+            link.classList.add("is-active");
+            link.setAttribute("aria-current", "true");
+          }
+          active = link;
+        };
+
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+
+          // The last entry whose section top has scrolled up past the reading
+          // line...
+          let current = entries[0].link;
+          for (const entry of entries) {
+            if (entry.target.getBoundingClientRect().top - OFFSET <= 1) {
+              current = entry.link;
+            } else {
+              break;
+            }
+          }
+
+          // ...except at the very bottom of the page: only force the final
+          // entry if its own heading has actually crossed the reading line.
+          const last = entries[entries.length - 1];
+          const atBottom =
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 2;
+          if (
+            atBottom &&
+            last.target.getBoundingClientRect().top - OFFSET <= 1
+          ) {
+            current = last.link;
+          }
+
+          setActive(current);
+        };
+
+        // While a click-jump is in flight, pin the clicked entry.
+        let pinned = false;
+        let pinTimer;
+        const unpin = () => {
+          pinned = false;
+        };
+
+        toc.addEventListener("click", (event) => {
+          const link = event.target.closest('a[href^="#"]');
+          if (!link) return;
+          setActive(link);
+          pinned = true;
+          clearTimeout(pinTimer);
+          pinTimer = setTimeout(unpin, 1000);
+        });
+        window.addEventListener("scrollend", unpin);
+
+        const onScroll = () => {
+          if (pinned || ticking) return;
+          ticking = true;
+          requestAnimationFrame(update);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        update();
+      })();
+    </script>
+  </body>
+</html>
