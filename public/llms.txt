@@ -32,6 +32,7 @@
 ## Selected work
 
 - [Enterprise Magnolia CMS Platform](https://liandrejohn.com/#featured-work) — Tech Lead; architecture and delivery of a reusable CMS platform behind 150+ localized brand sites. Client engagement; walkthrough on request.
+- [Unboxed](https://unboxed.liandrejohn.com/) — board game rental concept build for Metro Manila (GCash payment, Lalamove delivery). Code: https://github.com/lpdecastro/unboxed.liandrejohn.com
 - [Altamira Construction Group](https://construction.liandrejohn.com/) — marketing site concept build. Code: https://github.com/lpdecastro/construction.liandrejohn.com
 - [Handa Home Services](https://handa.liandrejohn.com/) — booking & scheduling concept build. Code: https://github.com/lpdecastro/handa.liandrejohn.com
 - [Sereva](https://sereva.liandrejohn.com/) — direct-to-consumer brand concept build. Code: https://github.com/lpdecastro/sereva.liandrejohn.com
