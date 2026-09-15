@@ -24,7 +24,7 @@
 
     <meta
       name="description"
-      content="I own 8 board games and rarely play them, so I built Unboxed, a small rental site for Metro Manila. The decisions that made it real: what I kept manual, and what the site had to get right."
+      content="How I actually built Unboxed: a deliberately boring stack (Next.js, MongoDB, Bootstrap), the six-step spec-first workflow an AI coding agent and I followed for every feature, and the verification habits that let me trust a codebase I wrote very little of by hand."
     />
     <meta
       name="robots"
@@ -52,13 +52,13 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0f172a" />
     <title>
-      I Own 8 Board Games. Here's What I Built Around Them.
+      How I Actually Built It — Next.js, MongoDB, and an AI Coding Agent
     </title>
 
     <!-- Canonical: single indexable URL (host + path, no trailing slash on the post) -->
     <link
       rel="canonical"
-      href="https://liandrejohn.com/blog/why-i-built-unboxed"
+      href="https://liandrejohn.com/blog/how-i-built-unboxed"
     />
 
     <!-- Open Graph: link previews on LinkedIn, Slack, iMessage, etc. -->
@@ -66,15 +66,15 @@
     <meta property="og:site_name" content="Liandre John de Castro" />
     <meta
       property="og:title"
-      content="I Own 8 Board Games. Here's What I Built Around Them."
+      content="How I Actually Built It — Next.js, MongoDB, and an AI Coding Agent"
     />
     <meta
       property="og:description"
-      content="Unboxed lets people in Metro Manila rent my 8 board games — GCash payment, Lalamove delivery, both checked by hand. The decisions that made it a real, shippable thing."
+      content="The stack, the six-step spec-first workflow, and the verification habits that made Unboxed a codebase I actually trust — even though an AI coding agent wrote most of it."
     />
     <meta
       property="og:url"
-      content="https://liandrejohn.com/blog/why-i-built-unboxed"
+      content="https://liandrejohn.com/blog/how-i-built-unboxed"
     />
     <meta
       property="og:image"
@@ -83,10 +83,7 @@
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Liandre John de Castro"
-    />
+    <meta property="og:image:alt" content="Liandre John de Castro" />
     <meta property="og:locale" content="en_US" />
     <meta
       property="article:published_time"
@@ -103,11 +100,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="I Own 8 Board Games. Here's What I Built Around Them."
+      content="How I Actually Built It — Next.js, MongoDB, and an AI Coding Agent"
     />
     <meta
       name="twitter:description"
-      content="Unboxed lets people in Metro Manila rent my 8 board games — GCash payment, Lalamove delivery, both checked by hand. The decisions that made it a real, shippable thing."
+      content="The stack, the six-step spec-first workflow, and the verification habits that made Unboxed a codebase I actually trust — even though an AI coding agent wrote most of it."
     />
     <meta
       name="twitter:image"
@@ -124,11 +121,11 @@
         "@graph": [
           {
             "@type": "BlogPosting",
-            "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#article",
-            "headline": "I Own 8 Board Games. Here's What I Built Around Them.",
-            "description": "I own 8 board games and rarely play them, so I built Unboxed, a small rental site for Metro Manila. The decisions that made it real: what I kept manual, and what the site had to get right.",
-            "url": "https://liandrejohn.com/blog/why-i-built-unboxed",
-            "mainEntityOfPage": "https://liandrejohn.com/blog/why-i-built-unboxed",
+            "@id": "https://liandrejohn.com/blog/how-i-built-unboxed#article",
+            "headline": "How I Actually Built It — Next.js, MongoDB, and an AI Coding Agent",
+            "description": "How I actually built Unboxed: a deliberately boring stack (Next.js, MongoDB, Bootstrap), the six-step spec-first workflow an AI coding agent and I followed for every feature, and the verification habits that let me trust a codebase I wrote very little of by hand.",
+            "url": "https://liandrejohn.com/blog/how-i-built-unboxed",
+            "mainEntityOfPage": "https://liandrejohn.com/blog/how-i-built-unboxed",
             "datePublished": "2026-09-15T00:00:00+00:00",
             "dateModified": "2026-09-15T00:00:00+00:00",
             "inLanguage": "en-US",
@@ -139,7 +136,7 @@
               "height": 630
             },
             "articleSection": "Side projects",
-            "wordCount": 950,
+            "wordCount": 1020,
             "timeRequired": "PT5M",
             "isPartOf": { "@id": "https://liandrejohn.com/blog/#blog" },
             "author": { "@id": "https://liandrejohn.com/#person" },
@@ -164,12 +161,12 @@
             "inLanguage": "en-US",
             "publisher": { "@id": "https://liandrejohn.com/#person" },
             "blogPost": {
-              "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#article"
+              "@id": "https://liandrejohn.com/blog/how-i-built-unboxed#article"
             }
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://liandrejohn.com/blog/why-i-built-unboxed#breadcrumb",
+            "@id": "https://liandrejohn.com/blog/how-i-built-unboxed#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -186,8 +183,8 @@
               {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "I Own 8 Board Games. Here's What I Built Around Them.",
-                "item": "https://liandrejohn.com/blog/why-i-built-unboxed"
+                "name": "How I Actually Built It — Next.js, MongoDB, and an AI Coding Agent",
+                "item": "https://liandrejohn.com/blog/how-i-built-unboxed"
               }
             ]
           }
@@ -209,6 +206,21 @@
     <link rel="stylesheet" href="/src/scss/main.scss" />
 
     <style>
+      /* Page-scoped: the terminal-style dark windows around the workflow diagram
+         and the two verbatim log excerpts in Sections 2 & 3. Same tint as the
+         .code-window on the "how I built my portfolio" post (the $dark ground,
+         slate-200 text), but barless — these are read-only proof artifacts, not
+         snippets meant to be copied, so there's no title bar or copy button. No
+         other element on this page needs it, so it stays out of the shared
+         bundle. */
+      .code-window {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      .code-window .tok-heading {
+        color: #7dd3fc;
+      }
+
       /* Page-scoped: the sticky table of contents in the article's right
          column. A hairline vertical rail (Bootstrap .border-start on the list)
          with the entry that's currently in view picked out — its rail segment
@@ -216,8 +228,8 @@
          max-height + scroll keep a long list usable on short viewports. The
          active state is toggled by the page-scoped script before </body>; the
          entries are plain in-page anchors, so the list works without it. Same
-         rule as the two sister posts; no other page has a TOC, so this stays
-         out of the shared bundle. */
+         rule as the sister posts; no other page has a TOC, so this stays out
+         of the shared bundle. */
       .blog-toc {
         top: 6rem;
         max-height: calc(100vh - 7.5rem);
@@ -304,7 +316,7 @@
   </head>
   <body
     data-page="blog"
-    data-article-id="why-i-built-unboxed"
+    data-article-id="how-i-built-unboxed"
     data-article-section="Side projects"
   >
     <!-- Skip link: first focusable element, visually hidden until focused (Bootstrap .visually-hidden-focusable) -->
@@ -429,7 +441,7 @@
               >
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-              I Own 8 Board Games. Here's What I Built Around Them.
+              How I Actually Built It
             </li>
           </ol>
         </div>
@@ -452,13 +464,14 @@
               </div>
 
               <h1 class="display-3 fw-bold mb-0">
-                I Own 8 Board Games. Here's What I Built Around Them.
+                How I Actually Built It — Next.js, MongoDB, and an AI Coding
+                Agent
               </h1>
 
               <p class="lead text-on-dark-muted mb-0">
-                A small rental site for Metro Manila, run by one person in
-                spare time. This is the story of the decisions that made it
-                real — not the code.
+                The stack, the six-step workflow, and the verification habits
+                that made Unboxed a codebase I actually trust — not just AI
+                output that happened to run.
               </p>
 
               <!-- Byline: author + publish date + reading time -->
@@ -474,11 +487,11 @@
                 <span>5 min read</span>
               </p>
 
-              <!-- CTAs: primary "read" jump-link + outline link out to the live site. No GitHub link — Unboxed isn't this repo. -->
+              <!-- CTAs: primary "read" jump-link + outline links out to the live site and the public repo (this post references the repo directly, unlike Part 1). -->
               <div class="d-flex flex-wrap gap-3 pt-2">
                 <a
                   class="btn btn-primary d-inline-flex align-items-center gap-2"
-                  href="#1-the-constraint-that-shaped-everything"
+                  href="#1-the-stack"
                   data-analytics-event="cta_click"
                   data-analytics-button-name="read_the_article"
                   data-analytics-section-name="blog_header"
@@ -523,6 +536,30 @@
                   </svg>
                   View site
                 </a>
+                <a
+                  class="btn btn-outline-light d-inline-flex align-items-center gap-2"
+                  href="https://github.com/lpdecastro/unboxed.liandrejohn.com"
+                  target="_blank"
+                  rel="noopener"
+                  data-analytics-event="social_click"
+                  data-analytics-button-name="view_repo"
+                  data-analytics-section-name="blog_header"
+                >
+                  <svg
+                    class="bi"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+                    />
+                  </svg>
+                  View repo
+                </a>
               </div>
             </div>
           </div>
@@ -557,299 +594,355 @@
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#1-the-constraint-that-shaped-everything"
+                    href="#1-the-stack"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc_mobile"
-                    >1. The Constraint That Shaped Everything</a
+                    >1. The Stack</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#2-policies-that-stay-consistent"
+                    href="#2-the-loop"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc_mobile"
-                    >2. Policies That Stay Consistent</a
+                    >2. The Loop That Kept It From Turning Into a Mess</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#3-what-the-website-is-responsible-for"
+                    href="#3-verification"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc_mobile"
-                    >3. What the Website Is Responsible For</a
+                    >3. Verification Isn't Optional</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#4-why-im-sharing-this"
+                    href="#4-a-few-calls-id-make-again"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc_mobile"
-                    >4. Why I'm Sharing This</a
+                    >4. A Few Calls I'd Make Again</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#5-what-id-tell-someone"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc_mobile"
+                    >5. What I'd Tell Someone Trying This</a
                   >
                 </li>
               </ul>
             </details>
 
-            <!-- Lead / intro: the "8 board games" framing, before the numbered sections -->
+            <!-- Lead / intro: the Part 1 backlink + repo link, before the numbered sections -->
             <p class="lead text-secondary-emphasis mb-4">
-              I own 8 board games — Monopoly, Exploding Kittens, Monopoly
-              Deal, Game of Life, Herd Mentality, Piles, an RC Plane, and
-              Jackstones. Games I bought, played a handful of times, and then
-              watched sit on a shelf. So, mostly for fun, I built
+              <a href="/blog/why-i-built-unboxed">In Part 1</a>, I wrote
+              about why I built
               <a
                 href="https://unboxed.liandrejohn.com"
                 target="_blank"
                 rel="noopener"
                 >Unboxed</a
-              >: a small site where people in Metro Manila can rent them from
-              me, pay via GCash, and get them delivered through Lalamove.
+              >
+              — a small site that rents out 8 personal board games in Metro
+              Manila — and why I kept so much of it manual. This post is
+              about how it actually got built: the stack, the workflow, and
+              a few calls I made along the way that I'd make again.
             </p>
 
             <p class="text-secondary-emphasis mb-4">
-              This post isn't about the code (that's
-              <a href="/blog/how-i-built-unboxed">Part 2</a>). It's about the
-              decisions that made this a real, working thing I could actually
-              share instead of another idea that stayed half-built in a notes
-              app — because those decisions mattered more than the tech stack
-              did.
+              The
+              <a
+                href="https://github.com/lpdecastro/unboxed.liandrejohn.com"
+                target="_blank"
+                rel="noopener"
+                >repo is public</a
+              >
+              if you want to see the whole thing, not just the highlights
+              below.
             </p>
 
-            <figure class="mb-0">
-              <img
-                class="img-fluid rounded-4 border"
-                src="/images/blog/unboxed-homepage-1600x900.webp"
-                srcset="
-                  /images/blog/unboxed-homepage-800x450.webp   800w,
-                  /images/blog/unboxed-homepage-1600x900.webp 1600w
-                "
-                sizes="(min-width: 992px) 66vw, 100vw"
-                alt="The Unboxed homepage: a headline over a photo of the 8 rentable board games stacked together, with GCash and Lalamove rental details below."
-                width="1600"
-                height="900"
-                loading="lazy"
-              />
-              <figcaption class="fs-7 text-secondary mt-3">
-                The
-                <a
-                  href="https://unboxed.liandrejohn.com"
-                  target="_blank"
-                  rel="noopener"
-                  >Unboxed</a
-                >
-                homepage — 8 board games, one person renting them out.
-              </figcaption>
-            </figure>
+            <!-- Mobile games-page screenshot: a portrait phone capture, unlike
+                 Part 1's two 16:9 shots, so it's constrained to a centered,
+                 phone-width column via the Bootstrap grid instead of the
+                 66vw sizing those use — full-width here would tower over the
+                 surrounding text. No custom CSS, per coding-standards.md. -->
+            <div class="row justify-content-center mb-0">
+              <div class="col-8 col-sm-6 col-md-5 col-lg-4">
+                <figure class="mb-0">
+                  <img
+                    class="img-fluid rounded-4 border"
+                    src="/images/blog/unboxed-mobile-games-944x2046.webp"
+                    srcset="
+                      /images/blog/unboxed-mobile-games-472x1023.webp  472w,
+                      /images/blog/unboxed-mobile-games-944x2046.webp  944w
+                    "
+                    sizes="(min-width: 576px) 300px, 66vw"
+                    alt="The Unboxed games page on mobile, showing the game grid with a sticky booking summary pinned to the bottom of the screen."
+                    width="944"
+                    height="2046"
+                    loading="lazy"
+                  />
+                  <figcaption class="fs-7 text-secondary mt-3 text-center">
+                    The games page on mobile — the booking summary stays
+                    pinned to the bottom as you browse.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
 
             <!-- ---- Section 1 ---- -->
             <section
-              id="1-the-constraint-that-shaped-everything"
+              id="1-the-stack"
               class="mt-6 mt-md-7"
-              aria-labelledby="1-the-constraint-that-shaped-everything-title"
+              aria-labelledby="1-the-stack-title"
             >
-              <h2
-                id="1-the-constraint-that-shaped-everything-title"
-                class="mb-3"
-              >
-                1. The Constraint That Shaped Everything: It's Just Me, Doing
-                This for Fun
-              </h2>
-              <p class="text-secondary-emphasis mb-4">
-                No team, no warehouse — 8 physical games and one person (me)
-                coordinating delivery, checking payments, and answering
-                messages by hand, in whatever spare time I have. Every
-                decision below follows from that.
+              <h2 id="1-the-stack-title" class="mb-3">1. The Stack</h2>
+              <p class="text-secondary-emphasis mb-3">
+                Deliberately boring, on purpose — boring tools have more
+                prior art, which matters a lot when an AI coding agent is
+                writing most of the code:
               </p>
 
-              <p class="text-secondary-emphasis mb-4">
-                <strong class="text-body-emphasis"
-                  >Payment is GCash, checked manually.</strong
-                >
-                Someone pays the rental fee plus a refundable deposit, sends a
-                GCash reference number, and the booking sits as
-                <code>pending</code> until I personally confirm the money
-                actually landed. No payment gateway to integrate, no automated
-                reconciliation. For a handful of bookings a week, "I check my
-                GCash app" beats building and maintaining a payment
-                integration by a wide margin.
-              </p>
-
-              <p class="text-secondary-emphasis mb-4">
-                <strong class="text-body-emphasis"
-                  >Delivery is Lalamove, coordinated by text.</strong
-                >
-                I arrange the delivery, the renter pays the Lalamove fee
-                directly to the rider, and I text them once it's set. No
-                delivery API — texting someone "Hi Alex! Your booking BG-1024
-                for September 20–22 is confirmed" is genuinely not a
-                bottleneck at this scale.
-              </p>
+              <ul class="text-secondary-emphasis mb-4">
+                <li>
+                  <strong class="text-body-emphasis"
+                    >Next.js (App Router)</strong
+                  >, plain JavaScript, two real pages (<code>/</code> and
+                  <code>/games</code>)
+                </li>
+                <li>
+                  <strong class="text-body-emphasis">Bootstrap + Sass</strong>
+                  — no custom design system to invent
+                </li>
+                <li>
+                  <strong class="text-body-emphasis"
+                    >MongoDB + Mongoose</strong
+                  >
+                  for games and bookings, read through Server Actions
+                </li>
+                <li>
+                  <strong class="text-body-emphasis">Web3Forms</strong> for
+                  email notifications,
+                  <strong class="text-body-emphasis">Google Places</strong>
+                  for address autocomplete,
+                  <strong class="text-body-emphasis">GA4</strong> for
+                  analytics
+                </li>
+                <li>
+                  <strong class="text-body-emphasis">AWS Amplify</strong> for
+                  hosting, with GitHub Actions CI/CD
+                </li>
+              </ul>
 
               <p class="text-secondary-emphasis mb-0">
-                <strong class="text-body-emphasis"
-                  >A game is a game — one copy, one booking at a time.</strong
+                Almost all of it was written through
+                <a
+                  href="https://claude.com/claude-code"
+                  target="_blank"
+                  rel="noopener"
+                  >Claude Code</a
                 >
-                No inventory system, because there's nothing dynamic about 8
-                physical objects I can see on a shelf.
+                — but "AI wrote my app" undersells what actually made it
+                work. The process mattered more than the tool.
               </p>
             </section>
 
             <!-- ---- Section 2 ---- -->
             <section
-              id="2-policies-that-stay-consistent"
+              id="2-the-loop"
               class="mt-6 mt-md-7"
-              aria-labelledby="2-policies-that-stay-consistent-title"
+              aria-labelledby="2-the-loop-title"
             >
-              <h2 id="2-policies-that-stay-consistent-title" class="mb-3">
-                2. Policies That Stay Consistent Even Without Automation
+              <h2 id="2-the-loop-title" class="mb-3">
+                2. The Loop That Kept It From Turning Into a Mess
               </h2>
               <p class="text-secondary-emphasis mb-3">
-                Doing things by hand only works if the <em>rules</em> are
-                still clear and applied the same way every time — the manual
-                part can't turn into a "depends on my mood" part. So the
-                policies are explicit, even though a person (me) enforces
-                them:
+                Every feature — from "add a mobile carousel to the homepage"
+                to "cap rentals at 7 days" — went through the same six
+                steps, borrowed from plain old engineering discipline and
+                written down so an AI agent (and I) would actually follow
+                it:
               </p>
 
-              <ul class="text-secondary-emphasis mb-4">
-                <li>
-                  Full payment (rental + deposit) is required before a
-                  booking counts as confirmed — no "I'll pay when it
-                  arrives."
-                </li>
-                <li>
-                  The security deposit comes back after I inspect the return,
-                  with late fees, damage, or missing pieces deducted from it —
-                  never from the rental fee, which is non-refundable once
-                  confirmed.
-                </li>
-                <li>
-                  Cancelling is free before confirmation; once confirmed, only
-                  the deposit comes back if the games haven't shipped yet.
-                </li>
-                <li>
-                  A 10% discount kicks in automatically when someone books 2+
-                  games — a small nudge toward exactly the kind of order that
-                  makes one delivery trip worth arranging.
-                </li>
-              </ul>
+              <div class="code-window rounded-4 overflow-hidden mb-4">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">1. <span class="tok-heading">DOCUMENT</span>  →  write a spec, in plain language, before any code
+2. <span class="tok-heading">BRANCH</span>    →  one feature, one branch
+3. <span class="tok-heading">IMPLEMENT</span> →  build it against the spec
+4. <span class="tok-heading">VERIFY</span>    →  prove it works — build passes, behavior actually checked
+5. <span class="tok-heading">COMMIT</span>    →  only after verification — merge, delete the branch
+6. <span class="tok-heading">LOG</span>       →  write down what happened, including what didn't go as planned</code></pre>
+              </div>
 
-              <p class="text-secondary-emphasis mb-4">
-                None of that needs code to be <em>true</em>. It needs code to
-                be <em>shown consistently</em> — which is really the site's
-                job: computing the right numbers every time, not deciding the
-                policy itself.
+              <p class="text-secondary-emphasis mb-3">
+                Steps 1 and 6 are the ones worth stealing even if you don't
+                touch AI tooling at all. A spec file sits in the repo
+                forever; a prompt disappears the second the response
+                streams back. And the log is where the actually useful
+                information lives — not "added X," but "tried X, it didn't
+                work because Y, did Z instead." One real entry, verbatim:
               </p>
 
-              <figure class="mb-0">
-                <img
-                  class="img-fluid rounded-4 border"
-                  src="/images/blog/unboxed-booking-summary-1600x900.webp"
-                  srcset="
-                    /images/blog/unboxed-booking-summary-800x450.webp   800w,
-                    /images/blog/unboxed-booking-summary-1600x900.webp 1600w
-                  "
-                  sizes="(min-width: 992px) 66vw, 100vw"
-                  alt="The Unboxed booking page: a grid of available games next to a booking summary showing rental dates, per-game pricing, the multi-game discount, refundable deposits, and the total amount to pay."
-                  width="1600"
-                  height="900"
-                  loading="lazy"
-                />
-                <figcaption class="fs-7 text-secondary mt-3">
-                  The booking summary — dates, per-game pricing, the
-                  multi-game discount, deposits, and the total, computed every
-                  time.
-                </figcaption>
-              </figure>
+              <div class="code-window rounded-4 overflow-hidden mb-4">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">Mid-implementation, live testing against the user's real key revealed
+the initially-built classic google.maps.places.Autocomplete widget
+doesn't work at all on Cloud projects created after March 2025 (only
+"Places API (New)" can be enabled) — migrated to the new form-
+associated PlaceAutocompleteElement custom element.</code></pre>
+              </div>
+
+              <p class="text-secondary-emphasis mb-0">
+                Without that sentence living in the repo, a future session —
+                mine or an AI's — might "fix" the code back toward the
+                version that looks simpler and is actually broken.
+              </p>
             </section>
 
             <!-- ---- Section 3 ---- -->
             <section
-              id="3-what-the-website-is-responsible-for"
+              id="3-verification"
               class="mt-6 mt-md-7"
-              aria-labelledby="3-what-the-website-is-responsible-for-title"
+              aria-labelledby="3-verification-title"
             >
-              <h2
-                id="3-what-the-website-is-responsible-for-title"
-                class="mb-3"
-              >
-                3. What the Website Is Actually Responsible For
+              <h2 id="3-verification-title" class="mb-3">
+                3. Verification Isn't Optional When Real Money's Involved
               </h2>
               <p class="text-secondary-emphasis mb-3">
-                Given how much of this is manual, it's fair to ask what the
-                site even does. Three things, and it does them properly:
+                Unboxed touches real GCash payments and real delivery
+                addresses, so "the agent said it works" was never good
+                enough. Here's what counted as done for the
+                booking-submission feature:
               </p>
 
-              <ol class="text-secondary-emphasis mb-4">
-                <li class="mb-2">
-                  <strong class="text-body-emphasis"
-                    >Shows real availability.</strong
-                  >
-                  A booking that overlaps one I've already confirmed gets
-                  blocked automatically — nobody can double-book Monopoly, and
-                  I don't have to keep a mental calendar.
-                </li>
-                <li class="mb-2">
-                  <strong class="text-body-emphasis"
-                    >Computes the real price.</strong
-                  >
-                  Rental days, the multi-game discount, the deposit total, the
-                  grand total — calculated from the actual per-game rates, not
-                  typed in by a renter or guessed by me.
-                </li>
-                <li>
-                  <strong class="text-body-emphasis"
-                    >Only accepts deliveries inside Metro Manila.</strong
-                  >
-                  The one hard boundary of the whole idea (outside NCR,
-                  Lalamove coordination stops making sense) is caught at the
-                  address field, not discovered after someone's already paid.
-                </li>
-              </ol>
+              <div class="code-window rounded-4 overflow-hidden mb-4">
+                <pre
+                  class="mb-0 px-3 px-md-4 py-3 overflow-x-auto"
+                ><code class="font-monospace fs-7">Verified directly against MongoDB (a standalone Node script): a
+successful booking persists with correct pricing math and is
+retrievable/cleanable via the Booking model; overlap, invalid-mobile,
+and past-start-date inputs each correctly return
+{ success: false, error } without writing anything.</code></pre>
+              </div>
 
               <p class="text-secondary-emphasis mb-0">
-                Everything past that — confirming the payment actually
-                arrived, deciding when a game is ready to hand off, inspecting
-                it on return — stays with me, because I'm the one actually
-                doing the renting-out.
+                An actual script, against the actual database, checking
+                actual rejected inputs — not "looks right." That habit,
+                applied every single time, is most of why I trust a
+                codebase I wrote very little of by hand.
               </p>
             </section>
 
             <!-- ---- Section 4 ---- -->
             <section
-              id="4-why-im-sharing-this"
+              id="4-a-few-calls-id-make-again"
               class="mt-6 mt-md-7"
-              aria-labelledby="4-why-im-sharing-this-title"
+              aria-labelledby="4-a-few-calls-id-make-again-title"
             >
-              <h2 id="4-why-im-sharing-this-title" class="mb-3">
-                4. Why I'm Sharing This Instead of Just Linking the Site
+              <h2 id="4-a-few-calls-id-make-again-title" class="mb-3">
+                4. A Few Calls I'd Make Again
               </h2>
-              <p class="text-secondary-emphasis mb-4">
-                The easy way to lose momentum on something like this is
-                over-building: a payment gateway integration for 8 games, a
-                full admin dashboard for something I run alone, SMS automation
-                for a few bookings a week. All real, all buildable, none of it
-                necessary at this size — and exactly the kind of scope that
-                turns a fun weekend project into one I never finish.
-              </p>
+
+              <ul class="text-secondary-emphasis mb-0">
+                <li class="mb-3">
+                  <strong class="text-body-emphasis"
+                    >Never let the browser decide what something
+                    costs.</strong
+                  >
+                  Every price, discount, and deposit total is computed
+                  server-side, from the database, every time — including a
+                  full recheck of availability right before a booking is
+                  written. A renter's browser can display a number; it
+                  never gets to be trusted for one.
+                </li>
+                <li class="mb-3">
+                  <strong class="text-body-emphasis"
+                    >Not every rough edge is worth fixing right
+                    away.</strong
+                  >
+                  The delivery-address field uses Google's newest Places
+                  widget, which — on phones — takes over the whole screen
+                  with Google's own dark, native-feeling search UI instead
+                  of blending into the rest of the site. I looked into
+                  turning that off; there's no supported way to, short of
+                  throwing out the widget and building my own dropdown from
+                  scratch. For now, that's simply not worth it for
+                  something cosmetic, and writing that decision down beats
+                  quietly wondering about it later.
+                </li>
+                <li>
+                  <strong class="text-body-emphasis"
+                    >A small, measured win beats a big, guessed
+                    one.</strong
+                  >
+                  I trimmed unused Bootstrap styles the site wasn't using
+                  anywhere, which shrank the CSS by a real, measured ~14%.
+                  A much bigger performance win was possible — but it
+                  needed live-browser testing to avoid a visible flash of
+                  unstyled content that I couldn't fully verify in one
+                  sitting. Shipping the smaller, provable win and leaving
+                  the riskier one for later felt more honest than guessing.
+                </li>
+              </ul>
+            </section>
+
+            <!-- ---- Section 5 ---- -->
+            <section
+              id="5-what-id-tell-someone"
+              class="mt-6 mt-md-7"
+              aria-labelledby="5-what-id-tell-someone-title"
+            >
+              <h2 id="5-what-id-tell-someone-title" class="mb-3">
+                5. What I'd Tell Someone Trying This
+              </h2>
+
+              <ul class="text-secondary-emphasis mb-4">
+                <li>
+                  Write specs as files, not prompts — the file is what
+                  survives.
+                </li>
+                <li>
+                  Demand proof before committing, every time, even from
+                  yourself.
+                </li>
+                <li>
+                  Log the surprises, not just the successes — that's the
+                  part future-you actually needs.
+                </li>
+                <li>
+                  Boring tech choices are a feature. Nothing in this stack
+                  is cutting-edge, and that's exactly why one person could
+                  put it together in spare evenings.
+                </li>
+              </ul>
 
               <p class="text-secondary-emphasis mb-0">
-                Deciding early which parts I was happy to keep manual —
-                checking payments, coordinating delivery, inspecting returns —
-                and which parts genuinely needed real logic — availability,
-                pricing, the Metro Manila boundary — is the actual reason
                 <a
                   href="https://unboxed.liandrejohn.com"
                   target="_blank"
                   rel="noopener"
-                  >unboxed.liandrejohn.com</a
+                  >The live site</a
                 >
-                is a real site I can point people to, instead of a repo I
-                stopped touching. How it got built, and the tools I used to
-                build it, are worth their own post — that's
-                <a href="/blog/how-i-built-unboxed">Part 2</a>.
+                is the result.
+                <a
+                  href="https://github.com/lpdecastro/unboxed.liandrejohn.com/tree/main/context/features"
+                  target="_blank"
+                  rel="noopener"
+                  >The full spec history</a
+                >
+                is public if you want to see spec-to-shipped-code, feature
+                by feature. And if you haven't yet,
+                <a href="/blog/why-i-built-unboxed">Part 1</a> has the
+                personal side of why so much of this is intentionally left
+                to me, by hand.
               </p>
             </section>
           </div>
@@ -877,37 +970,46 @@
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#1-the-constraint-that-shaped-everything"
+                    href="#1-the-stack"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc"
-                    >1. The Constraint That Shaped Everything</a
+                    >1. The Stack</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#2-policies-that-stay-consistent"
+                    href="#2-the-loop"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc"
-                    >2. Policies That Stay Consistent</a
+                    >2. The Loop That Kept It From Turning Into a Mess</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#3-what-the-website-is-responsible-for"
+                    href="#3-verification"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc"
-                    >3. What the Website Is Responsible For</a
+                    >3. Verification Isn't Optional</a
                   >
                 </li>
                 <li>
                   <a
                     class="blog-toc__link"
-                    href="#4-why-im-sharing-this"
+                    href="#4-a-few-calls-id-make-again"
                     data-analytics-event="toc_click"
                     data-analytics-position="toc"
-                    >4. Why I'm Sharing This</a
+                    >4. A Few Calls I'd Make Again</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="blog-toc__link"
+                    href="#5-what-id-tell-someone"
+                    data-analytics-event="toc_click"
+                    data-analytics-position="toc"
+                    >5. What I'd Tell Someone Trying This</a
                   >
                 </li>
               </ul>
