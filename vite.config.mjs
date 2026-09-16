@@ -23,6 +23,7 @@ export default defineConfig({
         blogAwsDeploymentPost: resolve(__dirname, 'blog/how-i-deployed-my-portfolio-to-aws.html'),
         blogUnboxedWhyPost: resolve(__dirname, 'blog/why-i-built-unboxed.html'),
         blogUnboxedHowPost: resolve(__dirname, 'blog/how-i-built-unboxed.html'),
+        blogCroWorkflowPost: resolve(__dirname, 'blog/how-i-built-a-cro-copywriting-workflow-in-claude-code.html'),
       },
     },
   },

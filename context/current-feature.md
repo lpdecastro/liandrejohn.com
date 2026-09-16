@@ -1,12 +1,21 @@
-# Current Feature
+# Current Feature: Blog Post — Claude Code CRO Copywriting Workflow
 
 ## Goals
 
-<!-- Bullet points of what success looks like -->
+- Publish `context/blogs/claude-code-cro-workflow.md` as `blog/how-i-built-a-cro-copywriting-workflow-in-claude-code.html`, matching the existing posts' head/hero/TOC/section/structured-data conventions.
+- Map the source into 11 numbered `<section>`s plus a closing Conclusion and Resources section, per the spec's section-by-section mapping.
+- Reproduce all six source diagrams (pipeline, folder tree, skill-step snippet, four-agent breakdown, rubric list, before/after) verbatim as `<pre><code>` blocks reusing the existing `tok-*` token-span classes — no new token classes, no paraphrasing.
+- Wire the post into all four integration points: `vite.config.mjs`, `blog/index.html` (card + JSON-LD), `public/sitemap.xml`, `public/llms.txt`.
+- No images (source has none) and no cross-post links (not part of a series).
 
 ## Notes
 
-<!-- Additional context, constraints, or details from spec -->
+- Full spec: `context/features/blog-post-claude-code-cro-workflow-spec.md`.
+- Slug: `how-i-built-a-cro-copywriting-workflow-in-claude-code`. Category/`articleSection`/eyebrow: "AI-assisted engineering" (same as the portfolio-build post, not the Unboxed "Side projects" posts or the AWS "Cloud & DevOps" post).
+- Source is ~2,180 words → roughly a 9–10 min read; compute exact word count / `timeRequired` from the final published copy, don't guess.
+- Resources section references Claude Code docs — verify the link resolves before hyperlinking it; if it can't be verified, leave as plain unlinked text rather than guessing a URL.
+- Preserve the source's hedging language ("would plausibly produce," "haven't run this four-agent version end to end") — don't rewrite as a claim of a finished/tested result.
+- Out of scope: don't scaffold an actual `claude-copy-workspace/`; no dedicated OG image or hero screenshot.
 
 ## History
 
