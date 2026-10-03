@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://liandrejohn.com/blog/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://liandrejohn.com/blog/how-i-built-my-portfolio-with-claude-code</loc>
@@ -27,5 +27,9 @@
   <url>
     <loc>https://liandrejohn.com/blog/how-i-built-a-cro-copywriting-workflow-in-claude-code</loc>
     <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://liandrejohn.com/blog/react-redux-toolkit-rtk-query-tutorial</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
 </urlset>

@@ -24,6 +24,7 @@ export default defineConfig({
         blogUnboxedWhyPost: resolve(__dirname, 'blog/why-i-built-unboxed.html'),
         blogUnboxedHowPost: resolve(__dirname, 'blog/how-i-built-unboxed.html'),
         blogCroWorkflowPost: resolve(__dirname, 'blog/how-i-built-a-cro-copywriting-workflow-in-claude-code.html'),
+        blogReduxTutorialPost: resolve(__dirname, 'blog/react-redux-toolkit-rtk-query-tutorial.html'),
       },
     },
   },
